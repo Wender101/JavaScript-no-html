@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verificador de Idade</title>
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: rgb(0, 140, 255);
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        main {
+            max-width: 600px;
+            height: auto;
+            padding: 20px;
+            margin: auto;
+        }
+
+        main > h1 {
+            color: white;
+            text-align: center;
+            margin: 30px 0px 30px;
+        }
+
+        main > div {
+            max-width: 600px;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 3px 3px 5px rgba(107, 107, 107, 0.678);
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        button {
+            margin-bottom: 20px;
+        }
+
+        section#identificar > button {
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            border: 1px solid black;
+        }
+
+        div#img {
+            width: 250px;
+            height: 250px;
+            border-radius: 50%;
+            margin: 50px auto;
+            display: none;
+            background-color: yellow;
+            box-shadow: 3px 3px 3px rgba(145, 145, 145, 0.418);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Verificador de Idade</h1>
+        <div>
+            <section id="ano">Ano de nascimento: <input type="number" id="ano"></section>
+
+            <section id="identificar">Sexo: <button id="homem"></button> Masculino <button id="mulher"></button> Feminino</section>
+
+            <button id="btn">Verificar</button>
+
+            <p>Preencha os dados acima pra ver o resultado!</p>
+
+            <div id="img"></div>
+        </div>
+    </main>
+
+    <script>
+        var Anonasceu
+        var img = document.querySelector('div#img')
+        var mulher = document.querySelector('button#mulher')
+        var homem = document.querySelector('button#homem')
+        var btn = document.querySelector('button#btn')
+        var p = document.querySelector('p')
+        var anoAtual = new Date()
+        var ano = anoAtual.getFullYear()
+
+
+        homem.addEventListener('click', function() {
+            homem.style.background = 'black'
+            mulher.style.background = 'white'
+
+            btn.addEventListener('click', function() {
+            Anonasceu = document.querySelector('input#ano').value
+
+            var idade = ano - Anonasceu
+
+            if(idade < 3) {
+                var genero = 'um bebê'
+                img.style.backgroundImage = 'url(imgEx2/bb-homem.jpg)'
+                img.style.backgroundPosition = 'center center'
+                img.style.backgroundSize = 'cover'
+                img.style.display = 'block'
+
+            } else if(idade < 14) {
+                var genero = 'um menino'
+                img.style.backgroundImage = 'url(imgEx2/menino.jpg)'
+                img.style.backgroundPosition = 'center center'
+                img.style.backgroundSize = 'cover'
+                img.style.display = 'block'
+
+            } else if(idade > 14 && idade < 50){
+                var genero = 'um homem'
+                img.style.backgroundImage = 'url(imgEx2/homem.jpg)'
+                img.style.backgroundPosition = 'center center'
+                img.style.backgroundSize = 'cover'
+                img.style.display = 'block'
+
+            } else {
+                var genero = 'um senhor'
+                img.style.backgroundImage = 'url(imgEx2/senhor.jpg)'
+                img.style.backgroundPosition = 'center center'
+                img.style.backgroundSize = 'cover'
+                img.style.display = 'block'
+            }
+
+            var resultado = p.innerText = `Detectamos ${genero} com ${idade} anos`
+        })
+        })
+
+        mulher.addEventListener('click', function() {
+            mulher.style.background = 'black'
+            homem.style.background = 'white'
+
+            btn.addEventListener('click', function() {
+            Anonasceu = document.querySelector('input#ano').value
+
+            var idade = ano - Anonasceu
+
+            if(idade < 3) {
+                var genero = 'um bebê'
+                img.style.backgroundImage = 'url(imgEx2/bb-menina.jpg)'
+                img.style.backgroundPosition = 'center center'
+                img.style.backgroundSize = 'cover'
+                img.style.display = 'block'
+
+            } else if(idade < 14) {
+                var genero = 'uma menina'
+                img.style.backgroundImage = 'url(imgEx2/menina.jpg)'
+                img.style.backgroundPosition = 'center center'
+                img.style.backgroundSize = 'cover'
+                img.style.display = 'block'
+
+            } else if(idade > 14 && idade < 50){
+                var genero = 'uma mulher'
+                img.style.backgroundImage = 'url(imgEx2/mulher.jpg)'
+                img.style.backgroundPosition = 'center center'
+                img.style.backgroundSize = 'cover'
+                img.style.display = 'block'
+
+            } else {
+                var genero = 'uma senhora'
+                img.style.backgroundImage = 'url(imgEx2/senhora.jpg)'
+                img.style.backgroundPosition = 'center center'
+                img.style.backgroundSize = 'cover'
+                img.style.display = 'block'
+            }
+
+            var resultado = p.innerText = `Detectamos ${genero} com ${idade} anos`
+        })
+        })
+       
+    </script>
+</body>
+</html>

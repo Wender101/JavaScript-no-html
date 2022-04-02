@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+            list-style: none;
+            text-decoration: none;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #444;
+            color: #fff;
+            font-weight: 600;
+        }
+
+        main {
+            max-width: 500px;
+            margin: auto;
+        }
+
+        main > div > span {
+            display: block;
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        main > div > ul {
+            width: 390px;
+            display: flex;
+            margin: 40px auto;
+        }
+
+        main > div > ul > li {
+            padding-right: 90px;
+        }
+
+        main > div > ul > li > button {
+            width: 160px;
+            height: 60px;
+            border: 1px solid white;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.24);
+            color: #fff;
+            font-size: 20px;
+        }
+
+        .submenu {
+            display: none;
+        }
+
+        #submenu1 {
+            width: 155px;
+            height: auto;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            margin-top: 30px;
+            border: 1px solid rgb(32, 32, 32);
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.24);
+            color: #fff;
+        }
+
+        #submenu1 > li {
+            margin-bottom: 10px;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        #submenu1 > li:hover {
+            background-color: #fff;
+            color: black;
+        }
+
+        #submenu2 > li {
+            margin-top: 30px;
+            margin-left: 5px;
+        }
+
+        #submenu2 > li > input{
+            width: 150px;
+            height: 40px;
+            background-color: #fff;
+            border: none;
+            padding: 5px;
+            border-radius: 10px;
+        }
+
+        main > div > p {
+            top: 450px;
+            position: absolute;
+            left: 50%;
+            transform: translate(-50%);
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <div id="bloco">
+            <span>Esse site mede quanto tempo se passou da hora atual até a hora ecolhida por você. Ou vice versa</span>
+            <ul id="menu">
+                <li><button id="op2">Hora</button>
+                    <ul class="submenu" id="submenu2"> 
+                        <li><input type="number" id="tempo" placeholder="De agora até que horas?"></li>
+                    </ul>
+                </li>
+
+                <li><button id="op1">Dia</button>
+                    <ul class="submenu" id="submenu1">
+                        <li id="hoje">Hoje</li>
+                        <li id="amanha">Amanhã</li>
+                        <li id="dps">Depois de amanhã</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <p></p>
+        </div>  
+
+        
+    </main>
+
+    <script>
+        var op1 = document.getElementById('op1') 
+        var op2 = document.getElementById('op2') 
+
+        var submenu1 = document.getElementById('submenu1')
+        var submenu2 = document.getElementById('submenu2')
+
+        op1.addEventListener('click', function() {
+            if(submenu1.style.display === 'block') {
+                submenu1.style.display = 'none'
+
+            } else {
+                submenu1.style.display = 'block'
+            }
+        })
+
+        op2.addEventListener('click', function() {
+            if(submenu2.style.display === 'block') {
+                submenu2.style.display = 'none'
+                
+            } else {
+                submenu2.style.display = 'block'
+            }
+        })
+
+        //-------------------------------------------------------
+
+        var data = new Date()
+        var agora = data.getHours()
+        var UmaHora = 1
+        var resposta = null
+        var hj = document.getElementById('hoje')
+        var amanha = document.getElementById('amanha')
+        var dps = document.getElementById('dps')
+
+        hj.addEventListener('click', function() {
+            var input = document.querySelector('input').value
+            var tmp = input
+
+                if(agora > tmp) {
+                    resposta =  agora - tmp
+
+                } else {
+                    resposta = (tmp - agora )
+                }
+
+                if(resposta > 1) {
+                    var final = document.querySelector('p').innerHTML = `${resposta} horas.`
+
+                } else {
+                    var final = document.querySelector('p').innerText = `${resposta} hora.`
+                }
+        })
+
+        amanha.addEventListener('click', function() {
+            var input = document.querySelector('input').value
+            var tmp = input
+
+                if(agora > tmp) {
+                resposta =  (tmp - (agora - 24))
+
+                } else {
+                    resposta = (tmp - (agora - 24))
+                }
+
+                if(resposta > 1) {
+                    var final = document.querySelector('p').innerHTML = `${resposta} horas.`
+
+                } else {
+                    var final = document.querySelector('p').innerText = `${resposta} hora.`
+                }
+        })
+
+        dps.addEventListener('click', function() {
+            var input = document.querySelector('input').value
+            var tmp = input
+            
+                if(agora > tmp) {
+                resposta =  (tmp - (agora - 48))
+
+                } else {
+                    resposta = (tmp - (agora - 48))
+                }
+
+                if(resposta > 1) {
+                    var final = document.querySelector('p').innerHTML = `${resposta} horas.`
+
+                } else {
+                    var final = document.querySelector('p').innerText = `${resposta} hora.`
+                }
+        })
+    </script>
+</body>
+</html>

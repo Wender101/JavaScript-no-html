@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de lógica</title>
+</head>
+<body>
+    <h1 id="h1"></h1>
+
+    <script>
+        var data = new Date()
+        var agora = data.getHours()
+        var UmaHora = 1
+        var acabar = window.prompt('Que horas você quer que acabe?')
+        var resposta = null
+
+
+        if(agora > acabar) {
+            resposta =  (acabar - (agora - 24))
+
+        } else {
+            resposta = (acabar - agora )
+        }
+
+        if(resposta > 1) {
+            var final = document.getElementById('h1').innerHTML = `Vai acabar em ${resposta} horas.`
+
+        } else {
+            var final = document.getElementById('h1').innerText = `Vai acabar em ${resposta} hora.`
+        }
+    </script>
+</body>
+</html>
