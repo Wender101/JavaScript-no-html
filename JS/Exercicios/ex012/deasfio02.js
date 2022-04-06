@@ -48,8 +48,6 @@ switch(meses) {
     break
 }
 
-console.log(mesAtual);
-
 homem.addEventListener('click', function() {
     homem.style.background = 'black'
     mulher.style.background = 'white'
@@ -88,7 +86,7 @@ homem.addEventListener('click', function() {
             img.style.display = 'block'
         }
 
-        if(ano < Anonasceu) {
+        if(ano < Anonasceu || idade > 122) {
             var resultado = p.innerText = `[Error] Data invalida`
             img.style.display = 'none'
         } else {
@@ -135,7 +133,7 @@ mulher.addEventListener('click', function() {
             img.style.display = 'block'
         }
 
-        if(ano < Anonasceu) {
+        if(ano < Anonasceu || idade > 122) {
             var resultado = p.innerText = `[Error] Data invalida`
             img.style.display = 'none'
         } else {
@@ -145,8 +143,7 @@ mulher.addEventListener('click', function() {
 })
 
 let day = new Date
-let hj = day.getDay()
-console.log(hj);
+let hj = day.getUTCDate()
 
 let span = document.querySelector('#hoje')
 

@@ -1,0 +1,23 @@
+//As 3 formas de fazer repitição
+
+let a = 1
+let b = 1
+
+//Forma 1
+while(a <= 5) {
+    console.log('a' + a);
+    a++
+}
+
+
+//Forma 2
+do {
+    console.log('b' + b);
+    b++
+} while(b <= 5)
+
+
+//Forma 3
+for(let c = 1; c <= 50000000; c++) {
+    console.log('c' + c);
+}
