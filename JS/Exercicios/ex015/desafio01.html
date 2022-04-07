@@ -67,23 +67,22 @@
     </main>
 
     <script>
-        var button = document.querySelector('button')
         var inicio
         var fim
         var passo
+        var btn = document.querySelector('button')
 
-        button.addEventListener('click', function() {
-            var h3 = document.querySelector('h3')
-            var span = document.querySelector('span')
+        btn.addEventListener('click', function() {
             inicio = document.getElementById('inicio').value
             fim = document.getElementById('fim').value
             passo = document.getElementById('passo').value
-            
-            while(inicio < fim) {
-                inicio =+ passo
-            }
+            var resutado = inicio
 
-            console.log(inicio)
+            while(resutado < fim) {
+                resutado =++ passo
+
+                console.log(resutado);
+            }
         })
     </script>
 </body>
