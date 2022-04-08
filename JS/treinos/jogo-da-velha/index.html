@@ -140,11 +140,23 @@
             background-color: black;
             left: 40px;
         }
+
+        /*
+            div que impedirá que o jogo continue após algém vencer
+        */
+
+        div#fim {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            top: 0px;
+            background-color: transparent;
+            display: none;
+        }
     </style>
 </head>
 <body>
     <h1></h1>
-    <section id="jogo">
         <article id="estrutura">
             <div id="linha-vertical1" class="linha-v"></div>
             <div id="linha-vertical2" class="linha-v"></div>
@@ -214,7 +226,9 @@
                 </section>
             </div>
         </article>
-    </section>
+
+        <!-- Essa div vai impedir que o jogo continuie mesmo após um dos 2 jogadores vencer -->
+        <div id="fim"></div>
 
     <script src="./index.js"></script>
 </body>
