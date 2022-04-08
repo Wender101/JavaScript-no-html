@@ -37,6 +37,16 @@ var ativo7 = false
 var ativo8 = false
 var ativo9 = false
 
+//Mostra como o player venceu o jogo
+var w1 = document.getElementById('w1')
+var w2 = document.getElementById('w2')
+var w3 = document.getElementById('w3')
+var w4 = document.getElementById('w4')
+var w5 = document.getElementById('w5')
+var w6 = document.getElementById('w6')
+var w7 = document.getElementById('w7')
+var w8 = document.getElementById('w8')
+
 local1.addEventListener('click', function() {
     if(ativo1 === false) {
         if(player === 1) {
@@ -44,7 +54,7 @@ local1.addEventListener('click', function() {
         } else {
             local1.style.borderRadius = '50%'
             local1.style.border = '4px solid blue'
-            local1.style.background = 'white'
+            local1.style.display = 'block'
         }
 
         velha -=1
@@ -74,7 +84,7 @@ local2.addEventListener('click', function() {
         } else {
             local2.style.borderRadius = '50%'
             local2.style.border = '4px solid blue'
-            local2.style.background = 'white'
+            local2.style.display = 'block'
         }
 
         velha -=1
@@ -104,7 +114,7 @@ local3.addEventListener('click', function() {
         } else {
             local3.style.borderRadius = '50%'
             local3.style.border = '4px solid blue'
-            local3.style.background = 'white'
+            local3.style.display = 'block'
         }
 
         velha -=1
@@ -134,7 +144,7 @@ local4.addEventListener('click', function() {
         } else {
             local4.style.borderRadius = '50%'
             local4.style.border = '4px solid blue'
-            local4.style.background = 'white'
+            local4.style.display = 'block'
         }
 
         velha -=1
@@ -164,7 +174,7 @@ local5.addEventListener('click', function() {
         } else {
             local5.style.borderRadius = '50%'
             local5.style.border = '4px solid blue'
-            local5.style.background = 'white'
+            local5.style.display = 'block'
         }
 
         velha -=1
@@ -194,7 +204,7 @@ local6.addEventListener('click', function() {
         } else {
             local6.style.borderRadius = '50%'
             local6.style.border = '4px solid blue'
-            local6.style.background = 'white'
+            local6.style.display = 'block'
         }
 
         velha -=1
@@ -224,7 +234,7 @@ local7.addEventListener('click', function() {
         } else {
             local7.style.borderRadius = '50%'
             local7.style.border = '4px solid blue'
-            local7.style.background = 'white'
+            local7.style.display = 'block'
         }
 
         velha -=1
@@ -254,7 +264,7 @@ local8.addEventListener('click', function() {
         } else {
             local8.style.borderRadius = '50%'
             local8.style.border = '4px solid blue'
-            local8.style.background = 'white'
+            local8.style.display = 'block'
         }
 
         velha -=1
@@ -284,7 +294,7 @@ local9.addEventListener('click', function() {
         } else {
             local9.style.borderRadius = '50%'
             local9.style.border = '4px solid blue'
-            local9.style.background = 'white'
+            local9.style.display = 'block'
         }
 
         velha -=1
@@ -312,64 +322,83 @@ estrutura.addEventListener('click', function() {
     if(s1.style.display === 'block' && s4.style.display === 'block' && s7.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
         fim.style.display = 'block'
+        w1.style.display = 'block'
 
     } else if(s2.style.display === 'block' && s5.style.display === 'block' && s8.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
         fim.style.display = 'block'
+        w2.style.display = 'block'
 
     } else if(s3.style.display === 'block' && s6.style.display === 'block' && s9.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
         fim.style.display = 'block'
+        w3.style.display = 'block'
     
     } else if(s7.style.display === 'block' && s8.style.display === 'block' && s9.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
         fim.style.display = 'block'
+        w6.style.display = 'block'
 
     } else if(s4.style.display === 'block' && s5.style.display === 'block' && s6.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
         fim.style.display = 'block'
+        w5.style.display = 'block'
 
     } else if(s1.style.display === 'block' && s2.style.display === 'block' && s3.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
         fim.style.display = 'block'
+        w4.style.display = 'block'
 
     } else if(s1.style.display === 'block' && s5.style.display === 'block' && s9.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
         fim.style.display = 'block'
+        w8.style.display = 'block'
 
     } else if(s3.style.display === 'block' && s5.style.display === 'block' && s7.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
         fim.style.display = 'block'
+        w7.style.display = 'block'
 
-    }   else if(local1.style.background === 'white' && local4.style.background === 'white' && local7.style.background === 'white') {
+
+
+
+    }   else if(local1.style.display === 'block' && local4.style.display === 'block' && local7.style.display === 'block') {
         h1.innerHTML = 'O circulo é o vencedor'
         fim.style.display = 'block'
+        w1.style.display = 'block'
 
-    } else if(local2.style.background === 'white' && local5.style.background === 'white' && local8.style.background === 'white') {
+    } else if(local2.style.display === 'block' && local5.style.display === 'block' && local8.style.display === 'block') {
         h1.innerHTML = 'O circulo é o vencedor'
         fim.style.display = 'block'
+        w2.style.display = 'block'
 
-    } else if(local3.style.background === 'white' && local6.style.background === 'white' && local9.style.background === 'white') {
+    } else if(local3.style.display === 'block' && local6.style.display === 'block' && local9.style.display === 'block') {
         h1.innerHTML = 'O circulo é o vencedor'
         fim.style.display = 'block'
+        w3.style.display = 'block'
     
-    } else if(local7.style.background === 'white' && local8.style.background === 'white' && local9.style.background === 'white') {
+    } else if(local7.style.display === 'block' && local8.style.display === 'block' && local9.style.display === 'block') {
         h1.innerHTML = 'O circulo é o vencedor'
+        w6.style.display = 'block'
 
-    } else if(local4.style.background === 'white' && local5.style.background === 'white' && local6.style.background === 'white') {
+    } else if(local4.style.display === 'block' && local5.style.display === 'block' && local6.style.display === 'block') {
         h1.innerHTML = 'O circulo é o vencedor'
         fim.style.display = 'block'
+        w5.style.display = 'block'
 
-    } else if(local1.style.background === 'white' && local2.style.background === 'white' && local3.style.background === 'white') {
+    } else if(local1.style.display === 'block' && local2.style.display === 'block' && local3.style.display === 'block') {
         h1.innerHTML = 'O circulo é o vencedor'
         fim.style.display = 'block'
+        w4.style.display = 'block'
         
-    } else if(local1.style.background === 'white' && local5.style.background === 'white' && local9.style.background === 'white') {
+    } else if(local1.style.display === 'block' && local5.style.display === 'block' && local9.style.display === 'block') {
         h1.innerHTML = 'O circulo é o vencedor'
         fim.style.display = 'block'
+        w8.style.display = 'block'
         
-    } else if(local3.style.background === 'white' && local5.style.background === 'white' && local7.style.background === 'white') {
+    } else if(local3.style.display === 'block' && local5.style.display === 'block' && local7.style.display === 'block') {
         h1.innerHTML = 'O circulo é o vencedor'
         fim.style.display = 'block'
+        w7.style.display = 'block'
     }
 })

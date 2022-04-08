@@ -1,0 +1,211 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1 {
+    text-align: center;
+}
+
+/*
+    Estrutura do jogo da velha
+*/
+article#estrutura {
+    width: 320px;
+    height: 320px;
+    margin: auto;
+    position: relative;
+    margin-top: 80px;
+}
+
+article#estrutura > div.linha-v {
+    width: 10px;
+    height: 100%;
+    background-color: black;
+}
+
+article#estrutura > div#linha-vertical1{
+    margin-left: 100px;
+}
+
+article#estrutura > div#linha-vertical2{
+    right: 100px;
+    top: 0px;
+    position: absolute;
+}
+
+article#estrutura > div.linha-h {
+    width: 100%;
+    height: 10px;
+    background-color: black;
+    left: 0px;
+    position: absolute;
+}
+
+article#estrutura > div#linha-horizontal1 {
+    top: 100px;
+}
+
+article#estrutura > div#linha-horizontal2 {
+    bottom: 100px;
+}
+
+/*
+    Os locais onde o inviduo vai clicar para colocar o 'X' ou o 'O'
+*/
+
+div.local {
+    width: 80px;
+    height: 80px;
+    position: absolute;
+    background-color: transparent;
+}
+
+div#local1 {
+    top: 10px;
+    left: 0px;
+}
+
+div#local2 {
+    top: 10px;
+    left: 120px;
+}
+
+div#local3 {
+    top: 10px;
+    right: 0px;
+}
+
+div#local4 {
+    top: 120px;
+    left: 0px;
+}
+
+div#local5 {
+    top: 120px;
+    left: 120px;
+}
+
+div#local6 {
+    top: 120px;
+    right: 0px;
+}
+
+div#local7 {
+    top: 230px;
+    left: 0px;
+}
+
+div#local8 {
+    top: 230px;
+    left: 120px;
+}
+
+div#local9 {
+    top: 230px;
+    right: 0px;
+}
+
+/*
+    --------- Fazendo o X
+*/
+
+div.local > section {
+    display: none;
+}
+
+div.p1{
+    width: 7px;
+    height: 80px;
+    transform: rotate(45deg);
+    position: absolute;
+    background-color: black;
+    left: 40px;
+}
+
+div.p2 {
+    width: 7px;
+    height: 80px;
+    transform: rotate(-45deg);
+    position: absolute;
+    background-color: black;
+    left: 40px;
+}
+
+/*
+    Vai indicar como o player gahou o jogo
+*/
+
+div.winner {
+    width: 10px;
+    height: 100%;
+    background-color: rgb(255, 0, 0);
+    position: absolute;
+    display: none;
+}
+
+div#w1 {
+    top: 0px;
+    left: 40px;
+}
+
+div#w2 {
+    top: 0px;
+    left: 160px;
+}
+
+div#w3 {
+    top: 0px;
+    right: 30px;
+}
+
+div#w4 {
+    top: -110px;
+    left: 150px;
+    transform: rotate(90deg);
+}
+
+div#w5 {
+    top: 0px;
+    left: 150px;
+    transform: rotate(90deg);
+}
+
+div#w6 {
+    top: 110px;
+    left: 150px;
+    transform: rotate(90deg);
+}
+
+div#w7 {
+    width: 10px;
+    height: 130%;
+    top: -47px;
+    left: 153px;
+    transform: rotate(47deg);
+}
+
+div#w8 {
+    width: 10px;
+    height: 130%;
+    top: -45px;
+    left: 163px;
+    transform: rotate(-47deg);
+}
+
+/*
+    div que impedirá que o jogo continue após algém vencer
+*/
+
+div#fim {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    background-color: transparent;
+    display: none;
+}

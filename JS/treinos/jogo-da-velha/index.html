@@ -4,156 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./index.css">
     <title>Jogo da Velha</title>
-
-    <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        h1 {
-            text-align: center;
-        }
-
-        /*
-            Estrutura do jogo da velha
-        */
-        article#estrutura {
-            width: 320px;
-            height: 320px;
-            margin: auto;
-            position: relative;
-            margin-top: 80px;
-        }
-
-        article#estrutura > div.linha-v {
-            width: 10px;
-            height: 100%;
-            background-color: black;
-        }
-
-        article#estrutura > div#linha-vertical1{
-            margin-left: 100px;
-        }
-
-        article#estrutura > div#linha-vertical2{
-            right: 100px;
-            top: 0px;
-            position: absolute;
-        }
-
-        article#estrutura > div.linha-h {
-            width: 100%;
-            height: 10px;
-            background-color: black;
-            left: 0px;
-            position: absolute;
-        }
-
-        article#estrutura > div#linha-horizontal1 {
-            top: 100px;
-        }
-
-        article#estrutura > div#linha-horizontal2 {
-            bottom: 100px;
-        }
-
-        /*
-            Os locais onde o inviduo vai clicar para colocar o 'X' ou o 'O'
-        */
-
-        div.local {
-            width: 80px;
-            height: 80px;
-            position: absolute;
-            background-color: transparent;
-        }
-
-        div#local1 {
-            top: 10px;
-            left: 0px;
-        }
-
-        div#local2 {
-            top: 10px;
-            left: 120px;
-        }
-
-        div#local3 {
-            top: 10px;
-            right: 0px;
-        }
-
-        div#local4 {
-            top: 120px;
-            left: 0px;
-        }
-
-        div#local5 {
-            top: 120px;
-            left: 120px;
-        }
-
-        div#local6 {
-            top: 120px;
-            right: 0px;
-        }
-
-        div#local7 {
-            top: 230px;
-            left: 0px;
-        }
-
-        div#local8 {
-            top: 230px;
-            left: 120px;
-        }
-
-        div#local9 {
-            top: 230px;
-            right: 0px;
-        }
-
-        /*
-            --------- Fazendo o X
-        */
-
-        div.local > section {
-            display: none;
-        }
-
-        div.p1{
-            width: 7px;
-            height: 80px;
-            transform: rotate(45deg);
-            position: absolute;
-            background-color: black;
-            left: 40px;
-        }
-
-        div.p2 {
-            width: 7px;
-            height: 80px;
-            transform: rotate(-45deg);
-            position: absolute;
-            background-color: black;
-            left: 40px;
-        }
-
-        /*
-            div que impedirá que o jogo continue após algém vencer
-        */
-
-        div#fim {
-            width: 100%;
-            height: 100%;
-            position: fixed;
-            top: 0px;
-            background-color: transparent;
-            display: none;
-        }
-    </style>
 </head>
 <body>
     <h1></h1>
@@ -225,6 +77,16 @@
                     <div class="p2"></div>
                 </section>
             </div>
+
+            <!-- Essa divs abaixo vão indicar como o player ganhou -->
+            <div class="winner" id="w1"></div>
+            <div class="winner" id="w2"></div>
+            <div class="winner" id="w3"></div>
+            <div class="winner" id="w4"></div>
+            <div class="winner" id="w5"></div>
+            <div class="winner" id="w6"></div>
+            <div class="winner" id="w7"></div>
+            <div class="winner" id="w8"></div>
         </article>
 
         <!-- Essa div vai impedir que o jogo continuie mesmo após um dos 2 jogadores vencer -->
