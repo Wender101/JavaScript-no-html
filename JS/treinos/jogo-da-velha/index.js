@@ -52,7 +52,7 @@ local1.addEventListener('click', function() {
 
 local2.addEventListener('click', function() {
     if(player === 1) {
-        s2.style.display = 'block'
+        s2                                     .style.display = 'block'
     } else {
         local2.style.borderRadius = '50%'
         local2.style.border = '4px solid blue'
@@ -180,28 +180,28 @@ local9.addEventListener('click', function() {
 
 estrutura.addEventListener('click', function() {
     if(local1.style.background === 'red' && local4.style.background === 'red' && local7.style.background === 'red') {
-        h1.innerHTML = 'O quadrado é o vencedor'
+        h1.innerHTML = 'O X é o vencedor'
 
     } else if(local2.style.background === 'red' && local5.style.background === 'red' && local8.style.background === 'red') {
-        h1.innerHTML = 'O quadrado é o vencedor'
+        h1.innerHTML = 'O X é o vencedor'
 
     } else if(local3.style.background === 'red' && local6.style.background === 'red' && local9.style.background === 'red') {
-        h1.innerHTML = 'O quadrado é o vencedor'
+        h1.innerHTML = 'O X é o vencedor'
     
     } else if(local7.style.background === 'red' && local8.style.background === 'red' && local9.style.background === 'red') {
-        h1.innerHTML = 'O quadrado é o vencedor'
+        h1.innerHTML = 'O X é o vencedor'
 
     } else if(local4.style.background === 'red' && local5.style.background === 'red' && local6.style.background === 'red') {
-        h1.innerHTML = 'O quadrado é o vencedor'
+        h1.innerHTML = 'O X é o vencedor'
 
     } else if(local1.style.background === 'red' && local2.style.background === 'red' && local3.style.background === 'red') {
-        h1.innerHTML = 'O quadrado é o vencedor'
+        h1.innerHTML = 'O X é o vencedor'
 
     } else if(local1.style.background === 'red' && local5.style.background === 'red' && local9.style.background === 'red') {
-        h1.innerHTML = 'O quadrado é o vencedor'
+        h1.innerHTML = 'O X é o vencedor'
 
     } else if(local3.style.background === 'red' && local5.style.background === 'red' && local7.style.background === 'red') {
-        h1.innerHTML = 'O quadrado é o vencedor'
+        h1.innerHTML = 'O X é o vencedor'
 
     }   else if(local1.style.background === 'white' && local4.style.background === 'white' && local7.style.background === 'white') {
         h1.innerHTML = 'O circulo é o vencedor'
