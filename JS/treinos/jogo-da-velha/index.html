@@ -67,6 +67,7 @@
             width: 100px;
             height: 100px;
             position: absolute;
+            background-color: transparent;
         }
 
         div.local:hover {
@@ -144,7 +145,9 @@
 
     <script>
         let player = 1
-        var estrutura = document.getElementById('estrutura')
+        let estrutura = document.getElementById('estrutura')
+        let velha = 9
+        var h1 = document.querySelector('h1')
 
         //Locais de click
         var local1 = document.getElementById('local1')
@@ -173,6 +176,12 @@
                 local1.style.borderRadius = '50%'
                 local1.style.background = 'blue'
             }
+
+            velha -=1
+
+            if(velha <= 0) {
+                h1.innerHTML = 'Ops, deu Velha'
+            }
         })
         
         local2.addEventListener('click', function() {
@@ -181,6 +190,12 @@
             } else {
                 local2.style.borderRadius = '50%'
                 local2.style.background = 'blue'
+            }
+
+            velha -=1
+
+            if(velha <= 0) {
+                h1.innerHTML = 'Ops, deu Velha'
             }
         })
 
@@ -191,6 +206,12 @@
                 local3.style.borderRadius = '50%'
                 local3.style.background = 'blue'
             }
+
+            velha -=1
+
+            if(velha <= 0) {
+                h1.innerHTML = 'Ops, deu Velha'
+            }
         })
 
         local4.addEventListener('click', function() {
@@ -199,6 +220,12 @@
             } else {
                 local4.style.borderRadius = '50%'
                 local4.style.background = 'blue'
+            }
+
+            velha -=1
+
+            if(velha <= 0) {
+                h1.innerHTML = 'Ops, deu Velha'
             }
         })
 
@@ -209,6 +236,12 @@
                 local5.style.borderRadius = '50%'
                 local5.style.background = 'blue'
             }
+
+            velha -=1
+
+            if(velha <= 0) {
+                h1.innerHTML = 'Ops, deu Velha'
+            }
         })
 
         local6.addEventListener('click', function() {
@@ -217,6 +250,12 @@
             } else {
                 local6.style.borderRadius = '50%'
                 local6.style.background = 'blue'
+            }
+
+            velha -=1
+
+            if(velha <= 0) {
+                h1.innerHTML = 'Ops, deu Velha'
             }
         })
 
@@ -227,6 +266,12 @@
                 local7.style.borderRadius = '50%'
                 local7.style.background = 'blue'
             }
+
+            velha -=1
+
+            if(velha <= 0) {
+                h1.innerHTML = 'Ops, deu Velha'
+            }
         })
 
         local8.addEventListener('click', function() {
@@ -235,6 +280,12 @@
             } else {
                 local8.style.borderRadius = '50%'
                 local8.style.background = 'blue'
+            }
+
+            velha -=1
+
+            if(velha <= 0) {
+                h1.innerHTML = 'Ops, deu Velha'
             }
         })
 
@@ -245,9 +296,13 @@
                 local9.style.borderRadius = '50%'
                 local9.style.background = 'blue'
             }
-        })
 
-        var h1 = document.querySelector('h1')
+            velha -=1
+
+            if(velha <= 0) {
+                h1.innerHTML = 'Ops, deu Velha'
+            }
+        })
 
         estrutura.addEventListener('click', function() {
             if(local1.style.background === 'red' && local4.style.background === 'red' && local7.style.background === 'red') {
