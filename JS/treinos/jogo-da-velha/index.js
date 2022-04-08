@@ -179,28 +179,28 @@ local9.addEventListener('click', function() {
 })
 
 estrutura.addEventListener('click', function() {
-    if(local1.style.background === 'red' && local4.style.background === 'red' && local7.style.background === 'red') {
+    if(s1.style.display === 'block' && s4.style.display === 'block' && s7.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
 
-    } else if(local2.style.background === 'red' && local5.style.background === 'red' && local8.style.background === 'red') {
+    } else if(s2.style.display === 'block' && s5.style.display === 'block' && s8.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
 
-    } else if(local3.style.background === 'red' && local6.style.background === 'red' && local9.style.background === 'red') {
+    } else if(s3.style.display === 'block' && s6.style.display === 'block' && s9.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
     
-    } else if(local7.style.background === 'red' && local8.style.background === 'red' && local9.style.background === 'red') {
+    } else if(s7.style.display === 'block' && s8.style.display === 'block' && s9.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
 
-    } else if(local4.style.background === 'red' && local5.style.background === 'red' && local6.style.background === 'red') {
+    } else if(s4.style.display === 'block' && s5.style.display === 'block' && s6.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
 
-    } else if(local1.style.background === 'red' && local2.style.background === 'red' && local3.style.background === 'red') {
+    } else if(s1.style.display === 'block' && s2.style.display === 'block' && s3.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
 
-    } else if(local1.style.background === 'red' && local5.style.background === 'red' && local9.style.background === 'red') {
+    } else if(s1.style.display === 'block' && s5.style.display === 'block' && s9.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
 
-    } else if(local3.style.background === 'red' && local5.style.background === 'red' && local7.style.background === 'red') {
+    } else if(s3.style.display === 'block' && s5.style.display === 'block' && s7.style.display === 'block') {
         h1.innerHTML = 'O X é o vencedor'
 
     }   else if(local1.style.background === 'white' && local4.style.background === 'white' && local7.style.background === 'white') {
