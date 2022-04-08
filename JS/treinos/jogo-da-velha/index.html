@@ -64,61 +64,81 @@
         */
 
         div.local {
-            width: 100px;
-            height: 100px;
+            width: 80px;
+            height: 80px;
             position: absolute;
             background-color: transparent;
         }
 
-        div.local:hover {
-            background-color: rgba(0, 0, 255, 0.274);
-            transition: 100ms background-color linear;
-            border-radius: 10px;
-        }
-
         div#local1 {
-            top: 0px;
+            top: 10px;
             left: 0px;
         }
 
         div#local2 {
-            top: 0px;
-            left: 110px;
+            top: 10px;
+            left: 120px;
         }
 
         div#local3 {
-            top: 0px;
+            top: 10px;
             right: 0px;
         }
 
         div#local4 {
-            top: 110px;
+            top: 120px;
             left: 0px;
         }
 
         div#local5 {
-            top: 110px;
-            left: 110px;
+            top: 120px;
+            left: 120px;
         }
 
         div#local6 {
-            top: 110px;
+            top: 120px;
             right: 0px;
         }
 
         div#local7 {
-            top: 220px;
+            top: 230px;
             left: 0px;
         }
 
         div#local8 {
-            top: 220px;
-            left: 110px;
+            top: 230px;
+            left: 120px;
         }
 
         div#local9 {
-            top: 220px;
+            top: 230px;
             right: 0px;
+        }
+
+        /*
+            --------- Fazendo o X
+        */
+
+        div.local > section {
+            display: none;
+        }
+
+        div.p1{
+            width: 7px;
+            height: 80px;
+            transform: rotate(45deg);
+            position: absolute;
+            background-color: black;
+            left: 40px;
+        }
+
+        div.p2 {
+            width: 7px;
+            height: 80px;
+            transform: rotate(-45deg);
+            position: absolute;
+            background-color: black;
+            left: 40px;
         }
     </style>
 </head>
@@ -131,230 +151,71 @@
             <div id="linha-horizontal1" class="linha-h"></div>
             <div id="linha-horizontal2" class="linha-h"></div>
 
-            <div id="local1" class="local"></div>
-            <div id="local2" class="local"></div>
-            <div id="local3" class="local"></div>
-            <div id="local4" class="local"></div>
-            <div id="local5" class="local"></div>
-            <div id="local6" class="local"></div>
-            <div id="local7" class="local"></div>
-            <div id="local8" class="local"></div>
-            <div id="local9" class="local"></div>
+            <div id="local1" class="local">
+                <section id="s1">
+                    <div class="p1"></div>
+                    <div class="p2"></div>
+                </section>                
+            </div>
+
+            <div id="local2" class="local">
+                <section id="s2">
+                    <div class="p1"></div>
+                    <div class="p2"></div>
+                </section>
+            </div>
+
+            <div id="local3" class="local">
+                <section id="s3">
+                    <div class="p1"></div>
+                    <div class="p2"></div>
+                </section>
+            </div>
+
+            <div id="local4" class="local">
+                <section id="s4">
+                    <div class="p1"></div>
+                    <div class="p2"></div>
+                </section>
+            </div>
+
+            <div id="local5" class="local">
+                <section id="s5">
+                    <div class="p1"></div>
+                    <div class="p2"></div>
+                </section>
+            </div>
+
+            <div id="local6" class="local">
+                <section id="s6">
+                    <div class="p1"></div>
+                    <div class="p2"></div>
+                </section>
+            </div>
+
+            <div id="local7" class="local">
+                <section id="s7">
+                    <div class="p1"></div>
+                    <div class="p2"></div>
+                </section>
+            </div>
+
+            <div id="local8" class="local">
+                <section id="s8">
+                    <div class="p1"></div>
+                    <div class="p2"></div>
+                </section>
+            </div>
+
+            <div id="local9" class="local">
+                <section id="s9">
+                    <div class="p1"></div>
+                    <div class="p2"></div>
+                </section>
+            </div>
         </article>
     </section>
 
-    <script>
-        let player = 1
-        let estrutura = document.getElementById('estrutura')
-        let velha = 9
-        var h1 = document.querySelector('h1')
-
-        //Locais de click
-        var local1 = document.getElementById('local1')
-        var local2 = document.getElementById('local2')
-        var local3 = document.getElementById('local3')
-        var local4 = document.getElementById('local4')
-        var local5 = document.getElementById('local5')
-        var local6 = document.getElementById('local6')
-        var local7 = document.getElementById('local7')
-        var local8 = document.getElementById('local8')
-        var local9 = document.getElementById('local9')
-
-        //Essa função alterna de player1 para player2 ao clicar
-        estrutura.addEventListener('click', function() {
-            if(player === 1) {
-                player = 2
-            } else {
-                player = 1
-            }
-        })
-
-        local1.addEventListener('click', function() {
-            if(player === 1) {
-                local1.style.background = 'red'
-            } else {
-                local1.style.borderRadius = '50%'
-                local1.style.background = 'blue'
-            }
-
-            velha -=1
-
-            if(velha <= 0) {
-                h1.innerHTML = 'Ops, deu Velha'
-            }
-        })
-        
-        local2.addEventListener('click', function() {
-            if(player === 1) {
-                local2.style.background = 'red'
-            } else {
-                local2.style.borderRadius = '50%'
-                local2.style.background = 'blue'
-            }
-
-            velha -=1
-
-            if(velha <= 0) {
-                h1.innerHTML = 'Ops, deu Velha'
-            }
-        })
-
-        local3.addEventListener('click', function() {
-            if(player === 1) {
-                local3.style.background = 'red'
-            } else {
-                local3.style.borderRadius = '50%'
-                local3.style.background = 'blue'
-            }
-
-            velha -=1
-
-            if(velha <= 0) {
-                h1.innerHTML = 'Ops, deu Velha'
-            }
-        })
-
-        local4.addEventListener('click', function() {
-            if(player === 1) {
-                local4.style.background = 'red'
-            } else {
-                local4.style.borderRadius = '50%'
-                local4.style.background = 'blue'
-            }
-
-            velha -=1
-
-            if(velha <= 0) {
-                h1.innerHTML = 'Ops, deu Velha'
-            }
-        })
-
-        local5.addEventListener('click', function() {
-            if(player === 1) {
-                local5.style.background = 'red'
-            } else {
-                local5.style.borderRadius = '50%'
-                local5.style.background = 'blue'
-            }
-
-            velha -=1
-
-            if(velha <= 0) {
-                h1.innerHTML = 'Ops, deu Velha'
-            }
-        })
-
-        local6.addEventListener('click', function() {
-            if(player === 1) {
-                local6.style.background = 'red'
-            } else {
-                local6.style.borderRadius = '50%'
-                local6.style.background = 'blue'
-            }
-
-            velha -=1
-
-            if(velha <= 0) {
-                h1.innerHTML = 'Ops, deu Velha'
-            }
-        })
-
-        local7.addEventListener('click', function() {
-            if(player === 1) {
-                local7.style.background = 'red'
-            } else {
-                local7.style.borderRadius = '50%'
-                local7.style.background = 'blue'
-            }
-
-            velha -=1
-
-            if(velha <= 0) {
-                h1.innerHTML = 'Ops, deu Velha'
-            }
-        })
-
-        local8.addEventListener('click', function() {
-            if(player === 1) {
-                local8.style.background = 'red'
-            } else {
-                local8.style.borderRadius = '50%'
-                local8.style.background = 'blue'
-            }
-
-            velha -=1
-
-            if(velha <= 0) {
-                h1.innerHTML = 'Ops, deu Velha'
-            }
-        })
-
-        local9.addEventListener('click', function() {
-            if(player === 1) {
-                local9.style.background = 'red'
-            } else {
-                local9.style.borderRadius = '50%'
-                local9.style.background = 'blue'
-            }
-
-            velha -=1
-
-            if(velha <= 0) {
-                h1.innerHTML = 'Ops, deu Velha'
-            }
-        })
-
-        estrutura.addEventListener('click', function() {
-            if(local1.style.background === 'red' && local4.style.background === 'red' && local7.style.background === 'red') {
-                h1.innerHTML = 'O quadrado é o vencedor'
-
-            } else if(local2.style.background === 'red' && local5.style.background === 'red' && local8.style.background === 'red') {
-                h1.innerHTML = 'O quadrado é o vencedor'
-
-            } else if(local3.style.background === 'red' && local6.style.background === 'red' && local9.style.background === 'red') {
-                h1.innerHTML = 'O quadrado é o vencedor'
-            
-            } else if(local7.style.background === 'red' && local8.style.background === 'red' && local9.style.background === 'red') {
-                h1.innerHTML = 'O quadrado é o vencedor'
-
-            } else if(local4.style.background === 'red' && local5.style.background === 'red' && local6.style.background === 'red') {
-                h1.innerHTML = 'O quadrado é o vencedor'
-
-            } else if(local1.style.background === 'red' && local2.style.background === 'red' && local3.style.background === 'red') {
-                h1.innerHTML = 'O quadrado é o vencedor'
-
-            } else if(local1.style.background === 'red' && local5.style.background === 'red' && local9.style.background === 'red') {
-                h1.innerHTML = 'O quadrado é o vencedor'
-
-            } else if(local3.style.background === 'red' && local5.style.background === 'red' && local7.style.background === 'red') {
-                h1.innerHTML = 'O quadrado é o vencedor'
-
-            }   else if(local1.style.background === 'blue' && local4.style.background === 'blue' && local7.style.background === 'blue') {
-                h1.innerHTML = 'O circulo é o vencedor'
-
-            } else if(local2.style.background === 'blue' && local5.style.background === 'blue' && local8.style.background === 'blue') {
-                h1.innerHTML = 'O circulo é o vencedor'
-
-            } else if(local3.style.background === 'blue' && local6.style.background === 'blue' && local9.style.background === 'blue') {
-                h1.innerHTML = 'O circulo é o vencedor'
-            
-            } else if(local7.style.background === 'blue' && local8.style.background === 'blue' && local9.style.background === 'blue') {
-                h1.innerHTML = 'O circulo é o vencedor'
-
-            } else if(local4.style.background === 'blue' && local5.style.background === 'blue' && local6.style.background === 'blue') {
-                h1.innerHTML = 'O circulo é o vencedor'
-
-            } else if(local1.style.background === 'blue' && local2.style.background === 'blue' && local3.style.background === 'blue') {
-                h1.innerHTML = 'O circulo é o vencedor'
-                
-            } else if(local1.style.background === 'blue' && local5.style.background === 'blue' && local9.style.background === 'blue') {
-                h1.innerHTML = 'O circulo é o vencedor'
-                
-            } else if(local3.style.background === 'blue' && local5.style.background === 'blue' && local7.style.background === 'blue') {
-                h1.innerHTML = 'O circulo é o vencedor'
-                
-            }
-        })
-    </script>
+    <script src="./index.js"></script>
 </body>
 </html>
