@@ -4,176 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estilo.css">
     <title>Jogo da Velha</title>
-
-    <style>
-        :root {
-            --forca: black;
-            --homem: black;
-            --letras: red;
-        }
-
-        * {
-            margin: 0px;
-            padding: 0px;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        main {
-            display: flex;
-        }
-
-        /*
-            fazendo o desenho da forca
-        */
-
-        section#desenho-da-forca {
-            margin-top: 30px;
-            margin-left: 60px;
-            position: relative;
-        }
-
-        div#linha-horizontal {
-            width: 80px;
-            height: 5px;
-            background-color: var(--forca);   
-        }
-
-        div#corda {
-            width: 5px;
-            height: 40px;
-            position: absolute;
-            top: 0px;
-            left: 80px;
-            background-color: var(--forca);
-        }
-
-        div#linha-vertical {
-            width: 5px;
-            height: 200px;
-            background-color: var(--forca);
-        }
-
-        div#suporte {
-            width: 50px;
-            height: 5px;
-            margin-left: -22px;
-            background-color: var(--forca);
-        }
-
-        /*
-            desenhando o homem
-        */
-
-        section#homemzinho {
-            position: relative;
-            display: none;
-        }
-
-        div#cabeça {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            border: 3px solid black;
-            position: absolute;
-            top: 70px;
-            left: -15px;
-        }
-
-        div#tronco {
-            width: 3px;
-            height: 50px;
-            position: absolute;
-            top: 98px;
-            background-color: var(--homem);
-        }
-
-        div#braço1 {
-            width: 3px;
-            height: 30px;
-            position: absolute;
-            top: 106px;
-            left: -5px;
-            transform: rotate(20deg);
-            background-color: var(--homem);
-        }
-
-        div#braço2 {
-            width: 3px;
-            height: 30px;
-            position: absolute;
-            top: 106px;
-            left: 5px;
-            transform: rotate(-20deg);
-            background-color: var(--homem);
-        }
-
-        div#perna1 {
-            width: 3px;
-            height: 30px;
-            position: absolute;
-            top: 145px;
-            left: -5px;
-            transform: rotate(20deg);
-            background-color: var(--homem);
-        }
-
-        div#perna2 {
-            width: 3px;
-            height: 30px;
-            position: absolute;
-            top: 145px;
-            left: 5px;
-            transform: rotate(-20deg);
-            background-color: var(--homem);
-        }
-
-        /*
-            Número de letras
-        */
-
-        section#letras {
-            margin-top: 235px;
-            margin-left: 50px;
-            display: flex;
-        }
-
-        section#letras > div {
-            width: 30px;
-            height: 4px;
-            background-color: var(--letras);
-            margin-left: 20px;;
-        }
-
-        /*
-            resposta do usuario
-        */
-
-        div#resposta {
-            width: 100%;
-            height: 400px;
-            padding: 10px;
-            margin: auto;
-            position: fixed;
-            bottom: 0px;
-            background-color: black;
-        }
-
-        div#resposta > input {
-            width: 100%;
-            height: 60px;
-            background-color: white;
-            border: none;
-            border-radius: 20px;
-        }
-    </style>
 </head>
 <body>
     <section id="dica"> 
-
+        <h3>Dica:</h3>
+        <p></p>
     </section>
     <main id="jogo">
         <section id="desenho-da-forca">
@@ -196,8 +33,22 @@
     </main>
 
     <div id="resposta">
+        <p>Digite uma letra</p>
         <input type="text" name="resposta" id="res">
+        <button id="enviar">Enviar</button>
+
+        <p id="ja-digitado">:</p>
     </div>
+
+    <section id="tema">
+        <h1>Escolha um tema</h1>
+        <article>
+            <button id="animal" onclick="animais()">Animais</button>
+            <button id="fruta" onclick="frutas()">Fruta</button>
+            <button id="pais" onclick="pais()">País</button>
+            <button id="objeto" onclick="objeto()">Objeto</button>
+        </article>
+    </section>
 
     <script src="./js/index.js"></script>
 </body>
