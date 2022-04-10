@@ -145,8 +145,29 @@
             width: 30px;
             height: 4px;
             background-color: var(--letras);
-            margin-left: 20px;
-            display: none;
+            margin-left: 20px;;
+        }
+
+        /*
+            resposta do usuario
+        */
+
+        div#resposta {
+            width: 100%;
+            height: 400px;
+            padding: 10px;
+            margin: auto;
+            position: fixed;
+            bottom: 0px;
+            background-color: black;
+        }
+
+        div#resposta > input {
+            width: 100%;
+            height: 60px;
+            background-color: white;
+            border: none;
+            border-radius: 20px;
         }
     </style>
 </head>
@@ -171,16 +192,12 @@
         </section>
 
         <section id="letras">
-            <div id="d1"></div>
-            <div id="d2"></div>
-            <div id="d3"></div>
-            <div id="d4"></div>
-            <div id="d5"></div>
-            <div id="d6"></div>
-            <div id="d7"></div>
-            <div id="d8"></div>
         </section>
     </main>
+
+    <div id="resposta">
+        <input type="text" name="resposta" id="res">
+    </div>
 
     <script src="./js/index.js"></script>
 </body>
