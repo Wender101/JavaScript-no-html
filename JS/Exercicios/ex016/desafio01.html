@@ -4,8 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hora do Dia</title>
-
+    <title>Tabuada</title>
     <style>
         * {
             margin: 0px;
@@ -13,61 +12,55 @@
         }
 
         body {
-            background-color: rgb(0, 119, 255);
             font-family: Arial, Helvetica, sans-serif;
+            background-color: rgb(0, 140, 255);
         }
-
-        main {
-            max-width: 600px;
-            margin: auto;
-            margin-top: 30px;
-        }
-
-        main > h1 {
-            margin-bottom: 30px;
-            color: #fff;
+        
+        header {
+            color: white;
             text-align: center;
-            text-shadow: 1px 1px 3px rgb(163, 163, 163);
-        }
-
-        main > div {
-            width: 600px;
-            height: 350px;
-            border-radius: 10px;
-            background-color: #fff;
-            box-shadow: 3px 3px 3px rgba(145, 145, 145, 0.418);
-        }
-
-        main > div {
-            padding: 30px 0px 20px 30px;
-        }
-
-        main > div > p {
+            margin-top: 20px;
             margin-bottom: 30px;
         }
 
-        main > div > h3 {
+        section {
+            max-width: 600px;
+            height: auto;
+            padding: 20px;
+            margin: auto;
+            background-color: white;
+            border-radius: 20px;
+        }
+
+        div#dados > p {
+            padding-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            color: wheat;
             margin-top: 30px;
-            margin-bottom: 20px;
         }
     </style>
 </head>
 <body>
-    <main>
-        <h1>Vamos Contar</h1>
+    <header>
+        <h1>Tabuada</h1>
+    </header>
+    <section>
         <div>
-            <p>Inicio: <input type="number" name="" id="inicio"></p>
-            <p>Fim:    <input type="number" name="" id="fim"></p>
-            <p>Passo:  <input type="number" name="" id="passo"></p>
-            <button>Contar</button>
-
-            <h3></h3>
-            <span></span>
+            <p>Número: <input type="number" name="num" id="txtn"> <input type="button" value="Gerar Tabuada" onclick="tabuada()"></p>
         </div>
-    </main>
+        <div>
+            <select name="tabuada" id="seltab" size="10">
+                <option>Digite um número acima</option>
+            </select>
+        </div>
+    </section>
+    <footer>
+        <p>&copy; Wender Natanael</p>
+    </footer>
 
-    <script>
-        
-    </script>
+    <script src="./desafio01.js"></script>
 </body>
 </html>
