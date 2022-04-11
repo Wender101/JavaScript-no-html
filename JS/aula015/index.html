@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Array</title>
+</head>
+<body>
+    email<input type="email" name="" id="email">
+    senha<input type="password" name="" id="senha">
+    texto<input type="text" name="" id="texto">
+    <button>Enviar</button>
+
+    <script>
+        let seuemail = document.getElementById('email')
+        let suaresposta = document.getElementById('texto')
+        let paswrold = document.getElementById('senha')
+
+        let btn = document.querySelector('button')
+
+        btn.addEventListener('click', function() {
+            let  email = seuemail.value
+            let senha = paswrold.value
+            let text = suaresposta.value
+            let valores = [email, senha]
+            console.log(valores.indexOf(text))
+        })
+    </script>
+</body>
+</html>
