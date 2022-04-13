@@ -15,49 +15,7 @@ var tponto = document.getElementById('t.')
 var tigual = document.getElementById('t=')
 var tmais = document.getElementById('t+')
 
-const resultado = document.getElementById('resultado')
-let num = 1
-
-//Numeros
-t0.addEventListener('click', function() {
-    resultado.innerHTML += '0'
-})
-
-t1.addEventListener('click', function() {
-    resultado.innerHTML += '1'
-})
-
-t2.addEventListener('click', function() {
-    resultado.innerHTML += '2'
-})
-
-t3.addEventListener('click', function() {
-    resultado.innerHTML += '3'
-})
-
-t4.addEventListener('click', function() {
-    resultado.innerHTML += '4'
-})
-
-t5.addEventListener('click', function() {
-    resultado.innerHTML += '5'
-})
-
-t6.addEventListener('click', function() {
-    resultado.innerHTML += '6'
-})
-
-t7.addEventListener('click', function() {
-    resultado.innerHTML += '7'
-})
-
-t8.addEventListener('click', function() {
-    resultado.innerHTML += '8'
-})
-
-t9.addEventListener('click', function() {
-    resultado.innerHTML += '9'
-})
-
-//Simbolos
+const tela = document.getElementById('tela')
+let num1 
+let num2
 
