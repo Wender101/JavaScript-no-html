@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joguinho do Dino</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: rgba(0, 0, 0, 0.575);
+            color: white;
+        }
+
+        div#dino {
+            width: 50px;
+            height: 80px;
+            background-color: white;
+            position: fixed;
+            bottom: 100px;
+            left: 100px;
+        }
+        footer {
+            width: 100%;
+            height: 100px;
+            background-color: rgba(0, 0, 0, 0.808);
+            position: fixed;
+            bottom: 0px;
+        }
+    </style>
+</head>
+<body>
+    <div id="dino"></div>
+    <footer></footer>
+
+    <script>
+
+        document.onkeydown = teclado;
+        function teclado(e) {
+            let dino = document.getElementById('dino')
+            if(e.keyCode == 38) {
+                    dino.style.marginBottom = '160px'
+                    dino.style.transition = 'all 300ms ease 0s'
+            } 
+
+            var c = 5
+
+            if(e.keyCode == 39) {
+                c * 2
+                dino.style.marginLeft = c +'px'
+            }
+            
+            if(e.keyCode == 37) {
+                for(var c = 0; c > -1000; c--) {
+                    dino.style.marginLeft = c +'px'
+                    dino.style.transition = 'all 5s ease 0s'
+                }
+            }
+        }
+
+        document.onkeyup = tecladoup;
+        function tecladoup(r) {
+            let dino = document.getElementById('dino')
+            if(r.keyCode == 38) {
+                dino.style.marginBottom = '0px'
+                dino.style.transition = 'all 300ms ease 0s'
+            }
+
+            if(e.keyCode == 39) {
+                dino.style.marginLeft = c +'px'
+                dino.style.transition = 'all 5s ease 0s'
+            }
+        }
+    </script>
+</body>
+</html>
