@@ -10,20 +10,47 @@ var t2 = document.getElementById("t2");
 var t3 = document.getElementById("t3");
 var t0 = document.getElementById("t0");
 var tponto = document.getElementById("t.");
-var tigual = document.getElementById("t=");
+var tigual = document.getElementById("tigual");
 var tmais = document.getElementById("t+");
 var tX = document.getElementById("tX");
 var tdivisao = document.getElementById("t/");
 var tmenos = document.getElementById("t-");
+var tac = document.getElementById("tac");
+var tporcento = document.getElementById("t%");
 
 const tela = document.getElementById("tela");
 const teclado = document.getElementById("teclado");
-let num1 = {};
-let num2 = {};
+let num1 
+let num2
 
 let ativo = false;
 let num1Ativo = true;
 let UmOuDois = 1;
 let sinal;
+
+if(ativo == false) {
+    t2.addEventListener('click', function() {
+        tela.innerText += 2
+        num1 += 2
+    })
+} else {
+    t2.addEventListener('click', function() {
+        tela.innerText += 2
+        num2 += 2
+    })
+}
+
+
+tmais.addEventListener('click', function() {
+    ativo = true
+    tela.innerText = ''
+})
+
+tigual.addEventListener('click', function() {
+    let soma = parseFloat(num1) + parseFloat(num2)
+
+    tela.innerText = soma
+})
+
 
 
