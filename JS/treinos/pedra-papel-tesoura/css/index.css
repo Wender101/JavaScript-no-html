@@ -1,0 +1,35 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+main {
+    display: flex;
+}
+
+main > div {
+    width: 30%;
+    margin-top: 30px;
+    margin: auto;
+    text-align: center;
+}
+
+main > div > div > img{
+    display: none;
+    margin: auto;
+    margin-top: 30px;
+}
+
+button {
+    width: 80px;
+    height: 40px;
+    border-radius: 10px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+    bottom: 50px;
+}
