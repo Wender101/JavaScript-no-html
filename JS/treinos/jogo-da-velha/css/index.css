@@ -9,6 +9,7 @@ body {
 
 h1 {
     text-align: center;
+    color: red;
 }
 
 /*
@@ -26,6 +27,7 @@ article#estrutura > div.linha-v {
     width: 10px;
     height: 100%;
     background-color: black;
+    border: 1.5px solid white;
 }
 
 article#estrutura > div#linha-vertical1{
@@ -43,6 +45,7 @@ article#estrutura > div.linha-h {
     height: 10px;
     background-color: black;
     left: 0px;
+    border: 1.5px solid white;
     position: absolute;
 }
 
@@ -125,6 +128,7 @@ div.p1{
     position: absolute;
     background-color: black;
     left: 40px;
+    border: 1.5px solid white;
 }
 
 div.p2 {
@@ -134,6 +138,7 @@ div.p2 {
     position: absolute;
     background-color: black;
     left: 40px;
+    border: 1.5px solid white;
 }
 
 /*
