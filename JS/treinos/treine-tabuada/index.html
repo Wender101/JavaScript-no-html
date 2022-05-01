@@ -41,6 +41,10 @@
             text-align: center;
         }
 
+        p {
+            text-align: center;
+        }
+
         div#res {
             width: 50px;
             height: auto;
@@ -77,46 +81,50 @@
 <body>
     
     <h1></h1> <!--Vai mostrar a continha-->
-    
+    <p>Pontos: </p>
     <div id="res">
         <input type="number" name="" id="resposta">
         <button onclick="enviar()">Enviar</button>
     </div>
-    
-    <section>
-        <button onclick="iniciar()">Iniciar</button>
-    </section>
 
     <script>
         var resultado
-
-        function iniciar() {
-            // Vai fazer a section sumir ao clicar no botão iniciar
-            let section = document.querySelector('section')
-            section.style.display = 'none'
             
-            // Vai fazer o jogo começar
-            var num1 = Math.floor(Math.random() * 11) // Vai gerar um número aleatório de 0 a 10
-            var num2 = Math.floor(Math.random() * 11) // Vai gerar um número aleatório de 0 a 10
-            
-            resultado = num1 * num2
+        // Vai fazer o jogo começar
+        let num1 = Math.floor(Math.random() * 11) // Vai gerar um número aleatório de 0 a 10
+        let num2 = Math.floor(Math.random() * 11) // Vai gerar um número aleatório de 0 a 10
+        
+        resultado = num1 * num2
 
-            // Vai escrever os números sorteados na tela
-            let h1 = document.querySelector('h1')
-            h1.innerText = num1 + " X " + num2 
+        // Vai escrever os números sorteados na tela
+        let h1 = document.querySelector('h1')
+        h1.innerText = num1 + " X " + num2 
 
-        }
+        // Onde mostrarar os pontos
+        let p = document.querySelector('p')
+        let pontos = 0
+
+        let input = document.querySelector('input')
 
         function enviar() {
             let resposta = document.getElementById('resposta').value
-    
+            
             if(resposta == resultado) {
-                // Vai fazer a section aparecer
-                let section = document.querySelector('section')
-                section.style.display = 'block'
 
-                let input = document.querySelector('input')
-                input.innerText = ''
+                // Vai fazer o jogo começar
+                let num1 = Math.floor(Math.random() * 11) // Vai gerar um número aleatório de 0 a 10
+                let num2 = Math.floor(Math.random() * 11) // Vai gerar um número aleatório de 0 a 10
+                
+                resultado = num1 * num2
+
+                // Vai escrever os números sorteados na tela
+                let h1 = document.querySelector('h1')
+                h1.innerText = num1 + " X " + num2 
+
+                pontos = pontos + 1
+
+                p.innerText = 'Pontos: ' + pontos
+
             } else {
                 window.alert('errou')
             }

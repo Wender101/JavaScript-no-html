@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: black;
+            overflow: hidden;
+            display: flex;
+        }
+
+        section {
+            width: 5px;
+            height: 200px;
+            background-color: white;
+            position: absolute;
+            top: 50%;
+            transform: translate(0%, -50%);
+            margin-left: 20px;
+        }
+
+        #p2 {
+            right: 20px;
+        }
+
+        hr {
+            height: 100vh;
+            border: 1px solid white;
+            margin: auto;
+        }
+
+        div#ball {
+            width: 10px;
+            height: 10px;
+            background-color: rgb(255, 0, 0);
+            border-radius: 50%;
+            margin-left: 50%;
+            top: 50%;
+            margin-top: -1%;
+            transform: translate(-50%);
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <section id="p1"></section> <!--Player 1-->
+
+    <div id="ball"></div> <!--Bolinha-->
+    <hr>
+
+    <section id="p2"></section> <!--Player 2-->
+
+    <script>
+        const body = document.querySelector('body')
+
+        body.addEventListener('click', function() {
+            let ball = document.getElementById('ball')
+
+            var num1 = Math.floor(Math.random() * 2) // Vai gerar um número
+
+            if(num1 == 0) {
+                ball.style.transition = '1s margin-left linear'
+                ball.style.marginLeft = '30px'
+
+            } 
+            
+            if(num1 == 1) {
+                ball.style.transition = '1s margin-left linear'
+                ball.style.marginLeft = '96%'
+            }
+        })
+    </script>
+</body>
+</html>
