@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronometro</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        section {
+            width: 150px;
+            height: auto;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 50px;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        div {
+            display: flex;
+        }
+
+        button {
+            padding: 20px;
+            border: none;
+            border-radius: 20px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <section>
+        <h1>0.0.1</h1>
+        <div>
+            <button id="iniciar" onclick="comecar()">Iniciar</button>
+            <button id="parar" onclick="parar()">Parar</button>
+        </div>
+    </section>
+
+    <script>
+        let h1 = document.querySelector('h1')
+        let iniciar = false
+        let c1 = 0
+        let c2 = 0
+        let c3 = 0
+
+        h1.innerText = c3 + '.' + c2 + '.' + c1 
+
+        function comecar() {
+            iniciar = true
+            console.log(iniciar);
+            for(let c1 = 0; c1 < 101; c1++) {
+
+                if(c1 == 100) {
+                    c1 = 0
+                    c2 += 1
+                }
+
+                if(c2 == 60) {
+                    c1 = 0
+                    c2 = 0
+                    c3 += 1
+                }
+
+                h1.innerText = c3 + '.' + c2 + '.' + c1
+            }
+        }
+        
+        function parar() {
+            iniciar = false
+            console.log(iniciar);
+        }
+
+    </script>
+</body>
+</html>
