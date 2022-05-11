@@ -120,7 +120,11 @@
             const quantasLetras = document.getElementById('quantasLetras').value
             if(quantasLetras.length == 0) {
                 window.alert('Escolha quantos caracteres você quer')
-            }
+
+            } else if(quantasLetras.length > 3) {
+		window.alert('Você tem certeza que desejá ter uma senha com mil ou mais caracteres? Saiba que isso pode travar o seu navegador!')
+	    }
+
             const res = document.getElementById('res')
 
             const letras = 'aabcdefghijklmnopqrstuvwxyz' 
