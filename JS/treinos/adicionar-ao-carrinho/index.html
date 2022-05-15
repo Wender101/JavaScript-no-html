@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Loja Virtual</title>
+</head>
+<body>
+    <header>
+        <div id="sombra" onclick="fecharCarrinho()"></div>
+        <div id="carrinho"></div>
+        <h2>Loja Online</h3>
+        <button id="btncarrinho" onclick="abrirCarrinho()">
+            <div id="Qcarrinho">
+                <p id="notificacao"></p>
+            </div>
+            Carrinho
+        </button>
+    </header>
+
+    <main>
+    </main>
+
+    <script>
+        // Vai criar os produtos
+        const main = document.querySelector('main')
+        var num = 1
+
+        for(let c = 1; c < 21; c++) {
+            const div1 = document.createElement('div') 
+            const div2 = document.createElement('div') 
+            const h3 = document.createElement('h3') 
+            const p = document.createElement('p') 
+            const carrinho = document.querySelector('#carrinho')
+
+            h3.innerText = `Produto ${c}`
+            p.innerText = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus, libero corporis!`
+
+            
+            main.appendChild(div1)
+            div1.appendChild(div2)
+            div1.appendChild(h3)
+            div1.appendChild(p)
+            
+            // Vai acontecer quando clicar em alguma div
+            
+            div1.addEventListener('click', function() {
+                carrinho.innerHTML += `<p>${h3.innerText = `Produto ${c}`}</p>`
+                
+                let divNotificacao = document.querySelector('#Qcarrinho')
+                let notificacaoCarrinho = document.querySelector('#notificacao')
+                divNotificacao.style.display = 'block'
+                notificacaoCarrinho.innerText = num
+                num++
+            })
+        }
+        
+
+        function abrirCarrinho() {
+            const carrinho = document.querySelector('#carrinho')
+            const sombra = document.querySelector('#sombra')
+
+            if(carrinho.style.display == 'block') {
+                carrinho.style.display = 'none'
+                sombra.style.display = 'none'
+
+            } else {
+                carrinho.style.display = 'block'
+                sombra.style.display = 'block'
+            }
+            
+        }
+    
+    </script>
+</body>
+</html>
