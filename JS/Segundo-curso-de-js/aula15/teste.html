@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arroiz</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: black;
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 22px;
+            margin-top: 100px;
+        }
+
+        button {
+            margin-left: 50%;
+            margin-top: 100px;
+            transform: translate(-50%);
+            border-radius: 20px;
+            color: black;
+            background-color: white;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1></h1>
+    <button onclick="iniciar()">Iniciar</button>
+
+    <script>
+        let num1 = 9
+        let h1 = document.querySelector('h1')
+
+        function iniciar() {
+            if(num1 > 0) {
+                let numeroAleatorio = Math.round(Math.random() * (num1))
+                let numerosASorteas = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+                let sorteado = numerosASorteas[numeroAleatorio]
+                h1.innerText = `Seu número sorteado foi: ${sorteado}`
+                numerosASorteas.slice(numeroAleatorio)
+                console.log(numerosASorteas);
+                num1 -= 1
+
+            }   else {
+                h1.innerText = 'Acabaram os números para sertear :('
+            }
+        }
+    </script>
+</body>
+</html>
