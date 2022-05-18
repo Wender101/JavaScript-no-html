@@ -41,8 +41,19 @@
             text-align: center;
         }
 
+        div#pontos {
+            width: 255px;
+            margin-top: 20px;
+            margin-left: 50%;
+            display: flex;
+            transform: translate(-50%);
+        }
+
         p {
-            text-align: center;
+            border: 1px solid white;
+            border-radius: 10px;
+            padding: 20px;
+            margin-left: 15px;
         }
 
         div#res {
@@ -81,7 +92,10 @@
 <body>
     
     <h1></h1> <!--Vai mostrar a continha-->
-    <p>Pontos: </p>
+    <div id="pontos">
+        <p id="acertos">Acertos: 0</p>
+        <p id="erros">Erros: 0</p>
+    </div>
     <div id="res">
         <input type="number" name="" id="resposta">
         <button onclick="enviar()">Enviar</button>
@@ -101,16 +115,20 @@
         h1.innerText = num1 + " X " + num2 
 
         // Onde mostrarar os pontos
-        let p = document.querySelector('p')
+        let acertos = document.querySelector('#acertos')
+        let erros = document.querySelector('#erros')
         let pontos = 0
-
+        let erro = 0
         let input = document.querySelector('input')
 
         function enviar() {
             let resposta = document.getElementById('resposta').value
-            
-            if(resposta == resultado) {
+            if(resposta.length == 0) {
+                window.alert('Dígite algum número!')
 
+            } else {
+                if(resposta == resultado) {
+    
                 // Vai fazer o jogo começar
                 let num1 = Math.floor(Math.random() * 11) // Vai gerar um número aleatório de 0 a 10
                 let num2 = Math.floor(Math.random() * 11) // Vai gerar um número aleatório de 0 a 10
@@ -120,14 +138,15 @@
                 // Vai escrever os números sorteados na tela
                 let h1 = document.querySelector('h1')
                 h1.innerText = num1 + " X " + num2 
+                pontos++
+                acertos.innerText = 'Acertos: ' + pontos;
 
-                pontos = pontos + 1
-
-                p.innerText = 'Pontos: ' + pontos
-
-            } else {
-                window.alert('errou')
+                } else {
+                    erro++
+                    erros.innerText = 'Erros: ' + erro;
+                }
             }
+            
         }
         
         </script>
