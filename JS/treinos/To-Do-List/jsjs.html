@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalStarege</title>
+</head>
+<body>
+    <p>Nome</p>
+    <input type="text" name="" id="nome">
+    <p id="res"></p>
+    <button onclick="envair()">Enviar</button>
+    <script>
+        let array = [localStorage.array]
+        res.innerHTML += `<p>${localStorage.array} </p>` 
+    
+        function envair() {
+            let res = document.getElementById('res')
+            let nome = document.getElementById('nome').value
+            res.innerHTML += `<p>${nome}</p>`
+            array.push(nome)
+            console.log(array);
+            localStorage.setItem('array', array)
+        }
+    </script>
+</body>
+</html>

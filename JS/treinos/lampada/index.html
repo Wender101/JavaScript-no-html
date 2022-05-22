@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lâmpada</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: black;
+        }
+
+        img {
+            margin-left: 50%;
+            transform: translate(-50%);
+            position: absolute;
+            top: 50px;
+        }
+
+        div#button {
+            width: 60px;
+            height: 90px;
+            background-color: rgba(90, 90, 90, 0.644);
+            margin: auto;
+            margin-top: 300px;
+            border-radius: 10px;
+            padding-top: 20px;
+        }
+
+        div#button > div {
+            width: 20px;
+            height: 5px;
+            background-color: white;
+            margin-top: 0px;
+            margin: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <img src="img/lampada-apagada.png" onclick="quebrar()">
+    <div id="button" onclick="clicar()">
+        <div></div>
+    </div>
+    <script>
+        let body = document.querySelector('body')
+        let img = document.querySelector('img')
+        img.src = 'img/lampada-apagada.png'
+        let click = false
+        let quebrou = false
+        let c = 10
+
+        // Vai alterar entre lâmpada acesa e apagada
+        function clicar() {
+            if(quebrou == false) {
+                if(click == false) {
+                    let btn = document.getElementById('button')
+                    btn.style.transform = 'rotate(180deg)'
+                    click = true
+                    let body = document.querySelector('body')
+                    let img = document.querySelector('img')
+                    img.src = 'img/lampada-acesa.png'
+                    body.style.background = 'rgba(253, 250, 81, 0.808)'
+    
+                } else {
+                    let btn = document.getElementById('button')
+                    btn.style.transform = 'rotate(0deg)'
+                    click = false
+                    let body = document.querySelector('body')
+                    let img = document.querySelector('img')
+                    img.src = 'img/lampada-apagada.png'
+                    body.style.background = 'black'
+                }
+            }
+
+            // A lâmpada vai queimar depois de ser acesa e apagada 10 vezes
+            c -= 1
+            if(c == 0) {
+                quebrar()
+            }
+        }
+
+        // Vai fazer a lâmpada quebrar
+        function quebrar(){
+            let img = document.querySelector('img')
+            img.src = 'img/lampada-quebrada.png'
+            quebrou = true
+            body.style.background = 'black'
+        }
+    </script>
+</body>
+</html>

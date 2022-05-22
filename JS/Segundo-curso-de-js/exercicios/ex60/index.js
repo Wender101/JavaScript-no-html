@@ -1,7 +1,11 @@
 // Escreva uma função que receba 2 números e retorne i maior deles
-function mairNumero(x, y) {
-    let maior = Math.max(x, y)
-    console.log(maior);
+function max(x, y) {
+    return x > y ? x : y;
 }
 
-mairNumero(4, 8)
+console.log(max(10, 2));
+
+// ou
+
+const max2 = (x, y) => x > y ? x : y;
+console.log(max2(100, 2));
