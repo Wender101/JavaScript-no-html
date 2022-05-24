@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            background-color: rgb(2, 72, 94);
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            padding: 20px;
+        }
+
+        main {
+            max-width: 500px;
+            height: auto;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+            margin: 50px auto;
+        }
+
+        main > div {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h3>Meu Timer</h3>
+        <div>
+            <h1 id="horas">00:</h1>
+            <h1 id="min">00:</h1>
+            <h1 id="seg">00</h1>
+        </div>
+        <button onclick="iniciar()">Iniciar</button>
+        <button onclick="parar()">Parar</button>
+        <button onclick="zerar()">Zerar</button>
+    </main>
+
+    <script>
+        let horas = document.getElementById('horas')
+        let min = document.getElementById('min')
+        let seg = document.getElementById('seg')   
+
+        function iniciar() {
+            let s = '0' + 0
+            seg.innerText = s
+
+            function time() {
+                s += 1
+                seg.innerText = s
+            }
+
+            let timer = setInterval(time, 100)
+        }
+    </script>
+</body>
+</html>
