@@ -6,60 +6,109 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cronômetro</title>
     <style>
+        @font-face {
+            font-family:  DS-Digital;
+            src: url(DS-DIGIT.TTF);
+        }
+
         * {
             margin: 0px;
             padding: 0px;
         }
 
         body {
-            background-color: rgb(2, 72, 94);
-            font-family: Arial, Helvetica, sans-serif;
             font-size: 15px;
             padding: 20px;
+            background-color: black;
         }
-
+        
         main {
-            max-width: 500px;
+            width: 280px;
             height: auto;
-            padding: 20px;
-            border-radius: 10px;
-            background-color: white;
-            margin: 50px auto;
+            margin: 150px auto;
+            color: white;
+            
+        }
+        
+        main > #relogio {
+            font-family: DS-Digital;
+            font-size: 80px;
+            font-weight: 100;
         }
 
         main > div {
             display: flex;
+            justify-content: space-between;
+        }
+
+        main > div > button {
+            padding: 15px;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <main>
-        <h3>Meu Timer</h3>
+        <h1 id="relogio">00:00:00</h1>
         <div>
-            <h1 id="horas">00:</h1>
-            <h1 id="min">00:</h1>
-            <h1 id="seg">00</h1>
+            <button onclick="iniciar()">Iniciar</button>
+            <button onclick="parar()">Parar</button>
+            <button onclick="zerar()">Zerar</button>
         </div>
-        <button onclick="iniciar()">Iniciar</button>
-        <button onclick="parar()">Parar</button>
-        <button onclick="zerar()">Zerar</button>
     </main>
 
     <script>
-        let horas = document.getElementById('horas')
-        let min = document.getElementById('min')
-        let seg = document.getElementById('seg')   
+        function criarHoraDosSegundos(segundos) {
+            const data = new Date(segundos * 1000)
+            return data.toLocaleTimeString('pt-BR', {
+                hour12: false,
+                timeZone: 'UTC'
+            })
+        }
 
+        const relogio = document.getElementById('relogio')
+        let segundos = 0
+        let timer
+        let pausado = false
+
+        //Inicio
+        function iniciaRelogio() {
+            timer = setInterval(function() {
+                segundos++
+                relogio.innerHTML = criarHoraDosSegundos(segundos)
+            }, 1000)
+        }
+
+        // Vai iniciar
         function iniciar() {
-            let s = '0' + 0
-            seg.innerText = s
+            // Vai checar se o cronometro já foi ou não pausado, pra saber se ele deve zerar ou não.
+            if(pausado == false) {
+                clearInterval(timer)
+                iniciaRelogio()
+                relogio.style.color = 'white'
+                relogio.innerHTML = '00:00:00'
+                segundos = 0
 
-            function time() {
-                s += 1
-                seg.innerText = s
+            } else {
+                iniciaRelogio()
+                relogio.style.color = 'white'
+                pausado = false
             }
+        }
 
-            let timer = setInterval(time, 100)
+        // Vai informar que ele foi pausado e vai pausa-lo
+        function parar() {
+            clearInterval(timer)
+            relogio.style.color = 'red'
+            pausado = true
+        }
+
+        //Vai zera-lo
+        function zerar() {
+            clearInterval(timer)
+            relogio.innerHTML = '00:00:00'
+            segundos = 0
+            relogio.style.color = 'white'
         }
     </script>
 </body>
