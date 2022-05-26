@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista de Afazeres</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-        @import url('https://fonts.googleapis.com/css2? family= Dancing+Script & display=swap');
+        @import url(https://fonts.googleapis.com/css2?family=Lobster&display=swap);
+        @import url(https://fonts.googleapis.com/css2? family= Dancing+Script & display=swap);
 
         :root {
             --fundo: rgb(12, 3, 44);
@@ -189,7 +189,6 @@
     <div id="create-more" onclick="addTarefa()"></div>
 
     <script>
-
         let inputp
         let inputh2
 
@@ -202,6 +201,8 @@
         }
 
         let btnNovaTarefa = document.getElementById('nova-tarefa')
+        let obj = {}
+        let salvarlista = []
 
         btnNovaTarefa.addEventListener('click', function() {
             inputp = document.getElementById('description').value
@@ -210,33 +211,52 @@
             if(inputp.length ==  0|| inputh2.length == 0) {
                 window.alert('Por Favor, preencha todos os campos.')
             } else {
-
-                let sectionCriar = document.getElementById('criar')
-                let sombra = document.getElementById('sombra')
-                const main = document.querySelector('main')
-    
-                //Vai fazer a aba de criar tarefa sumir
-                sectionCriar.style.display = 'none'
-                sombra.style.display = 'none'
-    
-                //Vai criar uma div
-                let novaTarefa = document.createElement('div')
-                main.appendChild(novaTarefa)
-    
-                //Vai criar um p e um h2 na div com o texto dos inputs
-                let h2 = document.createElement('h2')
-                let p = document.createElement('p')
-                p.innerText = inputp
-                h2.innerText = inputh2
-                novaTarefa.appendChild(h2)
-                novaTarefa.appendChild(p)
-
-                localStorage.setItem('novaTarefa', novaTarefa)
-                localStorage.setItem('h2', h2.value)
-                localStorage.setItem('p', p.value)            
+                criaTarefa(inputp, inputh2)
             }
         })
 
+        function criaTarefa(x, y) {
+            let sectionCriar = document.getElementById('criar')
+            let sombra = document.getElementById('sombra')
+            const main = document.querySelector('main')
+
+            //Vai fazer a aba de criar tarefa sumir
+            sectionCriar.style.display = 'none'
+            sombra.style.display = 'none'
+
+            //Vai criar uma div
+            let novaTarefa = document.createElement('div')
+            main.appendChild(novaTarefa)
+
+            //Vai criar um p e um h2 na div com o texto dos inputs
+            let h2 = document.createElement('h2')
+            let p = document.createElement('p')
+            p.innerText = x
+            h2.innerText = y
+            novaTarefa.appendChild(h2)
+            novaTarefa.appendChild(p)
+
+            obj = {
+                titulo: y,
+                desc: x
+            }
+
+            salvarlista.push(obj)
+
+            const tarefasJSON = JSON.stringify(salvarlista);
+            localStorage.setItem('tarefas', tarefasJSON);
+        }
+
+        function adicionaTarefasSalvas() {
+            const tarefas = localStorage.getItem('tarefas');
+            const listaDeTarefas = JSON.parse(tarefas);
+            let c = 0
+            for(let tarefa of listaDeTarefas) {
+                criaTarefa(listaDeTarefas[c].desc, listaDeTarefas[c].titulo);
+                c++
+            }
+        }
+        adicionaTarefasSalvas();
     </script>
 </body>
 </html>
