@@ -33,7 +33,8 @@
 
         header {
             width: 100%;
-            margin: auto;
+            height: 100px;
+            top: 0px;
             background-color: var(--roxo);
             position: fixed;
         }
@@ -41,20 +42,9 @@
         header > h3 {
             text-align: center;
             font-size: 30px;
-            padding-top: 10px;
+            padding-top: 30px;
             font-weight: 100;
             font-family: var(--titulo);
-        }
-
-        header > input {
-            width: 300px;
-            height: 30px;
-            margin-left: 50%;
-            transform: translate(-50%);
-            border: none;
-            margin-top: 20px;
-            margin-bottom: 10px;
-            border-radius: 10px;
         }
 
         /*
@@ -62,17 +52,19 @@
         */
 
         main {
-            padding-top: 150px;
+            max-width: 800px;
+            padding: 50px;
+            margin: 110px auto;
         }
 
         main > div {
-            width: 300px;
+            width: 100%;
             height: auto;
-            padding: 10px;
-            margin: auto;
+            padding: 40px 20px;
             border-radius: 10px;
             background-color: var(--roxo);
             margin-bottom: 20px;
+            position: relative;
         }
 
         main > div > h2 {
@@ -82,9 +74,28 @@
         }
 
         main > div > p {
+            width: 90%;
             font-size: 20px;
             font-family: var(--texto);
             word-wrap: break-word;
+        }
+
+        main > div > div {
+            width: 80px;
+            position: absolute;
+            top: 5px;
+            right: 20px;
+        }
+        
+        main > div > div > button {
+            width: 100%;
+            padding: 15px;
+            margin-top: 15px;
+            border-radius: 10px;
+            background-color: var(--fundo);
+            border: 1px solid rgba(255, 255, 255, 0.288);
+            color: white;
+
         }
 
         /*
@@ -163,16 +174,23 @@
             color: var(--letra);
             background-image: linear-gradient(to right, var(--roxo), var(--fundo), var(--roxo));
         }
+
+        @media screen and(max-width: 1090px) {
+            main {
+                width: 800px;
+                padding: 0px;
+                margin: 0;
+            }
+        }
     </style>
 </head>
 <body>
+    <main>
+    </main>
+
     <header>
         <h3>To do List</h3>
-        <input type="text" name="" id="pesquisa">
     </header>
-    <main>
-
-    </main>
 
     <!-- Deixa o fundo do site escuro -->
     <div id="sombra"></div>
@@ -188,75 +206,6 @@
 
     <div id="create-more" onclick="addTarefa()"></div>
 
-    <script>
-        let inputp
-        let inputh2
-
-        //Abre uma aba para criar uma nova tarefa
-        function addTarefa() {
-            let sectionCriar = document.getElementById('criar')
-            let sombra = document.getElementById('sombra')
-            sectionCriar.style.display = 'block'
-            sombra.style.display = 'block'
-        }
-
-        let btnNovaTarefa = document.getElementById('nova-tarefa')
-        let obj = {}
-        let salvarlista = []
-
-        btnNovaTarefa.addEventListener('click', function() {
-            inputp = document.getElementById('description').value
-            inputh2 = document.getElementById('name').value
-
-            if(inputp.length ==  0|| inputh2.length == 0) {
-                window.alert('Por Favor, preencha todos os campos.')
-            } else {
-                criaTarefa(inputp, inputh2)
-            }
-        })
-
-        function criaTarefa(x, y) {
-            let sectionCriar = document.getElementById('criar')
-            let sombra = document.getElementById('sombra')
-            const main = document.querySelector('main')
-
-            //Vai fazer a aba de criar tarefa sumir
-            sectionCriar.style.display = 'none'
-            sombra.style.display = 'none'
-
-            //Vai criar uma div
-            let novaTarefa = document.createElement('div')
-            main.appendChild(novaTarefa)
-
-            //Vai criar um p e um h2 na div com o texto dos inputs
-            let h2 = document.createElement('h2')
-            let p = document.createElement('p')
-            p.innerText = x
-            h2.innerText = y
-            novaTarefa.appendChild(h2)
-            novaTarefa.appendChild(p)
-
-            obj = {
-                titulo: y,
-                desc: x
-            }
-
-            salvarlista.push(obj)
-
-            const tarefasJSON = JSON.stringify(salvarlista);
-            localStorage.setItem('tarefas', tarefasJSON);
-        }
-
-        function adicionaTarefasSalvas() {
-            const tarefas = localStorage.getItem('tarefas');
-            const listaDeTarefas = JSON.parse(tarefas);
-            let c = 0
-            for(let tarefa of listaDeTarefas) {
-                criaTarefa(listaDeTarefas[c].desc, listaDeTarefas[c].titulo);
-                c++
-            }
-        }
-        adicionaTarefasSalvas();
-    </script>
+    <script src="assets/js/index.js"></script>
 </body>
 </html>
