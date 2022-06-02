@@ -24,9 +24,13 @@
     </main>
 
     <script>
+        const num = localStorage.getItem('num')
+        const numSalvo = JSON.parse(num)
+
         // Vai criar os produtos
         const main = document.querySelector('main')
-        var num = 1
+        var numero = numSalvo
+        let salavarCarrinho = []
 
         for(let c = 1; c < 21; c++) {
             const div1 = document.createElement('div') 
@@ -45,18 +49,28 @@
             div1.appendChild(p)
             
             // Vai acontecer quando clicar em alguma div
-            
+            let numArray = []
             div1.addEventListener('click', function() {
+                numero++
                 carrinho.innerHTML += `<p>${h3.innerText = `Produto ${c}`}</p>`
-                
+                    
                 let divNotificacao = document.querySelector('#Qcarrinho')
                 let notificacaoCarrinho = document.querySelector('#notificacao')
                 divNotificacao.style.display = 'block'
-                notificacaoCarrinho.innerText = num
-                num++
+                notificacaoCarrinho.innerText = numero
+
+                salavarCarrinho.push(`<p>${h3.innerText = `Produto ${c}`}</p>`)
+                console.log(salavarCarrinho);
+                numArray.push(numero)
+
+                var numSalvo = JSON.stringify(numArray);
+                localStorage.setItem('num', numSalvo);
+                console.log(numArray);
+
+                var carrinhoJSON = JSON.stringify(salavarCarrinho);
+                localStorage.setItem('addcarrinho', carrinhoJSON);
             })
         }
-        
 
         function abrirCarrinho() {
             const carrinho = document.querySelector('#carrinho')
@@ -70,9 +84,27 @@
                 carrinho.style.display = 'block'
                 sombra.style.display = 'block'
             }
-            
         }
     
+        function adicionaProdutosSalvos() {
+            const carrinho3 = localStorage.getItem('addcarrinho')
+            const carrinho1 = JSON.parse(carrinho3)
+
+            const num = localStorage.getItem('num')
+            const numSalvo = JSON.parse(num)
+            const carrinho = document.querySelector('#carrinho')
+            let q = numSalvo[0]
+
+            for(let c = 0; c < q; c++) {
+                let divNotificacao = document.querySelector('#Qcarrinho')
+                let notificacaoCarrinho = document.querySelector('#notificacao')
+                divNotificacao.style.display = 'block'
+                notificacaoCarrinho.innerText = numSalvo
+
+                carrinho.innerHTML += carrinho1[c]
+            } 
+        }
+        adicionaProdutosSalvos();
     </script>
 </body>
 </html>
