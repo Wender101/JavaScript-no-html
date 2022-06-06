@@ -1,0 +1,97 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background-color: rgb(79, 205, 255);
+}
+
+section#nuvens {
+    width: 100%;
+    height: auto;
+    display: flex;
+    top: 0px;
+    position: absolute;
+    animation: nuvens 12s infinite linear;
+}
+
+@keyframes nuvens {
+    from {
+        right: -100%;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+section#nuvens > div {
+    width: 400px;
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center center;
+    background-image: url('../img/clouds.png');
+}
+
+img {
+    position: absolute;
+    bottom: 50px;
+}
+
+img#mario {
+    height: 130px;
+}
+
+img.jump {
+    animation: jump 400ms linear;
+}
+
+@keyframes jump {
+    0% {
+        bottom: 50px;
+    }
+
+    40% {
+        bottom: 230px;
+    }
+
+    50% {
+        bottom: 230px;
+    }
+
+    60% {
+        bottom: 230px;
+    }
+
+    100% {
+        bottom: 50px;
+    }
+}
+
+img#tubo {
+    height: 90px;
+    animation: tubo 2s infinite linear;
+}
+
+@keyframes tubo {
+    from {
+        right: -88px;
+    }
+
+    to {
+        right: 100%;
+    }
+}
+
+div#chao {
+    width: 100%;
+    height: 100px;
+    position: absolute;
+    bottom: -50px;
+    background-color: brown;
+}
