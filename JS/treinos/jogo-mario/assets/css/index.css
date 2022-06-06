@@ -10,6 +10,13 @@ body {
     background-color: rgb(79, 205, 255);
 }
 
+h1 {
+    top: 0px;
+    margin: 20px;
+    color: white;
+    position: absolute;
+}
+
 section#nuvens {
     width: 100%;
     height: auto;
@@ -121,5 +128,22 @@ img.perdeu {
 
     100% {
         bottom: -200px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    img#tubo {
+        height: 90px;
+        animation: tubo 1.200s infinite linear;
+    }
+    
+    @keyframes tubo {
+        from {
+            right: -88px;
+        }
+    
+        to {
+            right: 100%;
+        }
     }
 }

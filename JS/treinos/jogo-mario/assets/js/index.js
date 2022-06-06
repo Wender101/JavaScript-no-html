@@ -11,6 +11,10 @@ const jump = () => {
     }, 500)
 }
 
+// Pontuação
+let pontuacao = document.getElementById('pontuacao')
+let p = 0
+
 let perdeuOJogo = false
 const loop = setInterval(function() {
     const tuboPosition = tubo.offsetLeft
@@ -27,6 +31,8 @@ const loop = setInterval(function() {
 
     if(perdeuOJogo == false) {
         audio.play()
+        pontuacao.innerText = `Pontos: ${p}`
+        p++
     } else {
         audio.pause()
     }
