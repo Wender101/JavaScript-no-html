@@ -19,6 +19,15 @@ section#nuvens {
     animation: nuvens 12s infinite linear;
 }
 
+section#nuvens2 {
+    width: 100%;
+    height: auto;
+    display: flex;
+    top: 180px;
+    position: absolute;
+    animation: nuvens 20s infinite linear;
+}
+
 @keyframes nuvens {
     from {
         right: -100%;
@@ -29,7 +38,7 @@ section#nuvens {
     }
 }
 
-section#nuvens > div {
+section#nuvens, section#nuvens2 > div {
     width: 400px;
     height: 300px;
     background-repeat: no-repeat;
@@ -40,7 +49,7 @@ section#nuvens > div {
 
 img {
     position: absolute;
-    bottom: 50px;
+    bottom: 0px;
 }
 
 img#mario {
@@ -53,7 +62,7 @@ img.jump {
 
 @keyframes jump {
     0% {
-        bottom: 50px;
+        bottom: 0px;
     }
 
     40% {
@@ -88,10 +97,29 @@ img#tubo {
     }
 }
 
-div#chao {
-    width: 100%;
-    height: 100px;
-    position: absolute;
-    bottom: -50px;
-    background-color: brown;
+img.perdeu {
+    bottom: -200px;
+    animation: perdeu 600ms linear;
+}
+
+@keyframes perdeu {
+    0% {
+        bottom: 0px;
+    }
+
+    40% {
+        bottom: 200px;
+    }
+
+    50% {
+        bottom: 220px;
+    }
+
+    60% {
+        bottom: 200px;
+    }
+
+    100% {
+        bottom: -200px;
+    }
 }
