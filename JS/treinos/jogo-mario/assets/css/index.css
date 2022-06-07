@@ -1,6 +1,9 @@
 * {
     margin: 0px;
     padding: 0px;
+}
+
+html {
     overflow: hidden;
 }
 
@@ -8,6 +11,7 @@ body {
     width: 100%;
     height: 100vh;
     background-color: rgb(79, 205, 255);
+    overflow: hidden;
 }
 
 h1 {
@@ -145,6 +149,7 @@ section#chao > div {
     height: 60px;
     background-size: contain;
     background-image: url('../img/tijolo.jpg');
+    overflow: hidden;
 }
 
 @keyframes chao {
@@ -159,7 +164,7 @@ section#chao > div {
 
 section#perdeu {
     width: 200px;
-    height: auto;
+    height: 200px;
     position: fixed;
     top: -100%;
     padding: 20px;
@@ -180,8 +185,6 @@ section#perdeu > button {
     padding: 15px;
     border-radius: 10px;
     border: none;
-    margin-left: 50%;
-    transform: translate(-50%);
     background-size: contain;
     font-size: 20px;
 }
@@ -201,4 +204,33 @@ section#perdeu > button {
             right: 100%;
         }
     }
+
+    section#chao {
+        width: 200%;
+        height: 60px;
+        display: flex;
+        animation: chao1 2s infinite linear;
+        position: absolute;
+        bottom: 0px;
+        overflow: hidden; 
+    }
+    
+    @keyframes chao1 {
+        from {
+            left: -100px;
+        }
+    
+        to {
+            left: -100%;
+        }
+    }
+
+    section#chao > div {
+        width: 100%;
+        height: 60px;
+        background-size: contain;
+        background-image: url('../img/tijolo.jpg');
+        overflow: hidden; 
+    }
+
 }
