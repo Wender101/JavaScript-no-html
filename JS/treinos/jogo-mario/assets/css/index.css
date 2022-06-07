@@ -1,12 +1,12 @@
 * {
     margin: 0px;
     padding: 0px;
+    overflow: hidden;
 }
 
 body {
     width: 100%;
     height: 100vh;
-    overflow: hidden;
     background-color: rgb(79, 205, 255);
 }
 
@@ -56,7 +56,7 @@ section#nuvens, section#nuvens2 > div {
 
 img {
     position: absolute;
-    bottom: 0px;
+    bottom: 60px;
 }
 
 img#mario {
@@ -69,7 +69,7 @@ img.jump {
 
 @keyframes jump {
     0% {
-        bottom: 0px;
+        bottom: 60px;
     }
 
     40% {
@@ -85,12 +85,12 @@ img.jump {
     }
 
     100% {
-        bottom: 50px;
+        bottom: 60px;
     }
 }
 
 img#tubo {
-    height: 90px;
+    height: 70px;
     animation: tubo 2s infinite linear;
 }
 
@@ -111,7 +111,7 @@ img.perdeu {
 
 @keyframes perdeu {
     0% {
-        bottom: 0px;
+        bottom: 60px;
     }
 
     40% {
@@ -131,9 +131,64 @@ img.perdeu {
     }
 }
 
+section#chao {
+    width: 200%;
+    height: 60px;
+    display: flex;
+    animation: chao 4s infinite linear;
+    position: absolute;
+    bottom: 0px;
+}
+
+section#chao > div {
+    width: 100%;
+    height: 60px;
+    background-size: contain;
+    background-image: url('../img/tijolo.jpg');
+}
+
+@keyframes chao {
+    from {
+        left: -100px;
+    }
+
+    to {
+        left: -100%;
+    }
+}
+
+section#perdeu {
+    width: 200px;
+    height: auto;
+    position: fixed;
+    top: -100%;
+    padding: 20px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    border-radius: 10px;
+}
+
+section#perdeu > h2 {
+    color: white;
+    font-weight: 900;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+section#perdeu > button {
+    width: 200px;
+    padding: 15px;
+    border-radius: 10px;
+    border: none;
+    margin-left: 50%;
+    transform: translate(-50%);
+    background-size: contain;
+    font-size: 20px;
+}
+
+/* ------- */
 @media screen and (max-width: 600px) {
     img#tubo {
-        height: 90px;
         animation: tubo 1.200s infinite linear;
     }
     
