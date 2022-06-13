@@ -1,12 +1,21 @@
 let inputp
 let inputh2
 
+// Pega a lista salva do navegador
+const tarefas = localStorage.getItem('tarefas');
+const listaDeTarefas = JSON.parse(tarefas);
+
 //Abre uma aba para criar uma nova tarefa
 function addTarefa() {
+    inputp = document.getElementById('description')
+    inputh2 = document.getElementById('name')
     let sectionCriar = document.getElementById('criar')
     let sombra = document.getElementById('sombra')
     sectionCriar.style.display = 'block'
     sombra.style.display = 'block'
+
+    inputp.value = ''
+    inputh2.value = ''
 }
 
 let btnNovaTarefa = document.getElementById('nova-tarefa')
@@ -21,6 +30,18 @@ btnNovaTarefa.addEventListener('click', function() {
         window.alert('Por Favor, preencha todos os campos.')
     } else {
         criaTarefa(inputp, inputh2)
+        document.addEventListener('mousemove', function() {
+            for(let c = 0; c < listaDeTarefas.length; c++) {
+                let btnsApagar = document.getElementsByClassName('apagar')[c]
+                let divs = document.getElementsByClassName('div')[c]
+                btnsApagar.addEventListener('click', function() {
+                    divs.remove()
+                    salvarlista.splice(c, 1)
+                    var tarefasJSON = JSON.stringify(salvarlista);
+                    localStorage.setItem('tarefas', tarefasJSON);
+                })
+            }
+        })
     }
 })
 
@@ -35,23 +56,22 @@ function criaTarefa(x, y) {
 
     //Vai criar uma div
     let novaTarefa = document.createElement('div')
+    novaTarefa.className = 'div'
     main.appendChild(novaTarefa)
 
     //Vai criar um p e um h2 na div com o texto dos inputs
     let h2 = document.createElement('h2')
     let p = document.createElement('p')
     let btnApagar = document.createElement('button')
-    let btnEditar = document.createElement('button')
     let divbtn = document.createElement('div')
     p.innerText = x
     h2.innerText = y
+    btnApagar.className = 'apagar'
     btnApagar.innerText = 'Apagar'
-    btnEditar.innerText = 'Editar'
     novaTarefa.appendChild(h2)
     novaTarefa.appendChild(p)
     novaTarefa.appendChild(divbtn)
     divbtn.appendChild(btnApagar)
-    divbtn.appendChild(btnEditar)
     
     obj = {
         titulo: y,
@@ -62,15 +82,36 @@ function criaTarefa(x, y) {
     
     var tarefasJSON = JSON.stringify(salvarlista);
     localStorage.setItem('tarefas', tarefasJSON);
+    
 }
 
+// Vai Adicionar as tarefas salvas 
 function adicionaTarefasSalvas() {
-    const tarefas = localStorage.getItem('tarefas');
-    const listaDeTarefas = JSON.parse(tarefas);
     let c = 0
     for(let tarefa of listaDeTarefas) {
         criaTarefa(listaDeTarefas[c].desc, listaDeTarefas[c].titulo);
         c++
     }
+
+    document.addEventListener('mousemove', function() {
+        for(let c = 0; c < listaDeTarefas.length; c++) {
+            let btnsApagar = document.getElementsByClassName('apagar')[c]
+            let divs = document.getElementsByClassName('div')[c]
+            btnsApagar.addEventListener('click', function() {
+                divs.remove()
+                salvarlista.splice(c, 1)
+                var tarefasJSON = JSON.stringify(salvarlista);
+                localStorage.setItem('tarefas', tarefasJSON);
+            })
+        }
+    })
 }
 adicionaTarefasSalvas();
+
+// Vai fechar a div de criar uma nova tarefa
+function fecharSombra() {
+    let sombra = document.getElementById('sombra')
+    let criar = document.getElementById('criar')
+    sombra.style.display = 'none'
+    criar.style.display = 'none'
+}

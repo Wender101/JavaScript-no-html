@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2? family= Dancing+Script & display=swap');
+
+:root {
+    --fundo: rgb(12, 3, 44);
+    --letra: white;
+    --roxo: rgb(46, 13, 122);
+    --sombra: rgba(0, 0, 0, 0.582);
+
+    /* Fontes */
+
+    --titulo:'Lobster', cursive;
+    --texto:'Dancing Script', cursiva;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    background-color: var(--fundo);
+    color: var(--letra);
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    top: 0px;
+    background-color: var(--fundo);
+    position: fixed;
+}
+
+header > h3 {
+    text-align: center;
+    font-size: 30px;
+    padding-top: 30px;
+    font-weight: 100;
+    font-family: var(--titulo);
+}
+
+/*
+    Main
+*/
+
+main {
+    max-width: 800px;
+    padding: 50px;
+    margin: 110px auto;
+}
+
+main > div {
+    width: 100%;
+    height: auto;
+    padding: 40px 20px;
+    border-radius: 10px;
+    background-color: var(--roxo);
+    margin-bottom: 20px;
+    position: relative;
+}
+
+main > div > h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    word-wrap: break-word;
+}
+
+main > div > p {
+    width: 90%;
+    font-size: 20px;
+    font-family: var(--texto);
+    word-wrap: break-word;
+}
+
+main > div > div {
+    width: 80px;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+
+main > div > div > button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 10px;
+    background-color: var(--fundo);
+    border: 1px solid rgba(255, 255, 255, 0.288);
+    color: white;
+
+}
+
+/*
+    Criando nova tarefa
+*/
+div#create-more {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;;
+    background-color: rgb(25, 5, 136);
+    bottom: 50px;
+    right: 10px;
+    position: fixed;
+}
+
+div#sombra {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    background-color: var(--sombra);
+    position: fixed;
+    display: none;
+}
+
+section#criar {
+    width: 300px;
+    height: auto;
+    border-radius: 20px;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%);
+    position: fixed;
+    padding: 10px;
+    background-color: var(--roxo);
+    display: none;
+}
+
+section#criar > p {
+    margin-left: 35px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-family: var(--texto);
+}
+
+section#criar > input#name {
+    width: 80%;
+    height: 30px;
+    border-radius: 20px;
+    border: none;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+section#criar > input#description {
+    width: 80%;
+    height: 60px;
+    border-radius: 20px;
+    border: none;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+section#criar > input {
+    padding-left: 10px;
+    box-shadow: 1px 1px 3px var(--fundo);
+}
+
+section#criar > button {
+    width: 80%;
+    height: 30px;
+    border-radius: 20px;
+    margin-top: 20px;
+    border: none;
+    margin-left: 50%;
+    transform: translate(-50%);
+    color: var(--letra);
+    background-image: linear-gradient(to right, var(--roxo), var(--fundo), var(--roxo));
+}
+
+@media screen and(max-width: 1090px) {
+    main {
+        width: 800px;
+        padding: 0px;
+        margin: 0;
+    }
+}
