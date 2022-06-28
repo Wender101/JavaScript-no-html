@@ -64,11 +64,12 @@ div#sombra {
 
 section#adicionar {
     max-width: 500px;
+    width: 70%;
     height: auto;
     border-radius: 10px;
     position: fixed;
     margin-left: 50%;
-    transform: translate(-50%);
+    transform: translate(-57%);
     background-color: var(--cor1);
     top: -600px;
     color: var(--cor2);
@@ -140,7 +141,8 @@ main > section {
 }
 
 main > section > article {
-    width: 500px;
+    max-width: 500px;
+    width: 80%;
     height: auto;
     background-color: var(--cor4);
     border-radius: 10px;
@@ -159,13 +161,14 @@ main > section > article > div {
 }
 
 section#pagar {
-    width: 500px;
+    max-width: 500px;
+    width: 70%;
     height: auto;
     background-color: var(--cor1);
     padding: 20px;
     margin-left: 50%;
     top: -600px;
-    transform: translate(-50%);
+    transform: translate(-55%);
     position: fixed;
     text-align: center;
     color: var(--cor2);
