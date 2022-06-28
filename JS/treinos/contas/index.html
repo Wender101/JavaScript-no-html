@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <title>Contas</title>
+</head>
+<body>
+    <nav>
+        <button onclick="adicionar()">Adicionar</button>
+        <div>
+            <p id="totalPago">Total pago: 0.00</p>
+            <p id="totalPagar">Total a pagar: 0.00</p>
+        </div>
+    </nav>
+
+    <main>
+        <h1>Em Dias</h1>
+        <section id="emDias">
+        </section>
+
+        <h1>Vencidas</h1>
+        <section id="vencidas">
+        </section>
+
+        <h1>Pagas</h1>
+        <section id="pagas">
+        </section>
+    </main>
+
+    <div id="sombra" onclick="fecharAdd()"></div>
+    <section id="adicionar">
+        <label>Vencimento</label>
+        <input type="date" placeholder="Vencimento" id="vencimento">
+        <label>Descrição</label>
+        <input type="text" placeholder="Descrição" id="desc">
+        <label>Valor</label>
+        <input type="number" placeholder="Valor" id="valor">
+        <button onclick="enviar()">Enviar</button>
+    </section>
+
+    <section id="pagar">
+        <h2>Marcar conta como paga?</h2>
+        <button id="nao">Não</button>
+        <button id="sim">Sim</button>
+    </section>
+    
+
+    <script src="assets/js/index.js"></script>
+</body>
+</html>
