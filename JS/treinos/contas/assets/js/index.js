@@ -118,13 +118,26 @@ function pagarConta(el) {
 
     const sim = document.getElementById('sim')
     sim.addEventListener('click', () => {
-        salvar[el].pago = true
-        var salvarJSON = JSON.stringify(salvar);
-        localStorage.setItem('conta', salvarJSON);
-        location.reload()
+        if(salvar[el].pago === false) {
+            salvar[el].pago = true
+            var salvarJSON = JSON.stringify(salvar);
+            localStorage.setItem('conta', salvarJSON);
+            location.reload()
+
+        } else {
+            alert('Essa conta já foi paga!')
+            return
+        }
 
     })
 
+    const deletarConta = document.getElementById('deletarConta')
+    deletarConta.addEventListener('click', () => {
+        salvar.splice(el, 1)
+        var salvarJSON = JSON.stringify(salvar);
+        localStorage.setItem('conta', salvarJSON);
+        location.reload()
+    })
 }
 
 function salvarConta(vencimento, desc, valor, pago, id) {
@@ -140,23 +153,17 @@ function salvarConta(vencimento, desc, valor, pago, id) {
 
     var salvarJSON = JSON.stringify(salvar);
     localStorage.setItem('conta', salvarJSON);
-
-    var idJSON = JSON.stringify(id -1);
-    localStorage.setItem('id', idJSON);
 }
 
 function escreverContaSalva() {
     const conta1 = localStorage.getItem('conta');
     const conta2 = JSON.parse(conta1);
 
-    const id1 = localStorage.getItem('id');
-    const id2 = JSON.parse(id1);
-
     let c = 0
     for(let q of conta2) {
-        articleID = id2
+        articleID = c
         salvar.push(conta2[c])
-        criaConta(conta2[c].vencimento, conta2[c].desc, conta2[c].valor, conta2[c].pago, conta2[c].id -1)
+        criaConta(conta2[c].vencimento, conta2[c].desc, conta2[c].valor, conta2[c].pago, c)
         c++
     }
 
