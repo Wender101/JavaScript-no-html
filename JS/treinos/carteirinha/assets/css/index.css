@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+
+:root {
+    --corFundo: rgb(27, 24, 24);
+    --corCinza: rgba(223, 223, 223, 1);
+    --corVerde: rgba(0, 134, 21, 0.49);
+    --corAmarela: rgba(255, 230, 5, 0.55);
+
+    --fontTitulo: 'Allura', cursive;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background-color: var(--corFundo);
+}
+
+section#carteirinha {
+    width: 950px;
+    height: 310px;
+    background-color: white;
+    margin-left: 50%;
+    margin-top: 150px;
+    transform: translate(-50%);
+    position: relative;
+}
+
+section#carteirinha > article#part1 {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+section#carteirinha > article#part1 > img#brasao {
+    position: absolute;
+    height: 308px;
+    left: 142px;
+}
+
+section#carteirinha > article#part1 > div#linha1 {
+    width: 135%;
+    height: 21px;
+    transform: rotate(-32deg);
+    position: absolute;
+    top: 129px;
+    left: -60px;
+    border-radius: 10px;
+    background-color: var(--corVerde);
+}
+
+section#carteirinha > article#part1 > div#linha2 {
+    width: 135%;
+    height: 21px;
+    transform: rotate(-32deg);
+    position: absolute;
+    top: 159px;
+    left: -70px;
+    border-radius: 10px;
+    background-color: var(--corAmarela);
+}
+
+
+/** Vai criar o efeito de borda no titulo */
+section#carteirinha > article#part1 > div#titulo > #h11 {
+    width: 332px;
+    font-family: var(--fontTitulo);
+    font-weight: 400;
+    font-size: 36px;
+    left: 125px;
+    top: 34px;
+    position: absolute;
+    text-align: center;
+    -webkit-text-stroke-width: 15px;
+    -webkit-text-stroke-color: rgb(255, 255, 255);
+}
+
+section#carteirinha > article#part1 > div#titulo > #h12 {
+    width: 332px;
+    font-family: var(--fontTitulo);
+    font-weight: 400;
+    font-size: 36px;
+    left: 125px;
+    top: 34px;
+    position: absolute;
+    text-align: center;
+    color: #000000;
+}
+
+section#carteirinha > article#part1 > div#logo {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    background-color: var(--corCinza);
+    top: 26px;
+    left: 26px;
+    position: absolute;
+}
+
+section#carteirinha > article#part1 > div#imgPessoa {
+    width: 108px;
+    height: 133px;
+    border-radius: 10px;
+    background-color: var(--corCinza);
+    top: 135px;
+    left: 17px;
+    position: absolute;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+section#carteirinha > article#part1 > p {
+    position: absolute;
+    bottom: 10px;
+    left: 16px;
+}
+
+section#carteirinha > article#part1 > div#inf {
+    width: 289px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 149px;
+    top: 140px;
+}
+
+section#carteirinha > article > div > div {
+    height: 20px;
+    border-radius: 11px;
+    background-color: var(--corCinza);
+    padding: 8px;
+    margin-bottom: 12px;
+    position: relative;
+}
+
+section#carteirinha > article#part1 > div#inf > div#nome {
+    width: 100%;
+}
+
+section#carteirinha > article > div > div > span{
+    font-size: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    position: absolute;
+    top: 5px;
+    color: rgb(56, 56, 56);
+}
+
+section#carteirinha > article > div > div > p {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+section#carteirinha > article#part1 > div#inf > div#cargo {
+    width: 165px;
+    padding: 8px;
+    margin-right: 9px;
+}
+
+section#carteirinha > article#part1 > div#inf > div#expedicao {
+    width: 83px;
+}
+
+section#carteirinha > article#part1 > div#inf > div#cidade {
+    width: 100%;
+}
+
+/** Parte 2*/
+section#carteirinha > article#part2 {
+    width: 50%;
+    height: 100%;
+    position: absolute;
+    right: 0px;
+    background-color: white;
+    top: 0px;
+}
+
+section#carteirinha > article#part2 > div#inf2  {
+    width: 95%;
+    margin-left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+    top: 44px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+section#carteirinha > article#part2 > div#inf2 > div#naturalidade {
+    width: 295px;
+    margin-right: 8px;
+}
+
+section#carteirinha > article#part2 > div#inf2 > div#nascimento {
+    width: 110px;
+}
+
+section#carteirinha > article#part2 > div#inf2 > div#cpf {
+    width: 105px;
+    margin-right: 8px;
+}
+
+section#carteirinha > article#part2 > div#inf2 > div#cpf {
+    width: 105px;
+    margin-right: 8px;
+}
+
+section#carteirinha > article#part2 > div#inf2 > div#estadoCivil {
+    width: 165px;
+    margin-right: 8px;
+}
+
+section#carteirinha > article#part2 > div#inf2 > div#membroDesde {
+    width: 110px;
+}
+
+section#carteirinha > article#part2 > div#inf2 > div#filiacao {
+    width: 100%;
+    height: 50px;
+}
+
+section#carteirinha > article#part2 > div#assPastor {
+    width: 300px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    position: absolute;
+    bottom: 10px;
+    text-align: center;
+}
+
+/** Section adicionar */
+div#sombra {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.822);
+    position: fixed;
+    top: 0px;
+}
+
+section#add {
+    max-width: 500px;
+    width: 100%;
+    height: 500px;
+    padding: 20px;
+    background-color: white;
+    position: fixed;
+    top: 50px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    display: flex;
+    flex-wrap: wrap;
+    overflow-y: auto;
+}
+
+section#add > input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(--corCinza);
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+section#add > button {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: rgb(137, 137, 243);
+    border: none;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+/** Carregando */
+
+section#carregando {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    background-color: rgb(199, 199, 199);
+    text-align: center;
+    display: none;
+}
+
+section#carregando > h1 {
+    margin-top: 150px;
+    color: #37dae2;
+}
+
+section#carregando > article {
+    width: 75px;
+    margin-left: 50%;
+    top: 200px;
+    transform: translate(-50%);
+    position: fixed;
+}
+
+.c-loader {
+    animation: is-rotating 1s infinite;
+    border: 6px solid #e5e5e5;
+    border-radius: 50%;
+    border-top-color: #51d4db;
+    height: 50px;
+    width: 50px;
+  }
+  
+  @keyframes is-rotating {
+    to {
+      transform: rotate(1turn);
+    }
+  }
