@@ -100,6 +100,10 @@ section#carteirinha > article#part1 > div#logo {
     top: 26px;
     left: 26px;
     position: absolute;
+    background-image: url('../img/Slice\ 2.png');
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
 }
 
 section#carteirinha > article#part1 > div#imgPessoa {

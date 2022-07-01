@@ -14,7 +14,7 @@ function processando() {
     setTimeout(() => {
         carregando.style.display = 'none'
         fecharAdd()
-    }, 3000)
+    }, 1000)
 }
 
 function enviar() {
