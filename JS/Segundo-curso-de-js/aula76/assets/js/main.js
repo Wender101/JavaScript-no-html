@@ -1,48 +1,24 @@
+// Sempre que eu quiser referenciar uma chave do meu obj dentro do obj, eu presciso da palavra 'this'. O this recebe quem chama.
+
+// OBS: se vc usar uma errow function, o valor do this sempre será o mesmo! 
+
 function criaCalculadora() {
   return {
     display: document.querySelector('.display'),
 
     inicia() {
       this.cliqueBotoes();
-      this.pressionaBackSpace();
       this.pressionaEnter();
-    },
-
-    pressionaBackSpace() {
-      this.display.addEventListener('keydown', e => {
-        if (e.keyCode === 8) {
-          e.preventDefault();
-          this.clearDisplay();
-        }
-      });
     },
 
     pressionaEnter() {
       this.display.addEventListener('keyup', e => {
-        if (e.keyCode === 13) {
+        if(e.keyCode === 13) {
           this.realizaConta();
         }
       });
     },
-
-    realizaConta() {
-      let conta = this.display.value;
-
-      try {
-        conta = eval(conta);
-
-        if(!conta) {
-          alert('Conta inválida');
-          return;
-        }
-
-        this.display.value = String(conta);
-      } catch(e) {
-        alert('Conta inválida');
-        return;
-      }
-    },
-
+    
     clearDisplay() {
       this.display.value = '';
     },
@@ -51,12 +27,33 @@ function criaCalculadora() {
       this.display.value = this.display.value.slice(0, -1);
     },
 
+    realizaConta() {
+      // O eval vai ezecutar como Js oq for passado para ele.
+      let conta = this.display.value;
+
+      try{
+        conta = eval(conta);
+        
+        if(!conta) {
+          alert('Conta Invalida');
+          return;    
+        }
+        
+        this.display.value = String(conta);
+      } catch(e) {
+        alert('Conta Invalida');
+        return; 
+      }
+
+    },
 
     cliqueBotoes() {
-      document.addEventListener('click', e => {
-        const el = e.target;
+      // this -> calculadora
+      document.addEventListener('click', e =>  {
+        const el = e.target; // Serve pra checar qual elemento do documento foi clicado.
 
         if(el.classList.contains('btn-num')) {
+          // this -> seria o #document caso não fosse uma arrow funciton.
           this.btnParaDisplay(el.innerText);
         }
 
@@ -72,16 +69,35 @@ function criaCalculadora() {
           this.realizaConta();
         }
 
-        this.display.focus();
-      });
+      }); 
+
+      /* Segunda forma, caso não fosse usar uma arrow function {
+        
+          cliqueBotoes() {
+
+            document.addEventListener('click', function(e)  {
+              const el = e.target; // Serve pra checar qual elemento do documento foi clicado.
+      
+              if(el.classList.contains('btn-num')) {
+                // this -> #document
+                this.btnParaDisplay(el.innerText);
+              }
+            }.bind(this)); // Esta falando pra função usar esse this e n o dela.
+          },
+        }
+      */
     },
 
     btnParaDisplay(valor) {
       this.display.value += valor;
     }
-
   };
 }
 
 const calculadora = criaCalculadora();
+<<<<<<< HEAD
 calculadora.inicia();
+=======
+calculadora.inicia();
+
+>>>>>>> 870b55f748a5f98dfa5afa8781f204fd489ebba7

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/index.css">
+    <title>Carteirinha</title>
+</head>
+<body>
+    <section id="carteirinha">
+        <article id="part1">
+            <img src="assets/img/imgfundo.png" id="brasao">
+            <div id="linha1"></div>
+            <div id="linha2"></div>
+
+            <div id="titulo">
+                <h1 id="h11">Assembleia de Deus Há Vida em Cristo</h1>
+                <h1 id="h12">Assembleia de Deus Há Vida em Cristo</h1>
+            </div>
+            <div id="logo"></div>
+            <div id="imgPessoa"></div>
+            <p id="cnpj">CNPJ: 42.860.159/0001-26</p>
+
+            <!--Iformações-->
+            <div id="inf">
+                <div id="nome">
+                    <span>Nome</span>
+                </div>
+                <div id="cargo">
+                    <span>Cargo</span>
+                </div>
+                <div id="expedicao">
+                    <span>Expedição</span>
+                </div>
+                <div id="cidade">
+                    <span>Cidade</span>
+                </div>
+            </div>
+        </article>
+
+        <article id="part2">
+             <!--Iformações-->
+             <div id="inf2">
+                <div id="naturalidade">
+                    <span>Naturalidade</span>
+                </div>
+                <div id="nascimento">
+                    <span>Data Nascimento</span>
+                </div>
+                <div id="cpf">
+                    <span>CPF</span>
+                </div>
+                <div id="estadoCivil">
+                    <span>Estado Civil</span>
+                </div>
+                <div id="membroDesde">
+                    <span>Membro Desde</span>
+                </div>
+                <div id="filiacao">
+                    <span>Filiação</span>
+                </div>
+            </div>
+
+            <div id="assPastor">
+                <hr>
+                <p>Pastor Presidente</p>
+            </div>
+        </article>
+    </section>
+
+    <div id="sombra"></div>
+    <section id="add">
+        <label>Imagem:</label>
+        <input type="text" id="inputImg">
+        
+        <label>Nome:</label>
+        <input type="text" id="inputNome">
+
+        <label>Cargo:</label>
+        <input type="text" id="inputCargo">
+
+        <label>Expedição:</label>
+        <input type="text" id="inputexpedicao">
+
+        <label>Cidade:</label>
+        <input type="text" id="inputCidade">
+
+        <label>Naturalidade:</label>
+        <input type="text" id="inputNaturalidade">
+
+        <label>Data de Nascimento:</label>
+        <input type="text" id="inputNascimento">
+
+        <label>CPF:</label>
+        <input type="text" id="inputCPF">
+
+        <label>Estado Civil:</label>
+        <input type="text" id="inputEstadoCivil">
+
+        <label>Membro Desde:</label>
+        <input type="text" id="inputMembroDesde">
+
+        <label>Filiação Pai:</label>
+        <input type="text" id="inputFiliacao1">
+
+        <label>Filiação Mãe:</label>
+        <input type="text" id="inputFiliacao2">
+
+        <button onclick="enviar()">Enviar</button>
+    </section>
+
+    <section id="carregando">
+        <h1>Processando...</h1>
+        <article>
+            <div class="c-loader"></div>
+        </article>
+    </section>
+
+    <script src="assets/js/index.js"></script>
+</body>
+</html>
