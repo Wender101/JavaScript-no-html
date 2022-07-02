@@ -1,56 +1,14 @@
-/* eslint-disable no-undef */
-var t7 = document.getElementById("t7");
-var t8 = document.getElementById("t8");
-var t9 = document.getElementById("t9");
-var t4 = document.getElementById("t4");
-var t5 = document.getElementById("t5");
-var t6 = document.getElementById("t6");
-var t1 = document.getElementById("t1");
-var t2 = document.getElementById("t2");
-var t3 = document.getElementById("t3");
-var t0 = document.getElementById("t0");
-var tponto = document.getElementById("t.");
-var tigual = document.getElementById("tigual");
-var tmais = document.getElementById("t+");
-var tX = document.getElementById("tX");
-var tdivisao = document.getElementById("t/");
-var tmenos = document.getElementById("t-");
-var tac = document.getElementById("tac");
-var tporcento = document.getElementById("t%");
-
-const tela = document.getElementById("tela");
-const teclado = document.getElementById("teclado");
-let num1 
-let num2
-
-let ativo = false;
-let num1Ativo = true;
-let UmOuDois = 1;
-let sinal;
-
-if(ativo == false) {
-    t2.addEventListener('click', function() {
-        tela.innerText += 2
-        num1 += 2
-    })
-} else {
-    t2.addEventListener('click', function() {
-        tela.innerText += 2
-        num2 += 2
-    })
-}
-
-
-tmais.addEventListener('click', function() {
-    ativo = true
-    tela.innerText = ''
+const calculadora = document.querySelector('#calculadora')
+const tela = document.querySelector('#tela')
+let quantidade = 0
+calculadora.addEventListener('click', e => {
+    const el = e.target
+    if(quantidade < 17) {
+        if(el.classList.contains('number') || el.classList.contains('simbolo')) {
+            tela.innerText += el.innerText
+            quantidade++
+        }
+    } else {
+        alert('Número maximo de maracteres exedido!')
+    }
 })
-
-tigual.addEventListener('click', function() {
-    let soma = parseFloat(num1) + parseFloat(num2)
-
-    tela.innerText = soma
-})
-
-
-

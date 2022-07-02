@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joguinho</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+
+        }
+
+        h1#pontos {
+            text-align: center;
+        }
+
+        section#terra {
+            max-width: 800px;
+            height: auto;
+            padding: 20px;
+            background-color: rgba(100, 45, 45, 0.486);
+            margin: 30px auto;
+            border-radius: 20px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        section#terra > div {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin: 20px;
+        }
+
+        section#terra > div > img {
+            width: 100px;
+            border-radius: 30px;
+            margin: 10px;
+        }
+
+        section#iniciar {
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.712);
+            position: fixed;
+            top: 0px;
+        }
+
+        section#iniciar > button {
+            position: fixed;
+            bottom: 300px;
+            border-radius: 10px;
+            margin-left: 50%;
+            transform: translate(-50%);
+            padding: 15px;
+            border: none;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="pontos">Pontos: 0</h1>
+
+    <section id="terra">
+    </section>
+
+    <section id="iniciar">
+        <button onclick="comecar()">Começar</button>
+    </section>
+
+    <script>
+        // vai criar as divs onde vai surgir a toupeira
+        function criar() {
+            const terra = document.querySelector('#terra')
+            for(let c = 0; c < 15; c++) {
+                const div = document.createElement('div')
+                let criaImg = document.createElement('img')
+                criaImg.src = ''
+                div.appendChild(criaImg)
+                terra.appendChild(div)
+            }
+        }
+        criar()
+
+        // vai iniciar o game
+        let pontos = 1
+        function comecar() {
+            const sectionIniciar = document.querySelector('#iniciar')
+            sectionIniciar.style.display = 'none'
+
+            setInterval(() => {
+                let numeroSorteado = Math.floor(Math.random() * 16)
+                
+                for(let c = 0; c < 16; c++) {
+                    var img = document.getElementsByTagName('img')[c]
+
+                    if(c != numeroSorteado) {
+                        img.src = ''
+                    } else {
+                        img.src = 'assets/img/toupeira.jfif'
+                        img.addEventListener('click', function() {
+                            let h1Pontos = document.getElementById('pontos')
+                            h1Pontos.innerText = `Pontos: ${pontos}`
+                            pontos += 1
+                        })
+                    }
+                }
+            }, 800)
+
+            setInterval(() => {
+                let bomba = Math.floor(Math.random() * 16)
+                for(let c = 0; c < 16; c++) {
+                    var img = document.getElementsByTagName('img')[c]
+
+                    if(c != numeroSorteado) {
+                        img.src = ''
+                    } else {
+                        img.src = 'assets/img/bomba.jfif'
+                        img.addEventListener('click', function() {
+                            let h1Pontos = document.getElementById('pontos')
+                            h1Pontos.innerText = `Pontos: ${pontos}`
+                            pontos -= 1
+                        })
+                    }
+                }
+            }, 800)
+
+        }
+
+    </script>
+</body>
+</html>

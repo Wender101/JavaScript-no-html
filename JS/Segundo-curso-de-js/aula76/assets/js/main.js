@@ -95,5 +95,9 @@ function criaCalculadora() {
 }
 
 const calculadora = criaCalculadora();
+<<<<<<< HEAD
+calculadora.inicia();
+=======
 calculadora.inicia();
 
+>>>>>>> 870b55f748a5f98dfa5afa8781f204fd489ebba7

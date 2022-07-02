@@ -86,11 +86,11 @@ article#teclado > button > p {
     transform: translate(-50%);
 }
 
-button.number {
+button.number, .apagar, #porcentagem, #ponto {
     background-color: rgba(172, 172, 172, 0.349);
 }
 
-button.simbolo {
+button.simbolo{
     background-color: rgba(255, 174, 0, 0.829);
 }
 
