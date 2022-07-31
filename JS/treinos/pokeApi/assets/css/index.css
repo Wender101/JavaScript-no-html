@@ -1,0 +1,122 @@
+:root {
+    --cor0: white;
+    --cor1: red;
+    --cor2: rgb(160, 4, 4);
+    --cor3: black;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+section#pokedex {
+    width: 370px;
+    height: 550px;
+    background-color: transparent;
+    margin: 50px auto;
+    position: relative;
+    background-image: url(../img/pokedex.png);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+article#tela {
+    width: 59%;
+    height: 200px;
+    position: absolute;
+    top: 146px;
+    left: 60px;
+    background-color: transparent;
+}
+
+article#tela > img {
+    width: 40%;
+    margin-left: 50%;
+    transform: translate(-50%);;
+    position: absolute;
+    bottom: 30%;
+    display: block;
+}
+
+article#tela > div#texto {
+    position: absolute;
+    bottom: 10px;
+    right: 0px;
+}
+
+article#tela > div#texto > p {
+    color: rgba(0, 0, 0, 0.795);
+    font-size: 18px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+article#tela > div#texto > p#number {
+    color: rgb(126, 126, 126);
+}
+
+section#pokedex > article#localNome {
+    width: 70%;
+    height: 40px;
+    margin-left: 50%;
+    border: 1px solid black;
+    transform: translate(-55%);;
+    background-color: rgb(189, 185, 185);
+    position: absolute;
+    bottom: 130px;
+    border-radius: 5px;
+}
+
+section#pokedex > article#localNome > input {
+    width: 95%;
+    height: 35px;
+    margin-left: 1%;
+    margin-top: -5px;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding-left: 10px;
+    padding-top: 5px;
+    color: rgb(94, 92, 92);
+    font-size: 16px;
+}
+
+section#pokedex > article#btns {
+    width: 250px;
+    margin-left: 50%;
+    transform: translate(-55%);
+    display: flex;
+    justify-content: space-around;
+    position: absolute;
+    bottom: 50px;
+}
+
+section#pokedex > article#btns > div {
+    width: 100px;
+    height: 43px;
+    color: white;
+    border-radius: 5px;
+    border-radius: 10px 5px 5px 5px;
+    position: relative;
+}
+
+section#pokedex > article#btns > div:active > button {
+    box-shadow: none;
+}
+
+section#pokedex > article#btns > div > button {
+    width: 97%;
+    height: 40px;
+    position: absolute;
+    right: 0px;
+    color: white;
+    background-color: rgb(66, 66, 66);
+    box-shadow: -1px 2px 5px rgba(0, 0, 0, 0.664);
+    border-radius: 5px;
+}
