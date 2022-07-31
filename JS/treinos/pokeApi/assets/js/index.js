@@ -42,12 +42,14 @@ function api(c) {
         const localNumber = document.getElementById('number')
         
         if(c > 649) {
-            localGif.style.display = 'none'
+            localGif.src = 'assets/img/interrogacao.png'
+            localGif.className = 'interrogacao'
             localNumber.style.display = 'none'
             localName.style.color = 'red'
             localName.innerText = 'Não encontrado...'
 
         } else {
+            localGif.className = ''
             localGif.style.display = 'block'
             localNumber.style.display = 'inline-block'
             localName.style.color = 'black'

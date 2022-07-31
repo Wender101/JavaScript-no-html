@@ -44,6 +44,25 @@ article#tela > img {
     display: block;
 }
 
+.interrogacao {
+    animation: 2s interrogacao linear infinite;
+    filter: drop-shadow(1px 1px 10px rgba(0, 0, 0, 0.555));
+}
+
+@keyframes interrogacao {
+    0% {
+        bottom: 30%;
+    }
+
+    50% {
+        bottom: 33%;
+    }
+
+    100% {
+        bottom: 30%;
+    }
+}
+
 article#tela > div#texto {
     position: absolute;
     bottom: 10px;
