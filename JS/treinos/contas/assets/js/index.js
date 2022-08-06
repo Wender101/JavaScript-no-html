@@ -5,6 +5,7 @@ let total = 0
 let articleID = 0
 const salvar = []
 
+// Ao clicar no botão adicionar
 function adicionar() {
     const sectionAdicionar = document.getElementById('adicionar')
     sectionAdicionar.className = 'adicionar'
@@ -13,6 +14,7 @@ function adicionar() {
     sombra.style.display = 'block'
 }
 
+// Ao clicar no botão enviar
 function enviar() {
     fecharAdd()
     // Vai pegar os dados dos inputs
@@ -38,10 +40,10 @@ function fecharAdd() {
     
     const sectionPagar = document.getElementById('pagar')
     sectionPagar.className = ''
-    sectionPagar.style.top = '-600px'
-    
+    sectionPagar.style.top = '-600px'  
 }
 
+// Função responsavel por criar a "conta"
 function criaConta(vencimento, desc, valor, pago, id) {
     const emDias = document.getElementById('emDias')
     const vencidas = document.getElementById('vencidas')

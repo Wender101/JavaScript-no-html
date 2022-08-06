@@ -11,22 +11,31 @@
     <nav>
         <button onclick="adicionar()">Adicionar</button>
         <div>
-            <p id="totalPago">Total pago: 0.00</p>
             <p id="totalPagar">Total a pagar: 0.00</p>
+            <p id="totalPago">Total pago: 0.00</p>
         </div>
     </nav>
 
     <main>
-        <h1>Em Dias</h1>
+        <p id="ordenar">Ordenar por: 
+            <select id="ordem" onclick="ordem()">
+                <option>Todas</option>
+                <option>Em dias</option>
+                <option>Vencidas</option>
+                <option>Pagas</option>
+            </select>
+        </p>
+
         <section id="emDias">
+            <h1>Em Dias</h1>
         </section>
 
-        <h1>Vencidas</h1>
         <section id="vencidas">
+            <h1>Vencidas</h1>
         </section>
 
-        <h1>Pagas</h1>
         <section id="pagas">
+            <h1>Pagas</h1>
         </section>
     </main>
 
@@ -50,5 +59,37 @@
     
 
     <script src="assets/js/index.js"></script>
+    <script>
+        function ordem() {
+            const ordem = document.getElementById('ordem').value
+            const emDias = document.getElementById('emDias')
+            const vencidas = document.getElementById('vencidas')
+            const pagas = document.getElementById('pagas')
+
+
+            if(ordem == 'Todas') {
+                emDias.style.display = 'block'
+                vencidas.style.display = 'block'
+                pagas.style.display = 'block'
+
+            } else if(ordem == 'Em dias') {
+                emDias.style.display = 'block'
+                vencidas.style.display = 'none'
+                pagas.style.display = 'none'
+
+            } else if(ordem == 'Vencidas') {
+                emDias.style.display = 'none'
+                vencidas.style.display = 'block'
+                pagas.style.display = 'none'
+                
+            } else {
+                emDias.style.display = 'none'
+                vencidas.style.display = 'none'
+                pagas.style.display = 'block'
+                
+            }
+        }
+
+    </script>
 </body>
 </html>

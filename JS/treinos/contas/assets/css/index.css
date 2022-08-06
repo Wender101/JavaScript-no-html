@@ -13,16 +13,16 @@
     padding: 0px;
     list-style: none;
     text-decoration: none;
+    overflow-x: hidden;
 }
 
 body {
-    overflow-x: hidden;
 }
 
 nav {
     width: 100%;
     height: auto;
-    padding: 20px;
+    padding: 20px 0px;
     background-color: var(--cor1);
     color: var(--cor2);
     display: flex;
@@ -33,6 +33,7 @@ nav > button {
     border-radius: 5px;
     border: none;
     background-color: var(--cor2);
+    margin-left: 20px;
 }
 
 nav > button:hover {
@@ -45,7 +46,7 @@ nav > button:active {
 
 nav > div {
     position: absolute;
-    right: 50px;
+    right: 20px;
     text-align: right;
 }
 
@@ -130,8 +131,16 @@ main {
     width: 100%;
 }
 
-main > h1 {
-    margin: 20px;
+main > p#ordenar {
+    position: absolute;
+    right: 10px;
+    top: 100px;
+    margin: 0px;
+}
+
+main > section > h1 {
+    padding: 20px;
+    font-size: 30px;
     margin-top: 40px;
 }
 
