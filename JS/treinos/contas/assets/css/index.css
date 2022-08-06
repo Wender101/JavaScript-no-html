@@ -177,7 +177,7 @@ section#pagar {
     padding: 20px;
     margin-left: 50%;
     top: -600px;
-    transform: translate(-55%);
+    transform: translate(-50%);
     position: fixed;
     text-align: center;
     color: var(--cor2);

@@ -16,17 +16,23 @@ function adicionar() {
 
 // Ao clicar no botão enviar
 function enviar() {
-    fecharAdd()
     // Vai pegar os dados dos inputs
     const vencimento = document.getElementById('vencimento').value
     const desc = document.getElementById('desc').value
     const valor = document.getElementById('valor').value
+    
+    if(vencimento.length > 0 && desc.length > 0 && valor.length > 0) {
+        criaConta(vencimento, desc, valor, pago, articleID)
+        salvarConta(vencimento, desc, valor, pago, articleID)
+        const totalPagar = document.getElementById('totalPagar')
+        pagar += Number(valor)
+        totalPagar.innerText = `Total a pagar: ${pagar.toFixed(2)}`
+        fecharAdd()
 
-    criaConta(vencimento, desc, valor, pago, articleID)
-    salvarConta(vencimento, desc, valor, pago, articleID)
-    const totalPagar = document.getElementById('totalPagar')
-    pagar += Number(valor)
-    totalPagar.innerText = `Total a pagar: ${pagar.toFixed(2)}`
+    } else {
+        window.alert('Preecha todos os campos antes de enviar.')
+    }
+
 }
 
 function fecharAdd() {
@@ -111,9 +117,6 @@ function calcularVencimento(vencimento) {
     
     let resultado = Number(resul)
     let datavencimento = Number(ve)
-
-    console.log(resultado)
-    console.log(datavencimento)
 
     if(resultado <= datavencimento) {
         status = 'Em Dia'
