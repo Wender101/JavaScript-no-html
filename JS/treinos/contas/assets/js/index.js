@@ -184,3 +184,34 @@ function escreverContaSalva() {
     }
 }
 escreverContaSalva()
+
+// Vai ditar a ordem na qual as contas vão ser exibidas
+function ordem() {
+    const ordem = document.getElementById('ordem').value
+    const emDias = document.getElementById('emDias')
+    const vencidas = document.getElementById('vencidas')
+    const pagas = document.getElementById('pagas')
+
+
+    if(ordem == 'Todas') {
+        emDias.style.display = 'block'
+        vencidas.style.display = 'block'
+        pagas.style.display = 'block'
+
+    } else if(ordem == 'Em dias') {
+        emDias.style.display = 'block'
+        vencidas.style.display = 'none'
+        pagas.style.display = 'none'
+
+    } else if(ordem == 'Vencidas') {
+        emDias.style.display = 'none'
+        vencidas.style.display = 'block'
+        pagas.style.display = 'none'
+        
+    } else {
+        emDias.style.display = 'none'
+        vencidas.style.display = 'none'
+        pagas.style.display = 'block'
+        
+    }
+}
