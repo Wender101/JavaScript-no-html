@@ -5,6 +5,36 @@ let total = 0
 let articleID = 0
 const salvar = []
 
+// Vai ditar a ordem na qual as contas vão ser exibidas
+function ordem() {
+    const ordem = document.getElementById('ordem').value
+    const emDias = document.getElementById('emDias')
+    const vencidas = document.getElementById('vencidas')
+    const pagas = document.getElementById('pagas')
+
+
+    if(ordem == 'Todas') {
+        emDias.style.display = 'block'
+        vencidas.style.display = 'block'
+        pagas.style.display = 'block'
+
+    } else if(ordem == 'Em dias') {
+        emDias.style.display = 'block'
+        vencidas.style.display = 'none'
+        pagas.style.display = 'none'
+
+    } else if(ordem == 'Vencidas') {
+        emDias.style.display = 'none'
+        vencidas.style.display = 'block'
+        pagas.style.display = 'none'
+        
+    } else {
+        emDias.style.display = 'none'
+        vencidas.style.display = 'none'
+        pagas.style.display = 'block'
+    }
+}
+
 // Ao clicar no botão adicionar
 function adicionar() {
     const sectionAdicionar = document.getElementById('adicionar')
@@ -176,60 +206,34 @@ function salvarConta(vencimento, desc, valor, pago, id) {
     localStorage.setItem('conta', salvarJSON)
 }
 
-function escreverContaSalva() {
-    const conta1 = localStorage.getItem('conta')
-    const conta2 = JSON.parse(conta1)
-
-    let c = 0
-    for(let q of conta2) {
-        articleID = c
-        salvar.push(conta2[c])
-        criaConta(conta2[c].vencimento, conta2[c].desc, conta2[c].valor, conta2[c].pago, c)
-        c++
-    }
-
-    // Vai adicionar o valor ao menu
-    for(let c = 0; c < salvar.length; c++) {
-        if(salvar[c].pago == false) {
-            const totalPagar = document.getElementById('totalPagar')
-            pagar += Number(salvar[c].valor)
-            totalPagar.innerText = `Total a pagar: ${pagar.toFixed(2)}`
-
-        } else if(salvar[c].pago == true) {
-            const totalPago = document.getElementById('totalPago')
-            total += Number(salvar[c].valor)
-            totalPago.innerText = `Total pago: ${total.toFixed(2)}`
+try {
+    function escreverContaSalva() {
+        const conta1 = localStorage.getItem('conta')
+        const conta2 = JSON.parse(conta1)
+    
+        let c = 0
+        for(let q of conta2) {
+            articleID = c
+            salvar.push(conta2[c])
+            criaConta(conta2[c].vencimento, conta2[c].desc, conta2[c].valor, conta2[c].pago, c)
+            c++
+        }
+    
+        // Vai adicionar o valor ao menu
+        for(let c = 0; c < salvar.length; c++) {
+            if(salvar[c].pago == false) {
+                const totalPagar = document.getElementById('totalPagar')
+                pagar += Number(salvar[c].valor)
+                totalPagar.innerText = `Total a pagar: ${pagar.toFixed(2)}`
+    
+            } else if(salvar[c].pago == true) {
+                const totalPago = document.getElementById('totalPago')
+                total += Number(salvar[c].valor)
+                totalPago.innerText = `Total pago: ${total.toFixed(2)}`
+            }
         }
     }
-}
-escreverContaSalva()
-
-// Vai ditar a ordem na qual as contas vão ser exibidas
-function ordem() {
-    const ordem = document.getElementById('ordem').value
-    const emDias = document.getElementById('emDias')
-    const vencidas = document.getElementById('vencidas')
-    const pagas = document.getElementById('pagas')
-
-
-    if(ordem == 'Todas') {
-        emDias.style.display = 'block'
-        vencidas.style.display = 'block'
-        pagas.style.display = 'block'
-
-    } else if(ordem == 'Em dias') {
-        emDias.style.display = 'block'
-        vencidas.style.display = 'none'
-        pagas.style.display = 'none'
-
-    } else if(ordem == 'Vencidas') {
-        emDias.style.display = 'none'
-        vencidas.style.display = 'block'
-        pagas.style.display = 'none'
-        
-    } else {
-        emDias.style.display = 'none'
-        vencidas.style.display = 'none'
-        pagas.style.display = 'block'
-    }
+    escreverContaSalva()
+} catch {
+    console.warn('Error Detectado! Resolvendo...')
 }
