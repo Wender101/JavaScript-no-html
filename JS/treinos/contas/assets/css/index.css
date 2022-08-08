@@ -70,7 +70,7 @@ section#adicionar {
     border-radius: 10px;
     position: fixed;
     margin-left: 50%;
-    transform: translate(-57%);
+    transform: translate(-50%);
     background-color: var(--cor1);
     top: -600px;
     color: var(--cor2);
@@ -106,7 +106,7 @@ section#adicionar {
 section#adicionar > input {
     width: 95%;
     height: auto;
-    padding: 10px;
+    padding: 10px 0px 10px 10px;
     border-radius: 10px;
     border: 1px solid var(--corAzul);
     background-color: var(--cor2);
