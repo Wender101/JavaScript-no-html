@@ -86,20 +86,36 @@ function criaConta(vencimento, desc, valor, pago, id) {
     articleID++
 }
 
+// Vai identificar se a conta já vencel
 function calcularVencimento(vencimento) {
     const data = new Date()
     const hoje = data.getDate()
     const mes = data.getMonth() + 1
     const ano = data.getFullYear()
 
-    const resul = `${ano}0${mes}${hoje}`
+    if(mes < 9 && hoje > 9) {
+        var resul = `${ano}0${mes}${hoje}`
+
+    } else if(hoje < 9 && mes > 9) {
+        var resul = `${ano}${mes}0${hoje}`
+
+    } else if(mes < 9 && hoje < 9) {
+        var resul = `${ano}0${mes}0${hoje}`
+
+    } else {
+        var resul = `${ano}${mes}${hoje}`
+    }
+
     const v = vencimento.replace('-', '').trim()
     const ve = v.replace('-', '').trim()
     
     let resultado = Number(resul)
     let datavencimento = Number(ve)
 
-    if(resultado < datavencimento) {
+    console.log(resultado)
+    console.log(datavencimento)
+
+    if(resultado <= datavencimento) {
         status = 'Em Dia'
     } else {
         status = 'Vencida'
@@ -122,8 +138,8 @@ function pagarConta(el) {
     sim.addEventListener('click', () => {
         if(salvar[el].pago === false) {
             salvar[el].pago = true
-            var salvarJSON = JSON.stringify(salvar);
-            localStorage.setItem('conta', salvarJSON);
+            var salvarJSON = JSON.stringify(salvar)
+            localStorage.setItem('conta', salvarJSON)
             location.reload()
 
         } else {
@@ -136,8 +152,8 @@ function pagarConta(el) {
     const deletarConta = document.getElementById('deletarConta')
     deletarConta.addEventListener('click', () => {
         salvar.splice(el, 1)
-        var salvarJSON = JSON.stringify(salvar);
-        localStorage.setItem('conta', salvarJSON);
+        var salvarJSON = JSON.stringify(salvar)
+        localStorage.setItem('conta', salvarJSON)
         location.reload()
     })
 }
@@ -153,13 +169,13 @@ function salvarConta(vencimento, desc, valor, pago, id) {
 
     salvar.push(objSalvar)
 
-    var salvarJSON = JSON.stringify(salvar);
-    localStorage.setItem('conta', salvarJSON);
+    var salvarJSON = JSON.stringify(salvar)
+    localStorage.setItem('conta', salvarJSON)
 }
 
 function escreverContaSalva() {
-    const conta1 = localStorage.getItem('conta');
-    const conta2 = JSON.parse(conta1);
+    const conta1 = localStorage.getItem('conta')
+    const conta2 = JSON.parse(conta1)
 
     let c = 0
     for(let q of conta2) {
@@ -212,6 +228,5 @@ function ordem() {
         emDias.style.display = 'none'
         vencidas.style.display = 'none'
         pagas.style.display = 'block'
-        
     }
 }
