@@ -1,0 +1,110 @@
+:root {
+    --cor0: white;
+    --cor1: red;
+    --cor2: rgb(160, 4, 4);
+    --cor3: black;
+    --cor4: rgb(88, 241, 88);
+    --cor5: rgb(129, 129, 129);
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--cor5);
+}
+
+section#pokedex {
+    width: 370px;
+    height: 550px;
+    background-color: transparent;
+    margin: 20px auto;
+    position: relative;
+    background-image: url(../img/pokedex.png);
+    background-position: center center;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+article#tela {
+    width: 59%;
+    height: 200px;
+    position: absolute;
+    top: 146px;
+    left: 60px;
+    background-color: transparent;
+}
+
+article#tela > img {
+    width: 40%;
+    margin-left: 50%;
+    transform: translate(-50%);;
+    position: absolute;
+    bottom: 30%;
+    display: block;
+    filter: brightness(0);
+}
+
+article#texto {
+    position: absolute;
+    top: 310px;
+    left: 200px;
+}
+
+article#texto > span {
+    color: rgba(0, 0, 0, 0.795);
+    font-size: 14px;
+    display: inline-block;
+    margin-left: 10px;
+}
+
+article#res {
+    width: 70%;
+    position: absolute;
+    left: 40px;
+    bottom: 25px;
+}
+
+article#res > div {
+    padding: 8px;
+    background-color: var(--cor0);
+    margin-bottom: 7px;
+    border-radius: 10px;
+    font-size: 13px;
+    border: 2px solid var(--cor0);
+}
+
+article#res > div:hover {
+    transform: scale(1.1);
+}
+
+@keyframes divCerta {
+    0% {
+        background-color: var(--cor4);
+    }
+
+    50% {
+        background-color: var(--cor0);
+    }
+
+    100% {
+        background-color: var(--cor4);
+    }
+}
+
+@keyframes mostrar {
+    0% {
+        filter: brightness(0);
+    }
+
+    50% {
+        filter: brightness(0.5);
+    }
+
+    100% {
+        filter: brightness(1);
+    }
+}
