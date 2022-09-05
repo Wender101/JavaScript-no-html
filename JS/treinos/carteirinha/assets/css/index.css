@@ -147,8 +147,8 @@ section#carteirinha > article#part1 > div#inf > div#nome {
     width: 100%;
 }
 
-section#carteirinha > article > div > div > span{
-    font-size: 10px;
+section#carteirinha > article > div > div > span {
+    font-size: 12px;
     font-family: 'Courier New', Courier, monospace;
     position: absolute;
     top: 5px;
