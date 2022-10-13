@@ -1,0 +1,129 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+header {
+    width: 100%;
+    height: 100px;
+    background-color: blue;
+    color: white;
+}
+
+header > h3 {
+    padding: 40px;
+}
+
+main {
+    max-width: 100%;
+    height: auto;
+    padding-bottom: 50px;
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+main > div {
+    width: 185px;
+    height: auto;
+    padding: 15px;
+    border-radius: 20px;
+    text-align: center;
+}
+
+main > div > img {
+    width: 170px;
+    height: 170px;
+    border-radius: 20px;
+    background-color: rgba(0, 0, 0, 0.349);
+}
+
+main > div > h3 {
+    margin: 10px 0px;
+} 
+
+div#add {
+    width: 50px;
+    height: 50px;
+    background-color: rgb(98, 18, 173);
+    border-radius: 50%;
+    position: fixed;
+    bottom: 50px;
+    right: 20px;
+}
+
+div#add > div {
+    width: 25px;
+    height: 2px;
+    background-color: white;
+    margin: 25px auto;
+}
+
+div#add > div#t2 {
+    transform: rotate(90deg);
+    position: absolute;
+    top: 0px;
+    left: 13px;
+}
+
+section#Sadd {
+    display: none;
+}
+
+section#Sadd > div#sombra {
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.637);
+}
+
+article#abaAdicionar {
+    width: 400px;
+    height: 377px;
+    padding: 20px 0px 20px 20px;
+    margin-left: 50%;
+    transform: translate(-50%);
+    border-radius: 20px;
+    background-color: blue;
+    top: 120px;
+    position: fixed;
+    color: white;
+}
+
+article#abaAdicionar > p {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+article#abaAdicionar > input {
+    width: 90%;
+    height: 40px;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(109, 109, 255, 0.432);
+}
+
+article#abaAdicionar > #alerta {
+    color: red;
+    display: none;
+}
+
+article#abaAdicionar > button {
+    width: 100px;
+    border-radius: 10px;
+    background-color: white;
+    color: blue;
+    border: none;
+    padding: 15px;
+    left: 160px;
+    position: absolute;
+    bottom: 10px;
+}

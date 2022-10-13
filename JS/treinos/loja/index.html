@@ -4,138 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Loja</title>
-    <style>
-        * {
-            margin: 0px;
-            padding: 0px;
-            list-style: none;
-            text-decoration: none;
-        }
-
-        body {
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        header {
-            width: 100%;
-            height: 100px;
-            background-color: blue;
-            color: white;
-        }
-
-        header > h3 {
-            padding: 40px;
-        }
-
-        main {
-            max-width: 100%;
-            height: auto;
-            padding-bottom: 50px;
-            margin-top: 50px;
-            display: flex;
-            flex-wrap: wrap;
-            margin: auto;
-        }
-
-        main > div {
-            width: 185px;
-            height: auto;
-            padding: 15px;
-            border-radius: 20px;
-            text-align: center;
-        }
-
-        main > div > img {
-            width: 170px;
-            height: 170px;
-            border-radius: 20px;
-            background-color: rgba(0, 0, 0, 0.349);
-        }
-
-        main > div > h3 {
-            margin: 10px 0px;
-        } 
-
-        div#add {
-            width: 50px;
-            height: 50px;
-            background-color: rgb(98, 18, 173);
-            border-radius: 50%;
-            position: fixed;
-            bottom: 50px;
-            right: 20px;
-        }
-
-        div#add > div {
-            width: 25px;
-            height: 2px;
-            background-color: white;
-            margin: 25px auto;
-        }
-
-        div#add > div#t2 {
-            transform: rotate(90deg);
-            position: absolute;
-            top: 0px;
-            left: 13px;
-        }
-
-        section#Sadd {
-            display: none;
-        }
-
-        section#Sadd > div#sombra {
-            width: 100%;
-            height: 100%;
-            top: 0px;
-            position: fixed;
-            background-color: rgba(0, 0, 0, 0.637);
-        }
-
-        article#abaAdicionar {
-            width: 400px;
-            height: 377px;
-            padding: 20px 0px 20px 20px;
-            margin-left: 50%;
-            transform: translate(-50%);
-            border-radius: 20px;
-            background-color: blue;
-            top: 120px;
-            position: fixed;
-            color: white;
-        }
-
-        article#abaAdicionar > p {
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        article#abaAdicionar > input {
-            width: 90%;
-            height: 40px;
-            border-radius: 10px;
-            border: none;
-            background-color: rgba(109, 109, 255, 0.432);
-        }
-
-        article#abaAdicionar > #alerta {
-            color: red;
-            display: none;
-        }
-
-        article#abaAdicionar > button {
-            width: 100px;
-            border-radius: 10px;
-            background-color: white;
-            color: blue;
-            border: none;
-            padding: 15px;
-            left: 160px;
-            position: absolute;
-            bottom: 10px;
-        }
-    </style>
 </head>
 <body>
     <header>
@@ -149,82 +19,29 @@
         <div id="t1"></div>
         <div id="t2"></div>
     </div>
-
+    
     <section id="Sadd">
         <div id="sombra" onclick="sumir()"></div>
         <article id="abaAdicionar">
-                <p>Adicione a imagem do produto aqui:</p>
-                <input type="text" id="imagem">
-                <p>Nome do produto:</p>
-                <input type="text" id="nome">
-                <p>Descrição do produto:</p>
-                <input type="text" id="desc">
-                <p id="alerta">Preencha todos os campos</p>
-                <button onclick="enviar()">Enviar</button>
+            <p>Adicione a imagem do produto aqui:</p>
+            <input type="text" name="" id="imagem">
+            <p>Nome do produto:</p>
+            <input type="text" id="nome">
+            <p>Descrição do produto:</p>
+            <input type="text" id="desc">
+            <p id="alerta">Preencha todos os campos</p>
+            <button onclick="enviar()">Enviar</button>
         </article>
     </section>
-    <script>
-        // A var "ativo" vai impedir que vc envie sem antes add as inf do produto 
-        let ativo = false
-        function add() {
-            // Vai fazer a section aparecer
-            let adicioar = document.getElementById('Sadd')
-            adicioar.style.display = 'block'
-            ativo = true
-        }
-        
-        function sumir() {
-            // Vai fazer a section sumir
-            let adicioar = document.getElementById('Sadd')
-            adicioar.style.display = 'none'
-        }
 
-        document.addEventListener('keydown', e => {
 
-            if(ativo == false && e.keyCode == 107) {
-                add()
-                ativo = true
 
-            } else if(ativo == true && e.keyCode == 13) {
-                enviar()
-                ativo = false
-            }
-        })
 
-        
-        function enviar() {
-            const imagem = document.getElementById('imagem').value
-            const nome = document.getElementById('nome').value
-            const desc = document.getElementById('desc').value
-            const main = document.querySelector('main')
+    <!--? Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
 
-            
-
-            if(nome == '' || desc == '' || imagem == '') {
-                const elerta = document.getElementById('alerta')
-                alerta.style.display = 'block'
-
-            } else {
-                const div = document.createElement('div')
-                const img = document.createElement('img')
-                const h3 = document.createElement('h3')
-                const p = document.createElement('p')
-
-                img.src = imagem
-                h3.innerText = nome
-                p.innerText = desc
-
-                main.appendChild(div)
-                div.appendChild(img)
-                div.appendChild(h3)
-                div.appendChild(p)
-                
-                ativo = false
-
-                // Vai fazer a section sumir
-                sumir()
-            }
-        }
-    </script>
+    <script src="js.js"></script>
 </body>
 </html>
