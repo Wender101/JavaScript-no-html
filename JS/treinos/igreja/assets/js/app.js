@@ -103,6 +103,6 @@ function sortear() {
 
     setTimeout(() => {
         let numSorteado = Math.floor(Math.random() * todosOsNumeros.length)
-        console.log(todosOsNumeros[numSorteado])
+        alert(todosOsNumeros[numSorteado])
     }, 1000);
 }
