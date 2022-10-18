@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Allura&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abel&display=swap');
+
+:root {
+    --cor1: rgb(255, 255, 255);
+    --cor2: rgb(0, 0, 0);
+    --cor3: rgba(0, 21, 207, 0.64);
+    --cor4: rgba(0, 87, 255, 0.22);
+    --cor5: rgba(12, 12, 12, 0.158);
+    --cor6: rgba(0, 56, 255, 1);
+    --cor7: rgba(0, 0, 0, 0.589);
+
+    --fonte-titulo: 'Allura', cursive;
+    --fonte-texto: 'Abel', sans-serif;
+}
+
+* {
+    margin: 0px;    
+    padding: 0px;
+    text-decoration: none;
+    list-style: none;
+}
+
+@mixin form($porcentagem) {
+    width: $porcentagem;
+    margin: auto;
+    display: block;
+}

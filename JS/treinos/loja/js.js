@@ -35,6 +35,7 @@ function enviar() {
     addNoBancoDeDados(nome, desc, imagem)
 }
 
+let id = 0
 function construirProduto(nome, desc, imagem) {
     const main = document.querySelector('main')
 
@@ -48,6 +49,7 @@ function construirProduto(nome, desc, imagem) {
         const h3 = document.createElement('h3')
         const p = document.createElement('p')
 
+        div.id = id
         img.src = imagem
         h3.innerText = nome
         p.innerText = desc
@@ -61,7 +63,14 @@ function construirProduto(nome, desc, imagem) {
 
         // Vai fazer a section sumir
         sumir()
+
+        div.addEventListener('click', () => {
+            deletar(div.id)
+        })
+
+        id++
     }
+
 }
 
 //? Firebase
@@ -104,3 +113,8 @@ db.collection('Produtos').onSnapshot((data) => {
         construirProduto(p.nome, p.desc, p.imagem)
     })
 }) 
+
+function deletar(id) {
+    let objDeletado = document.getElementById(id)
+    objDeletado.parentNode.removeChild(objDeletado)
+}

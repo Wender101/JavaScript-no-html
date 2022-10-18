@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Allura&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
+:root {
+  --cor1: rgb(255, 255, 255);
+  --cor2: rgb(0, 0, 0);
+  --cor3: rgba(0, 21, 207, 0.64);
+  --cor4: rgba(0, 87, 255, 0.22);
+  --cor5: rgba(12, 12, 12, 0.158);
+  --cor6: rgba(0, 56, 255, 1);
+  --cor7: rgba(0, 0, 0, 0.589);
+  --fonte-titulo: "Allura", cursive;
+  --fonte-texto: "Abel", sans-serif;
+}
+
+* {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  list-style: none;
+}
+
+main#main {
+  min-height: 100vh;
+  position: relative;
+  display: block;
+}
+main#main #titulo {
+  text-align: center;
+  margin-bottom: 50px;
+}
+main#main #container {
+  width: 90%;
+  max-width: 780px;
+  height: 800px;
+  margin: auto;
+  display: none;
+}
+main#main #container button {
+  width: 75px;
+  height: 70px;
+  display: inline-block;
+  text-align: center;
+  border: 1px solid var(--cor4);
+}
+main#main #container button span {
+  margin-top: 7px;
+  display: block;
+  font-size: 16px;
+}
+main#main #container button:hover {
+  background-color: var(--cor3);
+  color: var(--cor1);
+}
+main#main #container button.jaEscolhido {
+  background-color: var(--cor3);
+}
+main#main #container span.jaEscolhido {
+  color: transparent;
+}
+main#main #btnSortear {
+  width: 100px;
+  padding: 20px;
+  display: block;
+  border: none;
+  color: var(--cor1);
+  background-color: var(--cor3);
+  margin: auto;
+}
+main#main #btnSortear:hover {
+  background-color: var(--cor1);
+  color: var(--cor2);
+  border: 1px solid var(--cor3);
+}
+
+section#abaSorteio {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  z-index: 2;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--cor7);
+}
+section#abaSorteio article {
+  width: 90%;
+  max-width: 710px;
+  height: auto;
+  padding: 20px;
+  margin-left: -30px;
+  background-color: var(--cor1);
+}
+section#abaSorteio article span {
+  width: 90%;
+  margin: auto;
+  display: block;
+}
+section#abaSorteio article input {
+  width: 87%;
+  margin: auto;
+  display: block;
+  margin: 10px auto 20px;
+  padding: 10px;
+}
+section#abaSorteio article #numEscolhido {
+  text-align: center;
+}
+section#abaSorteio article div {
+  width: 300px;
+  margin: auto;
+  justify-content: space-evenly;
+  display: flex;
+}
+section#abaSorteio article div button {
+  padding: 20px;
+  border: none;
+  color: var(--cor1);
+  background-color: var(--cor3);
+}/*# sourceMappingURL=sorteio.css.map */

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/sass/estilo.css">
+    <link rel="stylesheet" href="assets/sass/sorteio.css">
+    <title>Assembléia de Deus Há Vida em Cristo</title>
+</head>
+<body>
+    <header>
+        <img src="assets/img/logo.png" alt="Logo da Assembléia de Deus Há Vida em Cristo">
+        <h1>
+            <span id="titulo1">Assembléia de Deus Há Vida em Cristo</span>
+            <span id="titulo2">Assembléia de Deus Há Vida em Cristo</span>
+        </h1>
+        <nav>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Dias de Culto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main id="main">
+        <h2 id="titulo">Clique em um número para participar</h2>
+        <section id="container">
+        </section>
+
+        <button id="btnSortear" onclick="sortear()">Sortear</button>
+    </main>
+
+    <section id="abaSorteio">
+        <article>
+            <p><span id="numEscolhido"></span></p>
+
+            <span>Nome Completo:</span>
+            <input type="text" id="nome">
+
+            <span>Número de Telefone:</span>
+            <input type="text" id="telefone">
+
+            <div>
+                <button onclick="enviar()">Enviar</button>
+                <button onclick="fechar()">Fechar</button>
+            </div>
+        </article>
+    </section>
+
+    <footer>
+
+    </footer>
+
+    <!--! Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+
+    <script src="assets/js/app.js"></script>
+</body>
+</html>

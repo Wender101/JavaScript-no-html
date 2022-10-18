@@ -1,0 +1,120 @@
+@import 'imports.scss';
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    font-family: var(--fonte-texto);
+    font-size: 22px;
+
+    //? Header
+    header {
+        width: 100%;
+        height: 105px;
+        background-color: var(--cor3);
+        color: var(--cor1);
+        display: flex;
+
+        //? Logo da igreja
+        img {
+            width: 78px;
+            height: 78px;
+            border-radius: 50%;
+            margin: 13px 0px 0px 46px;
+            border: 3px solid var(--cor1);
+        }
+
+        //? Nome da igreja
+        h1 {
+            position: relative;
+            margin: 32px 0px 0px 26px;
+            font-size: 32px;
+
+            //? Spans dentro do h1
+            span {
+                font-family: var(--fonte-titulo);
+            }
+
+            span#titulo1 {
+                margin-top: 5px;
+                color: var(--cor6);
+                position: absolute;
+            }
+            
+            span#titulo2 {
+                color: var(--cor1);
+                font-weight: 400;
+                -webkit-text-stroke-width: 6px;
+                -webkit-text-stroke-color: rgb(255, 255, 255);
+            }
+        }
+
+        //? Nav
+        nav {
+            width: 375px;
+            height: auto;
+            position: absolute;
+            top: 37px;
+            right: 28px;
+
+            //? Ul
+            ul {
+                display: flex;
+                justify-content: space-around;
+
+                //? li
+                li {
+                    cursor: pointer;
+
+                    a {
+                        color: var(--cor1);
+                    }
+                }
+            } 
+
+        } //? Fim Nav
+
+    } //? Fim Header
+
+    //? Section banners
+    #banners {
+        width: 100%;
+        height: 240px;
+        background-color: var(--cor5);
+    }
+
+    //? Main
+    main {
+        margin-top: 150px;
+        display: flex;
+        justify-content: space-evenly;
+        
+        div {
+            width: 500px;
+
+            h1 {
+                font-size: 24px;
+                font-weight: 900;
+            }
+
+            p {
+                margin-top: 12px;
+            }
+        }
+
+        div#img {
+            width: 400px;
+            height: 320px;
+            margin-top: -90px;
+            background-color: var(--cor5);
+        }
+
+    } //? Fim Main
+
+    //? Footer
+    footer {
+        width: 100%;
+        height: 300px;
+        margin-top: 200px;
+        background-color: var(--cor3);
+    } //? Fim Footer
+}
