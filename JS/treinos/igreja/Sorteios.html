@@ -20,12 +20,14 @@
                 <li><a href="home.html">Home</a></li>
                 <li><a href="#">Contato</a></li>
                 <li><a href="#">Dias de Culto</a></li>
+                <li onclick="login()">Logar</li>
             </ul>
         </nav>
     </header>
 
     <main id="main">
         <h2 id="titulo">Clique em um número para participar</h2>
+        <p>Os quadrados de cor cinza, são os números que você escolheu.</p>
         <section id="container">
         </section>
 
@@ -33,7 +35,15 @@
     </main>
 
     <section id="abaSorteio">
-        <article>
+        <article id="ganhador">
+            <h2>Sorteado:</h2>
+            <p id="nomeGanhador"></p>
+            <p id="telefoneGanhador"></p>
+            <p id="emailGanhador"></p>
+            <p id="numeroGanhador"></p>
+        </article>
+
+        <article id="add">
             <p><span id="numEscolhido"></span></p>
 
             <span>Nome Completo:</span>

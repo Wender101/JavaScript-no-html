@@ -4,12 +4,19 @@ main#main {
     min-height: 100vh;
     position: relative;
     display: block;
-
+    
     #titulo {
         text-align: center;
         margin-bottom: 50px;
     }
-
+    
+    p {
+        text-align: center;
+        margin-top: -20px;
+        margin-bottom: 30px;
+        display: none;
+    }
+    
     //? section container
     #container {
         width: 90%;
@@ -43,14 +50,22 @@ main#main {
         }
 
         span.jaEscolhido {
-            color: transparent;
+            color: var(--cor1);
+        }
+
+        button.seu {
+            background-color: var(--cor7);
+        }
+
+        span.seu {
+            color: var(--cor1);
         }
     } //? Fim section container
 
     #btnSortear {
         width: 100px;
         padding: 20px;
-        display: block;
+        display: none;
         border: none;
         color: var(--cor1);
         background-color: var(--cor3);
@@ -76,14 +91,22 @@ main#main {
     align-items: center;
     background-color: var(--cor7);
 
-    //? Artcile
-    article {
-        width: 90%;
-        max-width: 710px;
-        height: auto;
-        padding: 20px;
-        margin-left: -30px;
-        background-color: var(--cor1);
+    //? Article ganhador
+    article#ganhador {
+        @include article(none);
+
+        h2 {
+            text-align: center
+        }
+
+        p {
+            margin-bottom: 10px
+        }
+    }
+
+    //? Artcile #add
+    article#add {
+        @include article(none);
 
         span {
             @include form(90%);

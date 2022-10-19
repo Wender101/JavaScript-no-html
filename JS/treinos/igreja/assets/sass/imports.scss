@@ -8,7 +8,7 @@
     --cor4: rgba(0, 87, 255, 0.22);
     --cor5: rgba(12, 12, 12, 0.158);
     --cor6: rgba(0, 56, 255, 1);
-    --cor7: rgba(0, 0, 0, 0.589);
+    --cor7: rgba(0, 0, 0, 0.726);
 
     --fonte-titulo: 'Allura', cursive;
     --fonte-texto: 'Abel', sans-serif;
@@ -25,4 +25,15 @@
     width: $porcentagem;
     margin: auto;
     display: block;
+}
+
+@mixin article($display) {
+    width: 90%;
+    max-width: 710px;
+    height: auto;
+    display: $display;
+    padding: 20px;
+    margin-left: -30px;
+    background-color: var(--cor1);
+    border-radius: 20px;
 }

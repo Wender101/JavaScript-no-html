@@ -7,7 +7,7 @@
   --cor4: rgba(0, 87, 255, 0.22);
   --cor5: rgba(12, 12, 12, 0.158);
   --cor6: rgba(0, 56, 255, 1);
-  --cor7: rgba(0, 0, 0, 0.589);
+  --cor7: rgba(0, 0, 0, 0.726);
   --fonte-titulo: "Allura", cursive;
   --fonte-texto: "Abel", sans-serif;
 }
@@ -27,6 +27,12 @@ main#main {
 main#main #titulo {
   text-align: center;
   margin-bottom: 50px;
+}
+main#main p {
+  text-align: center;
+  margin-top: -20px;
+  margin-bottom: 30px;
+  display: none;
 }
 main#main #container {
   width: 90%;
@@ -55,12 +61,18 @@ main#main #container button.jaEscolhido {
   background-color: var(--cor3);
 }
 main#main #container span.jaEscolhido {
-  color: transparent;
+  color: var(--cor1);
+}
+main#main #container button.seu {
+  background-color: var(--cor7);
+}
+main#main #container span.seu {
+  color: var(--cor1);
 }
 main#main #btnSortear {
   width: 100px;
   padding: 20px;
-  display: block;
+  display: none;
   border: none;
   color: var(--cor1);
   background-color: var(--cor3);
@@ -83,36 +95,54 @@ section#abaSorteio {
   align-items: center;
   background-color: var(--cor7);
 }
-section#abaSorteio article {
+section#abaSorteio article#ganhador {
   width: 90%;
   max-width: 710px;
   height: auto;
+  display: none;
   padding: 20px;
   margin-left: -30px;
   background-color: var(--cor1);
+  border-radius: 20px;
 }
-section#abaSorteio article span {
+section#abaSorteio article#ganhador h2 {
+  text-align: center;
+}
+section#abaSorteio article#ganhador p {
+  margin-bottom: 10px;
+}
+section#abaSorteio article#add {
+  width: 90%;
+  max-width: 710px;
+  height: auto;
+  display: none;
+  padding: 20px;
+  margin-left: -30px;
+  background-color: var(--cor1);
+  border-radius: 20px;
+}
+section#abaSorteio article#add span {
   width: 90%;
   margin: auto;
   display: block;
 }
-section#abaSorteio article input {
+section#abaSorteio article#add input {
   width: 87%;
   margin: auto;
   display: block;
   margin: 10px auto 20px;
   padding: 10px;
 }
-section#abaSorteio article #numEscolhido {
+section#abaSorteio article#add #numEscolhido {
   text-align: center;
 }
-section#abaSorteio article div {
+section#abaSorteio article#add div {
   width: 300px;
   margin: auto;
   justify-content: space-evenly;
   display: flex;
 }
-section#abaSorteio article div button {
+section#abaSorteio article#add div button {
   padding: 20px;
   border: none;
   color: var(--cor1);

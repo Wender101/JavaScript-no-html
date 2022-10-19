@@ -14,17 +14,43 @@ firebase.initializeApp(firebaseConfig)
 const auth = firebase.auth()
 const provider = new firebase.auth.GoogleAuthProvider()
 
+//? essas variaveis ("emailAtual" e "ja" servem para atualisar a pág sempre que o usuario trocar de conta)
+let email
+let emailAtual
+let ja = false
+auth.onAuthStateChanged((val) => {
+    email = val.email
+    
+    //? Vai passar o email atual do user para a var "emailAtual"
+    if(ja == false) {
+        emailAtual = email
+        ja = true
+    }
+
+    setInterval(() => {
+        //? Vai checar de o usuario trocou de conta
+        if(email != emailAtual) {
+            location.reload()
+        }
+        
+        //? Vai checar se o user é o adimnistrador
+        if(email == 'wendernatanael2019@gmail.com') {
+            document.getElementById('btnSortear').style.display = 'block'
+            document.addEventListener('keypress', (e) => {
+                if(e.keyCode == 13) {
+                    sortear()
+                }
+            })
+            
+        } else {
+            document.getElementById('btnSortear').style.display = 'none'
+        }
+    }, 100);
+})
+
 function login() {
     auth.signInWithPopup(provider)
 }
-
-auth.onAuthStateChanged((valor) => {
-    if(valor) {
-        if(valor.email == 'wendernatanael2019@gmail.com') {
-            console.log('logado!');
-        }
-    }
-})
 
 const db = firebase.firestore()
 
@@ -47,9 +73,19 @@ function criar(c) {
         let idBtn = e.target.id
 
         if(clas != 'jaEscolhido' && idBtn != 'jaEscolhido' ) {
-            document.getElementById('abaSorteio').style.display = 'flex'
-            let numEscolhido = document.getElementById('numEscolhido').innerText = `Número: ${c}`
-            numC = c
+
+            auth.onAuthStateChanged((val) => {
+                if(val == null) {
+                    login()
+
+                } else {
+                    email = val.email
+                    document.getElementById('abaSorteio').style.display = 'flex'
+                    document.getElementById('add').style.display = 'block'
+                    let numEscolhido = document.getElementById('numEscolhido').innerText = `Número: ${c}`
+                    numC = c
+                }
+            })
         }
     })
 }
@@ -64,19 +100,22 @@ function enviar() {
     let telefone = document.getElementById('telefone').value
 
     //? Vai salvar no banco de dados
-    salvar(nome, telefone, numC)
+    salvar(nome, telefone, numC, email)
     fechar()
 }
 
-function salvar(nome, telefone, numero) {
+function salvar(nome, telefone, numero, email) {
     let dados = {
+        email,
         nome,
-        telefone,
-        numero
+        numero,
+        telefone
     }
+
     db.collection('Sorteio').add(dados)
 }
 
+//? Vai colocar as informações na tela
 db.collection('Sorteio').onSnapshot((data) => {
     document.getElementById('container').style.display = 'block'
     data.docs.map(function(val) {
@@ -84,13 +123,25 @@ db.collection('Sorteio').onSnapshot((data) => {
         //? Vai bloquear os números que já foram escolhidos
         let numeroJaSelecionado = document.getElementById(p.numero)
         let numbers = numeroJaSelecionado.querySelector('span')
-        numeroJaSelecionado.className = 'jaEscolhido'
-        numbers.className = 'jaEscolhido'
+
+        if(p.email == email) {
+            numeroJaSelecionado.className = 'seu'
+            numbers.className = 'seu'
+            document.querySelector('p').style.display = 'block'
+
+        } else {
+            numeroJaSelecionado.className = 'jaEscolhido'
+            numbers.className = 'jaEscolhido'
+        }
     })
 }) 
 
 //? Função Sortear
 function sortear() {
+    for(let c = 1; c <= 100; c++) {
+        document.getElementById(c).style.background = ''
+    }
+
     let todosOsNumeros = []
     
     db.collection('Sorteio').onSnapshot((data) => {
@@ -101,8 +152,67 @@ function sortear() {
         })
     }) 
 
+    //? Vai sortear um número, de todos os salvos no BD
+    let sorteado = 0
     setTimeout(() => {
         let numSorteado = Math.floor(Math.random() * todosOsNumeros.length)
-        alert(todosOsNumeros[numSorteado])
-    }, 1000);
+        
+        sorteado = todosOsNumeros[numSorteado]
+    }, 1000)
+    
+    let c = 0
+    let fistTime = false
+    setTimeout(() => {
+        setInterval(() => {
+            c++
+
+            let btn = document.getElementById(c)
+            let btn2 = document.getElementById(c - 1)
+            
+            if(c <= sorteado) {
+
+                if(c == 1) {
+                    document.getElementById('1').style.background = 'red'
+                    document.getElementById('1').querySelector('span').style.color = 'var(--cor1)'
+
+                } else if(c == 2) {
+                    document.getElementById('1').style.background = ''
+                    document.getElementById('1').querySelector('span').style.color = ''
+
+                } else {
+                    btn2.style.background = ''
+                    btn2.querySelector('span').style.color = ''
+    
+                    btn.style.background = 'red'
+                    btn.querySelector('span').style.color = 'var(--cor1)'
+                }
+
+
+            } else {
+                if(fistTime == false) {
+                    setTimeout(() => {
+                        ganhador(sorteado)
+                    }, 3000);
+                    fistTime = true
+                }
+            }
+        }, 50)
+    }, 2000)
+} 
+
+//? Vai mostrar os dados do ganhador
+function ganhador(num) {
+    db.collection('Sorteio').onSnapshot((data) => {
+        data.docs.map(function(val) {
+            let p = val.data()
+            if(p.numero == num) {
+                document.getElementById('abaSorteio').style.display = 'flex'
+                document.getElementById('ganhador').style.display = 'block'
+                document.getElementById('nomeGanhador').innerText = `Nome: ${p.nome}`
+                document.getElementById('emailGanhador').innerText = `Email: ${p.email}`
+                document.getElementById('numeroGanhador').innerText = `Número: ${p.numero}`
+                document.getElementById('telefoneGanhador').innerText = `Telefone: ${p.telefone}`
+            }
+        })
+    }) 
 }
