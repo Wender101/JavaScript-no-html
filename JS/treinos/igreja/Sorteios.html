@@ -29,6 +29,11 @@
         <h2 id="titulo">Clique em um número para participar</h2>
         <p>Os quadrados de cor cinza, são os números que você escolheu.</p>
         <section id="container">
+            <article id="sorteado">
+                <h2>Sorteado:</h2>
+                <p id="nomeSorteado"></p>
+                <p id="numeroSorteado"></p>
+            </article>
         </section>
 
         <button id="btnSortear" onclick="sortear()">Sortear</button>
@@ -41,6 +46,8 @@
             <p id="telefoneGanhador"></p>
             <p id="emailGanhador"></p>
             <p id="numeroGanhador"></p>
+
+            <button onclick="fechar()">Fechar</button>
         </article>
 
         <article id="add">

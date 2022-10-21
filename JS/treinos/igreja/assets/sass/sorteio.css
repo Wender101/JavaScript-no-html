@@ -53,6 +53,32 @@ main#main #container button span {
   display: block;
   font-size: 16px;
 }
+main#main #container article#sorteado {
+  width: 90%;
+  max-width: 710px;
+  height: auto;
+  display: none;
+  padding: 20px;
+  margin-left: -30px;
+  background-color: var(--cor1);
+  border-radius: 20px;
+}
+main#main #container article#sorteado h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+main#main #container article#sorteado p {
+  margin-bottom: 10px;
+}
+main#main #container article#sorteado button {
+  width: 200px;
+  padding: 20px;
+  border: none;
+  color: var(--cor1);
+  background-color: var(--cor3);
+  display: block;
+  margin: 50px auto 0px;
+}
 main#main #container button:hover {
   background-color: var(--cor3);
   color: var(--cor1);
@@ -107,9 +133,19 @@ section#abaSorteio article#ganhador {
 }
 section#abaSorteio article#ganhador h2 {
   text-align: center;
+  margin-bottom: 20px;
 }
 section#abaSorteio article#ganhador p {
   margin-bottom: 10px;
+}
+section#abaSorteio article#ganhador button {
+  width: 200px;
+  padding: 20px;
+  border: none;
+  color: var(--cor1);
+  background-color: var(--cor3);
+  display: block;
+  margin: 50px auto 0px;
 }
 section#abaSorteio article#add {
   width: 90%;

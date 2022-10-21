@@ -40,6 +40,29 @@ main#main {
             
         }
 
+        article#sorteado {
+            @include article(none);
+
+            h2 {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+    
+            p {
+                margin-bottom: 10px;
+            }
+            
+            button {
+                width: 200px;
+                padding: 20px;
+                border: none;
+                color: var(--cor1);
+                background-color: var(--cor3);
+                display: block;
+                margin: 50px auto 0px;
+            }
+        }
+
         button:hover {
             background-color: var(--cor3);
             color: var(--cor1);
@@ -96,11 +119,22 @@ main#main {
         @include article(none);
 
         h2 {
-            text-align: center
+            text-align: center;
+            margin-bottom: 20px;
         }
 
         p {
-            margin-bottom: 10px
+            margin-bottom: 10px;
+        }
+        
+        button {
+            width: 200px;
+            padding: 20px;
+            border: none;
+            color: var(--cor1);
+            background-color: var(--cor3);
+            display: block;
+            margin: 50px auto 0px;
         }
     }
 
