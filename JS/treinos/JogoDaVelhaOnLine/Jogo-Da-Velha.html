@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--! CSS -->
+    <link rel="stylesheet" href="assets/sass/generalStyle.css">
+    <link rel="stylesheet" href="assets/sass/jogo.css">
+    <title>Jogo Da Velha</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><button onclick="login()">Logar</button></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section>
+            <!--? Traços -->
+            <div id="t1" class="t"></div>
+            <div id="t2" class="t"></div>
+            <div id="t3" class="t"></div>
+            <div id="t4" class="t"></div>
+
+            <!--? Locais de click -->
+            <div id="c1" class="c">
+                <div class="x1"></div>
+                <div class="x2"></div>
+            </div>
+            <div id="c2" class="c">
+                <div class="x1"></div>
+                <div class="x2"></div>
+            </div>
+            <div id="c3" class="c">
+                <div class="x1"></div>
+                <div class="x2"></div>
+            </div>
+            <div id="c4" class="c">
+                <div class="x1"></div>
+                <div class="x2"></div>
+            </div>
+            <div id="c5" class="c">
+                <div class="x1"></div>
+                <div class="x2"></div>
+            </div>
+            <div id="c6" class="c">
+                <div class="x1"></div>
+                <div class="x2"></div>
+            </div>
+            <div id="c7" class="c">
+                <div class="x1"></div>
+                <div class="x2"></div>
+            </div>
+            <div id="c8" class="c">
+                <div class="x1"></div>
+                <div class="x2"></div>
+            </div>
+            <div id="c9" class="c">
+                <div class="x1"></div>
+                <div class="x2"></div>
+            </div>
+        </section>
+    </main>
+    
+
+     <!--! Firebase -->
+     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script> 
+ 
+    <!--! Scrips -->
+    <script src="assets/js/geral.js"></script>
+ 
+    <!--! Pág -->
+    <script src="assets/js/jogo.js"></script>
+</body>
+</html>

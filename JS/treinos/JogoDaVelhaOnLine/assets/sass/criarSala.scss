@@ -1,0 +1,24 @@
+main {
+    padding-top: 50px;
+    padding: 20px;
+
+    #codigoSala {
+        color: red;
+    }
+
+    section {
+        margin-top: 30px;
+
+        article { 
+            margin-top: 10px;
+            min-height: 50px;
+            border: 1px solid red;
+            padding: 10px;
+        }
+    }
+
+    #espera {
+        margin-top: 50px;
+        text-align: center;
+    }
+}

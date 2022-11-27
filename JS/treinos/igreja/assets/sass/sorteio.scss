@@ -175,3 +175,31 @@ main#main {
 
 
 } //? Fim Aba Sorteio
+
+//? Sorteado
+section#sorteado {
+    width: 100%;
+    margin-top: 100px;
+    display: none;
+
+    h2 {
+        text-align: center;
+    }
+
+    article {
+        max-width: 300px;
+        border: 1px solid var(--cor4);
+        padding: 30px;
+        margin: 20px auto;
+        border-radius: 10px;
+
+        p {
+            font-weight: 900;
+            margin-bottom: 10px;
+
+            span {
+                font-weight: 100;
+            }
+        }
+    }
+}

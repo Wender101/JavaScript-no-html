@@ -1,0 +1,25 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  list-style: none;
+  text-decoration: none;
+}
+
+body nav {
+  width: 100%;
+  min-height: 50px;
+  padding: 10px 0px;
+  display: flex;
+  justify-content: end;
+  background-color: black;
+  color: white;
+}
+body nav ul {
+  margin: 20px 30px 0px 0px;
+}
+body nav ul li button {
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  border: none;
+}/*# sourceMappingURL=generalStyle.css.map */

@@ -28,24 +28,26 @@ auth.onAuthStateChanged((val) => {
     }
 
     setInterval(() => {
-        //? Vai checar de o usuario trocou de conta
-        if(email != emailAtual) {
-            location.reload()
-        }
-        
-        //? Vai checar se o user é o adimnistrador
-        if(email == 'wendernatanael2019@gmail.com') {
-            document.getElementById('btnSortear').style.display = 'block'
-            document.addEventListener('keypress', (e) => {
-                if(e.keyCode == 13) {
-                    sortear()
-                }
-            })
+        try {
+            //? Vai checar de o usuario trocou de conta
+            if(email != emailAtual) {
+                location.reload()
+            }
             
-        } else {
-            document.getElementById('btnSortear').style.display = 'none'
-        }
-    }, 100);
+            //? Vai checar se o user é o adimnistrador
+            if(email == 'wendernatanael2019@gmail.com') {
+                document.getElementById('btnSortear').style.display = 'block'
+                document.addEventListener('keypress', (e) => {
+                    if(e.keyCode == 13) {
+                        sortear()
+                    }
+                })
+                
+            } else {
+                document.getElementById('btnSortear').style.display = 'none'
+            }
+        } catch{}
+    }, 100)
 })
 
 function login() {
@@ -54,9 +56,23 @@ function login() {
 
 const db = firebase.firestore()
 
-for (let c = 1; c <= 100; c++) {
-    criar(c)
-}
+//? Vai checar se o serteio já ocorreu
+db.collection('Sorteado').onSnapshot((data) => {
+    document.getElementById('container').style.display = 'block'
+    data.docs.map(function(val) {
+        if(typeof(val.data().numeroSorteado) == 'number' && email != 'wendernatanael2019@gmail.com') {
+            document.querySelector('main').remove()
+            document.getElementById('sorteado').style.display = 'block'
+            document.getElementById('nomeGanhador2').innerText = val.data().ganhador
+            document.getElementById('numeroGanhador2').innerText = val.data().numeroSorteado
+
+        } else {
+            for (let c = 1; c <= 100; c++) {
+                criar(c)
+            }
+        }
+    })
+})
 
 let numC
 function criar(c) {
@@ -72,18 +88,52 @@ function criar(c) {
         let clas = e.target.className
         let idBtn = e.target.id
 
+        //? Vai checar se o número já foi escolhido
         if(clas != 'jaEscolhido' && idBtn != 'jaEscolhido' ) {
 
+            //? Pedir pra logar no site caso não tenha logado
             auth.onAuthStateChanged((val) => {
                 if(val == null) {
                     login()
 
                 } else {
+                    let feito = false
                     email = val.email
                     document.getElementById('abaSorteio').style.display = 'flex'
                     document.getElementById('add').style.display = 'block'
+                    numC = c //? Número que foi clicado pelo user
                     let numEscolhido = document.getElementById('numEscolhido').innerText = `Número: ${c}`
-                    numC = c
+                    document.getElementById('enviar').innerText = 'Enviar'
+
+                    //? Vai limpar os inputs
+                    document.getElementById('nome').value = ''
+                    document.getElementById('telefone').value = ''
+
+                    db.collection('Sorteio').onSnapshot((data) => {
+                        document.getElementById('container').style.display = 'block'
+                        data.docs.map(function(val) {
+                            let valorSorteio = val.data()
+
+                            //? Vai checar se o user quer editar ou comprar um novo número
+                            if(valorSorteio.email == email && valorSorteio.numero == numC && feito == false && clas == 'seu') {
+                                document.getElementById('nome').value = valorSorteio.nome
+                                document.getElementById('telefone').value = valorSorteio.telefone
+
+                                let enviar = document.getElementById('enviar')
+                                enviar.innerText = 'Editar'
+                                
+                                //? Ao clicar em editar
+                                enviar.addEventListener('click', () => {
+                                    if(enviar.innerText == 'Editar' && feito == false && valorSorteio.numero == numC) {
+                                        db.collection('Sorteio').doc(val.id).update({nome: document.getElementById('nome').value, telefone: document.getElementById('telefone').value})
+                                        feito = true
+
+                                        fechar()
+                                    }
+                                })
+                            }
+                        })
+                    })
                 }
             })
         }
@@ -96,12 +146,14 @@ function fechar() {
 
 //? Vai enviar as informações
 function enviar() {
-    let nome = document.getElementById('nome').value
-    let telefone = document.getElementById('telefone').value
-
-    //? Vai salvar no banco de dados
-    salvar(nome, telefone, numC, email)
-    fechar()
+    if(document.getElementById('enviar').innerText == 'Enviar') {
+        let nome = document.getElementById('nome').value
+        let telefone = document.getElementById('telefone').value
+    
+        //? Vai salvar no banco de dados
+        salvar(nome, telefone, numC, email)
+        fechar()
+    }
 }
 
 function salvar(nome, telefone, numero, email) {
@@ -212,6 +264,12 @@ function ganhador(num) {
                 document.getElementById('emailGanhador').innerText = `Email: ${p.email}`
                 document.getElementById('numeroGanhador').innerText = `Número: ${p.numero}`
                 document.getElementById('telefoneGanhador').innerText = `Telefone: ${p.telefone}`
+
+                db.collection('Sorteado').onSnapshot((data) => {
+                    data.docs.map(function(val) {
+                        db.collection('Sorteado').doc(val.id).update({numeroSorteado: num, ganhador: p.nome, email: p.email, numero: p.telefone})
+                    })
+                })
             }
         })
     }) 

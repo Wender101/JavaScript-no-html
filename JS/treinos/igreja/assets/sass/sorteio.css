@@ -183,4 +183,27 @@ section#abaSorteio article#add div button {
   border: none;
   color: var(--cor1);
   background-color: var(--cor3);
+}
+
+section#sorteado {
+  width: 100%;
+  margin-top: 100px;
+  display: none;
+}
+section#sorteado h2 {
+  text-align: center;
+}
+section#sorteado article {
+  max-width: 300px;
+  border: 1px solid var(--cor4);
+  padding: 30px;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+section#sorteado article p {
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+section#sorteado article p span {
+  font-weight: 100;
 }/*# sourceMappingURL=sorteio.css.map */

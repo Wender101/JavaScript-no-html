@@ -1,0 +1,19 @@
+main {
+    width: 95%;
+    max-width: 500px;
+    margin: auto;
+    padding-top: 100px;
+
+    button {
+        width: 100%;
+        margin-top: 20px;
+        padding: 10px;
+        display: block;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: black;
+        color: white;
+    }
+}

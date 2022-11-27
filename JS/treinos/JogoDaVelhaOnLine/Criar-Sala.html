@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--! CSS -->
+    <link rel="stylesheet" href="assets/sass/generalStyle.css">
+    <link rel="stylesheet" href="assets/sass/criarSala.css">
+    <title>Sala</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><button onclick="login()">Logar</button></li>
+        </ul>
+    </nav>
+
+    <main>
+        <span>Código da Sala: <span id="codigoSala"></span></span>
+
+        <section>
+            <p>Conectados:</p>
+            <article>
+                <p id="yourEmail"></p>
+                <p id="otherPlayer"></p>
+            </article>
+        </section>
+        <p id="espera">Esperando Oponente...</p>
+
+    </main>
+
+     <!--! Firebase -->
+     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script> 
+
+    <!--! Scrips -->
+    <script src="assets/js/geral.js"></script>
+
+    <!--! Pág -->
+    <script src="assets/js/criarSala.js"></script>
+</body>
+</html>

@@ -60,15 +60,20 @@
             <input type="text" id="telefone">
 
             <div>
-                <button onclick="enviar()">Enviar</button>
+                <button onclick="enviar()" id="enviar">Enviar</button>
                 <button onclick="fechar()">Fechar</button>
             </div>
         </article>
     </section>
 
-    <footer>
-
-    </footer>
+    <!--! Vai informar quem foi o sorteado -->
+    <section id="sorteado">
+        <h2>Sorteado:</h2>
+        <article>
+            <p>Nome do ganhador: <span id="nomeGanhador2"></span></p>
+            <p>Número Sorteado: <span id="numeroGanhador2"></span></p>
+        </article>
+    </section>
 
     <!--! Firebase -->
     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>

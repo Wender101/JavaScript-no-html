@@ -1,0 +1,20 @@
+main {
+  padding-top: 50px;
+  padding: 20px;
+}
+main #codigoSala {
+  color: red;
+}
+main section {
+  margin-top: 30px;
+}
+main section article {
+  margin-top: 10px;
+  min-height: 50px;
+  border: 1px solid red;
+  padding: 10px;
+}
+main #espera {
+  margin-top: 50px;
+  text-align: center;
+}/*# sourceMappingURL=criarSala.css.map */

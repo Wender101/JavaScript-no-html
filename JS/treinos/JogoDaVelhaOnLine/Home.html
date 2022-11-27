@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--! CSS -->
+    <link rel="stylesheet" href="assets/sass/generalStyle.css">
+    <link rel="stylesheet" href="assets/sass/style.css">
+    <title>Jogo da velha online</title>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><button onclick="login()">Logar</button></li>
+        </ul>
+    </nav>
+
+    <main>
+        <a id="btnCriarSala"><button>Criar Sala</button></a>
+        <a id="btnEntrarSala"><button>Se Juntar A Uma Sala</button></a>
+    </main>
+
+     <!--! Firebase -->
+     <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+     <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script> 
+
+    <!--! Scrips -->
+    <script src="assets/js/geral.js"></script>
+    
+    <!--! Pág -->
+    <script src="assets/js/home.js"></script>
+</body>
+</html>
