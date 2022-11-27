@@ -6,6 +6,13 @@ main {
     justify-items: center;
     
     
+    h1 {
+        margin-left: 50%;
+        transform: translate(-60%);
+        position: absolute;
+        top: 100px;
+    }
+
     section {
         width: 450px;
         height: 450px;

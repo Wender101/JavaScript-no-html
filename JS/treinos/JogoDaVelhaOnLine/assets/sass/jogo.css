@@ -5,6 +5,12 @@ main {
   align-items: center;
   justify-items: center;
 }
+main h1 {
+  margin-left: 50%;
+  transform: translate(-60%);
+  position: absolute;
+  top: 100px;
+}
 main section {
   width: 450px;
   height: 450px;
