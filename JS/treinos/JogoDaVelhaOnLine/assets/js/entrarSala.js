@@ -11,7 +11,10 @@ db.collection('SalasJogoDaVelha').onSnapshot((data) => {
             document.querySelector('main').innerHTML = ''
             carregadoSalas = false
         }
-        criarBtnSalas(salas.codigoSala)
+
+        if(salas.otherPlayer == '') {
+            criarBtnSalas(salas.codigoSala)
+        }
     })
 })
 
