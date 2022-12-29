@@ -15,8 +15,9 @@ db.collection('SalasJogoDaVelha').onSnapshot((data) => {
                 
                 localStorage.setItem('IdSala', salas.codigoSala)
 
+                //'http://127.0.0.1:5500/Jogo-Da-Velha.html'
                 if(p.innerText != '') {
-                    location.href = 'https://wender101.github.io/JavaScript-no-html/JS/treinos/JogoDaVelhaOnLine/Jogo-Da-Velha.html'
+                    location.href = 'http://127.0.0.1:5500/Jogo-Da-Velha.html'
                 }
             }
         })
