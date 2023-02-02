@@ -38,8 +38,9 @@ function criarBtnSalas(codigo) {
 
                         localStorage.setItem('IdSala', codigo)
 
+                        // 'http://127.0.0.1:5500/Jogo-Da-Velha.html'
                         setTimeout(() => {
-                            location.href = 'https://wender101.github.io/JavaScript-no-html/JS/treinos/JogoDaVelhaOnLine/Jogo-Da-Velha.html'
+                            location.href = 'http://127.0.0.1:5500/Jogo-Da-Velha.html'
                         }, 1000)
                     })
 

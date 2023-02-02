@@ -70,6 +70,8 @@ for(let c = 0; c < 9; c++) {
                 divC.style.border = '3px solid red'
             }
             movimentos.push(c)
+
+            checkVitoria(movimentos)
         }
 
         //? Vai salvar o movimento do jogador
@@ -87,4 +89,25 @@ for(let c = 0; c < 9; c++) {
             })
         })
     })
+}
+
+//? Vai checar se alguém ganhou
+function checkVitoria(move) {
+    //c1, c6, c7
+    //c2, c5, c8
+    //c3, c4, c9
+
+    //c1, c2, c3
+    //c6, c5, c4
+    //c7, c8, c9
+
+    //c7, c5, c3
+    //c1, c5, c9
+
+    console.log('pass CheckVitoria');
+    for(let c = 0; c < move.length; c++) {
+        if(move[c] == 0 && move[c] == 5 && move[c] == 6) {
+            aviso.innerText = jogador + ' ganhou o jogo'
+        }
+    }
 }
