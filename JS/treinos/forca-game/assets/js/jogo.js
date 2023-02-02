@@ -9,7 +9,6 @@ function sortearPalavra() {
 let letras = []
 
 let palavraSorteada 
-
 function adminSortear() {
     let feito = false
     db.collection('Salas').onSnapshot((data) => {
@@ -36,7 +35,7 @@ for(let c = 0; c < 50; c++) {
         let btnTeclado = document.getElementsByClassName('btn')[c]
         btnTeclado.onclick = () => {
             letras.push(btnTeclado.innerText)
-
+            db.collection('Salas').doc(valSalas.id).update({Letras: letras})
 
             let palavraSorteada2 = palavraSorteada.toLocaleLowerCase()
             palavraSorteada2 = palavraSorteada2.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
