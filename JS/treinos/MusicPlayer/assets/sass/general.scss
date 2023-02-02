@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+//? Cores padrão da página 
+$white: #fff;
+$cor1: #6E88B5;
+$cor2: #354157;
+$cor3: #95B8F5;
+$cor4: #212836;
+$cor5: #86A5DB;
+$sombra: #979ca5;
+$sombra2:rgba(38, 43, 49, 0.712);
+
+//? Fonte geral
+$fonte-geral: 'Poppins', sans-serif;
+
+//? Codigos
+* {
+    margin:  0px;
+    padding: 0px;
+    list-style: none;
+    text-decoration: none;
+}

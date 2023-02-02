@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  text-decoration: none;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: #354157;
+  color: #fff;
+  overflow-x: hidden;
+}
+body header {
+  width: 100%;
+  height: auto;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+}
+body header ul li {
+  list-style: none;
+  position: absolute;
+  right: 30px;
+  display: flex;
+  align-items: center;
+}
+body header ul li img {
+  margin-right: 10px;
+  width: 30px;
+  height: 30px;
+}
+body nav {
+  width: 100%;
+  max-width: 250px;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  min-height: 100vh;
+  background-color: #212836;
+  box-shadow: 2px 2px 10px #212836;
+}
+body nav ul {
+  padding: 20px;
+}
+body nav ul li {
+  cursor: pointer;
+  padding: 10px 0px;
+  color: #979ca5;
+}
+body nav ul li img {
+  width: 23px;
+  height: 23px;
+  margin-right: 10px;
+}
+body main {
+  max-width: 1060px;
+  width: calc(100% - 300px);
+  margin-left: 50%;
+  transform: translate(calc(-50% + 120px));
+  padding: 10px;
+  margin-top: 50px;
+}
+body main section#banners {
+  width: 100%;
+  height: 350px;
+  overflow: hidden;
+  background-color: #212836;
+}
+body main section#banners article {
+  width: 200%;
+  height: 100%;
+  display: flex;
+}
+body main section#banners article img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+body main h1 {
+  margin: 20px 0px;
+}
+body main section#localPlaylists {
+  width: auto;
+  margin: auto;
+}
+body main section#localPlaylists a {
+  width: 250px;
+  height: 300px;
+  overflow: hidden;
+  display: inline-block;
+  text-decoration: none;
+  color: #979ca5;
+  background-color: #212836;
+  box-shadow: 2px 2px 10px rgba(38, 43, 49, 0.712);
+  margin-right: 10px;
+}
+body main section#localPlaylists a img {
+  width: 90%;
+  height: 200px;
+  margin: 5% auto;
+  display: block;
+}
+body main section#localPlaylists a strong {
+  color: #6E88B5;
+}
+body main section#localPlaylists a strong, body main section#localPlaylists a p {
+  margin-left: 10px;
+}
+body main section#localPlaylists a p {
+  font-size: 0.8em;
+  height: 35px;
+  overflow: hidden;
+}/*# sourceMappingURL=Home.css.map */

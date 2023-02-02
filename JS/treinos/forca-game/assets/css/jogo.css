@@ -1,0 +1,243 @@
+/* ini: Preloader */
+
+section#carregando {
+    width: 100%;
+    min-height: 100vh;
+    position: fixed;
+    top: 0px;
+    z-index: 6;
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+section#carregando > #infoEspera {
+    position: absolute;
+    margin-top: -150px;
+    font-size: 25px;
+}
+
+section#carregando > article {
+    width: 80%;
+    color: black;
+}
+ 
+#preloader .inner {
+    position: absolute;
+    top: 50%; /* centralizar a parte interna do preload (onde fica a animação)*/
+    left: 50%;
+    transform: translate(-50%, -50%);  
+}
+
+.bolas > div {
+  display: inline-block;
+  background-color: black;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  margin: 3px;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: animarBola;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+   
+}
+.bolas > div:nth-child(1) {
+    animation-duration:0.75s ;
+    animation-delay: 0;
+}
+.bolas > div:nth-child(2) {
+    animation-duration: 0.75s ;
+    animation-delay: 0.12s;
+}
+.bolas > div:nth-child(3) {
+    animation-duration: 0.75s  ;
+    animation-delay: 0.24s;
+}
+ 
+@keyframes animarBola {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+  16% {
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0.7;
+  }
+  33% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1; 
+  } 
+}
+/* end: Preloader */
+
+main > section#forca {
+    width: 300px;
+    height: 380px;
+    position: relative;
+    margin: 50px;
+}
+
+main > section#forca > div.persona {
+    display: none;
+}
+
+
+
+main > section#forca > div#linha1 {
+    width: 60px;
+    height: 10px;
+    background-color: black;
+    position: absolute;
+    bottom: 0px;
+}
+
+main > section#forca > div#linha2 {
+    width: 10px;
+    height: 100%;
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 25px;
+}
+
+main > section#forca > div#linha3 {
+    width: 150px;
+    height: 10px;
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 25px;
+}
+
+main > section#forca > div#linha4 {
+    width: 10px;
+    height: 50px;
+    background-color: black;
+    position: absolute;
+    top: 0px;
+    left: 165px;
+}
+
+main > section#forca > div#cbc {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 5px solid black;
+    position: absolute;
+    top: 49px;
+    left: 145px;
+}
+
+main > section#forca > div#tronco {
+    width: 5px;
+    height: 110px;
+    background: black;
+    position: absolute;
+    top: 97px;
+    left: 168px;
+}
+
+main > section#forca > div#brc1 {
+    width: 5px;
+    height: 55px;
+    background: black;
+    position: absolute;
+    top: 120px;
+    left: 147px;
+    transform: rotate(45deg);
+}
+
+main > section#forca > div#brc2 {
+    width: 5px;
+    height: 55px;
+    background: black;
+    position: absolute;
+    top: 120px;
+    left: 188px;
+    transform: rotate(-45deg);
+}
+
+main > section#forca > div#perna1 {
+    width: 5px;
+    height: 60px;
+    background: black;
+    position: absolute;
+    bottom: 125px;
+    left: 147px;
+    transform: rotate(45deg);
+}
+
+main > section#forca > div#perna2 {
+    width: 5px;
+    height: 60px;
+    background: black;
+    position: absolute;
+    bottom: 125px;
+    left: 190px;
+    transform: rotate(-45deg);
+}
+
+/*! Local Palavra */
+main > section#localPalavra {
+    width: calc(100% - 300px);
+    height: 60px;
+    margin-top: -110px;
+    position: absolute;
+    right: 10px;
+    display: flex;
+}
+
+main > section#localPalavra > div {
+    width: 50px;
+    height: 60px;
+    font-size: 30px;
+    text-align: center;
+    border-bottom: 5px solid rgb(25, 34, 78);
+    margin-right: 10px;
+}
+
+main > section#localPalavra > div > p {
+    margin-bottom: 10px;
+    font-size: 40px;
+}
+
+section#localTeclado {
+    width: 100%;
+    height: auto;
+    background-color: rgb(114, 114, 114);
+    bottom: 0px;
+    display: block;
+    position: absolute;
+    padding: 20px;
+}
+
+div.keyboard {
+    width: 100%;
+    max-width: 400px;
+    margin-left: 50%;
+    transform: translate(-50%);
+}
+
+div.keyboard > div#keyboard1 {
+    width: 369px;
+    margin: auto;
+    display: block;
+}
+
+div.keyboard > div#keyboard2 {
+    width: 325px;
+    margin: auto;
+    display: block;
+}
+
+div.keyboard > div#keyboard3 {
+    width: 263px;
+    margin: auto;
+    display: block;
+}
+

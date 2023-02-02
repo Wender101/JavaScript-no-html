@@ -1,0 +1,70 @@
+#codigoLocal {
+    text-align: center;
+    margin-top: 20px;
+    display: block;
+    font-size: 20px;
+}
+
+#codigoLocal > span {
+    font-weight: 400;
+}
+
+section#infos {
+    width: 95%;
+    max-width: 500px;
+    height: auto;
+    margin: 100px auto 0px;
+    overflow: hidden;
+}
+
+section#infos > strong {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+section > article {
+    width: 99%;
+    height: 300px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    border: 1px solid black;
+}
+
+section > article > div {
+    width: calc(100% - 20px);
+    padding: 20px 10px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    color: black;
+}
+
+section > article > div:hover {
+    color: white;
+    background-color: black;
+}
+
+body > div#btns {
+    width: 99%;
+    max-width: 500px;
+    height: 300px;
+    margin: auto;
+}
+
+body > div#btns > a {
+    width: 100%;
+    display: block;
+    padding: 20px 0px;
+    margin-top: 10px;
+    cursor: pointer;
+    border: 1px solid black;
+    text-align: center;
+}
+
+body > div#btns > a:hover {
+    color: white;
+    background-color: black;
+}

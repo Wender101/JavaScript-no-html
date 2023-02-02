@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Bem Vindo(a)</title>
+
+    <!--! Styles -->
+    <link rel="stylesheet" href="assets/css/geral.css">
+    <link rel="stylesheet" href="https://rachacuca.com.br/static/maincss-ad1f919265d48574122f.css">
+    <link rel="stylesheet" href="assets/css/jogo.css">
+</head>
+<body>
+    <!--! Animação de carregamento -->
+    <section id="carregando">
+        <p id="infoEspera">Aguardando Inicio da Partida</p>
+        <article>     
+            <!--! início do preloader -->
+            <div id="preloader">
+                <div class="inner">
+                <div class="bolas">
+                    <div></div>
+                    <div></div>
+                    <div></div>                    
+                </div>
+                </div>
+            </div>
+            <!--! fim do preloader --> 
+        </article>
+    </section>
+
+    <main>
+        <section id="forca">
+            <!--! forca -->
+            <div id="linha1"></div>
+            <div id="linha2"></div>
+            <div id="linha3"></div>
+            <div id="linha4"></div>
+
+            <!--! Personagem -->
+            <div id="cbc" class="persona"></div>
+            <div id="tronco" class="persona"></div>
+            <div id="brc1" class="persona"></div>
+            <div id="brc2" class="persona"></div>
+            <div id="perna1" class="persona"></div>
+            <div id="perna2" class="persona"></div>
+        </section>
+
+        <section id="localPalavra">
+        </section>
+    </main>
+
+    <section id="localTeclado">
+        <div class="keyboard">
+            <div id="keyboard1">
+                <button type="button" class="btn btn-secondary">Q</button><button type="button" class="btn btn-secondary">W</button><button type="button" class="btn btn-secondary">E</button><button type="button" class="btn btn-secondary">R</button><button type="button" class="btn btn-secondary">T</button><button type="button" class="btn btn-secondary">Y</button><button type="button" class="btn btn-secondary">U</button><button type="button" class="btn btn-secondary">I</button><button type="button" class="btn btn-secondary">O</button><button type="button" class="btn btn-secondary">P</button>
+            </div>
+            <div id="keyboard2">
+                <button type="button" class="btn btn-secondary">A</button><button type="button" class="btn btn-secondary">S</button><button type="button" class="btn btn-secondary">D</button><button type="button" class="btn btn-secondary">F</button><button type="button" class="btn btn-secondary">G</button><button type="button" class="btn btn-secondary">H</button><button type="button" class="btn btn-secondary">J</button><button type="button" class="btn btn-secondary">K</button><button type="button" class="btn btn-secondary">L</button>
+            </div>
+                <div id="keyboard3">
+                    <button type="button" class="btn btn-secondary">Z</button><button type="button" class="btn btn-secondary">X</button><button type="button" class="btn btn-secondary">C</button><button type="button" class="btn btn-secondary">V</button><button type="button" class="btn btn-secondary">B</button><button type="button" class="btn btn-secondary">N</button><button type="button" class="btn btn-secondary">M</button>
+                </div>
+            </div>
+    </section>
+
+    <!--! Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="assets/js/firebase.js"></script>
+
+    <!--! Scripts -->
+    <script>
+        let codigoSala = localStorage.getItem('CódigoSala')
+
+        function addNovoJogadorASala() {
+            let = feito = false
+            db.collection('Salas').onSnapshot((data) => {
+                data.docs.map(function(valSalas) {
+                    let Salas = valSalas.data()
+
+                    if(valSalas.id == codigoSala) {
+                        let jaEmPartida = false
+                        let sobreOsJogadores = Salas.SobreOsJogadores
+
+                        for(let c = 0; c <= Salas.SobreOsJogadores.length; c++) {
+                            try {
+                                if(Salas.SobreOsJogadores[c].EmailJogador == email) {
+                                    jaEmPartida = true
+                                }
+                            } catch{}
+                        }
+
+
+                        setTimeout(() => {
+                            if(jaEmPartida == false && feito == false) {
+                                    feito = true
+
+                                    let obj = {
+                                        EmailJogador: email,
+                                        Estado: 'Jogando',
+                                        Pontos: 0
+                                    }
+
+                                        sobreOsJogadores.push(obj)
+
+                                        db.collection('Salas').doc(valSalas.id).update({SobreOsJogadores: sobreOsJogadores})
+                                    }
+                        }, 2000)
+                    }
+                })
+            })
+        } addNovoJogadorASala()
+    </script>
+
+    <script src="assets/js/jogo.js"></script>
+</body>
+</html>

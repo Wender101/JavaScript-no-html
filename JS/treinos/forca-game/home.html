@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Bem Vindo(a)</title>
+
+    <!--! Styles -->
+    <link rel="stylesheet" href="assets/css/home.css">
+    <link rel="stylesheet" href="assets/css/geral.css">
+</head>
+<body>
+    <img src="" id="imgUser" onclick="login()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16" onclick="login()">
+        <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+        <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+      </svg>
+    <h1>Jogo da Forca Online</h1>
+    <p>Bem vindo(a) ao mais novo jogo da forca online. <br> Entre em uma sala para jogar, ou crie a sua propria e jogue com amigos e colegas</p>
+
+    
+    <section id="salas">
+        <h1>Salas Públicas</h1>
+        
+        <article id="localSalas">
+        </article>
+
+        <a href="sala.html" id="btnCriarSala">Criar Sala</a>
+    </section>
+
+    <!--! Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="assets/js/firebase.js"></script>
+
+    <!--! Script -->
+    <script>
+        //! Vai procurar todas as salas abertas no banco de dados
+        function procurarSalas() {
+            db.collection('Salas').onSnapshot((data) => {
+            data.docs.map(function(valSalas) {
+                let Salas = valSalas.data()
+
+                if(Salas.Estado == 'Publica' && Salas.SobreOsJogadores.length < 5) {
+                        let a = document.createElement('a')
+                        let strong = document.createElement('strong')
+                        let span = document.createElement('span')
+
+                        a.className = 'salas'
+                        a.href = 'jogo.html'
+                        strong.className = 'nameAdminSala'
+                        span.className = 'quantidadePessoasSala'
+                        strong.innerText = valSalas.id 
+                        span.innerText = `${Salas.SobreOsJogadores.length}/5` 
+
+                        a.appendChild(strong)
+                        a.appendChild(span)
+                        document.getElementById('localSalas').appendChild(a)
+
+                        a.onclick = () => {
+                            localStorage.setItem('CódigoSala', valSalas.id)
+                        }
+                    }
+                })
+            })
+        } procurarSalas()
+
+        
+    </script>
+</body>
+</html>
