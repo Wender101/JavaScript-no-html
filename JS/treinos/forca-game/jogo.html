@@ -85,13 +85,13 @@
                         let jaEmPartida = false
                         let sobreOsJogadores = Salas.SobreOsJogadores
 
-                        for(let c = 0; c <= Salas.SobreOsJogadores.length; c++) {
-                            try {
+                        try {
+                            for(let c = 0; c <= Salas.SobreOsJogadores.length; c++) {
                                 if(Salas.SobreOsJogadores[c].EmailJogador == email) {
                                     jaEmPartida = true
                                 }
-                            } catch{}
-                        }
+                            }
+                        } catch{}
 
 
                         setTimeout(() => {

@@ -17,11 +17,16 @@ function adminSortear() {
     
             if(Salas.Host == email && feito == false) {
                 feito = true
-                palavraSorteada = sortearPalavra()
-                db.collection('Salas').doc(valSalas.id).update({Palavra: palavraSorteada})
+                if(Salas.Palavra == '') {
+                    palavraSorteada = sortearPalavra()
+                    db.collection('Salas').doc(valSalas.id).update({Palavra: palavraSorteada})
+                } else {
+                    palavraSorteada = Salas.Palavra
+                }
                 criarEspacosLetras()
-
-            } else if(valSalas.id == codigoSala) {
+                
+            } else if(valSalas.id == codigoSala && feito == false) {
+                feito = true
                 palavraSorteada = Salas.Palavra
                 criarEspacosLetras()
             }
@@ -35,7 +40,16 @@ for(let c = 0; c < 50; c++) {
         let btnTeclado = document.getElementsByClassName('btn')[c]
         btnTeclado.onclick = () => {
             letras.push(btnTeclado.innerText)
-            db.collection('Salas').doc(valSalas.id).update({Letras: letras})
+            let feito = false
+            db.collection('Salas').onSnapshot((data) => {
+                data.docs.map(function(valSalas) {
+                    let Salas = valSalas.data()
+            
+                        if(feito == false) {
+                            db.collection('Salas').doc(valSalas.id).update({Letras: letras})
+                        }
+                    })
+                })
 
             let palavraSorteada2 = palavraSorteada.toLocaleLowerCase()
             palavraSorteada2 = palavraSorteada2.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
@@ -80,13 +94,15 @@ for(let c = 0; c < 50; c++) {
 
 function criarEspacosLetras() {
 
-    for(c = 0; c < palavraSorteada.length; c++) {
-        let div = document.createElement('div')
-        let p = document.createElement('p')
-
-        div.className = 'letraPalavra'
-
-        div.appendChild(p)
-        document.getElementById('localPalavra').appendChild(div)
-    }
+    try {
+        for(c = 0; c < palavraSorteada.length; c++) {
+            let div = document.createElement('div')
+            let p = document.createElement('p')
+    
+            div.className = 'letraPalavra'
+    
+            div.appendChild(p)
+            document.getElementById('localPalavra').appendChild(div)
+        }
+    } catch {}
 }
