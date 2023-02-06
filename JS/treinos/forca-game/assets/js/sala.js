@@ -1,4 +1,46 @@
-//! Vai criar a sala no banco de dados
+let codigoSala = localStorage.getItem('CódigoSala') //? Vai pegar o código da antiga sala
+
+localStorage.setItem('SalaCriadaAgora', true) //? Vai impedir de criar outra sala ao atualizar a página
+let salaCriadaAgora = JSON.parse(localStorage.getItem('SalaCriadaAgora'))
+//? Vai cancelar a sala
+
+document.getElementById('cancelar').addEventListener('click', () => {
+    excluirSala(true)
+})
+
+function excluirSala(cancelar = false) {
+    if(salaCriadaAgora == false) {
+        db.collection('Salas').onSnapshot((data) => {
+            data.docs.map(function(valSalas) {
+                let Salas = valSalas.data()
+    
+                //? Vai checar se o user é o Host de alguma sala existente. e vai deletar a sala, pelo o fato de o user estar criando outra
+                if(valSalas.id == codigoSala && email == Salas.Host) {
+                    db.collection('Salas').doc(valSalas.id).delete() //? Vai apagar a sala antiga desse admin
+    
+                    criarSalaNoDB()
+                    pegarInfosSala()
+                }
+            })
+        })
+    } else {
+        db.collection('Salas').onSnapshot((data) => {
+            data.docs.map(function(valSalas) {
+                let Salas = valSalas.data()
+
+                if(valSalas.id == codigoSala && email == Salas.Host && cancelar == true) {
+                    db.collection('Salas').doc(valSalas.id).delete() //? Vai apagar a sala antiga desse admin 
+
+                    setTimeout(() => {
+                        location.href = 'http://127.0.0.1:5500/home.html'
+                    }, 1000)
+                }
+            })
+        })
+    }
+} excluirSala()
+
+//? Vai criar a sala no banco de dados
 function criarSalaNoDB() {
     let InfoSala = {
         Estado: 'Publica',
@@ -8,6 +50,7 @@ function criarSalaNoDB() {
         Letras: [],
         SobreOsJogadores: [
             {
+                ImgUser: sobreOUser.photoURL,
                 EmailJogador: email,
                 Estado: 'Jogando',
                 Pontos: 0
@@ -26,6 +69,7 @@ function pegarInfosSala() {
             if(Salas.Host == email) {
                 qntJogadores = 1
                 document.getElementById('localPlayersName').innerHTML = ''
+                localStorage.setItem('CódigoSala', valSalas.id) //? Vai salvar o id da sala no localStorage do user
 
                 for(let c = 0; c < qntJogadores; c++) {
                     try {

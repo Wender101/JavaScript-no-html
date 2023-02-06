@@ -22,7 +22,7 @@ const db = firebase.firestore()
 
 let trocarDeConta = false
 function login() {
-    //trocarDeConta = true
+    trocarDeConta = true
     auth.signInWithPopup(provider)
 }
 
@@ -55,7 +55,7 @@ auth.onAuthStateChanged((val) => {
                             if(location.pathname == '/sala.html' && jaTemSala != true) {
                                 criarSalaNoDB()
                             }
-                        }, 3000)
+                        }, 1000)
                     })
                 })
             } catch{}

@@ -1,0 +1,29 @@
+//? Vai colocar as imgs do jogadores nos seus respectivos lugares
+function criarJogadores() {
+    let localJogadores = document.getElementById('localJogadores')
+    localJogadores.innerHTML = ''
+
+     db.collection('Salas').onSnapshot((data) => {
+            data.docs.map(function(valSalas) {
+                let Salas = valSalas.data()
+
+            if(valSalas.id == codigoSala) {
+                for(let c = 0; c < Salas.SobreOsJogadores.length; c++) {
+                    let div = document.createElement('div')
+                    let p = document.createElement('p')
+                    let img = document.createElement('img')
+
+                    div.className = 'jogadores'
+                    p.className = 'pontos'
+                    
+                    p.innerText = 0
+                    img.src = Salas.SobreOsJogadores[c].ImgUser
+
+                    div.appendChild(p)
+                    div.appendChild(img)
+                    localJogadores.appendChild(div)
+                }
+            }
+        })
+    })
+} criarJogadores()
