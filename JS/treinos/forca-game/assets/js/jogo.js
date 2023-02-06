@@ -133,7 +133,7 @@ for(let c = 0; c < 50; c++) {
                     let Salas = valSalas.data()
 
                     if(valSalas.id == codigoSala) {
-                        if(Salas.Vez + 1 < Salas.SobreOsJogadores.length && vezFeito == false) {
+                        if(Salas.Vez < Salas.SobreOsJogadores.length && vezFeito == false) {
                             vezFeito = true
                             let vez = parseInt(Salas.Vez)
                             vez++
