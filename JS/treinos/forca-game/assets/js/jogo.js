@@ -140,7 +140,7 @@ for(let c = 0; c < 50; c++) {
                             db.collection('Salas').doc(valSalas.id).update({Vez: vez})
                             checarVez()
 
-                        } else if(Salas.Vez >= Salas.SobreOsJogadores.length && vezFeito == false) {
+                        } else if(Salas.Vez == Salas.SobreOsJogadores.length && vezFeito == false) {
                             vezFeito = true
                             let vez = 0
                             db.collection('Salas').doc(valSalas.id).update({Vez: vez})

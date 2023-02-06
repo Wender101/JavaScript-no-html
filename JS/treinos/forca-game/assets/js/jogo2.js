@@ -36,7 +36,9 @@ function checarVez() {
         data.docs.map(function(valSalas) {
             let Salas = valSalas.data()
 
+            
             if(valSalas.id == codigoSala) {
+                console.log(Salas.Vez, Salas.SobreOsJogadores.length);
                 if(email == Salas.SobreOsJogadores[Salas.Vez].EmailJogador) {
                     document.getElementById('localTeclado').querySelector('#vezOponente').style.display = 'none'
                     document.getElementsByClassName('keyboard')[0].style.display = 'block'
