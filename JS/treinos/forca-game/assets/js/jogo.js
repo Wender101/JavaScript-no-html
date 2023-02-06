@@ -112,7 +112,7 @@ if(localStorage.getItem('errosDoUser') != undefined && localStorage.getItem('err
         if(errosDoUser == 5) {
             document.getElementById('localTeclado').style.background = '#fb5555'
             document.getElementById('localTeclado').style.color = 'white'
-            document.getElementById('localTeclado').querySelector('h1').style.display = 'block'
+            document.getElementById('localTeclado').querySelector('#perdeuOgame').style.display = 'block'
             document.getElementsByClassName('keyboard')[0].style.display = 'none'
         }
     }
@@ -139,6 +139,24 @@ for(let c = 0; c < 50; c++) {
                     jaTemEssaLetra = true
                     letras.push(btns.innerText)
                     letrasEscolhidasPeloUser.push(btns.innerText)
+
+                    db.collection('Salas').onSnapshot((data) => {
+                        data.docs.map(function(valSalas) {
+                            let Salas = valSalas.data()
+
+                            if(Salas.vez < Salas.SobreOsJogadores.length) {
+                                let vez = Salas.vez
+                                vez++
+                                db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+
+                            } else if(Salas.vez == Salas.SobreOsJogadores.length) {
+                                let vez = 0
+                                db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+                            }
+
+                        })
+                    })
+
                     let feito = false //? Vai impedir de salvar mais de uma vez
 
                     //! vai checar se o user errou a letra
@@ -167,7 +185,7 @@ for(let c = 0; c < 50; c++) {
                                 if(errosDoUser == 5) {
                                     document.getElementById('localTeclado').style.background = '#fb5555'
                                     document.getElementById('localTeclado').style.color = 'white'
-                                    document.getElementById('localTeclado').querySelector('h1').style.display = 'block'
+                                    document.getElementById('localTeclado').querySelector('#perdeuOgame').style.display = 'block'
                                     document.getElementsByClassName('keyboard')[0].style.display = 'none'
                                 }
                             }

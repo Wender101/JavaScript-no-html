@@ -52,7 +52,8 @@
     </main>
 
     <section id="localTeclado">
-        <h1>Você perdeu, espere a proxima rodada começar</h1>
+        <h1 id="perdeuOgame">Você perdeu, espere a proxima rodada começar</h1>
+        <h1 id="vezOponente">Aguardando aponente</h1>
         <div class="keyboard">
             <div id="keyboard1">
                 <button type="button" class="btn btn-secondary">Q</button><button type="button" class="btn btn-secondary">W</button><button type="button" class="btn btn-secondary">E</button><button type="button" class="btn btn-secondary">R</button><button type="button" class="btn btn-secondary">T</button><button type="button" class="btn btn-secondary">Y</button><button type="button" class="btn btn-secondary">U</button><button type="button" class="btn btn-secondary">I</button><button type="button" class="btn btn-secondary">O</button><button type="button" class="btn btn-secondary">P</button>
@@ -104,6 +105,7 @@
                                     feito = true
 
                                     let obj = {
+                                        ImgUser: sobreOUser.photoURL,
                                         EmailJogador: email,
                                         Estado: 'Jogando',
                                         Pontos: 0

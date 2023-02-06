@@ -45,7 +45,7 @@ function criarSalaNoDB() {
     let InfoSala = {
         Estado: 'Publica',
         Host: email,
-        Vez: 1,
+        Vez: 0,
         Palavra: '',
         Letras: [],
         SobreOsJogadores: [
