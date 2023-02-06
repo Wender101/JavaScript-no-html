@@ -15,6 +15,7 @@ function sortearPalavra() {
             if(email == Salas.Host && sorteado == false && Salas.Palavra == "") {
                 sorteado = true
 
+                localStorage.setItem('errosDoUser', -1)
                 //? Vai salvar no banco de dados a palavra sorteada pelo administrador (Host)
                 db.collection('Salas').doc(valSalas.id).update({Palavra: palavras[numSorteado]})
             }
@@ -144,14 +145,18 @@ for(let c = 0; c < 50; c++) {
                         data.docs.map(function(valSalas) {
                             let Salas = valSalas.data()
 
-                            if(Salas.vez < Salas.SobreOsJogadores.length) {
-                                let vez = Salas.vez
-                                vez++
-                                db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+                            if(valSalas == codigoSala) {
+                                if(Salas.vez < Salas.SobreOsJogadores.length) {
+                                    let vez = Salas.vez
+                                    vez++
+                                    db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+    
+                                } else if(Salas.vez == Salas.SobreOsJogadores.length) {
+                                    let vez = 0
+                                    db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+                                }
 
-                            } else if(Salas.vez == Salas.SobreOsJogadores.length) {
-                                let vez = 0
-                                db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+                                checarVez()
                             }
 
                         })

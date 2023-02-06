@@ -102,19 +102,19 @@
 
                         setTimeout(() => {
                             if(jaEmPartida == false && feito == false) {
-                                    feito = true
+                                feito = true
 
-                                    let obj = {
-                                        ImgUser: sobreOUser.photoURL,
-                                        EmailJogador: email,
-                                        Estado: 'Jogando',
-                                        Pontos: 0
-                                    }
+                                let obj = {
+                                    ImgUser: sobreOUser.photoURL,
+                                    EmailJogador: email,
+                                    Estado: 'Jogando',
+                                    Pontos: 0
+                                }
 
-                                        sobreOsJogadores.push(obj)
+                                    sobreOsJogadores.push(obj)
 
-                                        db.collection('Salas').doc(valSalas.id).update({SobreOsJogadores: sobreOsJogadores})
-                                    }
+                                    db.collection('Salas').doc(valSalas.id).update({SobreOsJogadores: sobreOsJogadores})
+                                }
                         }, 2000)
                     }
                 })

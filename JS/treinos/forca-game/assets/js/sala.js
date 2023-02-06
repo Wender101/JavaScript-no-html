@@ -59,6 +59,8 @@ function criarSalaNoDB() {
     }
 
     db.collection('Salas').add(InfoSala)
+
+    localStorage.setItem('errosDoUser', -1)
 } 
 
 function pegarInfosSala() {

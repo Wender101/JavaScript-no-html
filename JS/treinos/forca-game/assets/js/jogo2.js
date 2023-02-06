@@ -2,12 +2,14 @@
 function criarJogadores() {
     let localJogadores = document.getElementById('localJogadores')
     localJogadores.innerHTML = ''
+    let feito = false
 
      db.collection('Salas').onSnapshot((data) => {
             data.docs.map(function(valSalas) {
                 let Salas = valSalas.data()
 
-            if(valSalas.id == codigoSala) {
+            if(valSalas.id == codigoSala && feito == false) {
+                feito = true
                 for(let c = 0; c < Salas.SobreOsJogadores.length; c++) {
                     let div = document.createElement('div')
                     let p = document.createElement('p')
