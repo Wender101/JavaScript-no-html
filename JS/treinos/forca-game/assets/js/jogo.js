@@ -138,6 +138,7 @@ for(let c = 0; c < 50; c++) {
             setTimeout(() => {
                 if(jaTemEssaLetra == false) {
                     jaTemEssaLetra = true
+                    let vezFeito = false
                     letras.push(btns.innerText)
                     letrasEscolhidasPeloUser.push(btns.innerText)
 
@@ -146,13 +147,17 @@ for(let c = 0; c < 50; c++) {
                             let Salas = valSalas.data()
 
                             if(valSalas == codigoSala) {
-                                if(Salas.vez < Salas.SobreOsJogadores.length) {
-                                    let vez = Salas.vez
+                                if(Salas.Vez < Salas.SobreOsJogadores.length && vezFeito == false) {
+                                    vezFeito = true
+                                    let vez = Salas.Vez
                                     vez++
+                                    console.log('pass1');
                                     db.collection('Salas').doc(valSalas.id).update({Vez: vez})
     
-                                } else if(Salas.vez == Salas.SobreOsJogadores.length) {
+                                } else if(Salas.Vez == Salas.SobreOsJogadores.length && vezFeito == false) {
+                                    vezFeito = true
                                     let vez = 0
+                                    console.log('pass2');
                                     db.collection('Salas').doc(valSalas.id).update({Vez: vez})
                                 }
 
