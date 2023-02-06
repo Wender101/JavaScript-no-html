@@ -127,6 +127,30 @@ for(let c = 0; c < 50; c++) {
             let jaTemEssaLetra = false
             let errouAletra = true
 
+            let vezFeito = false
+            db.collection('Salas').onSnapshot((data) => {
+                data.docs.map(function(valSalas) {
+                    let Salas = valSalas.data()
+
+                    if(valSalas.id == codigoSala) {
+                        if(Salas.Vez <= Salas.SobreOsJogadores.length && vezFeito == false) {
+                            vezFeito = true
+                            let vez = parseInt(Salas.Vez)
+                            vez++
+                            db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+                            checarVez()
+
+                        } else if(Salas.Vez > Salas.SobreOsJogadores.length && vezFeito == false) {
+                            vezFeito = true
+                            let vez = 0
+                            db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+                            checarVez()
+                        }                        
+                    }
+
+                })
+            })
+
             //? Vai checar se a letra já foi escolhida
             for(let b = 0; b <= letras.length; b++) {
                 if(letras[b] == btns.innerText) {
@@ -138,34 +162,8 @@ for(let c = 0; c < 50; c++) {
             setTimeout(() => {
                 if(jaTemEssaLetra == false) {
                     jaTemEssaLetra = true
-                    let vezFeito = false
                     letras.push(btns.innerText)
                     letrasEscolhidasPeloUser.push(btns.innerText)
-
-                    db.collection('Salas').onSnapshot((data) => {
-                        data.docs.map(function(valSalas) {
-                            let Salas = valSalas.data()
-
-                            if(valSalas == codigoSala) {
-                                if(Salas.Vez < Salas.SobreOsJogadores.length && vezFeito == false) {
-                                    vezFeito = true
-                                    let vez = Salas.Vez
-                                    vez++
-                                    console.log('pass1');
-                                    db.collection('Salas').doc(valSalas.id).update({Vez: vez})
-    
-                                } else if(Salas.Vez == Salas.SobreOsJogadores.length && vezFeito == false) {
-                                    vezFeito = true
-                                    let vez = 0
-                                    console.log('pass2');
-                                    db.collection('Salas').doc(valSalas.id).update({Vez: vez})
-                                }
-
-                                checarVez()
-                            }
-
-                        })
-                    })
 
                     let feito = false //? Vai impedir de salvar mais de uma vez
 
