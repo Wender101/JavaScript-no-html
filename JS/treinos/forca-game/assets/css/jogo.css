@@ -223,7 +223,7 @@ section#localTeclado > h1 {
 }
 
 section#localTeclado > h1#vezOponente {
-    /* display: block; */
+    display: block;
 }
 
 div.keyboard {
@@ -231,7 +231,7 @@ div.keyboard {
     max-width: 400px;
     margin-left: 50%;
     transform: translate(-50%);
-    /* display: none; */
+    display: none;
 }
 
 div.keyboard > div#keyboard1 {

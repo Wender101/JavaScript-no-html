@@ -83,13 +83,6 @@ function pegarPalavraSorteada() {
                                             btnTeclado.style.background = '#ff6170'
                                             btnTeclado.style.borderColor = '#ff6170'
                                         } catch {}
-                                        //errosDoPlayer++
-                    
-                                        // setTimeout(() => {
-                                        //     if(errosDoPlayer > 5) {
-                                        //         alert('Perdeu feio, a palavra era: ' + palavraSorteada);
-                                        //     }
-                                        // }, 100)
                                     }
                                 }catch{}
                             }
@@ -126,27 +119,25 @@ for(let c = 0; c < 50; c++) {
         btns.addEventListener('click', () => {
             let jaTemEssaLetra = false
             let errouAletra = true
+            let vez = 0
 
             let vezFeito = false
             db.collection('Salas').onSnapshot((data) => {
                 data.docs.map(function(valSalas) {
                     let Salas = valSalas.data()
 
-                    if(valSalas.id == codigoSala) {
-                        let vez = 0
-
-                        if(Salas.Vez < Salas.SobreOsJogadores.length && vezFeito == false) {
-                            vezFeito = true
+                    if(valSalas.id == codigoSala && vezFeito == false) {
+                        vezFeito = true
+                        if(Salas.Vez < Salas.SobreOsJogadores.length - 1) {
                             vez = parseInt(Salas.Vez)
                             vez++
                             db.collection('Salas').doc(valSalas.id).update({Vez: vez})
-                            //checarVez()
+                            checarVez()
 
-                        } else if(parseInt(Salas.Vez) == Salas.SobreOsJogadores.length - 1 && vezFeito == false) {
-                            vezFeito = true
+                        } else if(parseInt(Salas.Vez) == Salas.SobreOsJogadores.length - 1) {
                             vez = 0
                             db.collection('Salas').doc(valSalas.id).update({Vez: vez})
-                           // checarVez()
+                           checarVez()
                         }     
                         
                         console.log(vez)
