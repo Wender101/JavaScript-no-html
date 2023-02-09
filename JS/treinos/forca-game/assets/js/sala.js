@@ -48,6 +48,10 @@ function criarSalaNoDB() {
         Vez: 0,
         Palavra: '',
         Letras: [],
+        GanhadorDaVez: {
+            Nome: '',
+            Email: '', 
+        },
         SobreOsJogadores: [
             {
                 ImgUser: sobreOUser.photoURL,

@@ -6,9 +6,10 @@ section#carregando {
     position: fixed;
     top: 0px;
     z-index: 6;
-    display: none;
+    display: block;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 section#carregando > #infoEspera {
@@ -279,4 +280,47 @@ section#localJogadores > div > img {
     height: 50px;
     border-radius: 50%;
     display: block;
+}
+
+/*? Barra ganhador */
+section#InfoGanhador {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    position: absolute;
+    top: -100vh;
+    transition: 200ms top linear;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url(../img/confetesGif.gif);
+    background-size: contain;
+    background-position: center;
+}
+
+section#InfoGanhador > article {
+    width: 90%;
+    height: auto;
+    padding: 20px;
+    max-width: 500px;
+    background-color: white;
+    border: 2px solid black;
+    text-align: center;
+}
+
+section#InfoGanhador > article > strong {
+    display: block;
+    margin-bottom: 50px;
+}
+
+section#InfoGanhador > article > p {
+    display: none;
+}
+
+section#InfoGanhador > article > button {
+    padding: 5px 10px;
+    border: 1px solid black;
+    display: none;
+    margin: auto;
 }

@@ -11,6 +11,7 @@ function criarJogadores() {
             if(valSalas.id == codigoSala && feito == false) {
                 feito = true
                 for(let c = 0; c < Salas.SobreOsJogadores.length; c++) {
+
                     let div = document.createElement('div')
                     let p = document.createElement('p')
                     let img = document.createElement('img')
@@ -58,25 +59,71 @@ function checarVez() {
     })
 } checarVez()
 
-//? Sempre que a vez for alterada, ele vai chamar a função checarVez()
 db.collection('Salas').onSnapshot((data) => {
     data.docs.map(function(valSalas) {
         let Salas = valSalas.data()
 
-        if(valSalas.id == codigoSala && Salas.Vez != ultimoJogador) {
-            checarVez()
-            ultimoJogador = parseInt(Salas.Vez)
+        if(valSalas.id == codigoSala) {
+            //? Vai checar se há um vencedor
+            if(Salas.GanhadorDaVez.Email != '') {
+                temosUmVencedor(true, Salas.GanhadorDaVez.Nome, Salas.GanhadorDaVez.Email)
+            }
+    
+            //? Sempre que a vez for alterada, ele vai chamar a função checarVez()
+            if(Salas.Vez != ultimoJogador) {
+                checarVez()
+                ultimoJogador = parseInt(Salas.Vez)
+            }
+    
+            //? Vai atualizar a página quando o Host iniciar uma nova partida
+            if(Salas.Palavra != palavraSorteada) {
+                location.reload()
+            }
         }
     })
 })
 
 //? Vai checar se o jogador ganhou e marcar o ponto
-function temosUmVencedor(vencedor = false) {
-    if(vencedor == true) {
-        alert('Parabéns, você acaba de ganhar no jogo da forca')
-    } else {
-        alert('Não foi dessa vez, é melhor parar por aqui porque se não você vai ser humilhado meu filho')
-    }
+function temosUmVencedor(vencedor = false, nomeVencedor, emailVencedor) {
+
+    let jogadorVencedor //? vai conter o número da vez do jogador vencedor, fanzendo assim com que a proxima partida comece por ele
+
+    db.collection('Salas').onSnapshot((data) => {
+        data.docs.map(function(valSalas) {
+            let Salas = valSalas.data()
+
+            if(valSalas.id == codigoSala) {
+                //? vai tirar a aba de carregando
+                document.getElementById('carregando').style.display = 'none'
+
+                document.getElementById('InfoGanhador').style.top = '0px'
+                document.getElementById('nomeGanhador').innerText = nomeVencedor
+
+                //? Vai pegar o número da vez do jogador vencedor, fanzendo assim com que a proxima partida comece por ele
+                for(let c = 0; c < Salas.SobreOsJogadores.length; c++) {
+                    if(emailVencedor == Salas.SobreOsJogadores[c].EmailJogador) {
+                        jogadorVencedor = c
+                    }
+                }
+
+                if(email == Salas.Host) {
+                    let btn = document.getElementById('btnHost')
+                    btn.style.display = 'block'
+
+                    //? Vai começar uma nova partida
+                    btn.addEventListener('click', () => {
+
+                        localStorage.setItem('errosDoUser', -1)
+
+                        db.collection('Salas').doc(valSalas.id).update({Vez: jogadorVencedor, Palavra: '', Letras: [],GanhadorDaVez: {Nome: '',Email: ''}})
+                    })
+
+                } else {
+                    document.getElementById('avisoAosParticipantes').style.display = 'block'
+                }
+            }
+        })
+    })
 }
 
 //? Pontos, vai marcar os pontos de cada jogador e arrumar o rank de acordo com a pontuação

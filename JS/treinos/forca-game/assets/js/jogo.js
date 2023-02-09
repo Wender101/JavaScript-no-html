@@ -65,7 +65,6 @@ function pegarPalavraSorteada() {
                                     let btnTeclado = document.getElementsByClassName('btn')[c]
                                     
                                     if(btnTeclado.innerText.toLocaleLowerCase() == letraEscolhida) {
-                                        console.log(1);
                                         errouMeuFi = false
                                         btnTeclado.style.color = 'white'
                                         btnTeclado.style.background = '#1fbd74'
@@ -76,10 +75,21 @@ function pegarPalavraSorteada() {
                                         letrasAcertadasNoGeral.push(palavraSorteada[d])
 
                                         //? Vai checar se o user ganhou
-                                        console.log(foiOuserQuePrecionouEssaTecla, letrasAcertadasNoGeral.length == palavraSorteada.length && foiOuserQuePrecionouEssaTecla == true);
                                         if(letrasAcertadasNoGeral.length == palavraSorteada.length && foiOuserQuePrecionouEssaTecla == true) {
-                                            alert('Parabéns, você acaba de ganhar no jogo da forca')
-                                            //temosUmVencedor(true)
+                                            //? Vai alterar no db, quem ganhou a partida
+                                            db.collection('Salas').onSnapshot((data) => {
+                                                data.docs.map(function(valSalas) {
+                                                    let Salas = valSalas.data()
+
+                                                    let novoGanhador = {
+                                                        Nome: sobreOUser.displayName,
+                                                        Email: email
+                                                    }
+
+                                                    db.collection('Salas').doc(valSalas.id).update({GanhadorDaVez: novoGanhador})
+                                                    temosUmVencedor(true, sobreOUser.displayName, email)
+                                                })
+                                            })
                                         }
 
                                     }
@@ -228,6 +238,9 @@ for(let c = 0; c < 50; c++) {
 //? Vai colocar as linhas de cada letra na tela
 function colocarLinhasNaTela() {
     for(let c = 0; c < palavraSorteada.length; c++) {
+        //? vai tirar a aba de carregando
+        document.getElementById('carregando').style.display = 'none'
+
         let div = document.createElement('div')
         let p = document.createElement('p')
 
