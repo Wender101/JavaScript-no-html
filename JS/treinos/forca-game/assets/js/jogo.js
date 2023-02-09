@@ -1,24 +1,27 @@
 //? Vai sortear uma palvra, das palavras contidas no array
+let sorteado = false
 function sortearPalavra() {
     const palavras = ['Restaurantes', 'Comunicação', 'Transporte', 'Sistemático', 'Participante', 'Conhecimento', 'Desenvolvimento', 'Conteúdo', 'Atividade', 'Preparação', 'Aviação', 'Tecnológico', 'Habitação', 'Experiência', 'Comunicação', 'Estudantes', 'Inovação', 'Empresarial', 'Investimento', 'Comercio', 'Reconhecimento', 'Professor', 'Distribuição', 'Aprendizado', 'Inteligência']
     let numSorteado = Math.floor(Math.random() * 24)
 
     //? Vai impedir de sortear mais de uma palavra por vez
-    let sorteado = false
+    sorteado = false
 
     //? Vai checar se o user é o host e sortear uma palavra (caso seja o host da sala) logo após vai salvar a palvra no banco de dados para o outros jogadores a veem
    db.collection('Salas').onSnapshot((data) => {
        data.docs.map(function(valSalas) {
            let Salas = valSalas.data()
            
-           //? Vai checar se o user é o administrador
-            if(email == Salas.Host && sorteado == false && Salas.Palavra == "") {
-                sorteado = true
+           if(valSalas.id == codigoSala) {
+                //? Vai checar se o user é o administrador
+                if(email == Salas.Host && sorteado == false && Salas.Palavra == "") {
+                    sorteado = true
 
-                localStorage.setItem('errosDoUser', -1)
-                //? Vai salvar no banco de dados a palavra sorteada pelo administrador (Host)
-                db.collection('Salas').doc(valSalas.id).update({Palavra: palavras[numSorteado]})
-            }
+                    localStorage.setItem('errosDoUser', -1)
+                    //? Vai salvar no banco de dados a palavra sorteada pelo administrador (Host)
+                    db.collection('Salas').doc(valSalas.id).update({Palavra: palavras[numSorteado]})
+                }
+           }
         })
     })
 } sortearPalavra()
@@ -41,7 +44,10 @@ function pegarPalavraSorteada() {
                 feito = true
                 palavraSorteada = Salas.Palavra
                 letras = Salas.Letras
-                colocarLinhasNaTela()
+               
+                setTimeout(() => {
+                    colocarLinhasNaTela()
+                }, 1000)
 
             }  
             
@@ -81,13 +87,15 @@ function pegarPalavraSorteada() {
                                                 data.docs.map(function(valSalas) {
                                                     let Salas = valSalas.data()
 
-                                                    let novoGanhador = {
-                                                        Nome: sobreOUser.displayName,
-                                                        Email: email
+                                                    if(valSalas.id = codigoSala) {
+                                                        let novoGanhador = {
+                                                            Nome: sobreOUser.displayName,
+                                                            Email: email
+                                                        }
+    
+                                                        db.collection('Salas').doc(valSalas.id).update({GanhadorDaVez: novoGanhador})
+                                                        temosUmVencedor(true, sobreOUser.displayName, email)
                                                     }
-
-                                                    db.collection('Salas').doc(valSalas.id).update({GanhadorDaVez: novoGanhador})
-                                                    temosUmVencedor(true, sobreOUser.displayName, email)
                                                 })
                                             })
                                         }

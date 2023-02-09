@@ -76,8 +76,10 @@ db.collection('Salas').onSnapshot((data) => {
             }
     
             //? Vai atualizar a página quando o Host iniciar uma nova partida
-            if(Salas.Palavra != palavraSorteada) {
-                location.reload()
+            for(let c = 0; c < Salas.SobreOsJogadores.length; c++) {
+                if(Salas.Palavra != palavraSorteada && Salas.SobreOsJogadores[c].Pontos != 0) {
+                    location.reload()
+                }
             }
         }
     })
