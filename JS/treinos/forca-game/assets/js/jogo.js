@@ -175,6 +175,7 @@ for(let c = 0; c < 50; c++) {
             setTimeout(() => {
                 if(jaTemEssaLetra == false) {
                     jaTemEssaLetra = true
+                    console.log('btn precionado');
                     letras.push(btns.innerText)
                     letrasEscolhidasPeloUser.push(btns.innerText)
 
@@ -224,15 +225,19 @@ for(let c = 0; c < 50; c++) {
                                 for(let c = 0; c < Salas.Letras.length; c++) {
 
                                     //? Vai checar se essa letra já existe no array letras
-                                    let diferente = false
+                                    let diferente = true
                                     for(let b = 0; b <= letras.length; b++) {
                                         if(letras[b] == Salas.Letras[c]) {
-                                            diferente = true
+                                            diferente = false
                                         }
-
+                                        
                                         setTimeout(() => {
-                                            if(diferente == false) {
+                                            if(diferente == true) {
+                                                console.log('é diferente');
                                                 letras.push(Salas.Letras[c])
+
+                                                var novaArr = letras.filter((este, i) => arr.indexOf(este) === i);
+                                                letras = novaArr
                                             }
                                         }, 100)
                                     }
