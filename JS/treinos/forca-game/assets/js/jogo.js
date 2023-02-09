@@ -236,7 +236,7 @@ for(let c = 0; c < 50; c++) {
                                                 console.log('é diferente');
                                                 letras.push(Salas.Letras[c])
 
-                                                var novaArr = letras.filter((este, i) => arr.indexOf(este) === i);
+                                                var novaArr = letras.filter((este, i) => letras.indexOf(este) === i);
                                                 letras = novaArr
                                             }
                                         }, 100)
