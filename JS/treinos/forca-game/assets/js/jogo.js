@@ -119,32 +119,9 @@ for(let c = 0; c < 50; c++) {
         btns.addEventListener('click', () => {
             let jaTemEssaLetra = false
             let errouAletra = true
-            let vez = 0
 
-            let vezFeito = false
-            db.collection('Salas').onSnapshot((data) => {
-                data.docs.map(function(valSalas) {
-                    let Salas = valSalas.data()
-
-                    if(valSalas.id == codigoSala && vezFeito == false) {
-                        vezFeito = true
-                        if(Salas.Vez < Salas.SobreOsJogadores.length - 1) {
-                            vez = parseInt(Salas.Vez)
-                            vez++
-                            db.collection('Salas').doc(valSalas.id).update({Vez: vez})
-                            checarVez()
-
-                        } else if(parseInt(Salas.Vez) == Salas.SobreOsJogadores.length - 1) {
-                            vez = 0
-                            db.collection('Salas').doc(valSalas.id).update({Vez: vez})
-                           checarVez()
-                        }     
-                        
-                        console.log(vez)
-                    }
-
-                })
-            })
+            alterarAvez()
+            
 
             //? Vai checar se a letra já foi escolhida
             for(let b = 0; b <= letras.length; b++) {
@@ -244,4 +221,22 @@ function colocarLinhasNaTela() {
         div.appendChild(p)
         document.getElementById('localPalavra').appendChild(div)
     }
+}
+
+//? Vai alterar que que é a vez
+function alterarAvez() {
+    let vezAlterada = false
+    db.collection('Salas').onSnapshot((data) => {
+        data.docs.map(function(valSalas) {
+            let Salas = valSalas.data()
+    
+            if(valSalas.id == codigoSala && vezAlterada == false) {
+                vezAlterada = true
+                let vez = parseInt(Salas.Vez) + 1
+                console.log(Salas.Vez);
+                db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+                checarVez()
+            }
+        })
+    })
 }

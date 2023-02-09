@@ -31,6 +31,7 @@ function criarJogadores() {
 } criarJogadores()
 
 //? Vai checar de quem é a fez
+let ultimoJogador = 0
 function checarVez() {
     db.collection('Salas').onSnapshot((data) => {
         data.docs.map(function(valSalas) {
@@ -38,12 +39,32 @@ function checarVez() {
 
             
             if(valSalas.id == codigoSala) {
-                console.log(Salas.Vez, Salas.SobreOsJogadores.length);
-                if(email == Salas.SobreOsJogadores[Salas.Vez].EmailJogador) {
-                    document.getElementById('localTeclado').querySelector('#vezOponente').style.display = 'none'
-                    document.getElementsByClassName('keyboard')[0].style.display = 'block'
+                try {
+                    if(email == Salas.SobreOsJogadores[Salas.Vez].EmailJogador) {
+                        document.getElementById('localTeclado').querySelector('#vezOponente').style.display = 'none'
+                        document.getElementsByClassName('keyboard')[0].style.display = 'block'
+
+                    } else {
+                        document.getElementById('localTeclado').querySelector('#vezOponente').style.display = 'block'
+                        document.getElementsByClassName('keyboard')[0].style.display = 'none'
+                    }
+                } catch (error) {
+                    document.getElementById('localTeclado').querySelector('#vezOponente').style.display = 'block'
+                    document.getElementsByClassName('keyboard')[0].style.display = 'none'
                 }
             }
         })
     })
 } checarVez()
+
+//? Sempre que a vez for alterada, ele vai chamar a função checarVez()
+db.collection('Salas').onSnapshot((data) => {
+    data.docs.map(function(valSalas) {
+        let Salas = valSalas.data()
+
+        if(valSalas.id == codigoSala && Salas.Vez != ultimoJogador) {
+            checarVez()
+            ultimoJogador = parseInt(Salas.Vez)
+        }
+    })
+})
