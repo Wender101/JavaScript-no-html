@@ -37,6 +37,7 @@
 
     <!--! Script -->
     <script>
+        localStorage.setItem('errosDoUser', -1)
         //! Vai procurar todas as salas abertas no banco de dados
         function procurarSalas() {
             db.collection('Salas').onSnapshot((data) => {

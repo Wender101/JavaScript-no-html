@@ -259,13 +259,23 @@ function alterarAvez() {
             let Salas = valSalas.data()
     
             try {
-                if(valSalas.id == codigoSala && vezAlterada == false && Salas.SobreOsJogadores.length >= 2) {
-                    vezAlterada = true
-                    let vez = parseInt(Salas.Vez) + 1
-                    console.log(Salas.Vez);
-                    db.collection('Salas').doc(valSalas.id).update({Vez: vez})
-                    checarVez()
+                if(valSalas.id == codigoSala) {
+                    if(vezAlterada == false && Salas.SobreOsJogadores.length >= 2) {
+                        vezAlterada = true
+                        let vez = parseInt(Salas.Vez) + 1
+                        db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+                        checarVez()
+
+                        //? Caso a vez tenha chegado no ultimo jogador, ela vai reiniciar para o primeiro
+                    } else if(Salas.Vez == Salas.SobreOsJogadores.length) {
+                        vezAlterada = true
+                        let vez = 0
+                        db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+                        checarVez()
+                    }
+
                 }
+
             } catch{}
         })
     })
