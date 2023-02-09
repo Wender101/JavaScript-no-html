@@ -68,3 +68,14 @@ db.collection('Salas').onSnapshot((data) => {
         }
     })
 })
+
+//? Vai checar se o jogador ganhou e marcar o ponto
+function temosUmVencedor(vencedor = false) {
+    if(vencedor == true) {
+        alert('Parabéns, você acaba de ganhar no jogo da forca')
+    } else {
+        alert('Não foi dessa vez, é melhor parar por aqui porque se não você vai ser humilhado meu filho')
+    }
+}
+
+//? Pontos, vai marcar os pontos de cada jogador e arrumar o rank de acordo com a pontuação

@@ -27,6 +27,7 @@ let palavraSorteada = ''//? Vai gardar a palavra que foi sorteada pelo Host
 let letras = [] //? Vai salvar todas as letras que foram selecionadas
 let errosDoPlayer = -1 //? Vai contar os erros do user individualmente
 let letrasEscolhidasPeloUser = [] //? Vai armazenar as letras escolhidas pelo usuário 
+let letrasAcertadasNoGeral = [] //? Vai guardar todas as letras que foram acertadas por geral, para checar quem acertou a ultima letra
 
 //? Vai pegar do banco de dados a palavra que foi sorteada
 function pegarPalavraSorteada() {
@@ -69,6 +70,16 @@ function pegarPalavraSorteada() {
                                         btnTeclado.style.borderColor = '#1fbd74'
                                         document.getElementsByClassName('letraPalavra')[d].querySelector('p').innerText = palavraSorteada[d]
 
+                                        //? Vai guardar as letras que foram acertadas
+                                        letrasAcertadasNoGeral.push(palavraSorteada[d])
+
+                                        //? Vai checar se o user ganhou
+                                        if(letrasAcertadasNoGeral.length == palavraSorteada.length && foiOuserQuePrecionouEssaTecla == true) {
+                                            console.log('temos um vencedor');
+                                            temosUmVencedor(true)
+                                        } 
+
+                                        foiOuserQuePrecionouEssaTecla = false
                                     }
                                     
                                 }catch{}
@@ -112,6 +123,8 @@ if(localStorage.getItem('errosDoUser') != undefined && localStorage.getItem('err
     }
 }
 
+let foiOuserQuePrecionouEssaTecla = false //? Vai marcar quando o user escolhe uma letra para poder saber se foi ele que acertou a ultima
+
 //? Vai adicionar função de click no btns do teclado
 for(let c = 0; c < 50; c++) {
     try {
@@ -119,6 +132,8 @@ for(let c = 0; c < 50; c++) {
         btns.addEventListener('click', () => {
             let jaTemEssaLetra = false
             let errouAletra = true
+
+            foiOuserQuePrecionouEssaTecla = true //? Vai marcar quando o user escolhe uma letra para poder saber se foi ele que acertou a ultima
 
             alterarAvez()
             
@@ -230,13 +245,15 @@ function alterarAvez() {
         data.docs.map(function(valSalas) {
             let Salas = valSalas.data()
     
-            if(valSalas.id == codigoSala && vezAlterada == false) {
-                vezAlterada = true
-                let vez = parseInt(Salas.Vez) + 1
-                console.log(Salas.Vez);
-                db.collection('Salas').doc(valSalas.id).update({Vez: vez})
-                checarVez()
-            }
+            try {
+                if(valSalas.id == codigoSala && vezAlterada == false && Salas.SobreOsJogadores.length >= 2) {
+                    vezAlterada = true
+                    let vez = parseInt(Salas.Vez) + 1
+                    console.log(Salas.Vez);
+                    db.collection('Salas').doc(valSalas.id).update({Vez: vez})
+                    checarVez()
+                }
+            } catch{}
         })
     })
 }
