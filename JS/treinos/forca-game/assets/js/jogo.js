@@ -33,6 +33,8 @@ let letrasEscolhidasPeloUser = [] //? Vai armazenar as letras escolhidas pelo us
 let letrasAcertadasNoGeral = [] //? Vai guardar todas as letras que foram acertadas por geral, para checar quem acertou a ultima letra
 let foiOuserQuePrecionouEssaTecla = false //? Vai marcar quando o user escolhe uma letra para poder saber se foi ele que acertou a ultima
 
+let arroz = 0
+
 //? Vai pegar do banco de dados a palavra que foi sorteada
 function pegarPalavraSorteada() {
     let feito = false
@@ -74,17 +76,20 @@ function pegarPalavraSorteada() {
                                         btnTeclado.style.borderColor = '#1fbd74'
                                         document.getElementsByClassName('letraPalavra')[d].querySelector('p').innerText = palavraSorteada[d]
 
-                                        //? Vai guardar as letras que foram acertadas
-                                        letrasAcertadasNoGeral.push(palavraSorteada[d])
+                                        
 
-                                        var novaArr = letrasAcertadasNoGeral.filter(function(este, i) {
-                                            return arr.indexOf(este) === i;
-                                        })
-
-                                        letrasAcertadasNoGeral = novaArr
+                                        arroz = 0
+                                        for(let c = 0; c < 50; c++) {
+                                            try {
+                                                if(document.getElementsByClassName('letraPalavra')[c].querySelector('p').innerText != '') {
+                                                    arroz++
+                                                    console.log(arroz);
+                                                }
+                                            } catch{}
+                                        }
 
                                         //? Vai checar se o user ganhou
-                                        if(letrasAcertadasNoGeral.length == palavraSorteada.length && foiOuserQuePrecionouEssaTecla == true) {
+                                        if(arroz == palavraSorteada.length && foiOuserQuePrecionouEssaTecla == true) {
                                             //? Vai alterar no db, quem ganhou a partida
                                             db.collection('Salas').onSnapshot((data) => {
                                                 data.docs.map(function(valSalas) {
