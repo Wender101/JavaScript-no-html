@@ -45,6 +45,7 @@ function checarVez() {
                         document.getElementsByClassName('keyboard')[0].style.display = 'block'
 
                     } else {
+                        foiOuserQuePrecionouEssaTecla = false
                         document.getElementById('localTeclado').querySelector('#vezOponente').style.display = 'block'
                         document.getElementsByClassName('keyboard')[0].style.display = 'none'
                     }

@@ -28,6 +28,7 @@ let letras = [] //? Vai salvar todas as letras que foram selecionadas
 let errosDoPlayer = -1 //? Vai contar os erros do user individualmente
 let letrasEscolhidasPeloUser = [] //? Vai armazenar as letras escolhidas pelo usuário 
 let letrasAcertadasNoGeral = [] //? Vai guardar todas as letras que foram acertadas por geral, para checar quem acertou a ultima letra
+let foiOuserQuePrecionouEssaTecla = false //? Vai marcar quando o user escolhe uma letra para poder saber se foi ele que acertou a ultima
 
 //? Vai pegar do banco de dados a palavra que foi sorteada
 function pegarPalavraSorteada() {
@@ -45,8 +46,8 @@ function pegarPalavraSorteada() {
             }  
             
             if(valSalas.id == codigoSala) {
-
                  //? Vai colocar na tela caso tenha acertado a letra
+                 letrasAcertadasNoGeral = []
                 for(let a = 0; a < Salas.Letras.length; a++) {
                     let palavraSorteada2 = palavraSorteada.toLocaleLowerCase()
                     palavraSorteada2 = palavraSorteada2.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
@@ -62,8 +63,9 @@ function pegarPalavraSorteada() {
                             for(let c = 0; c < 50; c++) {
                                 try {
                                     let btnTeclado = document.getElementsByClassName('btn')[c]
-    
+                                    
                                     if(btnTeclado.innerText.toLocaleLowerCase() == letraEscolhida) {
+                                        console.log(1);
                                         errouMeuFi = false
                                         btnTeclado.style.color = 'white'
                                         btnTeclado.style.background = '#1fbd74'
@@ -74,12 +76,12 @@ function pegarPalavraSorteada() {
                                         letrasAcertadasNoGeral.push(palavraSorteada[d])
 
                                         //? Vai checar se o user ganhou
+                                        console.log(foiOuserQuePrecionouEssaTecla, letrasAcertadasNoGeral.length == palavraSorteada.length && foiOuserQuePrecionouEssaTecla == true);
                                         if(letrasAcertadasNoGeral.length == palavraSorteada.length && foiOuserQuePrecionouEssaTecla == true) {
-                                            console.log('temos um vencedor');
-                                            temosUmVencedor(true)
-                                        } 
+                                            alert('Parabéns, você acaba de ganhar no jogo da forca')
+                                            //temosUmVencedor(true)
+                                        }
 
-                                        foiOuserQuePrecionouEssaTecla = false
                                     }
                                     
                                 }catch{}
@@ -122,8 +124,6 @@ if(localStorage.getItem('errosDoUser') != undefined && localStorage.getItem('err
         }
     }
 }
-
-let foiOuserQuePrecionouEssaTecla = false //? Vai marcar quando o user escolhe uma letra para poder saber se foi ele que acertou a ultima
 
 //? Vai adicionar função de click no btns do teclado
 for(let c = 0; c < 50; c++) {
