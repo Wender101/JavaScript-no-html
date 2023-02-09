@@ -44,10 +44,7 @@ function pegarPalavraSorteada() {
                 feito = true
                 palavraSorteada = Salas.Palavra
                 letras = Salas.Letras
-               
-                setTimeout(() => {
-                    colocarLinhasNaTela()
-                }, 1000)
+                colocarLinhasNaTela()
 
             }  
             
@@ -79,6 +76,12 @@ function pegarPalavraSorteada() {
 
                                         //? Vai guardar as letras que foram acertadas
                                         letrasAcertadasNoGeral.push(palavraSorteada[d])
+
+                                        var novaArr = letrasAcertadasNoGeral.filter(function(este, i) {
+                                            return arr.indexOf(este) === i;
+                                        })
+
+                                        letrasAcertadasNoGeral = novaArr
 
                                         //? Vai checar se o user ganhou
                                         if(letrasAcertadasNoGeral.length == palavraSorteada.length && foiOuserQuePrecionouEssaTecla == true) {
