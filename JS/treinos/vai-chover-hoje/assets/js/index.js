@@ -80,6 +80,28 @@ function novaPrevicaoDoTemp(latidute = undefined, longitude = undefined) {
                     estadoTempo.innerText = corpo.weather[0].description
                     porcetangemDaUmidade.innerText = `${corpo.main.humidity}%`
                     vento.innerText = `${corpo.wind.speed}Km/h`
+
+                    let jaAdd = false
+                    db.collection('local').onSnapshot((data) => {
+                        data.docs.map(function(val) {
+                            let local = val.data()
+
+                            let localAtual = {
+                               latidute,
+                               longitude
+                            }
+
+                            if(local.latidute == latidute && local.longitude == longitude) {
+                                jaAdd = true
+                            }
+
+                            setTimeout(() => {
+                                if(jaAdd == false) {
+                                    db.collection('local').add(localAtual)
+                                }
+                            }, 2000)
+                        })
+                    })
                 } catch (error) {
                     imgTempo.src = 'assets/img/world-financial.png'
                     h1.innerHTML = `0<span>ºC</span>`
