@@ -31,7 +31,7 @@ function criarJogadores() {
     })
 } criarJogadores()
 
-//? Vai checar de quem é a fez
+//? Vai checar de quem é a vez
 let ultimoJogador = 0
 function checarVez() {
     db.collection('Salas').onSnapshot((data) => {
@@ -59,10 +59,12 @@ function checarVez() {
     })
 } checarVez()
 
+//? Sempre que houver uma atualização na sala, essa function será acionada
 db.collection('Salas').onSnapshot((data) => {
     data.docs.map(function(valSalas) {
         let Salas = valSalas.data()
 
+        //? Vai checar a sala correta, a qual o jogador está conectado
         if(valSalas.id == codigoSala) {
             //? Vai checar se há um vencedor
             if(Salas.GanhadorDaVez.Email != '') {
@@ -77,10 +79,36 @@ db.collection('Salas').onSnapshot((data) => {
     
             //? Vai atualizar a página quando o Host iniciar uma nova partida
             for(let c = 0; c < Salas.SobreOsJogadores.length; c++) {
-                if(Salas.Palavra != palavraSorteada && Salas.SobreOsJogadores[c].Pontos != 0) {
+
+                //? Vai atualizar a pagina quando o Host começar uma nova partida
+                if(Salas.Palavra != palavraSorteada && parseInt(Salas.SobreOsJogadores[c].Pontos) > 0) {
                     location.reload()
                 }
+
+
+                // //? Vai checar se a sala foi criada recentemente
+                // let AsalaFoiCriadaRecentemente = false
+
+                // if(localStorage.getItem('SalaCriadaRecentemente') != undefined && localStorage.getItem('SalaCriadaRecentemente') != null) {
+                //     let a = localStorage.getItem('SalaCriadaRecentemente') 
+                //     AsalaFoiCriadaRecentemente = JSON.parse(a)
+                // }
+
+                // if(Salas.SobreOsJogadores[c].Pontos != 0 && AsalaFoiCriadaRecentemente == false) {
+                //     AsalaFoiCriadaRecentemente = true
+
+                // }
+
+                // //? Vai atualizar a sala se ele identificar que a sala foi criada agr
+                // setTimeout(() => {
+                //    if(AsalaFoiCriadaRecentemente == true) {
+                //         AsalaFoiCriadaRecentemente = false
+                //         localStorage.setItem('SalaCriadaRecentemente', AsalaFoiCriadaRecentemente)
+                //         location.reload()
+                //    } 
+                // }, 1000)
             }
+
         }
     })
 })

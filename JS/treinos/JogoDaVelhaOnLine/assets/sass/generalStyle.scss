@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 * {
     padding: 0px;
     margin: 0px;
@@ -6,6 +8,7 @@
 }
 
 body {
+    font-family: 'Poppins', sans-serif;
 
     //? Nav
     nav {
@@ -19,10 +22,21 @@ body {
     
         //? Ul dentro do Nav
         ul {
+            align-items: center;
+            justify-content: space-between;
             margin: 20px 30px 0px 0px;
+            display: flex;
     
-            //? Fist li
             li {
+                img#imgPlayer {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    margin-left: 20px;
+                    cursor: pointer;
+                    background-color: white;
+                }
+
                 //? Btn li
                 button {
                     cursor: pointer;

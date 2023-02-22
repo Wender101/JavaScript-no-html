@@ -13,12 +13,16 @@
 <body>
     <nav>
         <ul>
-            <li><button onclick="login()">Logar</button></li>
+            <li><button onclick="login()" id="btnLogar">Logar</button></li>
+            <li><img src="https://icons.veryicon.com/png/o/internet--web/prejudice/user-128.png" id="imgPlayer" onclick="login()"></li>
         </ul>
     </nav>
 
     <main>
         <a id="btnCriarSala"><button>Criar Sala</button></a>
+        <section id="todasAsSalas">
+        </section>
+        <input type="text" placeholder="Código da sala" required id="inputCodigoSala">
         <a id="btnEntrarSala"><button>Se Juntar A Uma Sala</button></a>
     </main>
 
@@ -26,6 +30,7 @@
      <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
      <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
      <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script> 
+     <!-- <script src="assets/js/firebase.js"></script> -->
 
     <!--! Scrips -->
     <script src="assets/js/geral.js"></script>

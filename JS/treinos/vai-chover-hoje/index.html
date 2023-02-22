@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vai Chover Hoje?</title>
+
+    <!--? Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <main>
+        <div id="localPesquisa">
+            <img src="assets/img/localização.png" id="iconeLocalizacao" alt="icone de localizção que mais parece uma gota d'agua">
+            <input type="text" id="inputLocal" placeholder="CIDADE">
+            <div>
+                <img src="assets/img/procurar.png" id="iconeDePesquisa" alt="icone de lupa" onclick="novaPrevicaoDoTemp()">
+            </div>
+        </div>
+
+        <div id="localImg">
+            <img src="assets/img/world-financial.png" id="imgTempo">
+        </div>
+
+        <div id="localTemperatura">
+            <div>
+                
+                <h1 id="temperatura">0<span>ºC</span></h1>
+            </div>
+
+            <p id="estadoTempo">Vai Chover Hoje?</p>
+        </div>
+
+        <div id="outrasInfos">
+            <div id="umidade">
+                <img src="assets/img/umidade.png" alt="icone umidade">
+
+                <div id="porcetangemDaUmidade">
+                    <strong>0%</strong>
+                    <p>Umidade</p>
+                </div>
+            </div>
+
+            <div id="vento">
+                <img src="assets/img/vento.png" alt="icone de vento">
+
+                <div>
+                    <strong>0Km/h</strong>
+                    <p>Vento</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="assets/js/index.js"></script>
+</body>
+</html>

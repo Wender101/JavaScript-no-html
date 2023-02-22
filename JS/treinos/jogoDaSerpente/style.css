@@ -1,0 +1,33 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ccc;
+}
+
+div#game-board {
+    width: 80vmin; /*? Vai pegar o menor valor, se o width for menor que o heigth*/
+    height: 80vmin;
+
+    display: grid;
+    grid-template-rows: repeat(21, auto);
+    grid-template-columns: repeat(21, auto);
+}
+
+.snake {
+    background-color: #6fc355;
+}
+
+.food {
+    background-color: #d84242;
+}

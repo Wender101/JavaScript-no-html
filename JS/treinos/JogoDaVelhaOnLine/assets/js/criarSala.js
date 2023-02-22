@@ -1,100 +1,83 @@
-let jaTemCodigo = false
-let codigoSalvo = localStorage.getItem('IdSala')
-//? Vai colocar o nome do adversario na tela
+let codigoSala = localStorage.getItem('codigoSala')
+
+let salaEncontrada = false
 db.collection('SalasJogoDaVelha').onSnapshot((data) => {
     data.docs.map(function(valSalas) {
         let salas = valSalas.data()
 
-        auth.onAuthStateChanged((valorEmail) => { 
-            if(salas.Admin == valorEmail.email) {
-                let p = document.getElementById('otherPlayer')
-                p.innerText = salas.otherPlayer
-
-                document.getElementById('codigoSala').innerText = salas.codigoSala
-                jaTemCodigo = true
-                
-                localStorage.setItem('IdSala', salas.codigoSala)
-
-                //'http://127.0.0.1:5500/Jogo-Da-Velha.html'
-                if(p.innerText != '') {
-                    location.href = 'http://127.0.0.1:5500/Jogo-Da-Velha.html'
-                }
+        if(email != undefined && email != null) {
+            if(salas.Host == email) {
+                localStorage.setItem('codigoSala', valSalas.id)
+                salaEncontrada = true
+                colocarInfoDaSalaNaTela(valSalas.id, salas.Oponente.EmailPlayer, salas.Host)
             }
-        })
+    
+            setTimeout(() => {
+                if(salaEncontrada == false) {
+                    criarSala()
+                }
+            }, 1000)
+        }
     })
 })
 
-setTimeout(() => {
-    if(jaTemCodigo == false) {
-        gerarCodigo()
+//? Vai criar a sala no banco de dados
+function criarSala() {
+    let sala = {
+        Host: email,
+        ModoSala: 'Pública',
+        Adm: {
+            movimentos: [],
+            Pontos: 0
+        },
+        Oponente: {
+            EmailPlayer: '',
+            movimentos: [],
+            Pontos: 0
+        },
+        Ganhador: {
+            PartidaFinalizada: false,
+            Nome: ''
+        }
     }
-}, 1000)
 
-let respostaFinal
-function gerarCodigo() {
-    //? Vai gerar o código da sala
-    const letras = 'abcdefghijklmnopqrstuvwxyz'
-    const numeros = '1234567890'
-    respostaFinal = ''
-    
-    for(let c = 0; respostaFinal.length < 10; c++) {
-        //? Vai sortear as letras
-        if(respostaFinal.length < 10) {
-            let num1 = Math.floor(Math.random() * 26) 
-            let respletras = letras.charAt(num1) 
-            respostaFinal += respletras
-        } 
-    
-        //? Vai sortear os números
-        if(respostaFinal.length < 10) {
-            let num3 = Math.floor(Math.random() * 10) 
-            let resNumeros = numeros.charAt(num3)
-            respostaFinal += resNumeros
-        }
-    
-        //? Vai colocar na tela o código da sala
-        if(respostaFinal.length == 10) {
-            document.getElementById('codigoSala').innerText = respostaFinal
-        }
-
-        localStorage.setItem('IdSala', respostaFinal)
-        codigoSalvo = localStorage.getItem('IdSala')
-    } //? Fim Gerador de códigos
+    db.collection('SalasJogoDaVelha').add(sala)
 }
 
-//? Vai colocar teu email na tela
-auth.onAuthStateChanged((valorEmail) => { 
-    document.getElementById('yourEmail').innerText = valorEmail.email
-    //? Vai chamar a function de adicionar a sala no DB
-    addSala(valorEmail.email)
-})
-
-//? Vai colocar sua sala no DB
-function addSala(email) {
-    let jaTemSala = false
+//? Vai alternar os modos da sala
+let podeAtualizar = true
+function mudarModoSala() {
+    let modoAtualSala = 'Pública'
+    let modoSala = document.querySelector('#modoSala')
 
     db.collection('SalasJogoDaVelha').onSnapshot((data) => {
         data.docs.map(function(valSalas) {
             let salas = valSalas.data()
-
-            //? Vai checar se já há uma sala pra esse usuario
-            if(salas.Admin == email) {
-                jaTemSala = true
-                return
-            }
-            setTimeout(() => {
-                if(salas.Admin != email && jaTemSala == false) {
-                    let objSala = {
-                        Admin: email,
-                        movimentosP1: [],
-                        movimentosP2: [],
-                        otherPlayer: '',
-                        codigoSala: respostaFinal
-                    }
-                    
-                    db.collection('SalasJogoDaVelha').add(objSala)
+            
+            if(codigoSala == valSalas.id && podeAtualizar == true) {
+                podeAtualizar = false
+                
+                if(modoSala.style.background == 'red') {
+                    modoSala.innerHTML = 'Pública'
+                    modoSala.style.background = 'rgb(0, 255, 0)'
+                } else {
+                    modoSala.innerHTML = 'Privado'
+                    modoSala.style.background = 'red'
                 }
-            }, 1000)
+                
+                modoAtualSala = modoSala.innerHTML
+                db.collection('SalasJogoDaVelha').doc(valSalas.id).update({ModoSala: modoAtualSala})
+
+                setTimeout(() => {
+                    podeAtualizar = true
+                }, 500)
+            }
         })
     })
+}
+
+function colocarInfoDaSalaNaTela(codigoDaSala, emailOponente, emailHost) {
+    document.querySelector('#codigoSala').innerHTML = codigoDaSala
+    document.querySelector('#yourEmail').innerHTML = emailHost
+    document.querySelector('#otherPlayer').innerHTML = emailOponente
 }

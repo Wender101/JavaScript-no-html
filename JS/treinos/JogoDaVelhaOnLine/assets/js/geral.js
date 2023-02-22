@@ -25,13 +25,12 @@ let email
 auth.onAuthStateChanged((valorEmail) => {
     //? Vai atualizar a página quando alterar o email
     try {
-        if(carregado == false) {
-            carregado = true
-            emailAtual = valorEmail.email
-        }
+        emailAtual = valorEmail.email
 
         email = valorEmail.email
-    } catch {}
+        document.querySelector('#imgPlayer').src = valorEmail.photoURL
+        document.querySelector('#btnLogar').innerHTML = 'Logado'
+    } catch (error){console.log(error);}
 
     if(emailAtual != email) {
         location.reload()

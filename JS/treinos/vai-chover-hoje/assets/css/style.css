@@ -1,0 +1,119 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #24295c;
+}
+body main {
+  position: relative;
+  width: 85%;
+  max-width: 430px;
+  height: 550px;
+  border-radius: 20px;
+  background-color: #fff;
+  padding: 20px;
+}
+body main div#localPesquisa {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+body main div#localPesquisa img {
+  width: 30px;
+}
+body main div#localPesquisa div {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: rgba(87, 180, 255, 0.3960784314);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main div#localPesquisa input {
+  width: calc(100% - 100px);
+  border: none;
+  height: 100%;
+  padding-left: 30px;
+  font-size: 1.5em;
+}
+body main div#localPesquisa input:focus {
+  box-shadow: 0;
+  outline: 0;
+}
+body main div#localImg {
+  width: 100px;
+  height: 100px;
+  margin: 80px auto 20px;
+  background-color: rgba(87, 180, 255, 0.3960784314);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body main div#localImg img#imgTempo {
+  width: 80px;
+  display: block;
+}
+body main div#localTemperatura {
+  width: auto;
+  text-align: center;
+  position: relative;
+}
+body main div#localTemperatura h1 {
+  font-size: 4em;
+  color: rgba(0, 0, 0, 0.6980392157);
+  font-family: "Poppins", sans-serif;
+}
+body main div#localTemperatura h1 span {
+  position: absolute;
+  font-size: 20px;
+  font-family: "Raleway", sans-serif;
+}
+body main div#localTemperatura p#estadoTempo {
+  font-size: 1.2em;
+  font-family: "Poppins", sans-serif;
+}
+body main div#outrasInfos {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  position: absolute;
+  bottom: 40px;
+  align-items: center;
+}
+body main div#outrasInfos div {
+  width: 200px;
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+}
+body main div#outrasInfos div img {
+  width: 35px;
+  height: 35px;
+}
+body main div#outrasInfos div div {
+  width: 100px;
+  display: block;
+}
+body main div#outrasInfos div div strong {
+  font-size: 1.3em;
+  font-weight: 500;
+}
+body main div#outrasInfos div div p {
+  font-size: 14px;
+}/*# sourceMappingURL=style.css.map */

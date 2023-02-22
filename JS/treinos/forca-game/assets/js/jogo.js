@@ -89,7 +89,7 @@ function pegarPalavraSorteada() {
                                         }
 
                                         //? Vai checar se o user ganhou
-                                        if(arroz == palavraSorteada.length && foiOuserQuePrecionouEssaTecla == true) {
+                                        if(arroz  == palavraSorteada.length && foiOuserQuePrecionouEssaTecla == true) {
                                             //? Vai alterar no db, quem ganhou a partida
                                             db.collection('Salas').onSnapshot((data) => {
                                                 data.docs.map(function(valSalas) {

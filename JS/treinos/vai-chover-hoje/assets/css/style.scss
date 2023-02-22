@@ -1,0 +1,130 @@
+@import 'geral.scss';
+
+body {
+    width: 100vw;
+    height: 100vh;
+    font-family: $fontePoppins;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: $corBackground;
+    
+    main {
+        position: relative;
+        width: 85%;
+        max-width: 430px;
+        height: 550px;
+        border-radius: 20px;
+        background-color: $corBranca;
+        padding: 20px;
+
+        div#localPesquisa {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+
+            img {
+                width: 30px;
+            }
+
+            div {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                background-color: $corAzulClaro;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            input {
+                width: calc(100% - 100px);
+                border: none;
+                height: 100%;
+                padding-left: 30px;
+                font-size: 1.5em;
+            }
+
+            input:focus {
+                box-shadow: 0;
+                outline: 0;
+            }
+        }
+
+        div#localImg {
+            width: 100px;
+            height: 100px;
+            margin: 80px auto 20px;
+            background-color: $corAzulClaro;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img#imgTempo {
+                width: 80px;
+                display: block;
+            }
+        }
+
+        div#localTemperatura {
+            width: auto;
+            text-align: center;
+            position: relative;
+            
+            h1 {
+                font-size: 4em;
+                color: $corGrey;
+                font-family: $fontePoppins;
+
+                span {
+                    position: absolute;
+                    font-size: 20px;
+                    font-family: $fonteRaleway;
+                }
+            }
+
+            p#estadoTempo {
+                font-size: 1.2em;
+                font-family: $fontePoppins;
+            }
+        }
+
+        div#outrasInfos {
+            width: 100%;
+            display: flex;
+            justify-content: space-around;
+            position: absolute;
+            bottom: 40px;
+            align-items: center;
+
+            div {
+                width: 200px;
+                display: flex;
+                align-items: center;
+                margin-left: 20px;
+
+                img {
+                    width: 35px;
+                    height: 35px;
+                }
+
+                div {
+                    width: 100px;
+                    display: block;
+
+                    strong {
+                        font-size: 1.3em;
+                        font-weight: 500;
+                    }
+
+                    p {
+                        font-size: 14px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -3,6 +3,7 @@ main {
     max-width: 500px;
     margin: auto;
     padding-top: 100px;
+    overflow: visible;
 
     button {
         width: 100%;
@@ -15,5 +16,56 @@ main {
     button:hover {
         background-color: black;
         color: white;
+    }
+
+    input {
+        width: calc(99% - 10px);
+        display: block;
+        padding: 15px 0px 15px 10px;
+        margin-top: 40px;
+        transition: 200ms margin linear;
+        display: none;
+    }
+
+    .inputNaoRespondido {
+        animation: 300ms animationInputNaoRespondido infinite;
+    }
+
+    @keyframes animationInputNaoRespondido {
+        0% {
+            margin-left: 5px;
+        }
+
+        25% {
+            margin-left: 15px;
+        }
+
+        50% {
+            margin-left: -5px;
+        }
+
+        75% {
+            margin-left: -15px;
+        }
+
+        100% {
+            margin-left: 0px;
+        }
+    }
+
+    section {
+        margin-top: 20px;
+        border: 1px solid black;
+        min-height: 150px;
+        max-height: 150px;
+
+        div {
+            width: 100%;
+            background-color: black;
+            color: white;
+            padding: 10px 0px;
+            text-align: center;
+            cursor: pointer;
+        }
     }
 }
