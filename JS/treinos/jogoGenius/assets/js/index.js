@@ -1,6 +1,7 @@
 let salvarSequencia = []
 let sequenciaJogador = []
 let contador = 0
+let podeJogar = true
 
 //? Vai pegar os pontos do localStorage
 try {
@@ -15,29 +16,34 @@ function iniciarGame() {
     for(let c = 0; c < 16; c++) {
         let td = document.getElementsByClassName('td')[c]
         td.addEventListener('click', () => {
-            sequenciaJogador.push(c)
-            let errou = false
-            for(let b = 0; b < sequenciaJogador.length; b++) {
 
-                if(salvarSequencia[b] != sequenciaJogador[b]) {
-                    errou == true
-                    td.className = 'errou'
-                    localStorage.setItem('PontosJogoGenuis', salvarSequencia.length -1)
-                    setTimeout(() => {
-                        alert('Fim de Jogo.')
-                    }, 200)
-                    return
+            //? Vai impedir o jogador de jogar qnd o bot estiver mostrando a merda do lugar q é para clicar :/
+            if(podeJogar == true) {
+
+                sequenciaJogador.push(c)
+                let errou = false
+                for(let b = 0; b < sequenciaJogador.length; b++) {
+
+                    if(salvarSequencia[b] != sequenciaJogador[b]) {
+                        errou == true
+                        td.className = 'errou'
+                        localStorage.setItem('PontosJogoGenuis', salvarSequencia.length -1)
+                        setTimeout(() => {
+                            alert('Fim de Jogo.')
+                        }, 200)
+                        return
+                    }
                 }
+
+                setTimeout(() => {
+                    if(salvarSequencia.length == sequenciaJogador.length && errou == false) {
+                        sequenciaJogador = []
+                        contador = 0
+                        document.querySelector('#qPontos').innerText = salvarSequencia.length
+                        sortear()
+                    }
+                }, 100)
             }
-
-            setTimeout(() => {
-                if(salvarSequencia.length == sequenciaJogador.length && errou == false) {
-                    sequenciaJogador = []
-                    contador = 0
-                    document.querySelector('#qPontos').innerText = salvarSequencia.length
-                    sortear()
-                }
-            }, 100)
         })
     }
 
@@ -45,6 +51,7 @@ function iniciarGame() {
 }
 
 function sortear() {
+    podeJogar = false
     let randomNum = Math.floor(Math.random() * 15)
     salvarSequencia.push(randomNum)
 
@@ -62,6 +69,8 @@ function iniciar() {
                 contador++
                 iniciar()
             }, 300)
+        } else {
+            podeJogar = true
         }
     }, 100)
 }
