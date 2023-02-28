@@ -2,11 +2,12 @@ let salvarSequencia = []
 let sequenciaJogador = []
 let contador = 0
 let podeJogar = true
-
+let maiorQuantidadeDePontosSalvo
 //? Vai pegar os pontos do localStorage
 try {
     if(localStorage.getItem('PontosJogoGenuis') != undefined && localStorage.getItem('PontosJogoGenuis') != null) {
         document.querySelector('#mlrPontos').innerText = localStorage.getItem('PontosJogoGenuis')
+        maiorQuantidadeDePontosSalvo = parseInt(localStorage.getItem('PontosJogoGenuis'))
     }
 } catch {}
 
@@ -27,7 +28,12 @@ function iniciarGame() {
                     if(salvarSequencia[b] != sequenciaJogador[b]) {
                         errou == true
                         td.className = 'errou'
-                        localStorage.setItem('PontosJogoGenuis', salvarSequencia.length -1)
+
+                        //? Só vai salvar os pontos, se for maior que o anterior salvo
+                        if(salvarSequencia - 1 > maiorQuantidadeDePontosSalvo) {
+                            localStorage.setItem('PontosJogoGenuis', salvarSequencia.length -1)
+                        }
+                        
                         setTimeout(() => {
                             alert('Fim de Jogo.')
                         }, 200)
