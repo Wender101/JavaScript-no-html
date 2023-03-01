@@ -1,0 +1,135 @@
+@import 'geral.scss';
+
+body {
+    width: 100%;
+    max-width: 681px;
+    min-height: 100vh;
+    text-align: center;
+    padding-top: 82px;
+    margin: auto;
+    font-family: 'Nunito', sans-serif;
+    background-color: $corFundo;
+    color: $corWhite;
+
+    h1 {
+        font-family: $fontePressStart;
+        margin-bottom: 20px;
+        font-size: 2.5em;
+    }
+
+    section {
+        width: 100%;
+
+        p.texto {
+            max-width: 400px;
+            margin: auto;
+            margin-bottom: 30px;
+            font-size: 1.2em;
+        }
+
+        div {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            p#tentativas {
+                font-size: 1.5em;
+                font-weight: 900;
+            }
+        }
+
+        #tentativasInput {
+            width: 100%;
+            max-width: 681px;
+            margin: auto;
+            height: 30px;
+            display: block;
+        }
+
+        #tentativasInput::-ms-track {
+            border: none;
+            height: 16px;
+            width: 16px;
+            border-radius: 50%;
+            background-color: rgb(231, 49, 255);
+        }
+    }
+
+    main {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 32px;
+        gap: 24px;
+
+        .flip-container {
+            width: 150px;
+            height: 150px;
+            perspective: 1000px;
+        }
+        
+        .flipper{
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
+            position: relative;
+        }
+        
+        
+        .front {
+            background-image: url(../img/capa.gif);
+            background-position: center;
+            background-size: contain;
+        }
+            
+        .front, .back{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 20px;
+            object-fit: contain;
+            background-color: $corWhite;
+          }
+
+        .back{
+            transform: rotateY(180deg);
+        }
+
+        .back > img {
+            width: 100%;
+            height: 100%;
+        }
+    }
+
+    div#msgFinal {
+        width: 100%;
+        min-height: 100vh;
+        position: fixed;
+        top: 0px;
+        left: 0px;
+        background-image: url(../img/confetesGif.gif);
+        background-position: center;
+        background-size: contain;
+        display: none;
+        align-items: center;
+        justify-content: center;
+        background-color: $corFundo;
+        
+        div {
+            h1 {
+                font-size: 1.5em;
+            }
+
+            button {
+                padding: 10px 20px;
+                cursor: pointer;
+                color: $corWhite;
+                background-color: $corFundo;
+                border: 2px solid $corWhite;
+            }
+        }
+    }
+}

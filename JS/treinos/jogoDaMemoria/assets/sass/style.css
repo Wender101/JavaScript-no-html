@@ -1,0 +1,122 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
+  max-width: 681px;
+  min-height: 100vh;
+  text-align: center;
+  padding-top: 82px;
+  margin: auto;
+  font-family: "Nunito", sans-serif;
+  background-color: #14181B;
+  color: #fff;
+}
+body h1 {
+  font-family: "Press Start 2P", cursive;
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+body section {
+  width: 100%;
+}
+body section p.texto {
+  max-width: 400px;
+  margin: auto;
+  margin-bottom: 30px;
+  font-size: 1.2em;
+}
+body section div {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+body section div p#tentativas {
+  font-size: 1.5em;
+  font-weight: 900;
+}
+body section #tentativasInput {
+  width: 100%;
+  max-width: 681px;
+  margin: auto;
+  height: 30px;
+  display: block;
+}
+body section #tentativasInput::-ms-track {
+  border: none;
+  height: 16px;
+  width: 16px;
+  border-radius: 50%;
+  background-color: rgb(231, 49, 255);
+}
+body main {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  gap: 24px;
+}
+body main .flip-container {
+  width: 150px;
+  height: 150px;
+  perspective: 1000px;
+}
+body main .flipper {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  position: relative;
+}
+body main .front {
+  background-image: url(../img/capa.gif);
+  background-position: center;
+  background-size: contain;
+}
+body main .front, body main .back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+          backface-visibility: hidden;
+  border-radius: 20px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  background-color: #fff;
+}
+body main .back {
+  transform: rotateY(180deg);
+}
+body main .back > img {
+  width: 100%;
+  height: 100%;
+}
+body div#msgFinal {
+  width: 100%;
+  min-height: 100vh;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  background-image: url(../img/confetesGif.gif);
+  background-position: center;
+  background-size: contain;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: #14181B;
+}
+body div#msgFinal div h1 {
+  font-size: 1.5em;
+}
+body div#msgFinal div button {
+  padding: 10px 20px;
+  cursor: pointer;
+  color: #fff;
+  background-color: #14181B;
+  border: 2px solid #fff;
+}/*# sourceMappingURL=style.css.map */
