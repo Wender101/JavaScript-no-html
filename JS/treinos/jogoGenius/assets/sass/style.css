@@ -20,11 +20,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-body h1#pontos {
-  position: absolute;
-  top: 20px;
-  left: 20px;
+  flex-direction: column;
 }
 body section#iniciarGameModal {
   width: 100%;
@@ -35,6 +31,7 @@ body section#iniciarGameModal {
   align-items: center;
   justify-content: center;
   background-color: #fff;
+  z-index: 2;
 }
 body section#iniciarGameModal article {
   width: 90%;
@@ -48,6 +45,14 @@ body section#iniciarGameModal article p {
 body section#iniciarGameModal article button {
   padding: 10px 20px;
   cursor: pointer;
+}
+body h1#pontos {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+body p#vez {
+  margin-bottom: 30px;
 }
 body table {
   width: 400px;

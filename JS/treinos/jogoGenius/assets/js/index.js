@@ -2,14 +2,15 @@ let salvarSequencia = []
 let sequenciaJogador = []
 let contador = 0
 let podeJogar = true
-let maiorQuantidadeDePontosSalvo
+let maiorQuantidadeDePontosSalvo = 0
+let pVez = document.querySelector('#vez')
 //? Vai pegar os pontos do localStorage
 try {
     if(localStorage.getItem('PontosJogoGenuis') != undefined && localStorage.getItem('PontosJogoGenuis') != null) {
         document.querySelector('#mlrPontos').innerText = localStorage.getItem('PontosJogoGenuis')
         maiorQuantidadeDePontosSalvo = parseInt(localStorage.getItem('PontosJogoGenuis'))
     }
-} catch {}
+} catch (error){console.warn(error);}
 
 function iniciarGame() {
     document.querySelector('#iniciarGameModal').style.display = 'none'
@@ -30,7 +31,7 @@ function iniciarGame() {
                         td.className = 'errou'
 
                         //? Só vai salvar os pontos, se for maior que o anterior salvo
-                        if(salvarSequencia - 1 > maiorQuantidadeDePontosSalvo) {
+                        if(salvarSequencia.length - 1 > maiorQuantidadeDePontosSalvo) {
                             localStorage.setItem('PontosJogoGenuis', salvarSequencia.length -1)
                         }
                         
@@ -58,6 +59,7 @@ function iniciarGame() {
 
 function sortear() {
     podeJogar = false
+    pVez.innerText = 'Aguardando Sequência...'
     let randomNum = Math.floor(Math.random() * 15)
     salvarSequencia.push(randomNum)
 
@@ -77,6 +79,7 @@ function iniciar() {
             }, 300)
         } else {
             podeJogar = true
+            pVez.innerText = 'Sua Vez'
         }
     }, 100)
 }

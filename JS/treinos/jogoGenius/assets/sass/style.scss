@@ -5,12 +5,7 @@ body {
     min-height: 100vh;
     font-family: $fontRaleway;
     @include alinharNoCentro;
-
-    h1#pontos {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-    } //? h1#pontos
+    flex-direction: column;
 
     section#iniciarGameModal {
         width: 100%;
@@ -19,6 +14,7 @@ body {
         top: 0px;
         @include alinharNoCentro;
         background-color: $cor1;
+        z-index: 2;
 
         article { 
             width: 90%; 
@@ -37,6 +33,16 @@ body {
         } 
 
     } //? section#iniciarGameModal
+
+    h1#pontos {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+    } //? h1#pontos
+
+    p#vez {
+        margin-bottom: 30px;
+    }
 
     table {
         width: 400px;
