@@ -7,7 +7,7 @@
 
 body {
   width: 100%;
-  max-width: 681px;
+  max-width: 846px;
   min-height: 100vh;
   text-align: center;
   padding-top: 82px;
@@ -19,7 +19,37 @@ body {
 body h1 {
   font-family: "Press Start 2P", cursive;
   margin-bottom: 20px;
-  font-size: 2.5em;
+  font-size: 2.4em;
+}
+body section#escolherDificuldade {
+  width: 100%;
+  height: 100vh;
+  z-index: 2;
+  background-color: #14181B;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 70px;
+}
+body section#escolherDificuldade div {
+  width: 95%;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+body section#escolherDificuldade div button {
+  width: 100%;
+  padding: 15px;
+}
+body section#escolherDificuldade div button:hover {
+  background-color: aquamarine;
+  border: none;
 }
 body section {
   width: 100%;
@@ -119,4 +149,55 @@ body div#msgFinal div button {
   color: #fff;
   background-color: #14181B;
   border: 2px solid #fff;
+}
+
+@media screen and (max-width: 882px) {
+  body {
+    max-width: 673px;
+  }
+}
+@media screen and (max-width: 702px) {
+  body {
+    max-width: 498px;
+  }
+  body h1 {
+    font-family: "Press Start 2P", cursive;
+    margin-bottom: 20px;
+    font-size: 2em;
+  }
+  body main {
+    max-width: 475px;
+    margin: auto;
+  }
+  body main .flip-container {
+    width: 98px;
+    height: 98px;
+  }
+}
+@media screen and (max-width: 522px) {
+  body {
+    max-width: 325px;
+  }
+  body h1 {
+    font-family: "Press Start 2P", cursive;
+    margin-bottom: 20px;
+    font-size: 1.3em;
+  }
+  body main {
+    max-width: 475px;
+    margin: auto;
+  }
+  body main .flip-container {
+    width: 63px;
+    height: 63px;
+  }
+  body main .front, body main .back {
+    border-radius: 10px;
+  }
+}
+@media screen and (max-width: 332px) {
+  body main {
+    max-width: 237px;
+    margin: auto;
+  }
 }/*# sourceMappingURL=style.css.map */

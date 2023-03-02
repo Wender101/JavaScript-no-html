@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fórmulario</title>
+</head>
+<body>
+    <form action="" method="get">
+        <p>Nome: <input type="text" id="nome"></p>
+        <p>Sobrenome: <input type="text" id="sobrenome"></p>
+        <p>Peso: <input type="text" id="peso"></p>
+        <p>Altura: <input type="text" id="altura"></p>
+        <div id="res"></div>
+    </form>
+    <button onclick="enviar()">Enviar</button>
+
+    <script>
+        let nome = document.getElementById('nome')
+        let sobrenome = document.getElementById('sobrenome')
+        let peso = document.getElementById('peso')
+        let altura = document.getElementById('altura')
+        let res = document.getElementById('res')
+        let array = []
+
+        function enviar() {
+            let armazenamento = {
+                nome: nome.value,
+                sobrenome: sobrenome.value,
+                peso: peso.value,
+                altura: altura.value
+            }
+
+            array.push(armazenamento)
+
+            console.log(array);
+            res.innerHTML += `<p>${nome.value} ${sobrenome.value} ${peso.value} ${altura.value}</p>`
+        }
+    </script>
+</body>
+</html>

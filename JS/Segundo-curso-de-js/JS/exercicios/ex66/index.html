@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cronômetro</title>
+    <style>
+        @font-face {
+            font-family:  DS-Digital;
+            src: url(DS-DIGIT.TTF);
+        }
+
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            font-size: 15px;
+            padding: 20px;
+            background-color: black;
+        }
+        
+        main {
+            width: 280px;
+            height: auto;
+            margin: 150px auto;
+            color: white;
+            
+        }
+        
+        main > #relogio {
+            font-family: DS-Digital;
+            font-size: 80px;
+            font-weight: 100;
+        }
+
+        main > div {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        main > div > button {
+            padding: 15px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1 id="relogio">00:00:00</h1>
+        <div>
+            <button onclick="iniciar()">Iniciar</button>
+            <button onclick="parar()">Parar</button>
+            <button onclick="zerar()">Zerar</button>
+        </div>
+    </main>
+
+    <script>
+        function criarHoraDosSegundos(segundos) {
+            const data = new Date(segundos * 1000)
+            return data.toLocaleTimeString('pt-BR', {
+                hour12: false,
+                timeZone: 'UTC'
+            })
+        }
+
+        const relogio = document.getElementById('relogio')
+        let segundos = 0
+        let timer
+        let pausado = false
+
+        //Inicio
+        function iniciaRelogio() {
+            timer = setInterval(function() {
+                segundos++
+                relogio.innerHTML = criarHoraDosSegundos(segundos)
+            }, 1000)
+        }
+
+        // Vai iniciar
+        function iniciar() {
+            // Vai checar se o cronometro já foi ou não pausado, pra saber se ele deve zerar ou não.
+            if(pausado == false) {
+                clearInterval(timer)
+                iniciaRelogio()
+                relogio.style.color = 'white'
+                relogio.innerHTML = '00:00:00'
+                segundos = 0
+
+            } else {
+                iniciaRelogio()
+                relogio.style.color = 'white'
+                pausado = false
+            }
+        }
+
+        // Vai informar que ele foi pausado e vai pausa-lo
+        function parar() {
+            clearInterval(timer)
+            relogio.style.color = 'red'
+            pausado = true
+        }
+
+        //Vai zera-lo
+        function zerar() {
+            clearInterval(timer)
+            relogio.innerHTML = '00:00:00'
+            segundos = 0
+            relogio.style.color = 'white'
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         //? Classes em Js
+        //! OBS: com as classes, todos os metodos criados, já são automaticamente lincados ao prototipe 
+        class Pessoa {
+            constructor(nome, sobrenome) {
+                this.nome = nome
+                this.sobrenome = sobrenome
+            }
+
+            falar() {
+                console.log(`${this.nome} está falando.`)
+            }
+
+            comer() {
+                console.log(`${this.nome} está comendo.`)
+            }
+
+            beber() {
+                console.log(`${this.nome} está bebendo.`)
+            }
+        }
+
+        const p1 = new Pessoa('Wender Natanael', 'M. V. dos Santos')
+        console.log(p1.comer())
+    </script>
+</body>
+</html>

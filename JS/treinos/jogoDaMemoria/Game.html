@@ -11,136 +11,210 @@
     <link rel="stylesheet" href="assets/sass/style.css">
 </head>
 <body>
-    <section>
-        <h1>Jogo da Memória</h1>
-        <p class="texto">Você tem 17 tentativas para encontrar todos os pokémons</p>
-
-        <div>
-            <p>Tentativas</p>
-            <p id="tentativas">0/17</p>
-        </div>
-
-        <input type="range" id="tentativasInput">
-    </section>
-
-    <main id="localJogo">
-        <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-          <div class="flip-container">
-            <div class="flipper">
-              <div class="front">
-              </div>
-              <div class="back">
-                <img src="" />
-              </div>
-            </div>
-          </div>
-    </main>
-
-    <div id="msgFinal">
-       <div>
-            <h1>Parabéns Você Vencel</h1>
-            <button onclick="location.reload()">Jogar Novamente</button>
-       </div>
+  <section id="escolherDificuldade">
+    <h1>Dificuldade</h1>
+    <div>
+      <button onclick="dificudade('Dificíl')">Dificíl</button>
+      <button onclick="dificudade('Médio')">Médio</button>
+      <button onclick="dificudade('Bebezão')">Bebezão</button>
     </div>
+  </section>
 
-    <script src="assets/js/index.js"></script>
+  <section>
+      <h1>Jogo da Memória</h1>
+      <p class="texto">Você tem 25 tentativas para encontrar todos os pokémons</p>
+
+      <div>
+          <p>Tentativas</p>
+          <p id="tentativas">0/17</p>
+      </div>
+
+      <input type="range" id="tentativasInput">
+  </section>
+
+  <main id="localJogo">
+      <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+        <div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div><div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div><div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div><div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div><div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div><div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div><div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div><div class="flip-container">
+          <div class="flipper">
+            <div class="front">
+            </div>
+            <div class="back">
+              <img src="" />
+            </div>
+          </div>
+        </div>
+  </main>
+
+  <div id="msgFinal">
+      <div>
+          <h1>Parabéns Você Vencel</h1>
+          <button onclick="location.reload()">Jogar Novamente</button>
+      </div>
+  </div>
+
+  <script src="assets/js/index.js"></script>
 </body>
 </html>

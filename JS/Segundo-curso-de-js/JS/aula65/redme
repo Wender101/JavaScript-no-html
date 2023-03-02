@@ -1,0 +1,9 @@
+Time
+
+O setInterval é usado para execultar algo, com intevalo de tempo. O mais comum, é usa-lo para executar uma função com algum intevalo de tempo.
+
+O intevalo de tempo é dado em milesegundos. 
+
+OBS: um segundo tem 1000 milesegundos.
+
+O setTimeout serve para ser executado apenas 1 vez, e na sua grande maioria e parar o setInterval.
