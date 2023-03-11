@@ -1,0 +1,199 @@
+@import 'general.scss';
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+
+    section {
+        width: 50vw;
+        height: 100vh;
+    }
+
+    section#parte1img {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-image: url(../img/fotos/Rectangle.png);
+        background-size: contain;
+
+        img {
+            width: 100%;
+        }
+    }
+
+    section#parte2Chave {
+        font-family: $fonte-Poppins;
+        color: $white;
+        background-color: $cor3;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+
+        img {
+            max-width: 368px;
+            width: 90%;
+            display: block;
+            margin: auto;
+        }
+
+        div {
+            width: 80%;
+            max-width: 440px;
+            margin: auto;
+
+            input[type=text] {
+                width: 90%;
+                border: none;
+                padding: 10px 23px;
+                background-color: $cor4;
+                margin: 14px 0px 25px;
+
+                &:focus {
+                    box-shadow: 0;
+                    outline: 0;
+                }
+            }
+
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: start;
+                gap: 12px;
+                align-items: end;
+                margin: 0px;
+
+                @keyframes checkboxFalse {
+                    0% {
+                        border: 1px solid $cor2;
+                    }
+
+                    25% {
+                        border: 1px solid red;
+                    }
+
+                    50% {
+                        border: 1px solid $cor2;
+                    }
+
+                    75% {
+                        border: 1px solid red;
+                    }
+
+                    100% {
+                        border: 1px solid $cor2;
+                    }
+                }
+                
+                input[type=checkbox] {
+                    all: unset;
+                    width: 25px;
+                    height: 25px;
+                    margin-top: 20px;
+                    border: 1px solid $cor2;
+
+                    &:checked {
+                        background-color: $cor1;
+                        border: 1px solid $cor1;
+                    }
+
+                    &.concordoInputFalse {
+                        animation: 1500ms checkboxFalse infinite;
+                    }
+    
+                    @keyframes checkboxFalseSpan {
+                        0% {
+                           color: $cor2;
+                        }
+    
+                        25% {
+                            color: red;
+                        }
+    
+                        50% {
+                            color: $cor2;
+                        }
+    
+                        75% {
+                            color: red;
+                        }
+    
+                        100% {
+                            color: $cor2;
+                        }
+                    }
+                }
+
+                span {
+                    color: $cor2;
+                }
+
+                .concordoSpanFalse {
+                    animation: 1500ms checkboxFalseSpan infinite;
+                }
+            }
+
+            p {
+                font-size: 14px;
+            }
+
+            button {
+                font-family: $fonte-Carter;
+                border-radius: 30px;
+                padding: 10px 70px;
+                border: none;
+                background-color: $cor1;
+                display: block;
+                margin: 56px auto;
+                color: $white;
+                font-size: 16px;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: aqua;
+                }
+            }
+        }
+    }
+}
+
+//? Responsividade
+@media screen and (max-width: 700px) {
+    body {
+        justify-content: center;
+        align-items: center;
+
+        section#parte1img {
+            width: 100vw;
+            min-height: 100vh;
+            position: fixed;
+            top: 0px;
+
+            img {
+                display: none;
+            }
+        }
+    
+        section#parte2Chave {
+            width: 100%;
+            max-width: 350px;
+            max-height: 600px;
+            
+            div {
+                p {
+                    font-size: 12px;
+                }
+
+                span {
+                    font-size: 13px;
+                }
+
+                button {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}

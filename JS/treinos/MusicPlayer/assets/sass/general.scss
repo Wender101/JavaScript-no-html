@@ -1,22 +1,167 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
 
 //? Cores padrão da página 
 $white: #fff;
-$cor1: #6E88B5;
-$cor2: #354157;
-$cor3: #95B8F5;
-$cor4: #212836;
-$cor5: #86A5DB;
-$sombra: #979ca5;
-$sombra2:rgba(38, 43, 49, 0.712);
+$Black: #000;
+$cor1: #0DCBA9;
+$cor2: #636363;
+$cor3: #181818;
+$cor4: #4b4b4b78;
+$cor5: #272727; 
+$cor6: #121212;
 
 //? Fonte geral
-$fonte-geral: 'Poppins', sans-serif;
+$fonte-Poppins: 'Poppins', sans-serif;
+$fonte-Carter: 'Carter One', cursive;;
 
-//? Codigos
+
+//? Style
 * {
     margin:  0px;
     padding: 0px;
     list-style: none;
     text-decoration: none;
+}
+
+//? Classes
+.concordoInputFalse {
+    animation: 1500ms checkboxFalse infinite;
+}
+
+@keyframes checkboxFalseSpan {
+    0% {
+       color: $cor2;
+    }
+
+    25% {
+        color: red;
+    }
+
+    50% {
+        color: $cor2;
+    }
+
+    75% {
+        color: red;
+    }
+
+    100% {
+        color: $cor2;
+    }
+}
+
+div#localPesquisaSong {
+    position: absolute;
+}
+
+div.localInputPesquisa {
+    max-width: 900px;
+    max-width: 900px;
+    width: 90%;
+    margin: 15px auto;
+    position: relative;
+    z-index: 2;
+    left: 50%;
+    top: 15px;
+    transform: translate(-50%);
+
+    input#pesquisarMusica {
+        max-width: 900px;
+        width: calc(100% - 72px);
+        border: none;
+        padding: 11px 23px;
+        background-color: $cor4;
+        display: block;
+        border-radius: 24px;
+        padding-left: 50px;
+
+        &:focus {
+            box-shadow: 0;
+            outline: 0;
+        }
+
+    }
+
+    img {
+        position: absolute;
+        top: 6.5px;
+        left: 10px;
+    }
+}
+
+/* ini: Preloader */
+#carregando, #carregando1 {
+    width: calc(100% - 58px);
+    height: 100%;
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    display: none;
+    justify-content: center;
+    background-color: $cor5;
+    align-items: center;
+    z-index: 10;
+}
+
+section#carregando > article {
+    width: 80%;
+    color: $white;
+}
+ 
+#preloader .inner {
+    position: absolute;
+    top: 50%; /* centralizar a parte interna do preload (onde fica a animação)*/
+    left: 50%;
+    transform: translate(-50%, -50%);  
+}
+.bolas > div {
+  display: inline-block;
+  background-color: $white;
+  box-shadow: 2px 2px 3px $cor3;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  margin: 3px;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+  animation-name: animarBola;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+   
+}
+.bolas > div:nth-child(1) {
+    animation-duration:0.75s ;
+    animation-delay: 0;
+}
+.bolas > div:nth-child(2) {
+    animation-duration: 0.75s ;
+    animation-delay: 0.12s;
+}
+.bolas > div:nth-child(3) {
+    animation-duration: 0.75s  ;
+    animation-delay: 0.24s;
+}
+ 
+@keyframes animarBola {
+  0% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+  16% {
+    -webkit-transform: scale(0.1);
+    transform: scale(0.1);
+    opacity: 0.7;
+  }
+  33% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1; 
+  } 
+}
+/* end: Preloader */
+
+audio {
+    display: none;
 }

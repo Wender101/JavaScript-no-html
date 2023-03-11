@@ -4,70 +4,150 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>StoyMori - Home</title>
-
-    <!--! Styles -->
+    <title>Home | treeFy</title>
+    
+    <!--? Style -->
     <link rel="stylesheet" href="assets/sass/general.css">
     <link rel="stylesheet" href="assets/sass/Home.css">
 </head>
 <body>
-
-    <!--! Menu superior -->
-    <header>
-        <ul>
-            <li><img src="assets/img/download.png" alt="icone logar"> Login/Cadastro</li>
-        </ul>
-    </header>
-
-    <!--! Menu lateral -->
     <nav>
+        <button id="config"></button>
+
         <ul>
-            <li><img src="assets/img/254967.png" alt="inicio"> Inicio</li>
-            <li><img src="assets/img/icone-loupe-noir.png" alt="inicio"> Buscar</li>
-            <li><img src="assets/img/14184.png" alt="inicio"> Sua Biblioteca</li>
+            <li><button id="HomeBtn"></button></li>
+            <li><button id="BibliotecaBtn"></button></li>
+            <li><button id="PesquisaBtn"></button></li>
+            <li><button id="AddMusicaBtn"></button></li>
         </ul>
     </nav>
 
-    <!--! site -->
+    <div class="localInputPesquisa" id="localPesquisaSong">
+        <input type="text" id="pesquisarMusica" placeholder="A musica que você deseja esta aqui...">
+        <img src="assets/img/icones/PesquisarDoInput.png" alt="ícone pesquisar">
+    </div>
+
+    <section id="localBanners"></section>
+
     <main>
-        <!--! Banners -->
-        <section id="banners">
+        <section id="Recente">
+            <h1>Ouvidas recentemente</h1>
             <article>
-                <img src="assets/img/96047-OKL8GD-67922.jpg" alt="">
-                <img src="assets/img/96047-OKL8GD-6791111.jpg" alt="">
             </article>
         </section>
-        <h1>Boa noite</h1>
 
-        <!--! Playlists vistas recentemente -->
-        <section id="localPlaylists">
-            <a href="Playlist.html">
-                <img src="assets/img/96047-OKL8GD-6791111.jpg" class="imgPlaylist">
-                <strong class="namePlaylist">Teste Playlist</strong>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quidem ab voluptatibus eius corrupti quibusdam perspiciatis sed incidunt molestias veniam libero harum, natus voluptatum provident sunt officia nostrum, fuga deleniti!</p>
-            </a>
-
-            <a href="Playlist.html">
-                <img src="assets/img/96047-OKL8GD-6791111.jpg" class="imgPlaylist">
-                <strong class="namePlaylist">Teste Playlist</strong>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quidem ab voluptatibus eius corrupti quibusdam perspiciatis sed incidunt molestias veniam libero harum, natus voluptatum provident sunt officia nostrum, fuga deleniti!</p>
-            </a>
-
-            <a href="Playlist.html">
-                <img src="assets/img/96047-OKL8GD-6791111.jpg" class="imgPlaylist">
-                <strong class="namePlaylist">Teste Playlist</strong>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quidem ab voluptatibus eius corrupti quibusdam perspiciatis sed incidunt molestias veniam libero harum, natus voluptatum provident sunt officia nostrum, fuga deleniti!</p>
-            </a>
-
-            <a href="Playlist.html">
-                <img src="assets/img/96047-OKL8GD-6791111.jpg" class="imgPlaylist">
-                <strong class="namePlaylist">Teste Playlist</strong>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor quidem ab voluptatibus eius corrupti quibusdam perspiciatis sed incidunt molestias veniam libero harum, natus voluptatum provident sunt officia nostrum, fuga deleniti!</p>
-            </a>
+        <section id="MaisTocadas">
+            <h1>As mais tocadas</h1>
+            <article>
+            </article>
         </section>
-
-        <!--! Musicas -->
-        <section id="localMusicas"></section>
     </main>
+
+    <!--? Pagina de adicionar músicas -->
+    <section id="pagAddMusicas">
+        <article>
+            <h1>Poste as suas músicas favorias aqui</h1>
+            <button id="btnFecharAddMusic"></button>
+
+            <div>
+                <p>Nome da Música:</p>
+                <div class="localInputPesquisa">
+                    <input type="text" id="inputNomeDaMusica" placeholder="Noma da música...">
+                    <img src="assets/img/icones/PesquisarDoInput.png" alt="ícone pesquisar">
+                </div>
+                <p>Autor(a) da Música:</p>
+                <div class="localInputPesquisa">
+                    <input type="text" id="inputAutorDaMusica" placeholder="Autor(a)...">
+                    <img src="assets/img/icones/PesquisarDoInput.png" alt="ícone pesquisar">
+                </div>
+                <p>Tipo da Música:</p>
+                <div class="localInputPesquisa">
+                    <input type="text" id="inputTipoDaMusica" placeholder="Pop, Rock, Lofi...">
+                    <img src="assets/img/icones/PesquisarDoInput.png" alt="ícone pesquisar">
+                </div>
+
+                <div id="localBtnsAddMusica">
+                    <label for="uploadMusica">Upload da Música</label>
+                    <input type="file" name="uploadMusica" id="uploadMusica" accept="audio/*"></input>
+                    <label for="uploadImg">Upload da Imagem</label>
+                    <input type="file" name="uploadImg" id="uploadImg" accept="image/*"></input>
+                </div>
+
+                <div id="localPublicaPrivadaMusicaAdd">
+                    <input type="checkbox" id="inputPublicaPrivada">
+                    <span>Marcar música como privado</span>
+                </div>
+
+                <button id="postar">Postar</button>
+            </div>
+        </article>
+    </section>
+
+    <!--? Animação de carregamento -->
+    <section id="carregando">
+        <article>
+        <div id="preloader">
+            <div class="inner">
+            <div class="bolas">
+              <div></div>
+              <div></div>
+              <div></div>                    
+          </div>
+          </div>
+        </div>
+        </article>
+    </section>
+    <!--? fim do preloader --> 
+
+    <!--? MenuParteTocarMusica -->
+    <section id="menuTocandoMusica">
+        <div id="parteNomeMusica">
+            <img src="" id="imgMusicaTocandoAgora">
+            <div>
+                <h3 id="nomeMusicaTocandoAgora">Name</h3>
+                <p id="autorMusicaTocandoAgora">adfadfa</p>
+            </div>
+
+            <img src="assets/img/icones/🦆 icon _heart add_.png" id="hearAdd">
+        </div>
+
+        <div id="parteCentralConfigMusica">
+            <div id="controles">
+                <button id="back"></button>
+                <button id="play"></button>
+                <button id="next"></button>
+            </div>
+
+            <div id="barraTime">
+                <span id="tempoContando">0:00</span>
+                <input type="range" name="" id="timeMusica" value="0">
+                <span id="tempoTotal">0:00</span>
+            </div>
+        </div>
+
+        <div id="parteVolume">
+            <button id="bntVolume"></button>
+            <input type="range" id="inputVolume" value="10"><!--value="100"-->
+        </div>
+    </section>
+
+    <!--? Pesquisar -->
+    <section id="pagPesquisa">
+        <article id="mlrResutado">
+        </article>
+    </section>
+
+    <audio src="" id="audioMusica"></audio>
+
+    <!--! Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="assets/js/firebase.js"></script>
+
+    <!--! Script -->
+    <script src="assets/js/home.js"></script>
+    <script src="assets/js/pesquisar.js"></script>
 </body>
 </html>
