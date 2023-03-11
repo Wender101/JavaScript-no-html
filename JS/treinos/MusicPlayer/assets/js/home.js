@@ -76,8 +76,6 @@ btnPostar.addEventListener('click', () => {
                 let DadosDB = valor.data()
 
                 if(jaFoiPostado == false) {
-                    jaFoiPostado = true
-
                     let LinkAudio = ''
                     let LinkImgiMusica = ''
 
@@ -115,6 +113,7 @@ btnPostar.addEventListener('click', () => {
                             //! ----------------------------------------------
                             function postarMusica() {
                                 if(contagemEtapas >= 2) {
+                                    jaFoiPostado = true
                                     const musica = DadosDB.Musica
 
                                     //? Vai checar se a musica é privado ou n

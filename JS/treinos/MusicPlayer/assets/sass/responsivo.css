@@ -1,0 +1,85 @@
+@media screen and (max-width: 1232px) {
+  section#Recente {
+    max-width: 1200px;
+  }
+  section#MaisTocadas article div.musicaMaisTocada {
+    width: 135px;
+  }
+}
+@media screen and (max-width: 1201px) {
+  section#Recente {
+    max-width: 907px;
+    margin: auto;
+  }
+  section#MaisTocadas {
+    max-width: 907px;
+    margin: auto;
+  }
+  section#MaisTocadas article div.musicaMaisTocada {
+    width: 139px;
+  }
+}
+@media screen and (max-width: 1062px) {
+  section#Recente {
+    max-width: 752px;
+    margin: auto;
+  }
+  section#MaisTocadas {
+    max-width: 752px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 892px) {
+  h1 {
+    font-size: 15px;
+    margin-top: 30px;
+  }
+  section#Recente {
+    max-width: 600px;
+    margin: auto;
+  }
+  section#MaisTocadas {
+    max-width: 600px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 723px) {
+  section#Recente {
+    max-width: 445px;
+    margin: auto;
+  }
+  section#MaisTocadas {
+    max-width: 445px;
+    margin: auto;
+  }
+}
+@media screen and (max-width: 552px) {
+  section#Recente {
+    max-width: 388px;
+    margin: auto;
+  }
+  section#MaisTocadas {
+    max-width: 388px;
+  }
+  section#MaisTocadas article div.musicaMaisTocada {
+    width: 120px;
+    height: 180px;
+  }
+  section#MaisTocadas article div.musicaMaisTocada div.localImgMaisTocada {
+    width: 90%;
+    height: 100px;
+  }
+  section#MaisTocadas article div.musicaMaisTocada h3 {
+    white-space: nowrap;
+  }
+}
+@media screen and (max-width: 489px) {
+  section#Recente {
+    max-width: 257px;
+    margin: auto;
+  }
+  section#MaisTocadas {
+    max-width: 257px;
+    margin: auto;
+  }
+}/*# sourceMappingURL=responsivo.css.map */
