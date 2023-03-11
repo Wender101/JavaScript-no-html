@@ -20,11 +20,20 @@ document.querySelector('button').addEventListener('click', () => {
                 let acessoConcedido = false
                for(let c = 0; c < DadosDB.Chaves.length; c++) {
                     if(DadosDB.Chaves[c] == inputChave) {
-                        location.href = 'http://127.0.0.1:5500/Cadastro.html'
+                        if(location.href == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Acesso-Antecipado.html') {
 
-                        setTimeout(() => {
-                            location.reload()
-                        }, 50)
+                            location.href = 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Cadastro.html'
+    
+                            setTimeout(() => {
+                                location.reload()
+                            }, 50)
+                        } else if(location.href == 'http://127.0.0.1:5500/Acesso-Antecipado.html') {
+                            location.href = 'http://127.0.0.1:5500/Cadastro.html'
+    
+                            setTimeout(() => {
+                                location.reload()
+                            }, 50)
+                        }
                         acessoConcedido = true
                     }
     

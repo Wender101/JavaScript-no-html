@@ -76,6 +76,13 @@ function irParaPagPrincipal() {
         setTimeout(() => {
             location.reload()
         }, 2000)
+    } else if(location.href == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Cadastro.html' || location.href == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Acesso-Antecipado.html') {
+        setTimeout(() => {
+            location.href = 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Home.html'
+        }, 1000)
+        setTimeout(() => {
+            location.reload()
+        }, 2000)
     }
 }
 
