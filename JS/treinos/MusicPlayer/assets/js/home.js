@@ -179,21 +179,29 @@ let listaMusicasRecentes = [] //! Listas das musicas recentes
 let JatemRecente = false
 function criarRecentes(lista) {
     let Recente = document.querySelector('#Recente').querySelector('article')
+    document.querySelector('#Recente').style.display = 'block'
     Recente.innerHTML = ''
 
-    for(let c = 0; c < lista.length; c++) {
+    //? Vai escrever a lista de tras para frente deixando o audio mais recente em primeiro
+    let contador = 0
+
+    for(let c = lista.length; c > 0 ; c--) {
+
+        //? Vai adicionar um tamanho proporcional a quantidade de elementos
+        contador++
+        Recente.style.width = `${(123 * contador) + 98}px`
         
         let musicaRecente = document.createElement('div')
         let img = document.createElement('img')
         
         musicaRecente.className = 'musicaRecente'
-        img.src = lista[c].LinkImgiMusica
+        img.src = lista[c - 1].LinkImgiMusica
         
         musicaRecente.appendChild(img)
         Recente.appendChild(musicaRecente)
 
         musicaRecente.addEventListener('click', () => {
-            darPlayNaMusica(lista[c])
+            darPlayNaMusica(lista[c - 1])
         })
     }
 
@@ -268,6 +276,10 @@ function CriarMusicasNaTela() {
 
                     } else if(listaMusicasRecentes.length > 0) {
                         for(let b = 0; b < listaMusicasRecentes.length; b++) {
+                            if(listaMusicasRecentes.length == 9) {
+                                listaMusicasRecentes.splice(0, 1)
+                            }
+
                             if(listaCheckRecentes[b].LinkImgiMusica == TodasAsMusicas.Musicas[c].LinkImgiMusica && TodasAsMusicas.Musicas[c].NomeMusica) {
                                 jaTemEssaMusica = true
                             }

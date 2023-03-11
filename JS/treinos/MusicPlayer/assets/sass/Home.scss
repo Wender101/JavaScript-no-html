@@ -94,6 +94,20 @@ body {
             height: auto;
             margin: 0px auto 38px;
             color: $white;
+            
+            &#Recente {
+                display: none;
+                overflow: auto;
+
+                article {
+                    width: auto;
+                    max-width: 1220px;
+
+                    div {
+                        display: inline-block;
+                    }
+                }
+            }
 
             article {
                 display: flex;
@@ -105,7 +119,7 @@ body {
                     width: 123px;
                     height: 123px;
                     background-color: $cor4;
-                    border-radius: 22px;
+                    border-radius: 7px;
                     cursor: pointer;
                     overflow: hidden;
 
@@ -113,7 +127,7 @@ body {
                         width: 100%;
                         height: 100%;
                         object-fit: cover;
-                        border-radius: 22px;
+                        border-radius: 7px;
                     }
                 }
                 
@@ -121,14 +135,14 @@ body {
                     width: 139px;
                     height: 192px;
                     background-color: $cor4;
-                    border-radius: 7px;
+                    //border-radius: 7px;
                     overflow: hidden;
                     cursor: pointer;
 
                     div.localImgMaisTocada {
                         width: 118px;
                         height: 107px;
-                        border-radius: 7px;
+                       // border-radius: 7px;
                         background-color: $white;
                         margin: 12px auto;
 
@@ -137,7 +151,7 @@ body {
                             height: 100%;
                             object-fit: cover;
                             object-position: center;
-                            border-radius: 7px;
+                           // border-radius: 7px;
                         }
                     }
 
