@@ -143,14 +143,14 @@ body {
   position: absolute;
   right: 0px;
   font-family: "Poppins", sans-serif;
-  background-color: #272727;
+  background-color: #181818;
   padding-bottom: 150px;
   padding-top: 100px;
 }
 body nav {
   width: 58px;
   height: 100vh;
-  background-color: #181818;
+  background-color: #272727;
   display: flex;
   align-items: center;
   flex-direction: column;

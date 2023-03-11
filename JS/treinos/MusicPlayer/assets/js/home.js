@@ -189,7 +189,7 @@ function criarRecentes(lista) {
 
         //? Vai adicionar um tamanho proporcional a quantidade de elementos
         contador++
-        Recente.style.width = `${(123 * contador) + 98}px`
+        Recente.style.width = `${(137 * contador)}px`
         
         let musicaRecente = document.createElement('div')
         let img = document.createElement('img')
