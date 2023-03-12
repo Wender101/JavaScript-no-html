@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Carter+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap');
 
 //? Cores padrão da página 
 $white: #fff;
@@ -14,6 +15,7 @@ $cor6: #121212;
 //? Fonte geral
 $fonte-Poppins: 'Poppins', sans-serif;
 $fonte-Carter: 'Carter One', cursive;;
+$fonte-Rubik: 'Rubik', sans-serif;
 
 
 //? Style
@@ -91,7 +93,15 @@ div.localInputPesquisa {
 }
 
 /* ini: Preloader */
-#carregando, #carregando1 {
+#carregando2 {
+    width: 100%;
+    height: 100px;
+    bottom: 0px;
+    top: auto;
+    left: 0px;
+}
+
+.carregando, .carregando1 {
     width: calc(100% - 58px);
     height: 100%;
     position: fixed;
@@ -104,12 +114,12 @@ div.localInputPesquisa {
     z-index: 10;
 }
 
-section#carregando > article {
+section.carregando > article {
     width: 80%;
     color: $white;
 }
  
-#preloader .inner {
+.preloader .inner {
     position: absolute;
     top: 50%; /* centralizar a parte interna do preload (onde fica a animação)*/
     left: 50%;

@@ -323,6 +323,93 @@ body {
         }
     }
 
+    section#pagFavoritas {
+        width: calc(100% - 60px);
+        height: 100vh;
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        display: none;
+        overflow: auto;
+        z-index: 2;
+        background-color: $cor3;
+        
+        article {
+            background-image: linear-gradient(to bottom, $cor1, rgba(0, 255, 209, 0.35), rgba(84, 84, 84, 0.08));
+            width: 100%;
+            min-height: calc(100vh + 110px);
+            padding-bottom: 100px;
+
+            div#headerFavoritas {
+                width: calc(100% - 70px);
+                display: flex;
+                align-items: end;
+                padding: 35px 35px 67px 35px;
+
+                img {
+                    cursor: pointer;
+                }
+
+                h1 {
+                    font-size: 96px;
+                    color: $white;
+                    font-family: $fonte-Rubik;
+                    margin-left: 47px;
+                }
+            }
+
+            div.musicaFavorias {
+                width: calc(100% - 70px);
+                display: flex;
+                color: $white;
+                align-items: center;
+                justify-content: space-between;
+                font-family: $fonte-Rubik;
+                padding: 23px 35px;
+                border-bottom: 1px solid $white;
+                cursor: pointer;
+
+                div {
+                    display: flex;
+                    align-items: center;
+
+                    div.localImgMscFavoritas {
+                        width: 64px;
+                        height: 64px;
+
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            object-fit: cover;
+                        }
+                    }
+
+                    div.localTextoMscFavoritas {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        gap: 11px;
+                        margin-left: 15px;
+
+                        h3 {
+                            font-size: 13px;
+                        }
+
+                        p {
+                            font-size: 12px;
+                            color: #ffffff78;
+                        }
+                    }
+                }
+
+                img {
+                    width: 23px;
+                    height: 20px;
+                }
+            }
+        }
+    }
+
     //! ------------------------------------------------------
     section#menuTocandoMusica {
         width: calc(100% - 32px);
@@ -332,7 +419,7 @@ body {
         transition: 500ms bottom ease-out;
         left: 0px;
         background-color: $cor6;
-        z-index: 2;
+        z-index: 4;
         display: flex;
         align-items: center;
         justify-content: space-between;
@@ -350,7 +437,7 @@ body {
                 height: 65px;
                 background-color: $white;
                 margin-right: 19px;
-                border-radius: 7px;
+                //border-radius: 7px;
                 object-fit: cover;
             }
 

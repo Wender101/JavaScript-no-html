@@ -8,29 +8,33 @@ let btnPostar = document.querySelector('#postar')
 
 //? Vai fechar a aba de add musica e limpar todos os inputs
 document.querySelector('#AddMusicaBtn').addEventListener('click', () => {
-    let pagAddMusicas = document.querySelector('#pagAddMusicas')
+    if(fecharAbas()) {
+        let pagAddMusicas = document.querySelector('#pagAddMusicas')
 
-    if(pagAddMusicas.style.display == 'block') {
+        if(pagAddMusicas.style.display == 'block') {
+            pagAddMusicas.style.display = 'none'
+            inputNomeDaMusica.value = ''
+            inputAutorDaMusica.value = ''
+            inputTipoDaMusica.value = ''
+            inputPublicaPrivada.checked  = false
+            document.querySelector('body').style.overflow = 'auto'
+        } else {
+            document.querySelector('body').style.overflow = 'hidden'
+            pagAddMusicas.style.display = 'block'
+        }
+    }
+})
+
+document.querySelector('#btnFecharAddMusic').addEventListener('click', () => {
+    if(fecharAbas()) {
+        let pagAddMusicas = document.querySelector('#pagAddMusicas')
         pagAddMusicas.style.display = 'none'
         inputNomeDaMusica.value = ''
         inputAutorDaMusica.value = ''
         inputTipoDaMusica.value = ''
         inputPublicaPrivada.checked  = false
         document.querySelector('body').style.overflow = 'auto'
-    } else {
-        document.querySelector('body').style.overflow = 'hidden'
-        pagAddMusicas.style.display = 'block'
     }
-})
-
-document.querySelector('#btnFecharAddMusic').addEventListener('click', () => {
-    let pagAddMusicas = document.querySelector('#pagAddMusicas')
-    pagAddMusicas.style.display = 'none'
-    inputNomeDaMusica.value = ''
-    inputAutorDaMusica.value = ''
-    inputTipoDaMusica.value = ''
-    inputPublicaPrivada.checked  = false
-    document.querySelector('body').style.overflow = 'auto'
 })
 
 //? Vai adicioar a música
@@ -209,6 +213,9 @@ function criarRecentes(lista) {
 
 //! Vai pegar as músicas do banco de dados
 let musicasNaTela = false
+let numSelecionado = ''
+let MusicasFavoritasLista = [] //? Vai armazenar sua músicas favoritas
+let idLocalUser = ''
 function CriarMusicasNaTela() {
     let MaisTocadas = document.querySelector('#MaisTocadas').querySelector('article')
     MaisTocadas.innerHTML = ''
@@ -221,12 +228,18 @@ function CriarMusicasNaTela() {
                 MaisTocadas.innerHTML = ''
                 musicasNaTela = false
             }
-
+            
             setTimeout(() => {
                 musicasNaTela = true
             }, 2000)
+            
+            let maxMusicasMaisOuvidas = 24 //? Vai limitar a quantidade de musica na parte mais tocadas
+            
+            if(TodasAsMusicas.Musicas.length >= 24) {
+                maxMusicasMaisOuvidas = TodasAsMusicas.Musicas.length
+            }
 
-            for(let c = 0; c < TodasAsMusicas.Musicas.length; c++) {
+            for(let c = 0; c < maxMusicasMaisOuvidas; c++) {
 
                 let musicaMaisTocada = document.createElement('div')
                 let localImgMaisTocada = document.createElement('div')
@@ -251,14 +264,49 @@ function CriarMusicasNaTela() {
                 MaisTocadas.appendChild(musicaMaisTocada)
 
                 //! Funções de click
+                //? Ao clicar em favoritar música
                 
                 //? Vai tocar a música selecionada
                 musicaMaisTocada.addEventListener('click', () => {
+                    numSelecionado = c
+
                     //! Vai criar uma lista das músicas escutadas
                     let listaCheckRecentes = listaMusicasRecentes //? Vai checar se há recentes repetidos
 
                     let jaTemEssaMusica = false
                     let addMusicaEmRecentes = false
+                    
+                    //? Vai checar se a música que está tocando já foi adicionada as músicas curtidas
+                    db.collection('Usuarios').onSnapshot((data) => {
+                        data.docs.map(function(valor) {
+                            let Usuarios = valor.data()
+
+                            
+                            if(Usuarios.infUser.Email == email) {
+                                idLocalUser = valor.id
+                                MusicasFavoritasLista = Usuarios.Musica
+                                let musicasFavoritas = Usuarios.Musica
+                                let musicaEstaEmFavoritos = false
+
+                                document.querySelector('#carregando2').style.display = 'none'
+
+                                try {
+                                    for(let contadorFavoritas = 0; contadorFavoritas < Usuarios.Musica.MusicasCurtidas.length; contadorFavoritas++) {
+                                        if(musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeMusica == TodasAsMusicas.Musicas[c].NomeMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeAutor == TodasAsMusicas.Musicas[c].NomeAutor && musicasFavoritas.MusicasCurtidas[contadorFavoritas].EmailUser == TodasAsMusicas.Musicas[c].EmailUser && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkImgiMusica == TodasAsMusicas.Musicas[c].LinkImgiMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkAudio == TodasAsMusicas.Musicas[c].LinkAudio) {
+                                            musicaEstaEmFavoritos = true
+                                            hearAdd.src = 'assets/img/icones/icon _heart_.png'
+                                        }
+                                        
+                                        setTimeout(() => {
+                                            if(musicaEstaEmFavoritos == false) {
+                                                hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'
+                                            }
+                                        }, 200)
+                                    }
+                                } catch{}
+                            }
+                        })
+                    })
                     
                     if(listaMusicasRecentes.length <= 0) {
                         let formaLista =  {
@@ -342,12 +390,13 @@ function darPlayNaMusica(lista) {
         duracao = duracao.replace('0:', '')
         duracao = duracao.replace('.', '')             
         tempoMax = parseInt(duracao.replace(':', ''))
-        
         document.querySelector('#tempoTotal').innerText =  duracao
         
         //! Vai controlar o volume da música
         let inputVolume = document.querySelector('#inputVolume')
         audio.volume = inputVolume.value / 100
+
+        tempoTotalVar = duracao.replace(':', '')
 
         inputVolume.addEventListener('input', () => {
             audio.volume = inputVolume.value / 100
@@ -369,7 +418,100 @@ function darPlayNaMusica(lista) {
             }
         })
 
+        // document.addEventListener('keydown', (e) => {
+        //     if(e.key == ' ') {
+        //         if(pausado == false) {
+        //             pausado = true
+    
+        //             audio.pause()
+        //             playBtn.style.backgroundImage = 'url(assets/img/icones/play.png)'
+                    
+        //         } else {
+        //             pausado = false
+        //             audio.play()
+        //             playBtn.style.backgroundImage = 'url(assets/img/icones/pause.png)'
+        //         }
+        //     }
+        // })
+
     let btnNext = document.querySelector('#next')
     let btnBack = document.querySelector('#back')
     })
+}
+
+//! Vai fechar as páginas
+let btnHome = document.querySelector('#HomeBtn')
+btnHome.addEventListener('click', () => {
+    fecharAbas()
+})
+
+function fecharAbas() {
+    for(let c = 0; c < 10; c++) {
+        try {
+            document.getElementsByClassName('paginas')[c].style.display = 'none'
+        } catch{}
+    }
+    document.querySelector('body').style.overflow = 'auto'
+    return true
+}
+
+
+//! Vai salvar a música nos favoritos
+
+let hearAdd = document.querySelector('#hearAdd')
+let feitoAddFavoritos = false
+hearAdd.addEventListener('click', () => {
+    if(feitoAddFavoritos == false) {
+        let feito = false
+        feitoAddFavoritos = true
+        db.collection('TodasAsMusicas').onSnapshot((data) => {
+            data.docs.map(function(valor) {
+                let TodasAsMusicas = valor.data()
+    
+                if(feito == false) {
+                    feito = true
+                    let feito2 = false
+                    if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_%20(1).png' && feito2 == false) {
+                        favoritarMusica(TodasAsMusicas.Musicas[numSelecionado].NomeMusica, TodasAsMusicas.Musicas[numSelecionado].NomeAutor, TodasAsMusicas.Musicas[numSelecionado].Tipo, TodasAsMusicas.Musicas[numSelecionado].LinkAudio, TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica, TodasAsMusicas.Musicas[numSelecionado].EmailUser, TodasAsMusicas.Musicas[numSelecionado].EstadoMusica, 'Adicionar')
+                        feito2 = true
+                        hearAdd.src = 'assets/img/icones/icon _heart_.png'
+    
+                    } else if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png' && feito2 == false) {
+                        favoritarMusica(TodasAsMusicas.Musicas[numSelecionado].NomeMusica, TodasAsMusicas.Musicas[numSelecionado].NomeAutor, TodasAsMusicas.Musicas[numSelecionado].Tipo, TodasAsMusicas.Musicas[numSelecionado].LinkAudio, TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica, TodasAsMusicas.Musicas[numSelecionado].EmailUser, TodasAsMusicas.Musicas[numSelecionado].EstadoMusica, 'Remover')
+                        feito2 = true
+                        hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'
+                    }
+                }
+            })
+        })
+    }
+
+    setTimeout(() => {
+        feitoAddFavoritos = false
+    }, 300)
+})
+
+function favoritarMusica(NomeMusica, NomeAutor, Tipo, LinkAudio, LinkImgiMusica, EmailUser, EstadoMusica, oQfazerComAmusica) {
+    if(oQfazerComAmusica == 'Adicionar') {
+        let formaFavoritos =  {
+            NomeMusica,
+            NomeAutor,
+            Tipo,
+            LinkAudio,
+            LinkImgiMusica,
+            EmailUser,
+            EstadoMusica,
+        }
+
+        MusicasFavoritasLista.MusicasCurtidas.push(formaFavoritos)
+        db.collection('Usuarios').doc(idLocalUser).update({Musica: MusicasFavoritasLista})
+
+    } else {
+        for(let contador = 0; contador < MusicasFavoritasLista.MusicasCurtidas.length; contador++) {
+            if(MusicasFavoritasLista.MusicasCurtidas[contador].NomeMusica == NomeMusica && MusicasFavoritasLista.MusicasCurtidas[contador].NomeAutor == NomeAutor && MusicasFavoritasLista.MusicasCurtidas[contador].EmailUser == EmailUser && MusicasFavoritasLista.MusicasCurtidas[contador].LinkImgiMusica == LinkImgiMusica && MusicasFavoritasLista.MusicasCurtidas[contador].LinkAudio == LinkAudio) {
+                MusicasFavoritasLista.MusicasCurtidas.splice(contador, 1)
+                db.collection('Usuarios').doc(idLocalUser).update({Musica: MusicasFavoritasLista})
+            }
+        }
+    }
 }

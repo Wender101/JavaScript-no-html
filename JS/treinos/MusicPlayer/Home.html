@@ -45,7 +45,7 @@
     </main>
 
     <!--? Pagina de adicionar músicas -->
-    <section id="pagAddMusicas">
+    <section id="pagAddMusicas" class="paginas">
         <article>
             <h1>Poste as suas músicas favorias aqui</h1>
             <button id="btnFecharAddMusic"></button>
@@ -84,10 +84,30 @@
         </article>
     </section>
 
-    <!--? Animação de carregamento -->
-    <section id="carregando">
+    <!--? Pesquisar -->
+    <section id="pagPesquisa" class="paginas">
+        <article id="mlrResutado">
+        </article>
+    </section>
+
+    <section id="pagFavoritas" class="paginas">
         <article>
-        <div id="preloader">
+            <div id="headerFavoritas">
+                <img src="assets/img/icones/playFavoritas.png" id="iconePlayFavoritas">
+                <h1>Músicas Curtidas</h1>
+            </div>
+
+            <!--? Musicas Favoritas -->
+            <div id="localMusicasFavoritas">
+
+            </div>
+        </article>
+    </section>
+
+     <!--! Animação de carregamento -->
+     <section id="carregando" class="carregando">
+        <article>
+        <div class="preloader">
             <div class="inner">
             <div class="bolas">
               <div></div>
@@ -98,10 +118,26 @@
         </div>
         </article>
     </section>
-    <!--? fim do preloader --> 
+    <!--! fim do preloader --> 
 
-    <!--? MenuParteTocarMusica -->
-    <section id="menuTocandoMusica">
+    <!--! Animação de carregamento 2 -->
+    <section id="carregando2" class="carregando">
+        <article>
+        <div class="preloader">
+            <div class="inner">
+            <div class="bolas">
+              <div></div>
+              <div></div>
+              <div></div>                    
+          </div>
+          </div>
+        </div>
+        </article>
+    </section>
+    <!--! fim do preloader --> 
+
+     <!--! MenuParteTocarMusica -->
+     <section id="menuTocandoMusica">
         <div id="parteNomeMusica">
             <img src="" id="imgMusicaTocandoAgora">
             <div>
@@ -109,7 +145,7 @@
                 <p id="autorMusicaTocandoAgora">adfadfa</p>
             </div>
 
-            <img src="assets/img/icones/🦆 icon _heart add_.png" id="hearAdd">
+            <img src="assets/img/icones/icon _heart_ (1).png" id="hearAdd">
         </div>
 
         <div id="parteCentralConfigMusica">
@@ -132,12 +168,6 @@
         </div>
     </section>
 
-    <!--? Pesquisar -->
-    <section id="pagPesquisa">
-        <article id="mlrResutado">
-        </article>
-    </section>
-
     <audio src="" id="audioMusica"></audio>
 
     <!--! Firebase -->
@@ -150,5 +180,6 @@
     <!--! Script -->
     <script src="assets/js/home.js"></script>
     <script src="assets/js/pesquisar.js"></script>
+    <script src="assets/js/musicasFavoritas.js"></script>
 </body>
 </html>
