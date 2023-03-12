@@ -32,6 +32,7 @@
 }
 div#localPesquisaSong {
   position: absolute;
+  z-index: 2;
 }
 
 div.localInputPesquisa {

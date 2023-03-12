@@ -471,12 +471,12 @@ hearAdd.addEventListener('click', () => {
                 if(feito == false) {
                     feito = true
                     let feito2 = false
-                    if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_%20(1).png' && feito2 == false) {
+                    if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_%20(1).png' && feito2 == false || hearAdd.src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_%20(1).png' && feito2 == false) {
                         favoritarMusica(TodasAsMusicas.Musicas[numSelecionado].NomeMusica, TodasAsMusicas.Musicas[numSelecionado].NomeAutor, TodasAsMusicas.Musicas[numSelecionado].Tipo, TodasAsMusicas.Musicas[numSelecionado].LinkAudio, TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica, TodasAsMusicas.Musicas[numSelecionado].EmailUser, TodasAsMusicas.Musicas[numSelecionado].EstadoMusica, 'Adicionar')
                         feito2 = true
                         hearAdd.src = 'assets/img/icones/icon _heart_.png'
     
-                    } else if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png' && feito2 == false) {
+                    } else if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png' && feito2 == false && hearAdd.src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_.png' && feito2 == false) {
                         favoritarMusica(TodasAsMusicas.Musicas[numSelecionado].NomeMusica, TodasAsMusicas.Musicas[numSelecionado].NomeAutor, TodasAsMusicas.Musicas[numSelecionado].Tipo, TodasAsMusicas.Musicas[numSelecionado].LinkAudio, TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica, TodasAsMusicas.Musicas[numSelecionado].EmailUser, TodasAsMusicas.Musicas[numSelecionado].EstadoMusica, 'Remover')
                         feito2 = true
                         hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'

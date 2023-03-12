@@ -87,7 +87,13 @@ function construirNaTelaAsMusicas() {
                                             if(feito == false) {
                                                 feito = true
                                                 favoritarMusica(Usuarios.Musica.MusicasCurtidas[c].NomeMusica, Usuarios.Musica.MusicasCurtidas[c].NomeAutor, Usuarios.Musica.MusicasCurtidas[c].Tipo, Usuarios.Musica.MusicasCurtidas[c].LinkAudio, Usuarios.Musica.MusicasCurtidas[c].LinkImgiMusica, Usuarios.Musica.MusicasCurtidas[c].EmailUser, Usuarios.Musica.MusicasCurtidas[c].EstadoMusica, 'Remover')
-                                                hearAdd.src = 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_ (1).png'
+
+                                                if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png') {
+                                                    hearAdd.src = 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_ (1).png'
+
+                                                } else if(hearAdd.src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_.png') {
+                                                    hearAdd.src = 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_%20(1).png'
+                                                }
                                             }
                                         })
                                     })
