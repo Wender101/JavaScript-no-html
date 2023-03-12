@@ -233,9 +233,9 @@ function CriarMusicasNaTela() {
                 musicasNaTela = true
             }, 2000)
             
-            let maxMusicasMaisOuvidas = 24 //? Vai limitar a quantidade de musica na parte mais tocadas
+            let maxMusicasMaisOuvidas = 16 //? Vai limitar a quantidade de musica na parte mais tocadas
             
-            if(TodasAsMusicas.Musicas.length >= 24) {
+            if(TodasAsMusicas.Musicas.length <= maxMusicasMaisOuvidas) {
                 maxMusicasMaisOuvidas = TodasAsMusicas.Musicas.length
             }
 
