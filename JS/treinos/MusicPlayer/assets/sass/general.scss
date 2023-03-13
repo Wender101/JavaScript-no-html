@@ -11,6 +11,7 @@ $cor3: #181818;
 $cor4: #4b4b4b78;
 $cor5: #272727; 
 $cor6: #121212;
+$cor7: #4b4b4b78;
 
 //? Fonte geral
 $fonte-Poppins: 'Poppins', sans-serif;
@@ -53,7 +54,7 @@ $fonte-Rubik: 'Rubik', sans-serif;
     }
 }
 
-div#localPesquisaSong {
+div#localPesquisaSong, div#localPesquisaSong2 {
     position: absolute;
     z-index: 2;
 }
@@ -69,7 +70,7 @@ div.localInputPesquisa {
     top: 15px;
     transform: translate(-50%);
 
-    input#pesquisarMusica {
+    input {
         max-width: 900px;
         width: calc(100% - 72px);
         border: none;
@@ -174,4 +175,8 @@ section.carregando > article {
 
 audio {
     display: none;
+}
+
+.paginas {
+    background-color: rgb(24, 24, 24);
 }

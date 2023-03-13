@@ -30,8 +30,9 @@
     color: #636363;
   }
 }
-div#localPesquisaSong {
+div#localPesquisaSong, div#localPesquisaSong2 {
   position: absolute;
+  z-index: 2;
 }
 
 div.localInputPesquisa {
@@ -45,7 +46,7 @@ div.localInputPesquisa {
   top: 15px;
   transform: translate(-50%);
 }
-div.localInputPesquisa input#pesquisarMusica {
+div.localInputPesquisa input {
   max-width: 900px;
   width: calc(100% - 72px);
   border: none;
@@ -55,7 +56,7 @@ div.localInputPesquisa input#pesquisarMusica {
   border-radius: 24px;
   padding-left: 50px;
 }
-div.localInputPesquisa input#pesquisarMusica:focus {
+div.localInputPesquisa input:focus {
   box-shadow: 0;
   outline: 0;
 }
@@ -145,6 +146,10 @@ section.carregando > article {
 /* end: Preloader */
 audio {
   display: none;
+}
+
+.paginas {
+  background-color: rgb(24, 24, 24);
 }
 
 body {
@@ -306,7 +311,6 @@ body section#pagAddMusicas {
   top: 0px;
   right: 0px;
   display: none;
-  background-color: #272727;
   overflow: auto;
   z-index: 2;
 }
@@ -416,14 +420,139 @@ body section#pagPesquisa {
   display: none;
   overflow: auto;
   z-index: 2;
-  background-color: #272727;
+  padding: 100px 0px;
 }
-body section#pagPesquisa article {
+body section#pagPesquisa h1 {
   max-width: 1288px;
   width: 90%;
   height: auto;
-  margin: 150px auto 38px;
+  margin: 30px auto 10px;
   color: #fff;
+  display: none;
+}
+body section#pagPesquisa h1 span {
+  color: #0DCBA9;
+}
+body section#pagPesquisa article {
+  max-width: 1288px;
+  height: auto;
+  margin: 0px auto 10px;
+  color: #fff;
+  width: 90%;
+  display: none;
+}
+body section#pagPesquisa article div.musicaMaisTocada {
+  margin: 5px 10px;
+  display: inline-block;
+}
+body section#pagPesquisa article div {
+  width: 139px;
+  height: 192px;
+  background-color: rgba(75, 75, 75, 0.4705882353);
+  overflow: hidden;
+  cursor: pointer;
+}
+body section#pagPesquisa article div div.localImgMaisTocada {
+  width: 118px;
+  height: 107px;
+  background-color: #fff;
+  margin: 12px auto;
+}
+body section#pagPesquisa article div div.localImgMaisTocada img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body section#pagPesquisa article div h3 {
+  width: 118px;
+  max-height: 32px;
+  font-size: 12px;
+  margin: 2px auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body section#pagPesquisa article div p {
+  width: 118px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  margin: auto;
+  color: #636363;
+}
+body section#pagPesquisa article#autorPesquisa {
+  width: 90%;
+  height: 250px;
+  margin: 0px auto 20px;
+  display: none;
+  background-color: transparent;
+}
+body section#pagPesquisa article#autorPesquisa div#sobreAutor {
+  width: 250px;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 10px;
+  margin-right: 20px;
+  background-color: #272727;
+  gap: 30px;
+}
+body section#pagPesquisa article#autorPesquisa div#sobreAutor h1 {
+  width: auto;
+  max-width: auto;
+  margin: 0px;
+}
+body section#pagPesquisa article#autorPesquisa div#sobreAutor div#localFotoAutorPesquisa {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body section#pagPesquisa article#autorPesquisa div#sobreAutor div#localFotoAutorPesquisa img {
+  width: 80%;
+  height: 80%;
+  -o-object-fit: contain;
+     object-fit: contain;
+  -o-object-position: center;
+     object-position: center;
+}
+body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa {
+  width: calc(100% - 250px);
+  height: 100%;
+  justify-content: space-between;
+  background-color: #181818;
+}
+body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div#musicaAutor1, body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div#musicaAutor2, body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div#musicaAutor3, body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div#musicaAutor4 {
+  display: none;
+}
+body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div {
+  width: calc(100% - 20px);
+  padding: 10px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  background-color: #272727 !important;
+}
+body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div div div.localImgDivAutorMusicas {
+  width: 50px;
+  height: 40px;
+}
+body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div div div.localImgDivAutorMusicas img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div img {
+  width: 20px;
+}
+body section#pagPesquisa article#relacionadas {
+  margin-bottom: 300px;
 }
 body section#pagFavoritas {
   width: calc(100% - 60px);

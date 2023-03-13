@@ -39,7 +39,7 @@
 
         <section id="MaisTocadas">
             <h1>As mais tocadas</h1>
-            <article>
+            <article class="artigoCentral">
             </article>
         </section>
     </main>
@@ -86,15 +86,116 @@
 
     <!--? Pesquisar -->
     <section id="pagPesquisa" class="paginas">
-        <article id="mlrResutado">
+        <div class="localInputPesquisa" id="localPesquisaSong2">
+            <input type="text" id="pesquisarMusica2" placeholder="A musica que você deseja esta aqui...">
+            <img src="assets/img/icones/PesquisarDoInput.png" alt="ícone pesquisar">
+        </div>
+
+        <h1 class="artigoCentral" id="nehumResultado" style="display: block;">Nehum Resultado Encontrado...</h1>
+
+        <h1 id="h1AutorPesquisa" class="artigoCentral">User</h1>
+        <article id="autorPesquisa">
+            <div id="sobreAutor">
+                <div id="localFotoAutorPesquisa">
+                    <img src="assets/img/icones/icon _profile_.png" id="fotoAutorPesquisa">
+                </div>
+
+                <h1 id="nomeAutorPesquisa">Nome autor</h1>
+            </div>
+
+            <div id="loaclMusicasDoAutorPesquisa">
+                <div class="musicaFavorias" id="musicaAutor1">
+                    <div>
+                        <div class="localImgDivAutorMusicas">
+                            <img src="" id="imgMusicaAutor1">
+                        </div>
+                        <div class="localTextoMscFavoritas" id="localTextoAutor1">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <img src="assets/img/icones/icon _heart_ (1).png">
+                </div>
+                <div class="musicaFavorias" id="musicaAutor2">
+                    <div>
+                        <div class="localImgDivAutorMusicas">
+                            <img src="" id="imgMusicaAutor2">
+                        </div>
+                        <div class="localTextoMscFavoritas" id="localTextoAutor2">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <img src="assets/img/icones/icon _heart_ (1).png">
+                </div>
+                <div class="musicaFavorias" id="musicaAutor3">
+                    <div>
+                        <div class="localImgDivAutorMusicas">
+                            <img src="" id="imgMusicaAutor3">
+                        </div>
+                        <div class="localTextoMscFavoritas" id="localTextoAutor3">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <img src="assets/img/icones/icon _heart_ (1).png">
+                </div>
+                <div class="musicaFavorias" id="musicaAutor4">
+                    <div>
+                        <div class="localImgDivAutorMusicas">
+                            <img src="" id="imgMusicaAutor4">
+                        </div>
+                        <div class="localTextoMscFavoritas" id="localTextoAutor4">
+                            <h3></h3>
+                            <p></p>
+                        </div>
+                    </div>
+                    <img src="assets/img/icones/icon _heart_ (1).png">
+                </div>
+            </div>
+
+        
         </article>
+
+        <h1 id="h1NomeQmPostouPesquisa" class="artigoCentral">Postadas por: <span id="noneDoUserQuePostouPesquisa"></span></h1>
+        <article id="musicasPostadasPeloUserPesquisado" class="artigoCentral">               
+        </article>
+
+        <h1 id="h1MelhorResutado" class="artigoCentral">Melhor Resutado</h1>
+        <article id="localMlhResutado" class="artigoCentral">               
+        </article>
+
+        <h1 id="h1Tipo" class="artigoCentral">Tipo</h1>
+        <article id="TipoPesquisa" class="artigoCentral">
+        </article>
+
+        <h1 id="h1Relacionadas" class="artigoCentral">Relacionadas</h1>
+        <article id="relacionadas" class="artigoCentral">
+        </article>
+        
     </section>
 
+    <!--? pág Bibliotecas -->
     <section id="pagFavoritas" class="paginas">
         <article>
             <div id="headerFavoritas">
                 <img src="assets/img/icones/playFavoritas.png" id="iconePlayFavoritas">
                 <h1>Músicas Curtidas</h1>
+            </div>
+
+            <!--? Musicas Favoritas -->
+            <div id="localMusicasFavoritas">
+
+            </div>
+        </article>
+    </section>
+
+    <!--? pág pessoal user -->
+    <section id="pagPessoalUser" class="paginas">
+        <article>
+            <div id="headerPessalUser">
+                <img src="assets/img/icones/playFavoritas.png" id="iconePlayFavoritas">
+                <h1></h1>
             </div>
 
             <!--? Musicas Favoritas -->

@@ -1,84 +1,153 @@
+@media screen and (max-width: 1473px) {
+  body section .artigoCentral {
+    max-width: 1113px !important;
+    margin: auto !important;
+  }
+}
+@media screen and (max-width: 1296px) {
+  body section .artigoCentral {
+    max-width: 954px !important;
+    margin: auto !important;
+  }
+}
 @media screen and (max-width: 1232px) {
-  section#Recente {
+  body section#Recente {
     max-width: 1200px;
   }
-  section#MaisTocadas article div.musicaMaisTocada {
+  body section#MaisTocadas article div.musicaMaisTocada {
     width: 135px;
   }
 }
 @media screen and (max-width: 1201px) {
-  section#Recente {
+  body section#Recente {
     max-width: 907px;
     margin: auto;
   }
-  section#MaisTocadas {
+  body section#MaisTocadas {
     max-width: 907px;
     margin: auto;
   }
-  section#MaisTocadas article div.musicaMaisTocada {
+  body section#MaisTocadas article div.musicaMaisTocada {
     width: 139px;
   }
 }
+@media screen and (max-width: 1120px) {
+  body section .artigoCentral {
+    max-width: 796px !important;
+    margin: auto !important;
+  }
+}
 @media screen and (max-width: 1062px) {
-  section#Recente {
+  body section#Recente {
     max-width: 752px;
     margin: auto;
   }
-  section#MaisTocadas {
+  body section#MaisTocadas {
     max-width: 752px;
     margin: auto;
+  }
+}
+@media screen and (max-width: 944px) {
+  body section .artigoCentral {
+    max-width: 636px !important;
+    margin: auto !important;
   }
 }
 @media screen and (max-width: 892px) {
-  h1 {
+  body h1 {
     font-size: 15px;
     margin-top: 30px;
   }
-  section#Recente {
+  body section#Recente {
     max-width: 600px;
     margin: auto;
   }
-  section#MaisTocadas {
+  body section#MaisTocadas {
     max-width: 600px;
     margin: auto;
+  }
+  body section#pagPesquisa article#autorPesquisa {
+    height: 200px;
+  }
+  body section#pagPesquisa article#autorPesquisa div#sobreAutor {
+    width: 200px !important;
+  }
+  body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div {
+    height: 20px;
+  }
+  body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div div.localImgDivAutorMusicas img {
+    width: 40px !important;
+    height: 30px !important;
+  }
+  body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa img {
+    width: 20px !important;
+  }
+}
+@media screen and (max-width: 770px) {
+  body section .artigoCentral {
+    max-width: 478px !important;
+    margin: auto !important;
   }
 }
 @media screen and (max-width: 723px) {
-  section#Recente {
+  body section#Recente {
     max-width: 445px;
     margin: auto;
   }
-  section#MaisTocadas {
+  body section#MaisTocadas {
     max-width: 445px;
     margin: auto;
+  }
+}
+@media screen and (max-width: 593px) {
+  body section .artigoCentral {
+    max-width: 421px !important;
+    margin: auto;
+  }
+  body section .artigoCentral div.musicaMaisTocada {
+    width: 120px !important;
+    height: 180px !important;
+  }
+  body section .artigoCentral div.musicaMaisTocada div.localImgMaisTocada {
+    width: 90% !important;
+    height: 100px !important;
+  }
+  body section .artigoCentral div.musicaMaisTocada h3 {
+    white-space: nowrap !important;
   }
 }
 @media screen and (max-width: 552px) {
-  section#Recente {
+  body section#Recente {
     max-width: 388px;
     margin: auto;
   }
-  section#MaisTocadas {
+  body section#MaisTocadas {
     max-width: 388px;
   }
-  section#MaisTocadas article div.musicaMaisTocada {
+  body section#MaisTocadas article div.musicaMaisTocada {
     width: 120px;
     height: 180px;
   }
-  section#MaisTocadas article div.musicaMaisTocada div.localImgMaisTocada {
+  body section#MaisTocadas article div.musicaMaisTocada div.localImgMaisTocada {
     width: 90%;
     height: 100px;
   }
-  section#MaisTocadas article div.musicaMaisTocada h3 {
+  body section#MaisTocadas article div.musicaMaisTocada h3 {
     white-space: nowrap;
   }
 }
+@media screen and (max-width: 529px) {
+  body section .artigoCentral {
+    max-width: 289px !important;
+    margin: auto !important;
+  }
+}
 @media screen and (max-width: 489px) {
-  section#Recente {
+  body section#Recente {
     max-width: 257px;
     margin: auto;
   }
-  section#MaisTocadas {
+  body section#MaisTocadas {
     max-width: 257px;
     margin: auto;
   }

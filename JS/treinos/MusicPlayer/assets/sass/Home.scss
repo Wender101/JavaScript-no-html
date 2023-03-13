@@ -186,7 +186,6 @@ body {
         top: 0px;
         right: 0px;
         display: none;
-        background-color: $cor5;
         overflow: auto;
         z-index: 2;
 
@@ -232,7 +231,7 @@ body {
                         width: calc(100% - 72px);
                         border: none;
                         padding: 11px 23px;
-                        background-color: rgba(75, 75, 75, 0.4705882353);
+                        background-color: $cor7;
                         display: block;
                         border-radius: 24px;
                         padding-left: 50px;
@@ -312,14 +311,160 @@ body {
         display: none;
         overflow: auto;
         z-index: 2;
-        background-color: $cor5;
+        padding: 100px 0px;
         
-        article {
+        h1 {
             max-width: 1288px;
             width: 90%;
             height: auto;
-            margin: 150px auto 38px;
+            margin: 30px auto 10px;
             color: $white;
+            display: none;
+
+            span {
+                color: $cor1;
+            }
+        }
+
+        
+        article {
+            max-width: 1288px;
+            height: auto;
+            margin: 0px auto 10px;
+            color: $white;
+            width: 90%;
+            display: none;
+            
+            div.musicaMaisTocada { 
+                margin: 5px 10px;
+                display: inline-block;
+            }
+            
+            div {
+                width: 139px;
+                height: 192px;
+                background-color: $cor7;
+                overflow: hidden;
+                cursor: pointer;
+                
+                div.localImgMaisTocada {
+                    width: 118px;
+                    height: 107px;
+                    background-color: #fff;
+                    margin: 12px auto;
+
+                    img {
+                        width: 100%;
+                        height: 100%;
+                        object-fit: cover;
+                    }
+                }
+
+                h3 {
+                    width: 118px;
+                    max-height: 32px;
+                    font-size: 12px;
+                    margin: 2px auto;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+
+                p {
+                    width: 118px;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    font-size: 12px;
+                    margin: auto;
+                    color: #636363;
+                }
+            }
+        }
+
+        article#autorPesquisa {
+            width: 90%;
+            height: 250px;
+            margin: 0px auto 20px;
+            display: none;
+            background-color: transparent;
+
+            
+            div#sobreAutor {
+                width: 250px;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                border-radius: 10px;
+                margin-right: 20px;
+                background-color: $cor5;
+                gap: 30px;
+                
+                h1 {
+                    width: auto;
+                    max-width: auto;
+                    margin: 0px;
+                }
+
+                div#localFotoAutorPesquisa {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    
+                    img {
+                        width: 80%;
+                        height: 80%;
+                        object-fit: contain;
+                        object-position: center;
+                    }
+                }
+            }
+
+            div#loaclMusicasDoAutorPesquisa {
+                width: calc(100% - 250px);
+                height: 100%;
+                justify-content: space-between;
+                background-color: $cor3;
+
+                div#musicaAutor1, div#musicaAutor2, div#musicaAutor3, div#musicaAutor4 {
+                    display: none;
+                }
+                
+                div {
+                    width: calc(100% - 20px);
+                    padding: 10px;
+                    height: 40px;
+                    display: flex;
+                    align-items: center;
+                    background-color: $cor5 !important;
+
+                    div {
+                        div.localImgDivAutorMusicas {
+                            width: 50px;
+                            height: 40px;
+    
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                object-fit: cover;
+                            }
+                        }
+    
+                    }
+                    
+                    img {
+                        width: 20px;
+                    }
+                }
+            }
+        }
+
+        article#relacionadas {
+            margin-bottom: 300px;
         }
     }
 

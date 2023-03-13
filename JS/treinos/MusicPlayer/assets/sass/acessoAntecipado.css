@@ -30,8 +30,9 @@
     color: #636363;
   }
 }
-div#localPesquisaSong {
+div#localPesquisaSong, div#localPesquisaSong2 {
   position: absolute;
+  z-index: 2;
 }
 
 div.localInputPesquisa {
@@ -45,7 +46,7 @@ div.localInputPesquisa {
   top: 15px;
   transform: translate(-50%);
 }
-div.localInputPesquisa input#pesquisarMusica {
+div.localInputPesquisa input {
   max-width: 900px;
   width: calc(100% - 72px);
   border: none;
@@ -55,7 +56,7 @@ div.localInputPesquisa input#pesquisarMusica {
   border-radius: 24px;
   padding-left: 50px;
 }
-div.localInputPesquisa input#pesquisarMusica:focus {
+div.localInputPesquisa input:focus {
   box-shadow: 0;
   outline: 0;
 }
