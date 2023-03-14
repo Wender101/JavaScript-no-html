@@ -23,8 +23,14 @@ function login() {
 
 let email
 auth.onAuthStateChanged((val) => {
+    if(val == null || val == undefined) {
+        irParaOacessoAntecipado()
+    }
+    
     if(val.email) {
         email = val.email
+        
+        document.querySelector('#carregando').style.display = 'none'
 
         if(logado == true) {
             trocarDeConta = false
@@ -79,6 +85,24 @@ function irParaPagPrincipal() {
     } else if(location.href == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Cadastro.html' || location.href == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Acesso-Antecipado.html') {
         setTimeout(() => {
             location.href = 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Home.html'
+        }, 1000)
+        setTimeout(() => {
+            location.reload()
+        }, 2000)
+    }
+}
+
+function irParaOacessoAntecipado() {
+    if(location.href == 'http://127.0.0.1:5500/Home.html') {
+        setTimeout(() => {
+            location.href = 'http://127.0.0.1:5500/Acesso-Antecipado.html'
+        }, 1000)
+        setTimeout(() => {
+            location.reload()
+        }, 2000)
+    } else if(location.href == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Home.html') {
+        setTimeout(() => {
+            location.href = 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Acesso-Antecipado.html'
         }, 1000)
         setTimeout(() => {
             location.reload()
