@@ -89,7 +89,7 @@ div.localInputPesquisa img {
 }
 
 #carregando {
-    display: flex;
+  display: flex;
 }
 
 section.carregando > article {

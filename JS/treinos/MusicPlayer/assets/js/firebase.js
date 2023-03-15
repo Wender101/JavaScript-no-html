@@ -26,10 +26,10 @@ auth.onAuthStateChanged((val) => {
     if(val == null || val == undefined) {
         irParaOacessoAntecipado()
     }
-    
+
     if(val.email) {
         email = val.email
-        
+
         document.querySelector('#carregando').style.display = 'none'
 
         if(logado == true) {

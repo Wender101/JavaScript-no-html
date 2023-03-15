@@ -88,6 +88,10 @@ div.localInputPesquisa img {
   z-index: 10;
 }
 
+#carregando {
+  display: flex;
+}
+
 section.carregando > article {
   width: 80%;
   color: #fff;
@@ -146,6 +150,10 @@ section.carregando > article {
 /* end: Preloader */
 audio {
   display: none;
+}
+
+.paginas {
+  background-color: rgb(24, 24, 24);
 }
 
 body {

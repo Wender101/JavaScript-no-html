@@ -6,6 +6,7 @@ inputPesquisa.addEventListener('keydown', (e) => {
         document.querySelector('#localMlhResutado').innerHTML = ''
         document.querySelector('#relacionadas').innerHTML = ''
         document.querySelector('#TipoPesquisa').innerHTML = ''
+        document.querySelector('#musicasPostadasPeloUserPesquisado').innerHTML = ''
 
         document.querySelector('#localMlhResutado').style.display = 'none'
         document.querySelector('#relacionadas').style.display = 'none'
@@ -48,6 +49,7 @@ inputPesquisa2.addEventListener('keydown', (e) => {
         document.querySelector('#localMlhResutado').innerHTML = ''
         document.querySelector('#relacionadas').innerHTML = ''
         document.querySelector('#TipoPesquisa').innerHTML = ''
+        document.querySelector('#musicasPostadasPeloUserPesquisado').innerHTML = ''
 
         document.querySelector('#localMlhResutado').style.display = 'none'
         document.querySelector('#relacionadas').style.display = 'none'
@@ -121,10 +123,96 @@ function pesquisar(pesquisa) {
 
                 //? Funções de click
                 musicaMaisTocada.addEventListener('click', () => {
+                    numSelecionado = contador
+
+                    //! Vai criar uma lista das músicas escutadas
+                    let listaCheckRecentes = listaMusicasRecentes //? Vai checar se há recentes repetidos
+
+                    let jaTemEssaMusica = false
+                    let addMusicaEmRecentes = false
+                    
+                    //? Vai checar se a música que está tocando já foi adicionada as músicas curtidas
+                    db.collection('Usuarios').onSnapshot((data) => {
+                        data.docs.map(function(valor) {
+                            let Usuarios = valor.data()
+
+                            
+                            if(Usuarios.infUser.Email == email) {
+                                idLocalUser = valor.id
+                                MusicasFavoritasLista = Usuarios.Musica
+                                let musicasFavoritas = Usuarios.Musica
+                                let musicaEstaEmFavoritos = false
+
+                                document.querySelector('#carregando2').style.display = 'none'
+
+                                try {
+                                    for(let contadorFavoritas = 0; contadorFavoritas < Usuarios.Musica.MusicasCurtidas.length; contadorFavoritas++) {
+                                        if(musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeMusica == TodasAsMusicas.Musicas[c].NomeMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeAutor == TodasAsMusicas.Musicas[c].NomeAutor && musicasFavoritas.MusicasCurtidas[contadorFavoritas].EmailUser == TodasAsMusicas.Musicas[c].EmailUser && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkImgiMusica == TodasAsMusicas.Musicas[c].LinkImgiMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkAudio == TodasAsMusicas.Musicas[c].LinkAudio) {
+                                            musicaEstaEmFavoritos = true
+                                            hearAdd.src = 'assets/img/icones/icon _heart_.png'
+                                        }
+                                        
+                                        setTimeout(() => {
+                                            if(musicaEstaEmFavoritos == false) {
+                                                hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'
+                                            }
+                                        }, 200)
+                                    }
+                                } catch{}
+                            }
+                        })
+                    })
+                    if(listaMusicasRecentes.length <= 0) {
+                        let formaLista =  {
+                            NomeMusica: TodasAsMusicas.Musicas[contador].NomeMusica,
+                            NomeAutor: TodasAsMusicas.Musicas[contador].NomeAutor,
+                            Tipo: TodasAsMusicas.Musicas[contador].Tipo,
+                            LinkAudio: TodasAsMusicas.Musicas[contador].LinkAudio,
+                            LinkImgiMusica: TodasAsMusicas.Musicas[contador].LinkImgiMusica,
+                            EmailUser: TodasAsMusicas.Musicas[contador].EmailUser,
+                            EstadoMusica: TodasAsMusicas.Musicas[contador].EstadoMusica,
+                        }
+    
+                        listaMusicasRecentes.push(formaLista)
+                        criarRecentes(listaMusicasRecentes)
+    
+                    } else if(listaMusicasRecentes.length > 0) {
+                        for(let b = 0; b < listaMusicasRecentes.length; b++) {
+                            if(listaMusicasRecentes.length == 9) {
+                                listaMusicasRecentes.splice(0, 1)
+                            }
+    
+                            if(listaCheckRecentes[b].LinkImgiMusica == TodasAsMusicas.Musicas[contador].LinkImgiMusica && TodasAsMusicas.Musicas[contador].NomeMusica) {
+                                jaTemEssaMusica = true
+                            }
+    
+                            setTimeout(() => {
+                                if(jaTemEssaMusica == false) {
+                                    let formaLista =  {
+                                        NomeMusica: TodasAsMusicas.Musicas[contador].NomeMusica,
+                                        NomeAutor: TodasAsMusicas.Musicas[contador].NomeAutor,
+                                        Tipo: TodasAsMusicas.Musicas[contador].Tipo,
+                                        LinkAudio: TodasAsMusicas.Musicas[contador].LinkAudio,
+                                        LinkImgiMusica: TodasAsMusicas.Musicas[contador].LinkImgiMusica,
+                                        EmailUser: TodasAsMusicas.Musicas[contador].EmailUser,
+                                        EstadoMusica: TodasAsMusicas.Musicas[contador].EstadoMusica,
+                                    }
+                
+                                    if(addMusicaEmRecentes == false) {
+                                        addMusicaEmRecentes = true
+                                        listaMusicasRecentes.push(formaLista)
+                                        criarRecentes(listaMusicasRecentes)
+                                    }
+                                }
+                            }, 100)
+                        }
+                    }
+
                     darPlayNaMusica(TodasAsMusicas.Musicas[contador])
                 })
-            }
+            } //! Fim da function ----------------------
 
+            let feitoPesquisarUser = false
             for(let c = 0; c < TodasAsMusicas.Musicas.length; c++) {
                 pesquisa = pesquisa.toLocaleLowerCase()
                 pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
@@ -136,81 +224,180 @@ function pesquisar(pesquisa) {
                 Autor = Autor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
                 Autor = Autor.replace(/\s/g, '') //? Vai remover os espaços
 
-                db.collection('Usuarios').onSnapshot((data) => {
-                    data.docs.map(function(valor) {
-                        let Usuarios = valor.data()
-
-                        let nomeAutor = Usuarios.infUser.Nome.toLocaleLowerCase()
-                        nomeAutor = nomeAutor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                        nomeAutor = nomeAutor.replace(/\s/g, '') //? Vai remover os espaços
-        
-                        if(nomeAutor.includes(pesquisa)) {
-                            for(let b = 0; b < Usuarios.Musica.MusicasPostadas.length; b++) {
-                                if(contadorMusicasAutor < 4) {
-                                    contadorMusicasAutor++
-                                    document.querySelector('#nehumResultado').style.display = 'none'
-                                    document.querySelector('#pagPesquisa').style.display = 'block'
-                                    document.querySelector('#h1AutorPesquisa').style.display = 'block'
-                                    document.querySelector('#autorPesquisa').style.display = 'flex'
-                                    document.querySelector(`#musicaAutor${b + 1}`).style.display = 'flex'
-                                    
-                                    let musicaAutor = document.querySelector(`#musicaAutor${contadorMusicasAutor}`)
-                                    let img = document.querySelector(`#imgMusicaAutor${contadorMusicasAutor}`)
-                                    let h3 = document.querySelector(`#localTextoAutor${contadorMusicasAutor}`).querySelector('h3')
-                                    let p = document.querySelector(`#localTextoAutor${contadorMusicasAutor}`).querySelector('p')
-
-                                    img.src = Usuarios.Musica.MusicasPostadas[b].LinkImgiMusica
-                                    h3.innerText = Usuarios.Musica.MusicasPostadas[b].NomeMusica
-                                    p.innerText = Usuarios.Musica.MusicasPostadas[b].NomeAutor
-
-                                    document.querySelector('#nomeAutorPesquisa').innerText = Usuarios.infUser.Nome
-                                    document.querySelector('#nomeAutorPesquisa').style.display = 'block'
-
-                                    clonePerfilUserPesquisado = Usuarios
-
-                                    musicaAutor.addEventListener('click', () => {
-                                        darPlayNaMusica(Usuarios.Musica.MusicasPostadas[b])
-                                    })
-                                }
-
-                                //! -------------------------------- Vai mostrar as músicas postadas pelo user pesquisado
-                                if(userPesquisado == false) {
-                                    let musicaMaisTocada = document.createElement('div')
-                                    let localImgMaisTocada = document.createElement('div')
-                                    let img = document.createElement('img')
-                                    let nomeMusicaMaisTocada = document.createElement('h3')
-                                    let nomeAutorMaisTocada = document.createElement('p')
-
-                                    musicaMaisTocada.className = 'musicaMaisTocada'
-                                    localImgMaisTocada.className = 'localImgMaisTocada'
-                                    nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
-                                    nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
-
-                                    img.src = Usuarios.Musica.MusicasPostadas[b].LinkImgiMusica
-                                    nomeMusicaMaisTocada.innerText = Usuarios.Musica.MusicasPostadas[b].NomeMusica
-                                    nomeAutorMaisTocada.innerText = Usuarios.Musica.MusicasPostadas[b].NomeAutor
-
-                                    localImgMaisTocada.appendChild(img)
-                                    musicaMaisTocada.appendChild(localImgMaisTocada)
-                                    musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
-                                    musicaMaisTocada.appendChild(nomeAutorMaisTocada)
-
-                                    document.querySelector('#noneDoUserQuePostouPesquisa').innerText = Usuarios.infUser.Nome
-                                    document.querySelector('#h1NomeQmPostouPesquisa').style.display = 'block'
-                                    document.querySelector('#musicasPostadasPeloUserPesquisado').style.display = 'block'
-                                    document.querySelector('#musicasPostadasPeloUserPesquisado').appendChild(musicaMaisTocada)
-
-                                    //? Funções de click
-                                    musicaMaisTocada.addEventListener('click', () => {
-                                        darPlayNaMusica(Usuarios.Musica.MusicasPostadas[b])
-                                    })
+                if(feitoPesquisarUser == false) {
+                    feitoPesquisarUser = true
+                    db.collection('Usuarios').onSnapshot((data) => {
+                        data.docs.map(function(valor) {
+                            let Usuarios = valor.data()
+    
+                            let nomeAutor = Usuarios.infUser.Nome.toLocaleLowerCase()
+                            nomeAutor = nomeAutor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                            nomeAutor = nomeAutor.replace(/\s/g, '') //? Vai remover os espaços
+            
+                            if(nomeAutor.includes(pesquisa)) {
+                                for(let c2 = 0; c2 < Usuarios.Musica.MusicasPostadas.length; c2++) {
+                                    if(contadorMusicasAutor < 4) {
+                                        contadorMusicasAutor++
+                                        document.querySelector('#nehumResultado').style.display = 'none'
+                                        document.querySelector('#pagPesquisa').style.display = 'block'
+                                        document.querySelector('#h1AutorPesquisa').style.display = 'block'
+                                        document.querySelector('#autorPesquisa').style.display = 'flex'
+                                        document.querySelector(`#musicaAutor${c2 + 1}`).style.display = 'flex'
+                                        
+                                        let musicaAutor = document.querySelector(`#musicaAutor${contadorMusicasAutor}`)
+                                        let img = document.querySelector(`#imgMusicaAutor${contadorMusicasAutor}`)
+                                        let h3 = document.querySelector(`#localTextoAutor${contadorMusicasAutor}`).querySelector('h3')
+                                        let p = document.querySelector(`#localTextoAutor${contadorMusicasAutor}`).querySelector('p')
+    
+                                        img.src = Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica
+                                        h3.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeMusica
+                                        p.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeAutor
+    
+                                        document.querySelector('#nomeAutorPesquisa').innerText = Usuarios.infUser.Nome
+                                        document.querySelector('#nomeAutorPesquisa').style.display = 'block'
+    
+                                        clonePerfilUserPesquisado = Usuarios
+    
+                                        //!-
+                                        musicaAutor.addEventListener('click', () => {
+                                            darPlayNaMusica(Usuarios.Musica.MusicasPostadas[c2])
+                                            let musicaEncontrda = false
+    
+                                            db.collection('TodasAsMusicas').onSnapshot((data) => {
+                                                data.docs.map(function(valor) {
+                                                    let TodasAsMusicas = valor.data()
+    
+                                                    for(let c3 = 0; c3 < TodasAsMusicas.Musicas.length; c3++) {
+                                                        if(TodasAsMusicas.Musicas[c3].Email == Usuarios.Musica.MusicasPostadas[c2].Email && TodasAsMusicas.Musicas[c3].LinkImgiMusica == Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica && TodasAsMusicas.Musicas[c3].LinkAudio == Usuarios.Musica.MusicasPostadas[c2].LinkAudio && TodasAsMusicas.Musicas[c3].NomeMusica == Usuarios.Musica.MusicasPostadas[c2].NomeMusica && musicaEncontrda == false) {
+                                                            musicaEncontrda = true
+                                                            numSelecionado = c3
+                                                        }
+                                                    }
+                                                })
+                                            })
+    
+                                            //! Vai criar uma lista das músicas escutadas
+                                            let listaCheckRecentes = listaMusicasRecentes //? Vai checar se há recentes repetidos
+    
+                                            let jaTemEssaMusica = false
+                                            let addMusicaEmRecentes = false
+                                            
+                                            //? Vai checar se a música que está tocando já foi adicionada as músicas curtidas
+                                            db.collection('Usuarios').onSnapshot((data) => {
+                                                data.docs.map(function(valor) {
+                                                    let Usuarios = valor.data()
+    
+                                                    
+                                                    if(Usuarios.infUser.Email == email) {
+                                                        idLocalUser = valor.id
+                                                        MusicasFavoritasLista = Usuarios.Musica
+                                                        let musicasFavoritas = Usuarios.Musica
+                                                        let musicaEstaEmFavoritos = false
+    
+                                                        document.querySelector('#carregando2').style.display = 'none'
+    
+                                                        try {
+                                                            for(let contadorFavoritas = 0; contadorFavoritas < Usuarios.Musica.MusicasCurtidas.length; contadorFavoritas++) {
+                                                                if(musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeMusica == TodasAsMusicas.Musicas[c].NomeMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeAutor == TodasAsMusicas.Musicas[c].NomeAutor && musicasFavoritas.MusicasCurtidas[contadorFavoritas].EmailUser == TodasAsMusicas.Musicas[c].EmailUser && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkImgiMusica == TodasAsMusicas.Musicas[c].LinkImgiMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkAudio == TodasAsMusicas.Musicas[c].LinkAudio) {
+                                                                    musicaEstaEmFavoritos = true
+                                                                    hearAdd.src = 'assets/img/icones/icon _heart_.png'
+                                                                }
+                                                                
+                                                                setTimeout(() => {
+                                                                    if(musicaEstaEmFavoritos == false) {
+                                                                        hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'
+                                                                    }
+                                                                }, 200)
+                                                            }
+                                                        } catch{}
+                                                    }
+                                                })
+                                            })
+                                            if(listaMusicasRecentes.length <= 0) {
+                                                let formaLista =  {
+                                                    NomeMusica: Usuarios.Musica.MusicasPostadas[c2].NomeMusica,
+                                                    NomeAutor: Usuarios.Musica.MusicasPostadas[c2].NomeAutor,
+                                                    Tipo: Usuarios.Musica.MusicasPostadas[c2].Tipo,
+                                                    LinkAudio: Usuarios.Musica.MusicasPostadas[c2].LinkAudio,
+                                                    LinkImgiMusica: Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica,
+                                                    EmailUser: Usuarios.Musica.MusicasPostadas[c2].EmailUser,
+                                                    EstadoMusica: Usuarios.Musica.MusicasPostadas[c2].EstadoMusica,
+                                                }
+                            
+                                                listaMusicasRecentes.push(formaLista)
+                                                criarRecentes(listaMusicasRecentes)
+                            
+                                            } else if(listaMusicasRecentes.length > 0) {
+                                                for(let b = 0; b < listaMusicasRecentes.length; b++) {
+                                                    if(listaMusicasRecentes.length == 9) {
+                                                        listaMusicasRecentes.splice(0, 1)
+                                                    }
+                            
+                                                    if(listaCheckRecentes[b].LinkImgiMusica == Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica && Usuarios.Musica.MusicasPostadas[c2].NomeMusica) {
+                                                        jaTemEssaMusica = true
+                                                    }
+                            
+                                                    setTimeout(() => {
+                                                        if(jaTemEssaMusica == false) {
+                                                            let formaLista =  {
+                                                                NomeMusica: Usuarios.Musica.MusicasPostadas[c2].NomeMusica,
+                                                                NomeAutor: Usuarios.Musica.MusicasPostadas[c2].NomeAutor,
+                                                                Tipo: Usuarios.Musica.MusicasPostadas[c2].Tipo,
+                                                                LinkAudio: Usuarios.Musica.MusicasPostadas[c2].LinkAudio,
+                                                                LinkImgiMusica: Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica,
+                                                                EmailUser: Usuarios.Musica.MusicasPostadas[c2].EmailUser,
+                                                                EstadoMusica: Usuarios.Musica.MusicasPostadas[c2].EstadoMusica,
+                                                            }
+                                        
+                                                            if(addMusicaEmRecentes == false) {
+                                                                addMusicaEmRecentes = true
+                                                                listaMusicasRecentes.push(formaLista)
+                                                                criarRecentes(listaMusicasRecentes)
+                                                            }
+                                                        }
+                                                    }, 100)
+                                                }
+                                            }
+                                        })
+                                    }
+    
+                                    //! -------------------------------- Vai mostrar as músicas postadas pelo user pesquisado
+                                    if(userPesquisado == false) {
+                                        let musicaMaisTocada = document.createElement('div')
+                                        let localImgMaisTocada = document.createElement('div')
+                                        let img = document.createElement('img')
+                                        let nomeMusicaMaisTocada = document.createElement('h3')
+                                        let nomeAutorMaisTocada = document.createElement('p')
+    
+                                        musicaMaisTocada.className = 'musicaMaisTocada'
+                                        localImgMaisTocada.className = 'localImgMaisTocada'
+                                        nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
+                                        nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
+    
+                                        img.src = Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica
+                                        nomeMusicaMaisTocada.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeMusica
+                                        nomeAutorMaisTocada.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeAutor
+    
+                                        localImgMaisTocada.appendChild(img)
+                                        musicaMaisTocada.appendChild(localImgMaisTocada)
+                                        musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
+                                        musicaMaisTocada.appendChild(nomeAutorMaisTocada)
+    
+                                        document.querySelector('#noneDoUserQuePostouPesquisa').innerText = Usuarios.infUser.Nome
+                                        document.querySelector('#h1NomeQmPostouPesquisa').style.display = 'block'
+                                        document.querySelector('#musicasPostadasPeloUserPesquisado').style.display = 'block'
+                                        document.querySelector('#musicasPostadasPeloUserPesquisado').appendChild(musicaMaisTocada)
+    
+                                        //? Funções de click
+                                        musicaMaisTocada.addEventListener('click', () => {
+                                            darPlayNaMusica(Usuarios.Musica.MusicasPostadas[c2])
+                                        })
+                                    }
                                 }
                             }
-
-                            userPesquisado = true
-                        }
+                        })
                     })
-                })
+                }
 
 
                 //! - Vai pesquisar pelo nome da música e nome do autor
