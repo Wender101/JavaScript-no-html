@@ -208,8 +208,8 @@ body nav ul li button#HomeBtn {
 body nav ul li button#BibliotecaBtn {
   background-image: url(../img/icones/biblioteca.png);
 }
-body nav ul li button#PesquisaBtn {
-  background-image: url(../img/icones/pesquisar.png);
+body nav ul li button#PagPessoal {
+  background-image: url(../img/icones/icon\ _profile_.png);
 }
 body nav ul li button#AddMusicaBtn {
   background-image: url(../img/icones/addMusic.png);
@@ -583,6 +583,7 @@ body section#pagFavoritas article div#headerFavoritas {
 }
 body section#pagFavoritas article div#headerFavoritas img {
   cursor: pointer;
+  border-radius: 40px;
 }
 body section#pagFavoritas article div#headerFavoritas h1 {
   font-size: 96px;
@@ -630,6 +631,115 @@ body section#pagFavoritas article div.musicaFavorias div div.localTextoMscFavori
   color: rgba(255, 255, 255, 0.4705882353);
 }
 body section#pagFavoritas article div.musicaFavorias img {
+  width: 23px;
+  height: 20px;
+}
+body section#pagPessoalUser {
+  width: calc(100% - 60px);
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  display: none;
+  overflow: auto;
+  z-index: 2;
+  background-color: #181818;
+}
+body section#pagPessoalUser article {
+  width: 100%;
+  min-height: calc(100vh + 110px);
+  padding-bottom: 100px;
+}
+body section#pagPessoalUser article div#headerPessalUser {
+  width: calc(100% - 70px);
+  height: 192px;
+  display: flex;
+  align-items: end;
+  padding: 35px 35px 67px 35px;
+  background-color: #272727;
+  position: relative;
+  margin-bottom: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+body section#pagPessoalUser article div#headerPessalUser img#imgUserPagPessoal {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  border-radius: 50%;
+  background-color: #0DCBA9;
+  -o-object-fit: cover;
+     object-fit: cover;
+  padding: 20px;
+  position: absolute;
+  bottom: -50px;
+}
+body section#pagPessoalUser article div#headerPessalUser div {
+  width: 500px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0px 0px -30px -100px;
+}
+body section#pagPessoalUser article div#headerPessalUser div img#imgPerfilUserPagPessoal {
+  width: 100px;
+  height: 100px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  position: relative;
+  margin: auto;
+  background-color: #0DCBA9;
+  border-radius: 50%;
+  padding: 20px;
+}
+body section#pagPessoalUser article div#headerPessalUser div h1 {
+  font-size: 66px;
+  color: #fff;
+  font-family: "Carter One", cursive;
+}
+body section#pagPessoalUser div.musicaPostadaUser {
+  width: calc(100% - 70px);
+  display: flex;
+  color: #fff;
+  align-items: center;
+  justify-content: space-between;
+  font-family: "Rubik", sans-serif;
+  padding: 23px 35px;
+  border-bottom: 1px solid #fff;
+  cursor: pointer;
+}
+body section#pagPessoalUser div.musicaPostadaUser div {
+  display: flex;
+  align-items: center;
+}
+body section#pagPessoalUser div.musicaPostadaUser div div.localMusicaPostadaUser {
+  width: 64px;
+  height: 64px;
+}
+body section#pagPessoalUser div.musicaPostadaUser div div.localMusicaPostadaUser img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body section#pagPessoalUser div.musicaPostadaUser div div.localTextoPostadoUser {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 11px;
+  margin-left: 15px;
+}
+body section#pagPessoalUser div.musicaPostadaUser div div.localTextoPostadoUser h3 {
+  font-size: 13px;
+}
+body section#pagPessoalUser div.musicaPostadaUser div div.localTextoPostadoUser p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4705882353);
+}
+body section#pagPessoalUser div.musicaPostadaUser img {
   width: 23px;
   height: 20px;
 }
@@ -686,7 +796,7 @@ body section#menuTocandoMusica div#parteNomeMusica img#hearAdd {
   margin-bottom: -20px;
 }
 body section#menuTocandoMusica div#parteCentralConfigMusica div {
-  width: 118px;
+  width: 180px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -695,10 +805,13 @@ body section#menuTocandoMusica div#parteCentralConfigMusica div {
 body section#menuTocandoMusica div#parteCentralConfigMusica div button {
   background-color: transparent;
   border: none;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 body section#menuTocandoMusica div#parteCentralConfigMusica div button#back {
-  width: 26px;
-  height: 21px;
+  width: 36px;
+  height: 31px;
   background-image: url(../img/icones/back.png);
 }
 body section#menuTocandoMusica div#parteCentralConfigMusica div button#play {
@@ -707,9 +820,19 @@ body section#menuTocandoMusica div#parteCentralConfigMusica div button#play {
   background-image: url(../img/icones/pause.png);
 }
 body section#menuTocandoMusica div#parteCentralConfigMusica div button#next {
-  width: 26px;
-  height: 21px;
+  width: 36px;
+  height: 31px;
   background-image: url(../img/icones/next.png);
+}
+body section#menuTocandoMusica div#parteCentralConfigMusica div button#repetir {
+  width: 15px;
+  height: 15px;
+  background-image: url(../img/icones/icon\ _repeat_.png);
+}
+body section#menuTocandoMusica div#parteCentralConfigMusica div button#aleatorio {
+  width: 15px;
+  height: 15px;
+  background-image: url(../img/icones/icon\ _repeat_.png);
 }
 body section#menuTocandoMusica div#parteCentralConfigMusica div#barraTime {
   width: 485px;

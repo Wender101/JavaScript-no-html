@@ -440,9 +440,106 @@ function pesquisar(pesquisa) {
     })
 }
 
+let imgUserPessoalClicado = false
 //? Vai ir para a pág pessoal do User pesquisado
 let sobreAutor = document.querySelector('#sobreAutor').addEventListener('click', () => {
-    console.log(clonePerfilUserPesquisado)
+    let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
+    localMusicasUserPagPessoal.innerHTML = ''
+
+    document.querySelector('#pagPessoalUser').style.display = 'block'
+    try {
+        document.querySelector('#headerPessalUser').style.backgroundImage = `url(${clonePerfilUserPesquisado.infUser.ImgParedePerfil})`
+    } catch{}
+
+
+    let imgPerfilUserPagPessoal = document.querySelector('#imgPerfilUserPagPessoal')
+    try {
+        if(clonePerfilUserPesquisado.infUser.FotoPerfil != undefined) {
+            imgPerfilUserPagPessoal.src = clonePerfilUserPesquisado.infUser.FotoPerfil
+            imgPerfilUserPagPessoal.style.padding = '0px'
+            imgPerfilUserPagPessoal.style.width = '140px'
+            imgPerfilUserPagPessoal.style.height = '140px'
+            imgPerfilUserPagPessoal.style.objectFit = 'cover'
+
+
+        } else {
+            imgPerfilUserPagPessoal.src = 'assets/img/icones/icon _profile_.png'
+            imgPerfilUserPagPessoal.style.padding = '20px'
+            imgPerfilUserPagPessoal.style.width = '100px'
+            imgPerfilUserPagPessoal.style.height = '100px'
+            imgPerfilUserPagPessoal.style.objectFit = 'contain'
+        }
+    } catch{}
+
+    document.querySelector('#nomeUserPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Nome
+
+    for(let c = 0; c < clonePerfilUserPesquisado.Musica.MusicasPostadas.length; c++) {
+
+        let musicaPostadaUser = document.createElement('div')
+        let localMusicaPostadaUser = document.createElement('div')
+        let div = document.createElement('div')
+        let img = document.createElement('img')
+        let localTextoPostadoUser = document.createElement('div')
+        let h3 = document.createElement('h3')
+        let p = document.createElement('p')
+        let heart = document.createElement('img')
+
+        musicaPostadaUser.className = 'musicaPostadaUser'
+        localMusicaPostadaUser.className = 'localMusicaPostadaUser'
+        localTextoPostadoUser.className = 'localTextoPostadoUser'
+
+        img.src = clonePerfilUserPesquisado.Musica.MusicasPostadas[c].LinkImgiMusica
+        h3.innerText = clonePerfilUserPesquisado.Musica.MusicasPostadas[c].NomeMusica
+        p.innerText = clonePerfilUserPesquisado.Musica.MusicasPostadas[c].NomeAutor
+        heart.src = 'assets/img/icones/icon _heart_ (1).png'
+
+        localMusicaPostadaUser.appendChild(img)
+        localTextoPostadoUser.appendChild(h3)
+        localTextoPostadoUser.appendChild(p)
+        div.appendChild(localMusicaPostadaUser)
+        div.appendChild(localTextoPostadoUser)
+        musicaPostadaUser.appendChild(div)
+        musicaPostadaUser.appendChild(heart)
+        localMusicasUserPagPessoal.appendChild(musicaPostadaUser)
+
+        db.collection('TodasAsMusicas').onSnapshot((data) => {
+            data.docs.map(function(valor) {
+                let TodasAsMusicas = valor.data()
+                
+                div.addEventListener('click', () => {
+                    numMusicaSequencia = c
+                    passarMusicaPerfilPessoal()
+                })
+
+                //? Ao clicar no icode de start
+                let imgUserPagPessoal = document.querySelector('#imgUserPagPessoal')
+                imgUserPagPessoal.addEventListener('click', () => {
+                    if(imgUserPessoalClicado == false) {
+                        imgUserPessoalClicado = true
+
+                        c = 0
+                        passarMusicaPerfilPessoal()
+                        audio.play()
+
+                        setTimeout(() => {
+                            imgUserPessoalClicado = false
+                        }, 100)
+                    }
+                })
+
+                function passarMusicaPerfilPessoal() {
+                    for(let b = 0; b < TodasAsMusicas.Musicas.length; b++) {
+                        if(clonePerfilUserPesquisado.Musica.MusicasPostadas[c].NomeMusica == TodasAsMusicas.Musicas[b].NomeMusica && clonePerfilUserPesquisado.Musica.MusicasPostadas[c].NomeAutor == TodasAsMusicas.Musicas[b].NomeAutor && clonePerfilUserPesquisado.Musica.MusicasPostadas[c].EmailUser == TodasAsMusicas.Musicas[b].EmailUser && clonePerfilUserPesquisado.Musica.MusicasPostadas[c].LinkImgiMusica == TodasAsMusicas.Musicas[b].LinkImgiMusica && clonePerfilUserPesquisado.Musica.MusicasPostadas[c].LinkAudio == TodasAsMusicas.Musicas[b].LinkAudio) {
+                            numMusicaSequencia = c
+                            numSelecionado = b
+                            darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[c])
+                        }
+                    }
+                }
+            })
+
+        })
+    }
 })
 
 
