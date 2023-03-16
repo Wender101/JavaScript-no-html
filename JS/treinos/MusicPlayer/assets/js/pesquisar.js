@@ -257,6 +257,30 @@ function pesquisar(pesquisa) {
                                         document.querySelector('#nomeAutorPesquisa').style.display = 'block'
     
                                         clonePerfilUserPesquisado = Usuarios
+
+                                        try {
+                                            document.querySelector('#sobreAutor').style.backgroundImage = `url(${clonePerfilUserPesquisado.infUser.ImgParedePerfil})`
+                                        } catch{}
+                                    
+                                    
+                                        let imgPerfilUserPagPessoal = document.querySelector('#fotoAutorPesquisa')
+                                        try {
+                                            if(clonePerfilUserPesquisado.infUser.FotoPerfil != undefined) {
+                                                imgPerfilUserPagPessoal.src = clonePerfilUserPesquisado.infUser.FotoPerfil
+                                                imgPerfilUserPagPessoal.style.padding = '0px'
+                                                imgPerfilUserPagPessoal.style.width = '140px'
+                                                imgPerfilUserPagPessoal.style.height = '140px'
+                                                imgPerfilUserPagPessoal.style.objectFit = 'cover'
+                                    
+                                    
+                                            } else {
+                                                imgPerfilUserPagPessoal.src = 'assets/img/icones/icon _profile_.png'
+                                                imgPerfilUserPagPessoal.style.padding = '20px'
+                                                imgPerfilUserPagPessoal.style.width = '100px'
+                                                imgPerfilUserPagPessoal.style.height = '100px'
+                                                imgPerfilUserPagPessoal.style.objectFit = 'contain'
+                                            }
+                                        } catch{}
     
                                         //!-
                                         musicaAutor.addEventListener('click', () => {
