@@ -35,6 +35,11 @@ div#localPesquisaSong, div#localPesquisaSong2 {
   z-index: 2;
 }
 
+input:focus {
+  box-shadow: 0;
+  outline: 0;
+}
+
 div.localInputPesquisa {
   max-width: 900px;
   max-width: 900px;
@@ -55,10 +60,6 @@ div.localInputPesquisa input {
   display: block;
   border-radius: 24px;
   padding-left: 50px;
-}
-div.localInputPesquisa input:focus {
-  box-shadow: 0;
-  outline: 0;
 }
 div.localInputPesquisa img {
   position: absolute;

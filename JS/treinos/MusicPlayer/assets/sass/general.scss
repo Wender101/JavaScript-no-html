@@ -13,6 +13,8 @@ $cor5: #272727;
 $cor6: #121212;
 $cor7: #4b4b4b78;
 
+$sombra: #00000077;
+
 //? Fonte geral
 $fonte-Poppins: 'Poppins', sans-serif;
 $fonte-Carter: 'Carter One', cursive;;
@@ -59,6 +61,11 @@ div#localPesquisaSong, div#localPesquisaSong2 {
     z-index: 2;
 }
 
+input:focus {
+    box-shadow: 0;
+    outline: 0;
+}
+
 div.localInputPesquisa {
     max-width: 900px;
     max-width: 900px;
@@ -79,11 +86,6 @@ div.localInputPesquisa {
         display: block;
         border-radius: 24px;
         padding-left: 50px;
-
-        &:focus {
-            box-shadow: 0;
-            outline: 0;
-        }
     }
 
     img {

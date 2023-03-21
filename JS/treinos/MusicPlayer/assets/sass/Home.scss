@@ -38,6 +38,7 @@ body {
 
         button#config {
             background-image: url(../img/icones/menu.png);
+            display: none;
         }
 
         ul {
@@ -55,7 +56,11 @@ body {
                 }
 
                 button#BibliotecaBtn {
-                    background-image: url(../img/icones/biblioteca.png);
+                    background-image: url(../img/icones/icon\ _heart\ add_.png);
+                }
+
+                button#PlaylistBtn {
+                    background-image: url(../img/icones/playlist.png);
                 }
 
                 button#PagPessoal {
@@ -304,7 +309,7 @@ body {
 
     section#pagPesquisa {
         width: calc(100% - 60px);
-        height: 100vh;
+        height: calc(100vh - 200px);
         position: fixed;
         top: 0px;
         right: 0px;
@@ -515,7 +520,7 @@ body {
                 justify-content: space-between;
                 font-family: $fonte-Rubik;
                 padding: 23px 35px;
-                border-bottom: 1px solid $white;
+                border-bottom: 1px solid #ffffff2d;
                 cursor: pointer;
 
                 div {
@@ -577,7 +582,7 @@ body {
             
             div#headerPessalUser {
                 width: calc(100% - 70px);
-                height: 192px;
+                height: 300px;
                 display: flex;
                 align-items: end;
                 padding: 35px 35px 67px 35px;
@@ -601,13 +606,14 @@ body {
                 }
 
                 div {
-                    width: 500px;
+                    max-width: 531px;
+                    width: auto;
                     height: auto;
                     display: flex;
                     flex-direction: column;
                     align-items: center;
                     justify-content: center;
-                    margin: 0px 0px -30px -100px;
+                    position: absolute;
 
 
                     img#imgPerfilUserPagPessoal {
@@ -627,6 +633,91 @@ body {
                         color: $white;
                         font-family: $fonte-Carter;
                     }
+
+                    textarea {
+                        width: 100%;
+                        resize: none;
+                        background-color: transparent;
+                        font-size: 66px;
+                        font-weight: 900;
+                        border: none;
+                        color: $cor1;
+                        font-family: $fonte-Carter;
+
+                        &::placeholder {
+                            color: $cor1;
+                            font-weight: 900;
+                        }
+
+                        &:focus {
+                            box-shadow: 0;
+                            outline: 0;
+                        }
+                    }
+                }
+            }
+
+            div#addPlaylist {
+                width: calc(100% - 90px);
+                //max-width: 500px;
+                color: $cor1;
+                margin: 100px 20px;
+    
+                input {
+                    width: 100%;
+                    border: none;
+                    padding: 11px 23px;
+                    background-color: $cor7;
+                    display: block;
+                    border-radius: 24px;
+                    color: $white;
+                    margin: 10px -5px 50px;
+                }
+
+                div#localMusicaPlayListPesquisa {
+
+                    div.musicaPesquisaPlaylist {
+                        width: 100%;
+                        display: flex;
+                        color: #fff;
+                        align-items: center;
+                        font-family: "Rubik", sans-serif;
+                        padding: 23px 35px;
+                        border-bottom: 1px solid #ffffff2d;
+                        cursor: pointer;
+                        justify-content: space-between;
+
+                        
+                        div {
+                            display: flex;
+                            gap: 20px;
+                            
+                            img {
+                                width: 64px;
+                                height: 64px;
+                                object-fit: cover;
+                            }
+
+                            div {
+                                display: flex;
+                                flex-direction: column;
+
+                                strong {
+                                    font-size: 13px;
+                                }
+
+                                p {
+                                    font-size: 12px;
+                                    color: rgba(255, 255, 255, 0.4705882353);
+                                }
+                            }
+                        }
+
+                        img.imgPlusPlaylist {
+                            width: 30px;
+                            height: 30px;
+                        }
+                    }
                 }
             }
         }
@@ -639,7 +730,7 @@ body {
             justify-content: space-between;
             font-family: $fonte-Rubik;
             padding: 23px 35px;
-            border-bottom: 1px solid $white;
+            border-bottom: 1px solid #ffffff2d;
             cursor: pointer;
 
             div {
@@ -743,7 +834,7 @@ body {
 
         div#parteCentralConfigMusica {
             div {
-                width: 180px;
+                width: 240px;
                 margin: auto;
                 display: flex;
                 align-items: center;
@@ -757,9 +848,10 @@ body {
                     background-repeat: no-repeat;
 
                     &#back {
-                        width: 36px;
-                        height: 31px;
+                        width: 24px;
+                        height: 22px;
                         background-image: url(../img/icones/back.png);
+                        margin: 0px 5px 0px 10px;
                     }
     
                     &#play {
@@ -769,9 +861,10 @@ body {
                     }
     
                     &#next {
-                        width: 36px;
-                        height: 31px;
+                        width: 24px;
+                        height: 22px;
                         background-image: url(../img/icones/next.png);
+                        margin: 0px 10px 0px 5px;
                     }
 
                     &#repetir {
@@ -783,7 +876,7 @@ body {
                     &#aleatorio {
                         width: 15px;
                         height: 15px;
-                        background-image: url(../img/icones/icon\ _repeat_.png);
+                        background-image: url(../img/icones/icon\ _arrow\ swap\ horizontal_.png);
                     }
                 }
             }

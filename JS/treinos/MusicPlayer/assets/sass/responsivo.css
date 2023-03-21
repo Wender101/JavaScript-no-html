@@ -90,6 +90,33 @@
   }
 }
 @media screen and (max-width: 723px) {
+  body {
+    width: 100vw;
+    left: 0px;
+  }
+  body nav {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    z-index: 10;
+    top: 23px;
+    margin-left: 10px;
+    background-color: transparent;
+  }
+  body nav ul {
+    display: none;
+  }
+  body nav button#config {
+    display: block;
+  }
+  body div#localPesquisaSong, body div#localPesquisaSong2 {
+    max-width: 80%;
+    transform: translate(-45%);
+  }
+  body .paginas {
+    width: 100% !important;
+    left: 0px !important;
+  }
   body section#Recente {
     max-width: 445px;
     margin: auto;
@@ -97,6 +124,16 @@
   body section#MaisTocadas {
     max-width: 445px;
     margin: auto;
+  }
+  body section#pagPessoalUser article div#headerPessalUser div {
+    width: 100% !important;
+    height: 100%;
+    height: auto !important;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin: 0px !important;
   }
 }
 @media screen and (max-width: 593px) {

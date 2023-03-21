@@ -6,6 +6,8 @@ let uploadMusica = document.querySelector('#uploadMusica')
 let uploadImg = document.querySelector('#uploadImg')
 let btnPostar = document.querySelector('#postar')
 
+let cloneMusicasSequencia = []
+
 //? Vai fechar a aba de add musica e limpar todos os inputs
 document.querySelector('#AddMusicaBtn').addEventListener('click', () => {
     if(fecharAbas()) {
@@ -232,7 +234,7 @@ function CriarMusicasNaTela() {
                 musicasNaTela = true
             }, 2000)
             
-            let maxMusicasMaisOuvidas = 16 //? Vai limitar a quantidade de musica na parte mais tocadas
+            let maxMusicasMaisOuvidas = 8 //? Vai limitar a quantidade de musica na parte mais tocadas
             
             if(TodasAsMusicas.Musicas.length <= maxMusicasMaisOuvidas) {
                 maxMusicasMaisOuvidas = TodasAsMusicas.Musicas.length
@@ -269,7 +271,7 @@ function CriarMusicasNaTela() {
                 musicaMaisTocada.addEventListener('click', () => {
                     numSelecionado = c
 
-                    clonePerfilUserPesquisado = []
+                    cloneMusicasSequencia = []
                     darPlayNaMusica(TodasAsMusicas.Musicas[c])
                 })
             }
@@ -300,9 +302,9 @@ inputTime.addEventListener('change', () => {
 //! Vai informar o time na tela
 let valtarFeito = false
 let checkProximaClonePerfil = false
+let checkBack = false
 let numMusicaSequencia = 0
-function atualizarTimeMusica(estado = 'play') {
-
+function atualizarTimeMusica(estado = 'play', arrayDeMusica = []) {
     if(tempoSegundosPassou < tempoMax && estado == 'play' || tempoSegundosPassou < tempoMax && estado == 'loop') {
         tempoSegundosPassou++
         tempoSeconds++
@@ -345,8 +347,8 @@ function atualizarTimeMusica(estado = 'play') {
         acumulartime = 0
 
     } else if(tempoSegundosPassou >= tempoMax && tempoMax > 0 || estado == 'next') {
-        atualizarTimeMusica('zerar')
-        if(valtarFeito == false && clonePerfilUserPesquisado.length == 0 && estado != 'loop') {
+        atualizarTimeMusica('zerar', cloneMusicasSequencia)
+        if(valtarFeito == false && arrayDeMusica.length == 0 && estado != 'loop') {
             valtarFeito = true
             db.collection('TodasAsMusicas').onSnapshot((data) => {
                 data.docs.map(function(valor) {
@@ -369,19 +371,19 @@ function atualizarTimeMusica(estado = 'play') {
                 valtarFeito = false
             }, 100)
 
-        } else if(clonePerfilUserPesquisado.length != 0 && checkProximaClonePerfil == false && estado != 'loop') {
+        } else if(arrayDeMusica.length > 0 && checkProximaClonePerfil == false && estado != 'loop') {
             checkProximaClonePerfil = true
             setTimeout(() => {
                 checkProximaClonePerfil = false
             }, 100)
-            atualizarTimeMusica('zerar')
+            atualizarTimeMusica('zerar', cloneMusicasSequencia)
             
-            if(numMusicaSequencia < clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1) {
+            if(numMusicaSequencia < arrayDeMusica.length - 1) {
                 numMusicaSequencia += 1
-                darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[numMusicaSequencia])
+                darPlayNaMusica(arrayDeMusica[numMusicaSequencia])
             } else {
                 numMusicaSequencia = 0
-                darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[numMusicaSequencia])
+                darPlayNaMusica(arrayDeMusica[numMusicaSequencia])
             }
         } else if(estado == 'loop') {
             audio.currentTime = 0
@@ -389,17 +391,17 @@ function atualizarTimeMusica(estado = 'play') {
 
         //! Vai voltar a musica ---------------------------------------
     } else if(estado == 'back') {
-        if(clonePerfilUserPesquisado.length == 0) {
+        if(arrayDeMusica.length == 0) {
             if(tempoSegundosPassou > 10 && tempoMax > 0) {
                 audio.currentTime = 0
-                atualizarTimeMusica('zerar')
+                atualizarTimeMusica('zerar', cloneMusicasSequencia)
                 
                 setTimeout(() => {
-                    atualizarTimeMusica('play')
+                    atualizarTimeMusica('play', cloneMusicasSequencia)
                 }, 100)
     
             } else if(tempoSegundosPassou <= 10 && tempoMax > 0) {
-                atualizarTimeMusica('zerar')
+                atualizarTimeMusica('zerar', cloneMusicasSequencia)
                 db.collection('TodasAsMusicas').onSnapshot((data) => {
                     data.docs.map(function(valor) {
                         let TodasAsMusicas = valor.data()
@@ -415,15 +417,21 @@ function atualizarTimeMusica(estado = 'play') {
                 })
             }
         } else {
-            atualizarTimeMusica('zerar')
+            atualizarTimeMusica('zerar', cloneMusicasSequencia)
                     
-            if(numMusicaSequencia > 0) {
+            if(numMusicaSequencia > 0 && checkBack == false) {
+                checkBack = true
                 numMusicaSequencia = numMusicaSequencia - 1
-                darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[numMusicaSequencia])
-            } else {
-                numMusicaSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas.length  - 1
-                darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[numMusicaSequencia])
+                darPlayNaMusica(arrayDeMusica[numMusicaSequencia])
+            } else if(checkBack == false){
+                checkBack = true
+                numMusicaSequencia = arrayDeMusica.length  - 1
+                darPlayNaMusica(arrayDeMusica[numMusicaSequencia])
             }
+
+            setTimeout(() => {
+                checkBack = false
+            }, 100)
         }
     }
 }
@@ -431,7 +439,7 @@ function atualizarTimeMusica(estado = 'play') {
 //! Ficar marcando o time de segundo em segundo
 let estadoMusica = 'zerar'
 setInterval(() => {
-    atualizarTimeMusica(estadoMusica)
+    atualizarTimeMusica(estadoMusica, cloneMusicasSequencia)
 }, 1000)
 
 //? Vai dar play na música
@@ -510,14 +518,14 @@ function darPlayNaMusica(lista) {
         //! Vai passar a música
         let btnNext = document.querySelector('#next')
         btnNext.addEventListener('click', () => {
-            atualizarTimeMusica('next')
+            atualizarTimeMusica('next', cloneMusicasSequencia)
         })
 
 
         //! Vai voltar a música
         let btnBack = document.querySelector('#back')
         btnBack.addEventListener('click', () => {
-            atualizarTimeMusica('back')
+            atualizarTimeMusica('back', cloneMusicasSequencia)
         })
 
         //! Vai manter a música em loop
@@ -563,7 +571,7 @@ function darPlayNaMusica(lista) {
 
                             try {
                                 for(let contadorFavoritas = 0; contadorFavoritas < Usuarios.Musica.MusicasCurtidas.length; contadorFavoritas++) {
-                                    if(musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeMusica == TodasAsMusicas.Musicas[numSelecionado].NomeMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeAutor == TodasAsMusicas.Musicas[numSelecionado].NomeAutor && musicasFavoritas.MusicasCurtidas[contadorFavoritas].EmailUser == TodasAsMusicas.Musicas[numSelecionado].EmailUser && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkImgiMusica == TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkAudio == TodasAsMusicas.Musicas[numSelecionado].LinkAudio) {
+                                    if(musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeMusica == lista.NomeMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeAutor == lista.NomeAutor && musicasFavoritas.MusicasCurtidas[contadorFavoritas].EmailUser == lista.EmailUser && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkImgiMusica == lista.LinkImgiMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkAudio == lista.LinkAudio) {
                                         musicaEstaEmFavoritos = true
                                         hearAdd.src = 'assets/img/icones/icon _heart_.png'
                                     }
@@ -581,13 +589,13 @@ function darPlayNaMusica(lista) {
                 
                 if(listaMusicasRecentes.length <= 0) {
                     let formaLista =  {
-                        NomeMusica: TodasAsMusicas.Musicas[numSelecionado].NomeMusica,
-                        NomeAutor: TodasAsMusicas.Musicas[numSelecionado].NomeAutor,
-                        Tipo: TodasAsMusicas.Musicas[numSelecionado].Tipo,
-                        LinkAudio: TodasAsMusicas.Musicas[numSelecionado].LinkAudio,
-                        LinkImgiMusica: TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica,
-                        EmailUser: TodasAsMusicas.Musicas[numSelecionado].EmailUser,
-                        EstadoMusica: TodasAsMusicas.Musicas[numSelecionado].EstadoMusica,
+                        NomeMusica: lista.NomeMusica,
+                        NomeAutor: lista.NomeAutor,
+                        Tipo: lista.Tipo,
+                        LinkAudio: lista.LinkAudio,
+                        LinkImgiMusica: lista.LinkImgiMusica,
+                        EmailUser: lista.EmailUser,
+                        EstadoMusica: lista.EstadoMusica,
                     }
 
                     listaMusicasRecentes.push(formaLista)
@@ -599,20 +607,20 @@ function darPlayNaMusica(lista) {
                             listaMusicasRecentes.splice(0, 1)
                         }
 
-                        if(listaCheckRecentes[b].LinkImgiMusica == TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica && TodasAsMusicas.Musicas[numSelecionado].NomeMusica) {
+                        if(listaCheckRecentes[b].LinkImgiMusica == lista.LinkImgiMusica && lista.NomeMusica) {
                             jaTemEssaMusica = true
                         }
                         setTimeout(() => {
                             if(jaTemEssaMusica == false && checarRepetidas == false) {
                                 checarRepetidas = true
                                 let formaLista =  {
-                                    NomeMusica: TodasAsMusicas.Musicas[numSelecionado].NomeMusica,
-                                    NomeAutor: TodasAsMusicas.Musicas[numSelecionado].NomeAutor,
-                                    Tipo: TodasAsMusicas.Musicas[numSelecionado].Tipo,
-                                    LinkAudio: TodasAsMusicas.Musicas[numSelecionado].LinkAudio,
-                                    LinkImgiMusica: TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica,
-                                    EmailUser: TodasAsMusicas.Musicas[numSelecionado].EmailUser,
-                                    EstadoMusica: TodasAsMusicas.Musicas[numSelecionado].EstadoMusica,
+                                    NomeMusica: lista.NomeMusica,
+                                    NomeAutor: lista.NomeAutor,
+                                    Tipo: lista.Tipo,
+                                    LinkAudio: lista.LinkAudio,
+                                    LinkImgiMusica: lista.LinkImgiMusica,
+                                    EmailUser: lista.EmailUser,
+                                    EstadoMusica: lista.EstadoMusica,
                                 }
             
                                 if(addMusicaEmRecentes == false) {
@@ -645,6 +653,7 @@ function fecharAbas() {
             document.getElementsByClassName('paginas')[c].style.display = 'none'
         } catch{}
     }
+    playlistAdd = false
     document.querySelector('body').style.overflow = 'auto'
     return true
 }

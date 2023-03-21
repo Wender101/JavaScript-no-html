@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/icones/logo.png" type="image/x-icon">
     <title>Home | treeFy</title>
     
     <!--? Style -->
@@ -18,6 +19,7 @@
         <ul>
             <li><button id="HomeBtn"></button></li>
             <li><button id="BibliotecaBtn"></button></li>
+            <li><button id="PlaylistBtn"></button></li>
             <li><button id="PagPessoal"></button></li>
             <li><button id="AddMusicaBtn"></button></li>
         </ul>
@@ -42,6 +44,13 @@
             <article class="artigoCentral">
             </article>
         </section>
+
+        <section id="PlaylistsRecomendadas">
+            <h1>Playlists</h1>
+            <article class="artigoCentral">
+                <div class="musicaMaisTocada"><div class="localImgMaisTocada"><img src="https://firebasestorage.googleapis.com/v0/b/treefy-3e5ae.appspot.com/o/Guetta%20%E2%80%93%20Saturday_Sunday.mp3%2Fgreen-red-road-sign-name-days-weeksaturday-sunday-green-red-pointer-name-days-158152383.jpg?alt=media&amp;token=06365d98-699e-40c5-a50e-4fdfbb888720"></div><h3 class="nomeMusicaMaisTocada">Saturday/Sunday</h3><p class="nomeAutorMaisTocada">Jason Derulo &amp; David Guetta</p></div>
+            </article>
+        </section>
     </main>
 
     <!--? Pagina de adicionar músicas -->
@@ -61,7 +70,7 @@
                     <input type="text" id="inputAutorDaMusica" placeholder="Autor(a)...">
                     <img src="assets/img/icones/PesquisarDoInput.png" alt="ícone pesquisar">
                 </div>
-                <p>Tipo da Música:</p>
+                <p>Gênero da Música:</p>
                 <div class="localInputPesquisa">
                     <input type="text" id="inputTipoDaMusica" placeholder="Pop, Rock, Lofi...">
                     <img src="assets/img/icones/PesquisarDoInput.png" alt="ícone pesquisar">
@@ -165,7 +174,11 @@
         <article id="localMlhResutado" class="artigoCentral">               
         </article>
 
-        <h1 id="h1Tipo" class="artigoCentral">Tipo</h1>
+        <h1 id="h1Playlists" class="artigoCentral">Playlists</h1>
+        <article id="localPlaylistsPesquisa" class="artigoCentral">               
+        </article>
+
+        <h1 id="h1Tipo" class="artigoCentral">Gênero</h1>
         <article id="TipoPesquisa" class="artigoCentral">
         </article>
 
@@ -197,8 +210,16 @@
                <div>
                 <img src="assets/img/icones/icon _profile_.png" id="imgPerfilUserPagPessoal">
                 <h1 id="nomeUserPagPessoal">Nome User</h1>
+                <textarea name="" id="nomeDaPlaylist" cols="16" rows="1" placeholder="Nova Playlist" maxlength="14" class="animationTextAreaVazio"></textarea>
                </div>
                 <img src="assets/img/icones/play.png" id="imgUserPagPessoal">
+            </div>
+
+            <div id="addPlaylist">
+                <h1>Nome da música:</h1>
+                <input type="text" id="addMusicaAsPlaylists" placeholder="Nome da música ou do artista...">
+
+                <div id="localMusicaPlayListPesquisa"></div>
             </div>
 
             <!--? Musicas Postadas Pelo User -->
@@ -286,5 +307,7 @@
     <script src="assets/js/home.js"></script>
     <script src="assets/js/pesquisar.js"></script>
     <script src="assets/js/musicasFavoritas.js"></script>
+    <script src="assets/js/criarPlaylist.js"></script>
+    <!-- <script src="assets/js/teste.js"></script> -->
 </body>
 </html>
