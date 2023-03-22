@@ -60,6 +60,7 @@ div.localInputPesquisa input {
   display: block;
   border-radius: 24px;
   padding-left: 50px;
+  color: #fff;
 }
 div.localInputPesquisa img {
   position: absolute;
@@ -155,4 +156,25 @@ audio {
 
 .paginas {
   background-color: rgb(24, 24, 24);
+}
+
+.navVisible {
+  width: 36px;
+  height: 100vh;
+  background-color: #272727;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 15px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  margin-left: 0px;
+}
+.navVisible button#config {
+  display: none;
+}
+.navVisible ul {
+  display: flex;
 }/*# sourceMappingURL=general.css.map */

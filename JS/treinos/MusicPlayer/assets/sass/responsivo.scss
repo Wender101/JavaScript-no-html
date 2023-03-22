@@ -1,3 +1,5 @@
+@import 'general.scss';
+
 @media screen and (max-width: 1473px) {
     body {    
         section {
@@ -91,6 +93,16 @@
                 margin: auto !important;
             }
         }
+
+        section#menuTocandoMusica {
+            div#parteVolume {
+                width: 0px;
+
+                button, input {
+                    display: none;
+                }
+            }
+        }
     }
 }
 
@@ -117,16 +129,28 @@
 
                 div#sobreAutor {
                     width: 200px !important;
+                    gap: 0px;
                 }
 
                 div#loaclMusicasDoAutorPesquisa {
                     div {
-                        height: 20px;
+                        height: 29px;
 
                         div.localImgDivAutorMusicas {
                             img {
                                 width: 40px !important;
                                 height: 30px !important;
+                            }
+                        }
+
+                        div {
+                            h3 {
+                                font-size: 13px !important;
+                                font-weight: 200 !important;
+                                max-height: 16px;
+                                white-space: nowrap;
+                                overflow: hidden;
+                                text-overflow: ellipsis;
                             }
                         }
                     }
@@ -141,12 +165,47 @@
 
 }
 
+@media screen and (max-width: 792px) {
+    body {
+        section#menuTocandoMusica {
+            div#parteNomeMusica {
+                display: none;
+            }
+
+            div#parteCentralConfigMusica {
+                margin: auto;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: 770px) {
     body {
         section {
             .artigoCentral {
                 max-width: 478px !important;
                 margin: auto !important;
+            }
+        }
+
+        section#pagPesquisa  {
+            article#autorPesquisa {
+                height: 200px;
+
+                div#loaclMusicasDoAutorPesquisa {
+                    div {
+
+                        div {
+                            p {
+                                display: none;
+                            }
+                        }
+                    }
+
+                    img {
+                        width: 20px !important;
+                    }
+                }
             }
         }
     }
@@ -156,15 +215,21 @@
     body {
         width: 100vw;
         left: 0px;
+        padding-top: 120px;
 
         nav {
-            width: 30px;
+            width: 100%;
             height: 30px;
-            position: absolute;
+            position: fixed;
             z-index: 10;
-            top: 23px;
-            margin-left: 10px;
-            background-color: transparent;
+            top: 0px;
+            margin-left: 0px;
+            background-color: $sombra;
+            padding: 10px;
+            display: block;
+            display: flex;
+            align-items: start;
+            justify-content: center;
 
             ul {
                 display: none;
@@ -172,6 +237,7 @@
 
             button#config {
                 display: block;
+                margin: 0px;
             }
 
         }
@@ -179,6 +245,7 @@
         div#localPesquisaSong, div#localPesquisaSong2 {
             max-width: 80%;
             transform: translate(-45%);
+            top: 60px;
         }
 
         .paginas {
@@ -199,15 +266,26 @@
         section#pagPessoalUser {
             article {
                 div#headerPessalUser {
+                    justify-content: center;
+
                     div {
-                    width: 100% !important;
-                    height: 100%;
-                    height: auto !important;
-                    display: flex !important;
-                    flex-direction: column !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    margin: 0px !important;
+                        width: 100% !important;
+                        height: 100% !important;
+                        height: auto !important;
+                        display: flex !important;
+                        flex-direction: column !important;
+                        align-items: center !important;
+                        justify-content: center !important;
+                        margin: 0px !important;
+                        justify-content: center !important;
+
+                        img {
+                            position: static !important;
+                        }
+                    }
+
+                    img {
+                        left: 23px;
                     }
                 }
             }
@@ -266,6 +344,21 @@
                 }
             }
         }
+        
+        section#pagPesquisa  {
+            article#autorPesquisa {
+                height: 200px;
+
+                div#sobreAutor {
+                    width: 95% !important;
+                    margin: auto !important;
+                }
+
+                div#loaclMusicasDoAutorPesquisa {
+                    display: none;
+                }
+            }
+        }
     }
 }
 
@@ -290,6 +383,24 @@
         section#MaisTocadas {
             max-width: 257px;
             margin: auto;
+        }
+
+        section#menuTocandoMusica {
+            div#parteCentralConfigMusica {
+                
+                div#controles {
+                    width: 166px;
+                    button#play {
+                        width: 40px;
+                        height: 40px;
+                    }
+
+                    button#next, button#back {
+                        width: 20px;
+                        height: 18px;
+                    }
+                }
+            }
         }
     }
 

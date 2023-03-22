@@ -17,7 +17,7 @@ $sombra: #00000077;
 
 //? Fonte geral
 $fonte-Poppins: 'Poppins', sans-serif;
-$fonte-Carter: 'Carter One', cursive;;
+$fonte-Carter: 'Carter One', cursive;
 $fonte-Rubik: 'Rubik', sans-serif;
 
 
@@ -86,6 +86,7 @@ div.localInputPesquisa {
         display: block;
         border-radius: 24px;
         padding-left: 50px;
+        color: $white;
     }
 
     img {
@@ -185,4 +186,27 @@ audio {
 
 .paginas {
     background-color: rgb(24, 24, 24);
+}
+
+.navVisible {
+    width: 36px;
+    height: 100vh;
+    background-color: $cor5;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 15px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+    margin-left: 0px;
+
+    button#config {
+        display: none;
+    }
+
+    ul {
+        display: flex;
+    }
 }

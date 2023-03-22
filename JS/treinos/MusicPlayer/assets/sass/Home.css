@@ -60,6 +60,7 @@ div.localInputPesquisa input {
   display: block;
   border-radius: 24px;
   padding-left: 50px;
+  color: #fff;
 }
 div.localInputPesquisa img {
   position: absolute;
@@ -157,6 +158,27 @@ audio {
   background-color: rgb(24, 24, 24);
 }
 
+.navVisible {
+  width: 36px;
+  height: 100vh;
+  background-color: #272727;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 15px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  margin-left: 0px;
+}
+.navVisible button#config {
+  display: none;
+}
+.navVisible ul {
+  display: flex;
+}
+
 body {
   width: calc(100vw - 58px);
   position: absolute;
@@ -173,6 +195,7 @@ body nav {
   display: flex;
   align-items: center;
   flex-direction: column;
+  justify-content: center;
   padding-top: 15px;
   position: fixed;
   top: 0px;
@@ -322,6 +345,7 @@ body section#pagAddMusicas {
   display: none;
   overflow: auto;
   z-index: 2;
+  padding: 30px 0px;
 }
 body section#pagAddMusicas article {
   width: 100%;
@@ -341,7 +365,7 @@ body section#pagAddMusicas article button#btnFecharAddMusic {
   background-repeat: no-repeat;
   background-image: url(../img/icones/X.png);
   position: absolute;
-  top: 23px;
+  top: 60px;
   right: 19px;
   border: none;
   background-color: transparent;
@@ -435,9 +459,10 @@ body section#pagPesquisa h1 {
   max-width: 1288px;
   width: 90%;
   height: auto;
-  margin: 30px auto 10px;
+  margin: 20px auto 10px;
   color: #fff;
   display: none;
+  padding-top: 60px;
 }
 body section#pagPesquisa h1 span {
   color: #0DCBA9;
@@ -504,7 +529,6 @@ body section#pagPesquisa article#autorPesquisa div#sobreAutor {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  border-radius: 10px;
   margin-right: 20px;
   background-color: #272727;
   background-position: center;
@@ -516,6 +540,9 @@ body section#pagPesquisa article#autorPesquisa div#sobreAutor h1 {
   width: auto;
   max-width: auto;
   margin: 0px;
+  font-size: 30px;
+  padding: 0px;
+  font-family: "Carter One", cursive;
 }
 body section#pagPesquisa article#autorPesquisa div#sobreAutor div#localFotoAutorPesquisa {
   width: 130px;
@@ -534,7 +561,7 @@ body section#pagPesquisa article#autorPesquisa div#sobreAutor div#localFotoAutor
      object-position: center;
 }
 body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa {
-  width: calc(100% - 250px);
+  width: calc(100% - 228px);
   height: 100%;
   justify-content: space-between;
   background-color: #181818;
@@ -877,8 +904,12 @@ body section#menuTocandoMusica div#parteNomeMusica img#hearAdd {
   width: 20px;
   margin-bottom: -20px;
 }
+body section#menuTocandoMusica div#parteCentralConfigMusica {
+  width: 90%;
+  max-width: 485px;
+}
 body section#menuTocandoMusica div#parteCentralConfigMusica div {
-  width: 240px;
+  width: 185px;
   margin: auto;
   display: flex;
   align-items: center;
@@ -919,7 +950,7 @@ body section#menuTocandoMusica div#parteCentralConfigMusica div button#aleatorio
   background-image: url(../img/icones/icon\ _arrow\ swap\ horizontal_.png);
 }
 body section#menuTocandoMusica div#parteCentralConfigMusica div#barraTime {
-  width: 485px;
+  width: 100%;
   font-size: 10px;
   display: flex;
   align-items: center;
