@@ -3,6 +3,12 @@ let inputPesquisa2 = document.querySelector('#pesquisarMusica2')
 let imgUserPessoalClicado = false
 let oQueEstaPassando = 'nada'
 
+let ultimasPesquisasDoUser = []
+
+if(localStorage.getItem('ultimasPesquisasDoUser') != undefined && localStorage.getItem('ultimasPesquisasDoUser') != null) {
+    
+}
+
 inputPesquisa.addEventListener('keydown', (e) => {
     if(e.keyCode == 13) {
         document.querySelector('#localMlhResutado').innerHTML = ''

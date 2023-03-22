@@ -28,3 +28,48 @@ menuTocandoMusica.addEventListener('click', (e) => {
         document.querySelector('#pagSobreMusicaTocando').style.display = 'none'
     }
 })
+
+//! Vai colocar na pag home o resultado de suas ultimas pesquisas
+function ultimasPesquisas() {
+    db.collection('TodasAsMusicas').onSnapshot((data) => {
+        data.docs.map(function(valor) {
+            let TodasAsMusicas = valor.data()
+
+
+
+            let musicaMaisTocada = document.createElement('div')
+            let localImgMaisTocada = document.createElement('div')
+            let img = document.createElement('img')
+            let nomeMusicaMaisTocada = document.createElement('h3')
+            let nomeAutorMaisTocada = document.createElement('p')
+
+            musicaMaisTocada.className = 'musicaMaisTocada'
+            localImgMaisTocada.className = 'localImgMaisTocada'
+            nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
+            nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
+
+            img.src = TodasAsMusicas.Musicas[numMusicaAleatoria].LinkImgiMusica
+            nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[numMusicaAleatoria].NomeMusica
+            nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[numMusicaAleatoria].NomeAutor
+
+            localImgMaisTocada.appendChild(img)
+            musicaMaisTocada.appendChild(localImgMaisTocada)
+            musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
+            musicaMaisTocada.appendChild(nomeAutorMaisTocada)
+
+            document.querySelector('#ultimasPesquisas').querySelector('article').appendChild(musicaMaisTocada)
+
+            //! Funções de click
+            //? Ao clicar em favoritar música
+            
+            //? Vai tocar a música selecionada
+            musicaMaisTocada.addEventListener('click', () => {
+                numSelecionado = numMusicaAleatoria
+
+                cloneMusicasSequencia = []
+                darPlayNaMusica(TodasAsMusicas.Musicas[numMusicaAleatoria])
+            })
+
+        })
+    })
+}

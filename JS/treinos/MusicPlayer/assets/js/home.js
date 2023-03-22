@@ -217,6 +217,7 @@ let musicasNaTela = false
 let numSelecionado = ''
 let MusicasFavoritasLista = [] //? Vai armazenar sua músicas favoritas
 let idLocalUser = ''
+let numeroMusicasSorteadas = []
 function CriarMusicasNaTela() {
     let MaisTocadas = document.querySelector('#MaisTocadas').querySelector('article')
     MaisTocadas.innerHTML = ''
@@ -241,39 +242,64 @@ function CriarMusicasNaTela() {
             }
 
             for(let c = 0; c < maxMusicasMaisOuvidas; c++) {
+                function sortearMusica() {
+                    let numMusicaAleatoria = Math.floor(Math.random() * (TodasAsMusicas.Musicas.length - 1))
+                    let jaTemEsteNumero = false
 
-                let musicaMaisTocada = document.createElement('div')
-                let localImgMaisTocada = document.createElement('div')
-                let img = document.createElement('img')
-                let nomeMusicaMaisTocada = document.createElement('h3')
-                let nomeAutorMaisTocada = document.createElement('p')
+                    if(numeroMusicasSorteadas.length == 0) {
+                        numeroMusicasSorteadas.push(numMusicaAleatoria)
 
-                musicaMaisTocada.className = 'musicaMaisTocada'
-                localImgMaisTocada.className = 'localImgMaisTocada'
-                nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
-                nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
+                    } else {
 
-                img.src = TodasAsMusicas.Musicas[c].LinkImgiMusica
-                nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[c].NomeMusica
-                nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[c].NomeAutor
+                        for(let b = 0; b < numeroMusicasSorteadas.length; b++) {
+                            if(numeroMusicasSorteadas[b] == numMusicaAleatoria) {
+                                jaTemEsteNumero = true
+                            }
 
-                localImgMaisTocada.appendChild(img)
-                musicaMaisTocada.appendChild(localImgMaisTocada)
-                musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
-                musicaMaisTocada.appendChild(nomeAutorMaisTocada)
+                        }
 
-                MaisTocadas.appendChild(musicaMaisTocada)
+                        setTimeout(() => {
+                            if(jaTemEsteNumero == true) {
+                                sortearMusica()
+                            } else {
+                                numeroMusicasSorteadas.push(numMusicaAleatoria)
+                            }
+                        }, 100)
+                    }
 
-                //! Funções de click
-                //? Ao clicar em favoritar música
-                
-                //? Vai tocar a música selecionada
-                musicaMaisTocada.addEventListener('click', () => {
-                    numSelecionado = c
+                    let musicaMaisTocada = document.createElement('div')
+                    let localImgMaisTocada = document.createElement('div')
+                    let img = document.createElement('img')
+                    let nomeMusicaMaisTocada = document.createElement('h3')
+                    let nomeAutorMaisTocada = document.createElement('p')
 
-                    cloneMusicasSequencia = []
-                    darPlayNaMusica(TodasAsMusicas.Musicas[c])
-                })
+                    musicaMaisTocada.className = 'musicaMaisTocada'
+                    localImgMaisTocada.className = 'localImgMaisTocada'
+                    nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
+                    nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
+
+                    img.src = TodasAsMusicas.Musicas[numMusicaAleatoria].LinkImgiMusica
+                    nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[numMusicaAleatoria].NomeMusica
+                    nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[numMusicaAleatoria].NomeAutor
+
+                    localImgMaisTocada.appendChild(img)
+                    musicaMaisTocada.appendChild(localImgMaisTocada)
+                    musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
+                    musicaMaisTocada.appendChild(nomeAutorMaisTocada)
+
+                    MaisTocadas.appendChild(musicaMaisTocada)
+
+                    //! Funções de click
+                    //? Ao clicar em favoritar música
+                    
+                    //? Vai tocar a música selecionada
+                    musicaMaisTocada.addEventListener('click', () => {
+                        numSelecionado = numMusicaAleatoria
+
+                        cloneMusicasSequencia = []
+                        darPlayNaMusica(TodasAsMusicas.Musicas[numMusicaAleatoria])
+                    })
+                } sortearMusica()
             }
         })
     })
