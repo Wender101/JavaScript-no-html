@@ -95,8 +95,8 @@ playlistBtn.addEventListener('click', () => {
                     data.docs.map(function(valor) {
                         let Usuarios = valor.data()
 
-                        if(Usuarios.infUser.Email == email && playlistAdd == false) {
-                            playlistAdd = true
+                        if(Usuarios.infUser.Email == email && playlistAdd == true) {
+                            playlistAdd = false
                             
                             if(Usuarios.Musica.Playlist == null || Usuarios.Musica.Playlist == undefined) {
                                 let cloneMusicas = {
@@ -110,9 +110,14 @@ playlistBtn.addEventListener('click', () => {
                                 db.collection('Usuarios').doc(valor.id).update({Musica: cloneMusicas})
 
                             } else {
-                                let playlist = Usuarios.Musica.Playlist
-                                playlist.push(novaPlaylist)
-                                db.collection('Usuarios').doc(valor.id).update({Musica: playlist})
+                                let cloneMusicas = {
+                                    MusicasCurtidas: Usuarios.Musica.MusicasCurtidas,
+                                    MusicasPostadas: Usuarios.Musica.MusicasPostadas,
+                                    Playlist: Usuarios.Musica.Playlist
+                                }
+
+                                cloneMusicas.Playlist.push(novaPlaylist)
+                                db.collection('Usuarios').doc(valor.id).update({Musica: cloneMusicas})
                             }
 
                             setTimeout(() => {
