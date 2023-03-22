@@ -296,7 +296,6 @@ inputTime.addEventListener('change', () => {
     let a = 100 / tempoMax
     let b = inputTime.value
     tempoSegundosPassou = b
-    console.log(b, a)
 })
 
 //! Vai informar o time na tela
@@ -464,6 +463,11 @@ function darPlayNaMusica(lista) {
     document.querySelector('#imgMusicaTocandoAgora').src = lista.LinkImgiMusica
     document.querySelector('#nomeMusicaTocandoAgora').innerText = lista.NomeMusica
     document.querySelector('#autorMusicaTocandoAgora').innerText = lista.NomeAutor
+
+    //? Vai colocar no sobre a música pra cell
+    document.querySelector('#pagSobreMusicaImgMusica').src = lista.LinkImgiMusica
+    document.querySelector('#nomeMusicaPagSobreMusica').innerText = lista.NomeMusica
+    document.querySelector('#autorMusicaPagSobreMusica').innerText = lista.NomeAutor
 
     document.querySelector('#menuTocandoMusica').style.bottom = '0px'
 
