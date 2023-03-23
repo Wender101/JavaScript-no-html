@@ -191,7 +191,8 @@ body {
 body nav {
   width: 58px;
   height: 100vh;
-  background-color: #272727;
+  background-color: #1c1c1c;
+  box-shadow: 2px 2px 5px #121111;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -286,24 +287,24 @@ body main section article {
 body main section article div.musicaRecente {
   width: 123px;
   height: 123px;
-  background-color: rgba(75, 75, 75, 0.4705882353);
-  border-radius: 7px;
   cursor: pointer;
   overflow: hidden;
+  background-color: #1c1c1c;
+  box-shadow: 2px 2px 5px #121111;
 }
 body main section article div.musicaRecente img {
   width: 100%;
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover;
-  border-radius: 7px;
 }
 body main section article div.musicaMaisTocada {
   width: 139px;
   height: 192px;
-  background-color: rgba(75, 75, 75, 0.4705882353);
   overflow: hidden;
   cursor: pointer;
+  background-color: #1c1c1c;
+  box-shadow: 2px 2px 5px #121111;
 }
 body main section article div.musicaMaisTocada div.localImgMaisTocada {
   width: 118px;
@@ -466,6 +467,7 @@ body section#pagPesquisa h1 {
 }
 body section#pagPesquisa h1 span {
   color: #0DCBA9;
+  font-family: "Carter One", cursive;
 }
 body section#pagPesquisa article {
   max-width: 1288px;
@@ -478,13 +480,18 @@ body section#pagPesquisa article {
 body section#pagPesquisa article div.musicaMaisTocada {
   margin: 5px 10px;
   display: inline-block;
+  background-color: #1c1c1c;
+  box-shadow: 2px 2px 5px #121111;
 }
 body section#pagPesquisa article div {
   width: 139px;
   height: 192px;
-  background-color: rgba(75, 75, 75, 0.4705882353);
   overflow: hidden;
   cursor: pointer;
+}
+body section#pagPesquisa article div#localFotoAutorPesquisa {
+  background-color: #1c1c1c;
+  box-shadow: 2px 2px 5px #121111;
 }
 body section#pagPesquisa article div div.localImgMaisTocada {
   width: 118px;
@@ -530,7 +537,8 @@ body section#pagPesquisa article#autorPesquisa div#sobreAutor {
   justify-content: center;
   flex-direction: column;
   margin-right: 20px;
-  background-color: #272727;
+  background-color: #1c1c1c;
+  box-shadow: 2px 2px 5px #121111;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -564,18 +572,21 @@ body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa {
   width: calc(100% - 228px);
   height: 100%;
   justify-content: space-between;
-  background-color: #181818;
+  box-shadow: 2px 2px 10px #121111;
 }
 body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div#musicaAutor1, body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div#musicaAutor2, body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div#musicaAutor3, body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div#musicaAutor4 {
   display: none;
 }
+body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div.musicaFavorias {
+  background-color: #1c1c1c;
+  box-shadow: 2px 2px 5px #121111;
+}
 body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div {
   width: calc(100% - 20px);
   padding: 10px;
-  height: 40px;
+  height: 43px;
   display: flex;
   align-items: center;
-  background-color: #272727 !important;
 }
 body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa div div div.localImgDivAutorMusicas {
   width: 50px;

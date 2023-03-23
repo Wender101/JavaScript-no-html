@@ -3,12 +3,6 @@ let inputPesquisa2 = document.querySelector('#pesquisarMusica2')
 let imgUserPessoalClicado = false
 let oQueEstaPassando = 'nada'
 
-let ultimasPesquisasDoUser = []
-
-if(localStorage.getItem('ultimasPesquisasDoUser') != undefined && localStorage.getItem('ultimasPesquisasDoUser') != null) {
-    
-}
-
 inputPesquisa.addEventListener('keydown', (e) => {
     if(e.keyCode == 13) {
         document.querySelector('#localMlhResutado').innerHTML = ''
@@ -107,12 +101,22 @@ let clonePerfilUserPesquisado //! Vai guardar as infos do user pesquisado
 function pesquisar(pesquisa) {
     let contadorResutado = 0
     let userPesquisado = false
+    let pesquisaSalva = false
+    let contadorMusicaMaxPerfil = 0 //? Vai limiar o max de músicas que vai aparecer qnd pesquisar por perfil
     
     db.collection('TodasAsMusicas').onSnapshot((data) => {
         data.docs.map(function(valor) {
             let TodasAsMusicas = valor.data()
 
             function localArmazenar(local, contador) {
+                //? Vai salvar a pesquisa
+                if(pesquisaSalva == false) {
+                    pesquisaSalva = true
+                    ultimasPesquisasDoUser.Musicas.push(pesquisa)
+                    localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                }
+
+
                 userPesquisado = true
                 document.querySelector('#nehumResultado').style.display = 'none'
                 let musicaMaisTocada = document.createElement('div')
@@ -402,7 +406,8 @@ function pesquisar(pesquisa) {
                                     }
     
                                     //! -------------------------------- Vai mostrar as músicas postadas pelo user pesquisado
-                                    if(userPesquisado == false) {
+                                    if(userPesquisado == false && contadorMusicaMaxPerfil < 8) {
+                                        contadorMusicaMaxPerfil++
                                         let musicaMaisTocada = document.createElement('div')
                                         let localImgMaisTocada = document.createElement('div')
                                         let img = document.createElement('img')
@@ -464,12 +469,19 @@ function pesquisar(pesquisa) {
                     document.querySelector('#h1Relacionadas').style.display = 'block'
                 }
 
-                //! - Vai pesquisar pelo tipo da música
+                //! - Vai pesquisar pelo gênero da música
                 let Tipo = TodasAsMusicas.Musicas[c].Tipo.toLocaleLowerCase()
                 Tipo = Tipo.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
                 Tipo = Tipo.replace(/\s/g, '') //? Vai remover os espaços
 
                 if(Tipo.includes(pesquisa)) {
+                     //? Vai salvar a pesquisa
+                    if(pesquisaSalva == false) {
+                        pesquisaSalva = true
+                        ultimasPesquisasDoUser.Generos.push(pesquisa)
+                        localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                    }
+
                     localArmazenar(document.querySelector('#TipoPesquisa'), c)
 
                     document.querySelector('#TipoPesquisa').style.display = 'block'
