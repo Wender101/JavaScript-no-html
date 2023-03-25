@@ -102,6 +102,7 @@ body {
             height: auto;
             margin: 0px auto 38px;
             color: $white;
+            display: none;
             
             &#Recente {
                 display: none;
@@ -115,6 +116,10 @@ body {
                         display: inline-block;
                     }
                 }
+            }
+
+            &#MaisTocadas {
+                display: block;
             }
 
             article {

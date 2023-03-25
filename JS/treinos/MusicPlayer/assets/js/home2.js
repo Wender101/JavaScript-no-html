@@ -31,7 +31,8 @@ menuTocandoMusica.addEventListener('click', (e) => {
 
 let ultimasPesquisasDoUser = {
     Musicas: [],
-    Generos: []
+    Generos: [],
+    Playlists: []
 }
 
 if(localStorage.getItem('ultimasPesquisasDoUser') != undefined && localStorage.getItem('ultimasPesquisasDoUser') != null) {
@@ -43,7 +44,9 @@ if(localStorage.getItem('ultimasPesquisasDoUser') != undefined && localStorage.g
 function ultimasPesquisas() {
     let jaTemEsteNum = []
     for(let c = 0; c < ultimasPesquisasDoUser.Musicas.length; c++) {
-        let numRepetido = false
+        let numRepetidoMusica = false
+        let numRepetidoGenero = false
+        let numRepetidoPlaylist = false
 
         db.collection('TodasAsMusicas').onSnapshot((data) => {
             data.docs.map(function(valor) {
@@ -64,17 +67,17 @@ function ultimasPesquisas() {
                     NomeMusica = NomeMusica.replace(/\s/g, '') //? Vai remover os espaços
     
                     if(pesquisa.includes(Autor) || pesquisa.includes(NomeMusica) || Autor.includes(pesquisa) || NomeMusica.includes(pesquisa)) {
-                        console.log(jaTemEsteNum);
                         for(let c3 = 0; c3 < jaTemEsteNum.length; c3++) {
                             if(jaTemEsteNum[c3] == c2) {
-                                numRepetido = true
+                                numRepetidoMusica = true
                             }
                         }
 
                         setTimeout(() => {
-                            if(numRepetido == false) {
+                            if(numRepetidoMusica == false) {
                                 jaTemEsteNum.push(c2)
-                                numRepetido = true
+                                numRepetidoMusica = true
+                                document.querySelector('#ultimasPesquisas').style.display = 'block'
         
                                 let musicaMaisTocada = document.createElement('div')
                                 let localImgMaisTocada = document.createElement('div')
@@ -112,7 +115,135 @@ function ultimasPesquisas() {
                         }, 100)
                     }
                 }
+
+                //! Vai add como recomendadas as músicas com os ultimos 8 gêneros que foi pesquisado
+                for(let c2 = 0; c2 < TodasAsMusicas.Musicas.length; c2++) {
+                    pesquisa = ultimasPesquisasDoUser.Generos[c].toLocaleLowerCase()
+                    pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
+                    
+                    let Tipo = TodasAsMusicas.Musicas[c2].Tipo.toLocaleLowerCase()
+                    Tipo = Tipo.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    Tipo = Tipo.replace(/\s/g, '') //? Vai remover os espaços
+    
+                    if(pesquisa.includes(Tipo) || Tipo.includes(pesquisa)) {
+                        for(let c3 = 0; c3 < jaTemEsteNum.length; c3++) {
+                            if(jaTemEsteNum[c3] == c2) {
+                                numRepetidoGenero = true
+                            }
+                        }
+
+                        setTimeout(() => {
+                            if(numRepetidoGenero == false) {
+                                jaTemEsteNum.push(c2)
+                                numRepetidoGenero = true
+                                document.querySelector('#ultimasPesquisasGenero').style.display = 'block'
+        
+                                let musicaMaisTocada = document.createElement('div')
+                                let localImgMaisTocada = document.createElement('div')
+                                let img = document.createElement('img')
+                                let nomeMusicaMaisTocada = document.createElement('h3')
+                                let nomeAutorMaisTocada = document.createElement('p')
+                    
+                                musicaMaisTocada.className = 'musicaMaisTocada'
+                                localImgMaisTocada.className = 'localImgMaisTocada'
+                                nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
+                                nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
+                    
+                                img.src = TodasAsMusicas.Musicas[c2].LinkImgiMusica
+                                nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[c2].NomeMusica
+                                nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[c2].NomeAutor
+                    
+                                localImgMaisTocada.appendChild(img)
+                                musicaMaisTocada.appendChild(localImgMaisTocada)
+                                musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
+                                musicaMaisTocada.appendChild(nomeAutorMaisTocada)
+                    
+                                document.querySelector('#ultimasPesquisasGenero').querySelector('article').appendChild(musicaMaisTocada)
+                    
+                                //! Funções de click
+                                //? Ao clicar em favoritar música
+                                
+                                //? Vai tocar a música selecionada
+                                musicaMaisTocada.addEventListener('click', () => {
+                                    numSelecionado = c2
+                    
+                                    cloneMusicasSequencia = []
+                                    darPlayNaMusica(TodasAsMusicas.Musicas[c2])
+                                })
+                            }
+                        }, 100)
+                    }
+                }
+            })
+        })
+
+        db.collection('Usuarios').onSnapshot((data) => {
+            data.docs.map(function(valor) {
+                let Usuarios = valor.data()
+
+                 //! Vai add como recomendadas as ultimas 8 playlists pesquisadas
+                try {
+                    for(let c2 = 0; c2 < Usuarios.Musica.Playlist.length; c2++) {
+                        pesquisa = ultimasPesquisasDoUser.Playlists[c].toLocaleLowerCase()
+                        pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                        pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
+                        
+                        let NomePlaylist = Usuarios.Musica.Playlist[c2].NomePlaylist.toLocaleLowerCase()
+                        NomePlaylist = NomePlaylist.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                        NomePlaylist = NomePlaylist.replace(/\s/g, '') //? Vai remover os espaços
+        
+                        if(pesquisa.includes(NomePlaylist) || NomePlaylist.includes(pesquisa)) {
+                            for(let c3 = 0; c3 < jaTemEsteNum.length; c3++) {
+                                if(jaTemEsteNum[c3] == c2) {
+                                    numRepetidoPlaylist = true
+                                }
+                            }
+    
+                            setTimeout(() => {
+                                if(numRepetidoPlaylist == false) {
+                                    jaTemEsteNum.push(c2)
+                                    numRepetidoPlaylist = true
+                                    document.querySelector('#PlaylistsRecomendadas').style.display = 'block'
+    
+                                    let musicaMaisTocada = document.createElement('div')
+                                    let localImgMaisTocada = document.createElement('div')
+                                    let img = document.createElement('img')
+                                    let nomeMusicaMaisTocada = document.createElement('h3')
+                                    let nomeAutorMaisTocada = document.createElement('p')
+                        
+                                    musicaMaisTocada.className = 'musicaMaisTocada'
+                                    localImgMaisTocada.className = 'localImgMaisTocada'
+                                    nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
+                                    nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
+                        
+                                    img.src = Usuarios.Musica.Playlist[c2].Musicas[0].LinkImgiMusica
+                                    nomeMusicaMaisTocada.innerText = Usuarios.Musica.Playlist[c2].NomePlaylist
+                                    nomeAutorMaisTocada.innerText = Usuarios.infUser.Nome
+                        
+                                    localImgMaisTocada.appendChild(img)
+                                    musicaMaisTocada.appendChild(localImgMaisTocada)
+                                    musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
+                                    musicaMaisTocada.appendChild(nomeAutorMaisTocada)
+                        
+                                    document.querySelector('#PlaylistsRecomendadas').querySelector('article').appendChild(musicaMaisTocada)
+                        
+                                    //! Funções de click
+                                    //? Ao clicar em favoritar música
+                                    
+                                    //? Vai tocar a música selecionada
+                                    // musicaMaisTocada.addEventListener('click', () => {
+                                    //     numSelecionado = c2
+                        
+                                    //     cloneMusicasSequencia = []
+                                    //     darPlayNaMusica(Usuarios.Musica.Playlist[c2])
+                                    // })
+                                }
+                            }, 100)
+                        }
+                    }
+                } catch{}
             })
         })
     } 
-} //ultimasPesquisas()
+}

@@ -266,6 +266,7 @@ body main section {
   height: auto;
   margin: 0px auto 38px;
   color: #fff;
+  display: none;
 }
 body main section#Recente {
   display: none;
@@ -277,6 +278,9 @@ body main section#Recente article {
 }
 body main section#Recente article div {
   display: inline-block;
+}
+body main section#MaisTocadas {
+  display: block;
 }
 body main section article {
   display: flex;

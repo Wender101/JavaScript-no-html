@@ -686,6 +686,7 @@ function fecharAbas() {
     playlistAdd = false
     document.querySelector('body').style.overflow = 'auto'
     return true
+    ultimasPesquisas()
 }
 
 

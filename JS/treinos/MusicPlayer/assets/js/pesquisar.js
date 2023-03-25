@@ -101,7 +101,9 @@ let clonePerfilUserPesquisado //! Vai guardar as infos do user pesquisado
 function pesquisar(pesquisa) {
     let contadorResutado = 0
     let userPesquisado = false
-    let pesquisaSalva = false
+    let pesquisaSalvaMusica = false
+    let pesquisaSalvaGenero = false
+    let pesquisaSalvaPlaylist = false
     let contadorMusicaMaxPerfil = 0 //? Vai limiar o max de músicas que vai aparecer qnd pesquisar por perfil
     
     db.collection('TodasAsMusicas').onSnapshot((data) => {
@@ -110,10 +112,41 @@ function pesquisar(pesquisa) {
 
             function localArmazenar(local, contador) {
                 //? Vai salvar a pesquisa
-                if(pesquisaSalva == false) {
-                    pesquisaSalva = true
-                    ultimasPesquisasDoUser.Musicas.push(pesquisa)
-                    localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                if(pesquisaSalvaMusica == false && ultimasPesquisasDoUser.Musicas.length < 8) {
+                    pesquisaSalvaMusica = true
+                    let jaTemEssaPesquisa = false
+                    for(let c = 0; c < ultimasPesquisasDoUser.Musicas.length; c++) {
+                        if(ultimasPesquisasDoUser.Musicas[c] == pesquisa) {
+                            jaTemEssaPesquisa = true
+                        }
+                    }
+
+                    setTimeout(() => {
+                        if(jaTemEssaPesquisa == false) {
+                            jaTemEssaPesquisa = true
+                            ultimasPesquisasDoUser.Musicas.push(pesquisa)
+                            localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                        }
+                    }, 100)
+
+                    //? Caso a parte Recomendadas esteja cheia, ele vai remover a primera pesquisa
+                } else if(pesquisaSalvaMusica == false && ultimasPesquisasDoUser.Musicas.length >= 8) {
+                    ultimasPesquisasDoUser.Musicas.splice(0, 1)
+                    pesquisaSalvaMusica = true
+                    let jaTemEssaPesquisa = false
+                    for(let c = 0; c < ultimasPesquisasDoUser.Musicas.length; c++) {
+                        if(ultimasPesquisasDoUser.Musicas[c] == pesquisa) {
+                            jaTemEssaPesquisa = true
+                        }
+                    }
+
+                    setTimeout(() => {
+                        if(jaTemEssaPesquisa == false) {
+                            jaTemEssaPesquisa = true
+                            ultimasPesquisasDoUser.Musicas.push(pesquisa)
+                            localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                        }
+                    }, 100)
                 }
 
 
@@ -476,10 +509,43 @@ function pesquisar(pesquisa) {
 
                 if(Tipo.includes(pesquisa)) {
                      //? Vai salvar a pesquisa
-                    if(pesquisaSalva == false) {
-                        pesquisaSalva = true
-                        ultimasPesquisasDoUser.Generos.push(pesquisa)
-                        localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                    if(pesquisaSalvaGenero == false && ultimasPesquisasDoUser.Generos.length < 8) {
+                        pesquisaSalvaGenero = true
+                        let jaTemEssaPesquisa = false
+                        for(let c = 0; c < ultimasPesquisasDoUser.Generos.length; c++) {
+                            if(ultimasPesquisasDoUser.Generos[c] == pesquisa) {
+                                jaTemEssaPesquisa = true
+                            }
+                        }
+
+                        setTimeout(() => {
+                            if(jaTemEssaPesquisa == false) {
+                                jaTemEssaPesquisa = true
+                                pesquisaSalvaGenero = true
+                                ultimasPesquisasDoUser.Generos.push(pesquisa)
+                                localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                            }
+                        }, 100)
+
+                        //? Caso a parte Talvez você curta esteja cheia, ele vai remover a primera pesquisa
+                    } else if(pesquisaSalvaGenero == false && ultimasPesquisasDoUser.Generos.length >= 8) {
+                        ultimasPesquisasDoUser.Generos.splice(0, 1)
+                        pesquisaSalvaGenero = true
+                        let jaTemEssaPesquisa = false
+                        for(let c = 0; c < ultimasPesquisasDoUser.Generos.length; c++) {
+                            if(ultimasPesquisasDoUser.Generos[c] == pesquisa) {
+                                jaTemEssaPesquisa = true
+                            }
+                        }
+
+                        setTimeout(() => {
+                            if(jaTemEssaPesquisa == false) {
+                                jaTemEssaPesquisa = true
+                                pesquisaSalvaGenero = true
+                                ultimasPesquisasDoUser.Generos.push(pesquisa)
+                                localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                            }
+                        }, 100)
                     }
 
                     localArmazenar(document.querySelector('#TipoPesquisa'), c)
@@ -558,6 +624,54 @@ function pesquisar(pesquisa) {
                                         }
                                     })
                                 })
+
+                                //! Vai salvar a playlist pesquisada
+                                if(NomePlaylist.includes(pesquisa)) {
+                                    //? Vai salvar a pesquisa
+                                   if(pesquisaSalvaPlaylist == false && ultimasPesquisasDoUser.Playlists.length < 8) {
+                                    pesquisaSalvaPlaylist = true
+                                       let jaTemEssaPesquisa = false
+                                       for(let c = 0; c < ultimasPesquisasDoUser.Playlists.length; c++) {
+                                           if(ultimasPesquisasDoUser.Playlists[c] == pesquisa) {
+                                               jaTemEssaPesquisa = true
+                                           }
+                                       }
+               
+                                       setTimeout(() => {
+                                           if(jaTemEssaPesquisa == false) {
+                                               jaTemEssaPesquisa = true
+                                               pesquisaSalvaPlaylist = true
+                                               ultimasPesquisasDoUser.Playlists.push(pesquisa)
+                                               localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                                           }
+                                       }, 100)
+               
+                                       //? Caso a parte Talvez você curta esteja cheia, ele vai remover a primera pesquisa
+                                   } else if(pesquisaSalvaPlaylist == false && ultimasPesquisasDoUser.Playlists.length >= 8) {
+                                       ultimasPesquisasDoUser.Playlists.splice(0, 1)
+                                       pesquisaSalvaPlaylist = true
+                                       let jaTemEssaPesquisa = false
+                                       for(let c = 0; c < ultimasPesquisasDoUser.Playlists.length; c++) {
+                                           if(ultimasPesquisasDoUser.Playlists[c] == pesquisa) {
+                                               jaTemEssaPesquisa = true
+                                           }
+                                       }
+               
+                                       setTimeout(() => {
+                                           if(jaTemEssaPesquisa == false) {
+                                               jaTemEssaPesquisa = true
+                                               pesquisaSalva = true
+                                               ultimasPesquisasDoUser.Playlists.push(pesquisa)
+                                               localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                                           }
+                                       }, 100)
+                                   }
+               
+                                   localArmazenar(document.querySelector('#TipoPesquisa'), c)
+               
+                                   document.querySelector('#TipoPesquisa').style.display = 'block'
+                                   document.querySelector('#h1Tipo').style.display = 'block'
+                               }
                             }
 
                             function criarMusicasPlaylist() {
