@@ -597,32 +597,7 @@ function pesquisar(pesquisa) {
                                 document.querySelector('#localPlaylistsPesquisa').appendChild(musicaMaisTocada)
 
                                 musicaMaisTocada.addEventListener('click', () => {
-                                    document.querySelector('body').style.overflow = 'hidden'
-                                    document.querySelector('#pagPessoalUser').style.display = 'block'
-                                    document.querySelector('#addPlaylist').style.display = 'none'
-                                    document.querySelector('#localMusicasUserPagPessoal').innerHTML = ''
-                                    document.querySelector('#headerPessalUser').querySelector('div').querySelector('img').style.display = 'none'
-                                    document.querySelector('#headerPessalUser').querySelector('div').querySelector('h1').style.display = 'block'
-                                    document.querySelector('#headerPessalUser').querySelector('div').querySelector('h1').innerText = Usuarios.Musica.Playlist[a].NomePlaylist
-                                    document.querySelector('#headerPessalUser').querySelector('div').querySelector('textarea').style.display = 'none'
-                                    document.querySelector('#headerPessalUser').style.backgroundImage = `url("${Usuarios.Musica.Playlist[a].Musicas[0].LinkImgiMusica}")`
-                                    document.querySelector('#headerPessalUser').style.backgroundSize = 'cover'
-                                    document.querySelector('#headerPessalUser').style.backgroundRepeat = 'no-repeat'
-                                    imgUserPagPessoal.src = 'assets/img/icones/play.png'
-                                    imgUserPagPessoal.style.background = '#0DCBA9'
-
-                                    oQueEstaPassando = 'playlist'
-
-                                    criarMusicasPlaylist()
-
-                                    //? Click, vai iniciar as músicas
-                                    imgUserPagPessoal.addEventListener('click', () => {
-                                        if(oQueEstaPassando == 'playlist') {
-                                            cloneMusicasSequencia = Usuarios.Musica.Playlist[a].Musicas
-                                            numMusicaSequencia = 0
-                                            darPlayNaMusica(Usuarios.Musica.Playlist[a].Musicas[0])
-                                        }
-                                    })
+                                    abrirPlaylist(valor.id, a)
                                 })
 
                                 //! Vai salvar a playlist pesquisada
@@ -672,37 +647,6 @@ function pesquisar(pesquisa) {
                                    document.querySelector('#TipoPesquisa').style.display = 'block'
                                    document.querySelector('#h1Tipo').style.display = 'block'
                                }
-                            }
-
-                            function criarMusicasPlaylist() {
-                                for(let d = 0; d < Usuarios.Musica.Playlist[a].Musicas.length; d++) {
-                                    let musicaPostadaUser = document.createElement('div')
-                                    let localMusicaPostadaUser = document.createElement('div')
-                                    let div = document.createElement('div')
-                                    let img = document.createElement('img')
-                                    let localTextoPostadoUser = document.createElement('div')
-                                    let h3 = document.createElement('h3')
-                                    let p = document.createElement('p')
-                                    let heart = document.createElement('img')
-        
-                                    musicaPostadaUser.className = 'musicaPostadaUser'
-                                    localMusicaPostadaUser.className = 'localMusicaPostadaUser'
-                                    localTextoPostadoUser.className = 'localTextoPostadoUser'
-        
-                                    img.src = Usuarios.Musica.Playlist[a].Musicas[d].LinkImgiMusica
-                                    h3.innerText = Usuarios.Musica.Playlist[a].Musicas[d].NomeMusica
-                                    p.innerText = Usuarios.Musica.Playlist[a].Musicas[d].NomeAutor
-                                    heart.src = 'assets/img/icones/icon _heart_ (1).png'
-        
-                                    localMusicaPostadaUser.appendChild(img)
-                                    localTextoPostadoUser.appendChild(h3)
-                                    localTextoPostadoUser.appendChild(p)
-                                    div.appendChild(localMusicaPostadaUser)
-                                    div.appendChild(localTextoPostadoUser)
-                                    musicaPostadaUser.appendChild(div)
-                                    musicaPostadaUser.appendChild(heart)
-                                    document.querySelector('#localMusicasUserPagPessoal').appendChild(musicaPostadaUser)
-                                }
                             }
                         }
                     } catch{}

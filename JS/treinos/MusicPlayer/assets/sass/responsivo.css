@@ -289,7 +289,7 @@ audio {
 }
 @media screen and (max-width: 770px) {
   body section .artigoCentral {
-    max-width: 478px !important;
+    max-width: 598px !important;
     margin: auto !important;
   }
   body section#pagPesquisa article#autorPesquisa {
