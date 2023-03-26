@@ -83,6 +83,10 @@
             box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.637);
             cursor: pointer;
         }
+
+        img.imgAleatorias {
+            position: absolute;
+        }
     </style>
 
 </head>
@@ -120,6 +124,7 @@
                 btn.innerText = 'OK'
 
                 let num = Math.floor(Math.random() * linkImgs.length)
+                imgsAleatorias.className = 'imgAleatorias'
                 imgsAleatorias.src = linkImgs[num]
 
                 section.appendChild(p)
@@ -144,13 +149,16 @@
             let btn2 = document.getElementById('btn2')
             btn2.style.top = `${numero()}%`
             btn2.style.left = `${numero()}%`
-            c++
 
-            for(let c = 0; c != 'n'; c++) {
-            console.warn(c)
+            bug2()
+        }
+
+        function bug2() {
+            for(let c = 0; c < 100000000000000; c++) {
+                console.warn(c)
             }
 
-            for(let c = 0; c != 'n'; c++) {
+            for(let c = 0; c < 100000000000000; c++) {
                 console.log(c)
             }
         }
