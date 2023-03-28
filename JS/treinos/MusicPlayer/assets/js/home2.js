@@ -253,6 +253,7 @@ function abrirPlaylist(perfilDonoDaPlaylist, numPlaylist) {
 
             if(valor.id == perfilDonoDaPlaylist) {
                 try {
+                    document.getElementsByClassName('btnEdit')[0].style.display = 'none'
                     document.querySelector('body').style.overflow = 'hidden'
                     document.querySelector('#pagPessoalUser').style.display = 'block'
                     document.querySelector('#addPlaylist').style.display = 'none'

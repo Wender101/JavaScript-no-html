@@ -212,3 +212,53 @@ audio {
         display: flex;
     }
 }
+
+.btnEdit {
+    width: 28px;
+    height: 28px;
+    background-color: $cor1;
+    border: none;
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 2px $sombra;
+    cursor: pointer;
+
+    &:hover {
+        scale: 1.1;
+    }
+
+    img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+.btnEdit2 {
+    width: 14px;
+    height: 14px;
+    background-color: $cor1;
+    border: none;
+    padding: 16px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 5px $sombra;
+    cursor: pointer;
+
+    &:hover {
+        scale: 1.1;
+    }
+
+    img {
+        width: 10px;
+        height: 10px;
+        object-fit: cover;
+    }
+}

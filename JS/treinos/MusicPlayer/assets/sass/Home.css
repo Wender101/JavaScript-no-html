@@ -179,6 +179,53 @@ audio {
   display: flex;
 }
 
+.btnEdit {
+  width: 28px;
+  height: 28px;
+  background-color: #0DCBA9;
+  border: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4666666667);
+  cursor: pointer;
+}
+.btnEdit:hover {
+  scale: 1.1;
+}
+.btnEdit img {
+  width: 28px;
+  height: 28px;
+}
+
+.btnEdit2 {
+  width: 14px;
+  height: 14px;
+  background-color: #0DCBA9;
+  border: none;
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4666666667);
+  cursor: pointer;
+}
+.btnEdit2:hover {
+  scale: 1.1;
+}
+.btnEdit2 img {
+  width: 10px;
+  height: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 body {
   width: calc(100vw - 58px);
   position: absolute;
@@ -201,7 +248,7 @@ body nav {
   position: fixed;
   top: 0px;
   left: 0px;
-  z-index: 2;
+  z-index: 3;
 }
 body nav button {
   width: 23px;
@@ -238,7 +285,7 @@ body nav ul li button#PlaylistBtn {
   background-image: url(../img/icones/playlist.png);
 }
 body nav ul li button#PagPessoal {
-  background-image: url(../img/icones/icon\ _profile_.png);
+  background-image: url(../img/icones/icon\ _user\ edit.png);
 }
 body nav ul li button#AddMusicaBtn {
   background-image: url(../img/icones/addMusic.png);
@@ -866,6 +913,61 @@ body section#pagPessoalUser div.musicaPostadaUser div div.localTextoPostadoUser 
 body section#pagPessoalUser div.musicaPostadaUser img {
   width: 23px;
   height: 20px;
+}
+body section#pop-upEditarPerfil {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.4666666667);
+  z-index: 2;
+}
+body section#pop-upEditarPerfil article {
+  width: 95%;
+  max-width: 500px;
+  height: auto;
+  background-color: #181818;
+  padding: 60px 30px 30px;
+  color: #fff;
+  position: relative;
+}
+body section#pop-upEditarPerfil article button#xEditarPerfil {
+  width: 23px;
+  height: 23px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url(../img/icones/X.png);
+  position: absolute;
+  top: -20px;
+  right: -70px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+body section#pop-upEditarPerfil article input {
+  max-width: 900px;
+  width: calc(100% - 46px);
+  border: none;
+  padding: 11px 23px;
+  background-color: rgba(75, 75, 75, 0.4705882353);
+  display: block;
+  border-radius: 24px;
+  color: #fff;
+  margin: 10px 0px 30px;
+}
+body section#pop-upEditarPerfil article button {
+  border: none;
+  background-color: #636363;
+  color: #fff;
+  margin: 36px auto;
+  padding: 12px 55px;
+  display: block;
+  font-size: 16px;
+  font-family: "Carter One", cursive;
+  cursor: pointer;
 }
 body section#pagSobreMusicaTocando {
   width: calc(100% - 60px);

@@ -179,6 +179,53 @@ audio {
   display: flex;
 }
 
+.btnEdit {
+  width: 28px;
+  height: 28px;
+  background-color: #0DCBA9;
+  border: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4666666667);
+  cursor: pointer;
+}
+.btnEdit:hover {
+  scale: 1.1;
+}
+.btnEdit img {
+  width: 28px;
+  height: 28px;
+}
+
+.btnEdit2 {
+  width: 14px;
+  height: 14px;
+  background-color: #0DCBA9;
+  border: none;
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4666666667);
+  cursor: pointer;
+}
+.btnEdit2:hover {
+  scale: 1.1;
+}
+.btnEdit2 img {
+  width: 10px;
+  height: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 @media screen and (max-width: 1473px) {
   body section .artigoCentral {
     max-width: 1113px !important;

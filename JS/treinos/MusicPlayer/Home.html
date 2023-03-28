@@ -218,6 +218,8 @@
     <section id="pagPessoalUser" class="paginas">
         <article>
             <div id="headerPessalUser">
+                <button onclick="editarPerfil()" class="btnEdit"><img src="assets/img/icones/icon _edit.png"></button>
+
                <div>
                 <img src="assets/img/icones/icon _profile_.png" id="imgPerfilUserPagPessoal">
                 <h1 id="nomeUserPagPessoal">Nome User</h1>
@@ -238,6 +240,24 @@
             </div>
         </article>
     </section>
+
+    <!--! Editar perfil -->
+    <section id="pop-upEditarPerfil">
+        <article>
+            <button id="xEditarPerfil" onclick="fecharEditarPerfil()"></button>
+
+            <p>Nome:</p>
+            <input type="text" placeholder="Nome de usuario" id="nomeUserEditarPerfil" oninput="checarAtualizarPerfil()">
+            <p>Link da img de fundo:</p>
+            <input type="text" placeholder="https://img.jpg" id="LinkImgFundoEditarPerfil" oninput="checarAtualizarPerfil()">
+            <p>Link img do perfil</p>
+            <input type="text" placeholder="https://img.jpg" id="imgPerfilUserEditar" oninput="checarAtualizarPerfil()">
+            <button id="btnAtualizarPerfil" onclick="checarAtualizarPerfil(true)">Atualizar</button>
+        </article>
+    </section>
+
+    <!--! Editar Músicas -->
+    <section id="pop-upEditarMusica"></section>
 
     <!--? pág sobre a música que está tocando, para o cell -->
     <section id="pagSobreMusicaTocando" class="paginas">
