@@ -662,6 +662,7 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
     let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
     localMusicasUserPagPessoal.innerHTML = ''
 
+    document.getElementsByClassName('btnEdit')[0].style.display = 'none'
     document.querySelector('#pagPessoalUser').style.display = 'block'
     document.querySelector('#addPlaylist').style.display = 'none'
     document.querySelector('#headerPessalUser').querySelector('div').querySelector('img').style.display = 'block'
