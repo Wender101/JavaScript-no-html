@@ -19,7 +19,6 @@ let menuTocandoMusica = document.querySelector('#menuTocandoMusica')
 
 menuTocandoMusica.addEventListener('click', (e) => {
     let idE = e.target.id
-    console.log(idE);
     let tamanhoTela = document.defaultView.window.visualViewport.width
     
     if(tamanhoTela <= 723 && idE == 'parteCentralConfigMusica') {
@@ -43,7 +42,7 @@ if(localStorage.getItem('ultimasPesquisasDoUser') != undefined && localStorage.g
 //! Vai colocar na pag home o resultado de suas ultimas pesquisas
 function ultimasPesquisas() {
     let jaTemEsteNum = []
-    for(let c = 0; c < ultimasPesquisasDoUser.Musicas.length; c++) {
+    for(let c = ultimasPesquisasDoUser.Musicas.length - 1; c >= 0; c--) {
         let numRepetidoMusica = false
         let numRepetidoGenero = false
         let numRepetidoPlaylist = false
@@ -117,64 +116,66 @@ function ultimasPesquisas() {
                 }
 
                 //! Vai add como recomendadas as músicas com os ultimos 8 gêneros que foi pesquisado
-                for(let c2 = 0; c2 < TodasAsMusicas.Musicas.length; c2++) {
-                    pesquisa = ultimasPesquisasDoUser.Generos[c].toLocaleLowerCase()
-                    pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                    pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
-                    
-                    let Tipo = TodasAsMusicas.Musicas[c2].Tipo.toLocaleLowerCase()
-                    Tipo = Tipo.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                    Tipo = Tipo.replace(/\s/g, '') //? Vai remover os espaços
-    
-                    if(pesquisa.includes(Tipo) || Tipo.includes(pesquisa)) {
-                        for(let c3 = 0; c3 < jaTemEsteNum.length; c3++) {
-                            if(jaTemEsteNum[c3] == c2) {
-                                numRepetidoGenero = true
-                            }
-                        }
-
-                        setTimeout(() => {
-                            if(numRepetidoGenero == false) {
-                                jaTemEsteNum.push(c2)
-                                numRepetidoGenero = true
-                                document.querySelector('#ultimasPesquisasGenero').style.display = 'block'
+                try {
+                    for(let c2 = 0; c2 < TodasAsMusicas.Musicas.length; c2++) {
+                        pesquisa = ultimasPesquisasDoUser.Generos[c].toLocaleLowerCase()
+                        pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                        pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
+                        
+                        let Tipo = TodasAsMusicas.Musicas[c2].Tipo.toLocaleLowerCase()
+                        Tipo = Tipo.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                        Tipo = Tipo.replace(/\s/g, '') //? Vai remover os espaços
         
-                                let musicaMaisTocada = document.createElement('div')
-                                let localImgMaisTocada = document.createElement('div')
-                                let img = document.createElement('img')
-                                let nomeMusicaMaisTocada = document.createElement('h3')
-                                let nomeAutorMaisTocada = document.createElement('p')
-                    
-                                musicaMaisTocada.className = 'musicaMaisTocada'
-                                localImgMaisTocada.className = 'localImgMaisTocada'
-                                nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
-                                nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
-                    
-                                img.src = TodasAsMusicas.Musicas[c2].LinkImgiMusica
-                                nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[c2].NomeMusica
-                                nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[c2].NomeAutor
-                    
-                                localImgMaisTocada.appendChild(img)
-                                musicaMaisTocada.appendChild(localImgMaisTocada)
-                                musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
-                                musicaMaisTocada.appendChild(nomeAutorMaisTocada)
-                    
-                                document.querySelector('#ultimasPesquisasGenero').querySelector('article').appendChild(musicaMaisTocada)
-                    
-                                //! Funções de click
-                                //? Ao clicar em favoritar música
-                                
-                                //? Vai tocar a música selecionada
-                                musicaMaisTocada.addEventListener('click', () => {
-                                    numSelecionado = c2
-                    
-                                    cloneMusicasSequencia = []
-                                    darPlayNaMusica(TodasAsMusicas.Musicas[c2])
-                                })
+                        if(pesquisa.includes(Tipo) || Tipo.includes(pesquisa)) {
+                            for(let c3 = 0; c3 < jaTemEsteNum.length; c3++) {
+                                if(jaTemEsteNum[c3] == c2) {
+                                    numRepetidoGenero = true
+                                }
                             }
-                        }, 100)
+    
+                            setTimeout(() => {
+                                if(numRepetidoGenero == false) {
+                                    jaTemEsteNum.push(c2)
+                                    numRepetidoGenero = true
+                                    document.querySelector('#ultimasPesquisasGenero').style.display = 'block'
+            
+                                    let musicaMaisTocada = document.createElement('div')
+                                    let localImgMaisTocada = document.createElement('div')
+                                    let img = document.createElement('img')
+                                    let nomeMusicaMaisTocada = document.createElement('h3')
+                                    let nomeAutorMaisTocada = document.createElement('p')
+                        
+                                    musicaMaisTocada.className = 'musicaMaisTocada'
+                                    localImgMaisTocada.className = 'localImgMaisTocada'
+                                    nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
+                                    nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
+                        
+                                    img.src = TodasAsMusicas.Musicas[c2].LinkImgiMusica
+                                    nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[c2].NomeMusica
+                                    nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[c2].NomeAutor
+                        
+                                    localImgMaisTocada.appendChild(img)
+                                    musicaMaisTocada.appendChild(localImgMaisTocada)
+                                    musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
+                                    musicaMaisTocada.appendChild(nomeAutorMaisTocada)
+                        
+                                    document.querySelector('#ultimasPesquisasGenero').querySelector('article').appendChild(musicaMaisTocada)
+                        
+                                    //! Funções de click
+                                    //? Ao clicar em favoritar música
+                                    
+                                    //? Vai tocar a música selecionada
+                                    musicaMaisTocada.addEventListener('click', () => {
+                                        numSelecionado = c2
+                        
+                                        cloneMusicasSequencia = []
+                                        darPlayNaMusica(TodasAsMusicas.Musicas[c2])
+                                    })
+                                }
+                            }, 100)
+                        }
                     }
-                }
+                } catch{}
             })
         })
 
