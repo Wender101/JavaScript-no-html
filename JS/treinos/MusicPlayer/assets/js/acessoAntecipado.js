@@ -52,7 +52,7 @@ document.querySelector('button').addEventListener('click', () => {
                                             location.reload()
                                         }, 100)
                                     }
-                                }, 3000)
+                                }, 2000)
                             }
 
                         }
