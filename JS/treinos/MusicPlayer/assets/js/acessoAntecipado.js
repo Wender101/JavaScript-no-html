@@ -44,13 +44,13 @@ document.querySelector('button').addEventListener('click', () => {
                 
                                         setTimeout(() => {
                                             location.reload()
-                                        }, 50)
+                                        }, 100)
                                     } else if(location.href == 'http://127.0.0.1:5500/Acesso-Antecipado.html') {
                                         location.href = 'http://127.0.0.1:5500/Cadastro.html'
                 
                                         setTimeout(() => {
                                             location.reload()
-                                        }, 50)
+                                        }, 100)
                                     }
                                 }, 3000)
                             }
