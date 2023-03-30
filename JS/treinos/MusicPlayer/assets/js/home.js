@@ -692,60 +692,60 @@ function fecharAbas() {
 
 //! Vai salvar a música nos favoritos
 
-let hearAdd = document.querySelector('#hearAdd')
-let feitoAddFavoritos = false
-hearAdd.addEventListener('click', () => {
-    if(feitoAddFavoritos == false) {
-        let feito = false
-        feitoAddFavoritos = true
-        db.collection('TodasAsMusicas').onSnapshot((data) => {
-            data.docs.map(function(valor) {
-                let TodasAsMusicas = valor.data()
+// let hearAdd = document.querySelector('#hearAdd')
+// let feitoAddFavoritos = false
+// hearAdd.addEventListener('click', () => {
+//     if(feitoAddFavoritos == false) {
+//         let feito = false
+//         feitoAddFavoritos = true
+//         db.collection('TodasAsMusicas').onSnapshot((data) => {
+//             data.docs.map(function(valor) {
+//                 let TodasAsMusicas = valor.data()
     
-                if(feito == false) {
-                    feito = true
-                    let feito2 = false
-                    if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_%20(1).png' && feito2 == false || hearAdd.src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_%20(1).png' && feito2 == false) {
-                        favoritarMusica(TodasAsMusicas.Musicas[numSelecionado].NomeMusica, TodasAsMusicas.Musicas[numSelecionado].NomeAutor, TodasAsMusicas.Musicas[numSelecionado].Tipo, TodasAsMusicas.Musicas[numSelecionado].LinkAudio, TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica, TodasAsMusicas.Musicas[numSelecionado].EmailUser, TodasAsMusicas.Musicas[numSelecionado].EstadoMusica, 'Adicionar')
-                        feito2 = true
-                        hearAdd.src = 'assets/img/icones/icon _heart_.png'
+//                 if(feito == false) {
+//                     feito = true
+//                     let feito2 = false
+//                     if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_%20(1).png' && feito2 == false || hearAdd.src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_%20(1).png' && feito2 == false) {
+//                         favoritarMusica(TodasAsMusicas.Musicas[numSelecionado].NomeMusica, TodasAsMusicas.Musicas[numSelecionado].NomeAutor, TodasAsMusicas.Musicas[numSelecionado].Tipo, TodasAsMusicas.Musicas[numSelecionado].LinkAudio, TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica, TodasAsMusicas.Musicas[numSelecionado].EmailUser, TodasAsMusicas.Musicas[numSelecionado].EstadoMusica, 'Adicionar')
+//                         feito2 = true
+//                         hearAdd.src = 'assets/img/icones/icon _heart_.png'
     
-                    } else if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png' && feito2 == false && hearAdd.src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_.png' && feito2 == false) {
-                        favoritarMusica(TodasAsMusicas.Musicas[numSelecionado].NomeMusica, TodasAsMusicas.Musicas[numSelecionado].NomeAutor, TodasAsMusicas.Musicas[numSelecionado].Tipo, TodasAsMusicas.Musicas[numSelecionado].LinkAudio, TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica, TodasAsMusicas.Musicas[numSelecionado].EmailUser, TodasAsMusicas.Musicas[numSelecionado].EstadoMusica, 'Remover')
-                        feito2 = true
-                        hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'
-                    }
-                }
-            })
-        })
-    }
+//                     } else if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png' && feito2 == false && hearAdd.src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_.png' && feito2 == false) {
+//                         favoritarMusica(TodasAsMusicas.Musicas[numSelecionado].NomeMusica, TodasAsMusicas.Musicas[numSelecionado].NomeAutor, TodasAsMusicas.Musicas[numSelecionado].Tipo, TodasAsMusicas.Musicas[numSelecionado].LinkAudio, TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica, TodasAsMusicas.Musicas[numSelecionado].EmailUser, TodasAsMusicas.Musicas[numSelecionado].EstadoMusica, 'Remover')
+//                         feito2 = true
+//                         hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'
+//                     }
+//                 }
+//             })
+//         })
+//     }
 
-    setTimeout(() => {
-        feitoAddFavoritos = false
-    }, 300)
-})
+//     setTimeout(() => {
+//         feitoAddFavoritos = false
+//     }, 300)
+// })
 
-function favoritarMusica(NomeMusica, NomeAutor, Tipo, LinkAudio, LinkImgiMusica, EmailUser, EstadoMusica, oQfazerComAmusica) {
-    if(oQfazerComAmusica == 'Adicionar') {
-        let formaFavoritos =  {
-            NomeMusica,
-            NomeAutor,
-            Tipo,
-            LinkAudio,
-            LinkImgiMusica,
-            EmailUser,
-            EstadoMusica,
-        }
+// function favoritarMusica(NomeMusica, NomeAutor, Tipo, LinkAudio, LinkImgiMusica, EmailUser, EstadoMusica, oQfazerComAmusica) {
+//     if(oQfazerComAmusica == 'Adicionar') {
+//         let formaFavoritos =  {
+//             NomeMusica,
+//             NomeAutor,
+//             Tipo,
+//             LinkAudio,
+//             LinkImgiMusica,
+//             EmailUser,
+//             EstadoMusica,
+//         }
 
-        MusicasFavoritasLista.MusicasCurtidas.push(formaFavoritos)
-        db.collection('Usuarios').doc(idLocalUser).update({Musica: MusicasFavoritasLista})
+//         MusicasFavoritasLista.MusicasCurtidas.push(formaFavoritos)
+//         db.collection('Usuarios').doc(idLocalUser).update({Musica: MusicasFavoritasLista})
 
-    } else {
-        for(let contador = 0; contador < MusicasFavoritasLista.MusicasCurtidas.length; contador++) {
-            if(MusicasFavoritasLista.MusicasCurtidas[contador].NomeMusica == NomeMusica && MusicasFavoritasLista.MusicasCurtidas[contador].NomeAutor == NomeAutor && MusicasFavoritasLista.MusicasCurtidas[contador].EmailUser == EmailUser && MusicasFavoritasLista.MusicasCurtidas[contador].LinkImgiMusica == LinkImgiMusica && MusicasFavoritasLista.MusicasCurtidas[contador].LinkAudio == LinkAudio) {
-                MusicasFavoritasLista.MusicasCurtidas.splice(contador, 1)
-                db.collection('Usuarios').doc(idLocalUser).update({Musica: MusicasFavoritasLista})
-            }
-        }
-    }
-}
+//     } else {
+//         for(let contador = 0; contador < MusicasFavoritasLista.MusicasCurtidas.length; contador++) {
+//             if(MusicasFavoritasLista.MusicasCurtidas[contador].NomeMusica == NomeMusica && MusicasFavoritasLista.MusicasCurtidas[contador].NomeAutor == NomeAutor && MusicasFavoritasLista.MusicasCurtidas[contador].EmailUser == EmailUser && MusicasFavoritasLista.MusicasCurtidas[contador].LinkImgiMusica == LinkImgiMusica && MusicasFavoritasLista.MusicasCurtidas[contador].LinkAudio == LinkAudio) {
+//                 MusicasFavoritasLista.MusicasCurtidas.splice(contador, 1)
+//                 db.collection('Usuarios').doc(idLocalUser).update({Musica: MusicasFavoritasLista})
+//             }
+//         }
+//     }
+// }

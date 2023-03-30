@@ -10,6 +10,7 @@ document.querySelector('#inputConcordo').addEventListener('click', () => {
 
 document.querySelector('button').addEventListener('click', () => {
     let inputChave = document.querySelector('#inputChave').value
+    let BtnClicado = true
 
     if(concordoBtn == true && inputChave.length > 0) {
         db.collection('Admins').onSnapshot((data) => {
@@ -17,30 +18,50 @@ document.querySelector('button').addEventListener('click', () => {
     
                 let DadosDB = val.data()
     
-                let acessoConcedido = false
-               for(let c = 0; c < DadosDB.Chaves.length; c++) {
-                    if(DadosDB.Chaves[c] == inputChave) {
-                        if(location.href == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Acesso-Antecipado.html') {
+                if(BtnClicado == true) {
+                    BtnClicado = false
 
-                            location.href = 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Cadastro.html'
-    
-                            setTimeout(() => {
-                                location.reload()
-                            }, 50)
-                        } else if(location.href == 'http://127.0.0.1:5500/Acesso-Antecipado.html') {
-                            location.href = 'http://127.0.0.1:5500/Cadastro.html'
-    
-                            setTimeout(() => {
-                                location.reload()
-                            }, 50)
+                    let acessoConcedido = false
+                    for(let c = 0; c < DadosDB.Chaves.length; c++) {
+                        if(DadosDB.Chaves[c] == inputChave) {
+                            let chaveDeletada = false
+                            acessoConcedido = true
+
+                            if(chaveDeletada == false) {
+                                chaveDeletada = true
+
+                                let chaverUpdate = DadosDB.Chaves
+
+                                chaverUpdate.splice(c, 1)
+
+                                db.collection('Admins').doc(val.id).update({Chaves: chaverUpdate}) 
+
+
+                                setTimeout(() => {
+                                    if(location.href == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Acesso-Antecipado.html') {
+        
+                                        location.href = 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/Cadastro.html'
+                
+                                        setTimeout(() => {
+                                            location.reload()
+                                        }, 50)
+                                    } else if(location.href == 'http://127.0.0.1:5500/Acesso-Antecipado.html') {
+                                        location.href = 'http://127.0.0.1:5500/Cadastro.html'
+                
+                                        setTimeout(() => {
+                                            location.reload()
+                                        }, 50)
+                                    }
+                                }, 1000)
+                            }
+
                         }
-                        acessoConcedido = true
+        
+                        if((c + 1) == DadosDB.Chaves.length && acessoConcedido == false) {
+                            alert('Chave inexistente ou já em uso.')
+                        }
                     }
-    
-                    if((c + 1) == DadosDB.Chaves.length && acessoConcedido == false) {
-                        alert('Chave inexistente ou já em uso.')
-                    }
-               }
+                }
             })
         })
     } else if(concordoBtn == false && inputChave.length > 0) {

@@ -27,51 +27,58 @@ auth.onAuthStateChanged((val) => {
         irParaOacessoAntecipado()
     }
 
-    if(val.email) {
-        email = val.email
-
-        document.querySelector('#carregando').style.display = 'none'
-
-        if(logado == true) {
-            trocarDeConta = false
-            let emailEncontrado = false
-
-            db.collection('Usuarios').onSnapshot((data) => {
-                data.docs.map(function(valor) {
-                    let DadosDB = valor.data()
-                    
-                    try {
-                        if(DadosDB.infUser.Email == email) {
-                            irParaPagPrincipal()
-                            emailEncontrado = true
-                        }
-                    } catch(e){}
+    try {
+        if(val.email) {
+            logado = true
+            email = val.email
+    
+            try {
+                document.querySelector('#carregando').style.display = 'none'
+            } catch{}
+    
+            if(logado == true) {
+                trocarDeConta = false
+                let emailEncontrado = false
+    
+                db.collection('Usuarios').onSnapshot((data) => {
+                    data.docs.map(function(valor) {
+                        let DadosDB = valor.data()
+                        
+                        try {
+                            if(DadosDB.infUser.Email == email) {
+                                irParaPagPrincipal()
+                                emailEncontrado = true
+                            }
+                        } catch(e){}
+                    })
                 })
-            })
-
-            //? Caso o user não tenha uma conta de email
-            setTimeout(() => {
-                if(emailEncontrado == false) {
-                    let inputNome = document.querySelector('input').value
-
-                    let perfilUser = {
-                        infUser: {
-                            Email: email,
-                            Nome: inputNome
-                        },
-
-                        Musica: {
-                            MusicasCurtidas: [],
-                            MusicasPostadas: []
+    
+                //? Caso o user não tenha uma conta de email
+                setTimeout(() => {
+                    if(emailEncontrado == false) {
+                        let inputNome = document.querySelector('input').value
+    
+                        let perfilUser = {
+                            infUser: {
+                                Email: email,
+                                Nome: inputNome
+                            },
+    
+                            Musica: {
+                                MusicasCurtidas: [],
+                                MusicasPostadas: []
+                            }
                         }
+    
+                        db.collection('Usuarios').add(perfilUser)
+                        irParaPagPrincipal()
                     }
-
-                    db.collection('Usuarios').add(perfilUser)
-                    irParaPagPrincipal()
-                }
-            }, 1000)
-        }
-    } 
+                }, 1000)
+            }
+        } 
+    } catch (error) {
+        console.warn(error)
+    }
 })
 
 function irParaPagPrincipal() {
