@@ -288,14 +288,14 @@ function pesquisar(pesquisa) {
                             nomeAutor = nomeAutor.replace(/\s/g, '') //? Vai remover os espaços
             
                             if(nomeAutor.includes(pesquisa)) {
-                                for(let c2 = 0; c2 < Usuarios.Musica.MusicasPostadas.length; c2++) {
+                                for(let c2 = Usuarios.Musica.MusicasPostadas.length - 1; c2 >= 0; c2--) {
                                     if(contadorMusicasAutor < 4) {
                                         contadorMusicasAutor++
                                         document.querySelector('#nehumResultado').style.display = 'none'
                                         document.querySelector('#pagPesquisa').style.display = 'block'
                                         document.querySelector('#h1AutorPesquisa').style.display = 'block'
                                         document.querySelector('#autorPesquisa').style.display = 'flex'
-                                        document.querySelector(`#musicaAutor${c2 + 1}`).style.display = 'flex'
+                                        document.querySelector(`#musicaAutor${contadorMusicasAutor}`).style.display = 'flex'
                                         
                                         let musicaAutor = document.querySelector(`#musicaAutor${contadorMusicasAutor}`)
                                         let img = document.querySelector(`#imgMusicaAutor${contadorMusicasAutor}`)
