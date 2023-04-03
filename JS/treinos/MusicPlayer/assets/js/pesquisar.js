@@ -701,7 +701,7 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
 
     document.querySelector('#nomeUserPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Nome
 
-    for(let c = 0; c < clonePerfilUserPesquisado.Musica.MusicasPostadas.length; c++) {
+    for(let c = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1; c >= 0; c--) {
 
         let musicaPostadaUser = document.createElement('div')
         let localMusicaPostadaUser = document.createElement('div')
