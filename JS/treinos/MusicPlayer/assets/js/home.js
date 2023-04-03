@@ -7,6 +7,7 @@ let uploadImg = document.querySelector('#uploadImg')
 let btnPostar = document.querySelector('#postar')
 
 let cloneMusicasSequencia = []
+let musicaAtualFavoritada = false //? Vai controlar se a música foi favoritada ou n
 
 //? Vai fechar a aba de add musica e limpar todos os inputs
 document.querySelector('#AddMusicaBtn').addEventListener('click', () => {
@@ -678,7 +679,7 @@ btnHome.addEventListener('click', () => {
 })
 
 function fecharAbas() {
-    for(let c = 0; c < 10; c++) {
+    for(let c = 0; c < 11; c++) {
         try {
             document.getElementsByClassName('paginas')[c].style.display = 'none'
         } catch{}
@@ -749,3 +750,168 @@ function fecharAbas() {
 //         }
 //     }
 // }
+
+//? Vai abrir a página de editar as playlists
+let numMusicasSelecionadas =  []
+let numPlaylistEditada
+let estadoPlaylist = 'criando'
+document.querySelector('#EditarPlaylistsBtn').addEventListener('click', () => {
+    estadoPlaylist = 'editando'
+    document.querySelector('body').style.overflow = 'hidden'
+    document.querySelector('#pagEditarPlaylist').querySelector('article').innerHTML = ''
+    
+    db.collection('Usuarios').onSnapshot((data) => {
+        data.docs.map(function(valor) {
+            let Usuarios = valor.data()
+            
+            if(Usuarios.infUser.Email == email) {
+                document.querySelector('#pagEditarPlaylist').style.display = 'block'
+
+                for(let a = 0; a < Usuarios.Musica.Playlist.length; a++) {
+                    document.querySelector('#nehumResultado').style.display = 'none'
+                    document.querySelector('#h1Playlists').style.display = 'block'
+                    document.querySelector('#localPlaylistsPesquisa').style.display = 'block'
+                    let musicaMaisTocada = document.createElement('div')
+                    let localImgMaisTocada = document.createElement('div')
+                    let img = document.createElement('img')
+                    let nomeMusicaMaisTocada = document.createElement('h3')
+                    let nomeAutorMaisTocada = document.createElement('p')
+
+                    musicaMaisTocada.className = 'musicaMaisTocada'
+                    localImgMaisTocada.className = 'localImgMaisTocada'
+                    nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
+                    nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
+
+                    img.src = Usuarios.Musica.Playlist[a].Musicas[0].LinkImgiMusica
+                    nomeMusicaMaisTocada.innerText = Usuarios.Musica.Playlist[a].NomePlaylist
+                    nomeAutorMaisTocada.innerText = Usuarios.infUser.Nome
+
+                    localImgMaisTocada.appendChild(img)
+                    musicaMaisTocada.appendChild(localImgMaisTocada)
+                    musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
+                    musicaMaisTocada.appendChild(nomeAutorMaisTocada)
+
+                    document.querySelector('#pagEditarPlaylist').querySelector('article').appendChild(musicaMaisTocada)
+                    
+                    musicaMaisTocada.addEventListener('click', () => {
+                        numPlaylistEditada = a
+                        document.querySelector('#nomeDaPlaylist').value = Usuarios.Musica.Playlist[a].NomePlaylist
+                        let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
+                        localImgMaisTocada.innerHTML = ''
+                        numMusicasSelecionadas = []
+                        musicasNovaPlaylist = []
+                        functionPlaylist()
+                       
+                        for(let b = 0; b < Usuarios.Musica.Playlist[a].Musicas.length; b++) {
+
+                            db.collection('TodasAsMusicas').onSnapshot((data) => {
+                                data.docs.map(function(valor) {
+                                    let TodasAsMusicas = valor.data()
+
+                                    for(let c = 0; c < TodasAsMusicas.Musicas.length; c++) {
+                                        if(TodasAsMusicas.Musicas[c].LinkImgiMusica == Usuarios.Musica.Playlist[a].Musicas[b].LinkImgiMusica && TodasAsMusicas.Musicas[c].LinkAudio == Usuarios.Musica.Playlist[a].Musicas[b].LinkAudio && TodasAsMusicas.Musicas[c].Nome == Usuarios.Musica.Playlist[a].Musicas[b].Nome) {
+                                            document.querySelector('#pagEditarPlaylist').style.display = 'none'
+                                            //numMusicasSelecionadas.push(TodasAsMusicas.Musicas[c])
+
+                                            //! ------------
+                                            function criarMusicasDaPlaylistEdita(musica, contador) {
+                                                let jaTemEssaMusicaNaPlaylist = false
+
+                                                for(let c = 0; c < numMusicasSelecionadas.length; c++) {
+                                                    if(numMusicasSelecionadas[c] == contador) {
+                                                        jaTemEssaMusicaNaPlaylist = true
+                                                    }   
+                                                }
+
+                                                setTimeout(() => {
+                                                    if(jaTemEssaMusicaNaPlaylist == false) {
+                                                        numMusicasSelecionadas.push(contador)
+                                                        jaTemEssaMusicaNaPlaylist = true
+
+                                                        let formaMusicaNovaPlaylist = {
+                                                            NomeMusica: musica.NomeMusica,
+                                                            NomeAutor: musica.NomeAutor,
+                                                            Tipo: musica.Tipo,
+                                                            LinkAudio: musica.LinkAudio,
+                                                            LinkImgiMusica: musica.LinkImgiMusica,
+                                                            EmailUser: musica.EmailUser,
+                                                            EstadoMusica: musica.EstadoMusica,
+                                                        }
+                                                        
+                                                        musicasNovaPlaylist.push(formaMusicaNovaPlaylist)
+                                                        
+                                                        function addMusica() {
+                                                            //? Vai checar se está pronto para add a música na playlist
+                                                            if(musicasNovaPlaylist.length > 0 && textareaNomePlaylist.value.length > 0) {
+                                                                imgUserPagPessoal.style.background = '#0DCBA9'
+                                                                imgUserPagPessoal.src = 'assets/img/icones/plus.png'
+                                                            } else {
+                                                                imgUserPagPessoal.src = 'assets/img/icones/plus2.png'
+                                                                imgUserPagPessoal.style.background = '#636363'
+                                                            }
+                                                            
+                                                            localMusicasUserPagPessoal.innerHTML = ''
+                                                            document.querySelector('#headerPessalUser').style.backgroundImage = `url("${musicasNovaPlaylist[0].LinkImgiMusica}")`
+                                                            document.querySelector('#headerPessalUser').style.backgroundSize = `cover`
+
+                                                            for(let b = 0; b < musicasNovaPlaylist.length; b++) {
+                                                                let musicaPostadaUser = document.createElement('div')
+                                                                let localMusicaPostadaUser = document.createElement('div')
+                                                                let div = document.createElement('div')
+                                                                let img = document.createElement('img')
+                                                                let localTextoPostadoUser = document.createElement('div')
+                                                                let h3 = document.createElement('h3')
+                                                                let p = document.createElement('p')
+                                                                let x = document.createElement('img')
+                                                    
+                                                                musicaPostadaUser.className = 'musicaPostadaUser'
+                                                                localMusicaPostadaUser.className = 'localMusicaPostadaUser'
+                                                                localTextoPostadoUser.className = 'localTextoPostadoUser'
+                                                    
+                                                                img.src = musicasNovaPlaylist[b].LinkImgiMusica
+                                                                h3.innerText = musicasNovaPlaylist[b].NomeMusica
+                                                                p.innerText = musicasNovaPlaylist[b].NomeAutor
+                                                                x.src = 'assets/img/icones/X2.png'
+                                                    
+                                                                localMusicaPostadaUser.appendChild(img)
+                                                                localTextoPostadoUser.appendChild(h3)
+                                                                localTextoPostadoUser.appendChild(p)
+                                                                div.appendChild(localMusicaPostadaUser)
+                                                                div.appendChild(localTextoPostadoUser)
+                                                                musicaPostadaUser.appendChild(div)
+                                                                musicaPostadaUser.appendChild(x)
+                                                                localMusicasUserPagPessoal.appendChild(musicaPostadaUser)
+
+                                                                //? Ao clicar na música, vai dar play na música
+                                                                div.addEventListener('click', () => {
+                                                                    numSelecionado = numMusicasSelecionadas[b]
+                                                                    darPlayNaMusica(musica)
+                                                                })
+
+                                                                //? Ao clicar em remover a música
+                                                                x.addEventListener('click', () => {
+                                                                    musicasNovaPlaylist.splice(b, 1)
+                                                                    numMusicasSelecionadas.splice(b, 1)
+                                                                    addMusica()
+
+                                                                    if(musicasNovaPlaylist.length <= 0) {
+                                                                        imgUserPagPessoal.src = 'assets/img/icones/plus2.png'
+                                                                        imgUserPagPessoal.style.background = '#636363'
+                                                                    }
+                                                                })
+                                                            }
+                                                        } addMusica()
+                                                    }
+                                                }, 100)
+                                            } criarMusicasDaPlaylistEdita(TodasAsMusicas.Musicas[c], c)
+                                        }
+                                    }
+                                })
+                            })
+                        }
+                    })
+                }
+            }
+        })
+    })
+})

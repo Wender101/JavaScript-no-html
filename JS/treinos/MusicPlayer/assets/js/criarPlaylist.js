@@ -14,6 +14,10 @@ let novaPlaylist = {
 let playlistAdd = false
 
 playlistBtn.addEventListener('click', () => {
+    functionPlaylist()
+})
+
+function functionPlaylist() {
     playlistAdd = true
     if(playlistAdd == true) {
         document.querySelector('body').style.overflow = 'hidden'
@@ -28,11 +32,9 @@ playlistBtn.addEventListener('click', () => {
         imgUserPagPessoal.src = 'assets/img/icones/plus2.png'
         imgUserPagPessoal.style.background = '#636363'
 
-        imgUserPagPessoal.addEventListener('click', () => {
-            if(playlistAdd == true) {
-                document.querySelector('#addPlaylist').style.display = 'block'
-            }
-        })
+        if(playlistAdd == true) {
+            document.querySelector('#addPlaylist').style.display = 'block'
+        }
 
         let addMusicaAsPlaylists = document.querySelector('#addMusicaAsPlaylists')
         addMusicaAsPlaylists.addEventListener('input', () => {
@@ -88,7 +90,7 @@ playlistBtn.addEventListener('click', () => {
 
         //? Ao clicar em add a playlist
         imgUserPagPessoal.addEventListener('click', () => {
-            if(musicasNovaPlaylist.length > 0 && textareaNomePlaylist.value.length > 0 && playlistAdd == true) {
+            if(musicasNovaPlaylist.length > 0 && textareaNomePlaylist.value.length > 0 && playlistAdd == true && estadoPlaylist == 'criando') {
                 novaPlaylist.NomePlaylist = textareaNomePlaylist.value
 
                 db.collection('Usuarios').onSnapshot((data) => {
@@ -108,6 +110,7 @@ playlistBtn.addEventListener('click', () => {
                                 cloneMusicas.Playlist.push(novaPlaylist)
 
                                 db.collection('Usuarios').doc(valor.id).update({Musica: cloneMusicas})
+                                fecharAbas()
 
                             } else {
                                 let cloneMusicas = {
@@ -118,6 +121,7 @@ playlistBtn.addEventListener('click', () => {
 
                                 cloneMusicas.Playlist.push(novaPlaylist)
                                 db.collection('Usuarios').doc(valor.id).update({Musica: cloneMusicas})
+                                fecharAbas()
                             }
 
                             setTimeout(() => {
@@ -127,20 +131,44 @@ playlistBtn.addEventListener('click', () => {
                     })
                 })
 
-            } else if(musicasNovaPlaylist.length > 0 && textareaNomePlaylist.value.length <= 0 && playlistAdd == true) {
+            } else if(musicasNovaPlaylist.length > 0 && textareaNomePlaylist.value.length <= 0 && playlistAdd == true && estadoPlaylist == 'criando') {
                 alert('Você não deu um nome a playlist :)')
 
-            } else if(musicasNovaPlaylist.length <= 0 && textareaNomePlaylist.value.length > 0 && playlistAdd == true) {
+            } else if(musicasNovaPlaylist.length <= 0 && textareaNomePlaylist.value.length > 0 && playlistAdd == true && estadoPlaylist == 'criando') {
                 alert('Adicione uma música primeiro apressadinho *-*')
                 
-            } else if(musicasNovaPlaylist.length <= 0 && textareaNomePlaylist.value.length <= 0 && playlistAdd == true) {
+            } else if(musicasNovaPlaylist.length <= 0 && textareaNomePlaylist.value.length <= 0 && playlistAdd == true && estadoPlaylist == 'criando') {
                 alert('Playlist vazia não dá não né patrão, assim você me quebra .-.')
+
+            } else if(estadoPlaylist == 'editando') {
+                db.collection('Usuarios').onSnapshot((data) => {
+                    data.docs.map(function(valor) {
+                        let Usuarios = valor.data()
+                        
+                        if(Usuarios.infUser.Email == email) {
+                            novaPlaylist.NomePlaylist = textareaNomePlaylist.value
+                            novaPlaylist.Musicas = musicasNovaPlaylist
+
+                            let cloneMusicas = {
+                                MusicasCurtidas: Usuarios.Musica.MusicasCurtidas,
+                                MusicasPostadas: Usuarios.Musica.MusicasPostadas,
+                                Playlist: Usuarios.Musica.Playlist
+                            }
+    
+                            cloneMusicas.Playlist[numPlaylistEditada] = novaPlaylist
+                            db.collection('Usuarios').doc(valor.id).update({Musica: cloneMusicas})
+    
+                            estadoPlaylist = 'criando'
+                            fecharAbas()
+                        }
+                    })
+                })
             }
         })
     }
-})
+}
 
-let numMusicasSelecionadas =  []
+
 function criarMusicasPesquisaPlaylist(musica, contador) {
     let localMusicaPlayListPesquisa = document.querySelector('#localMusicaPlayListPesquisa')
     let musicaPesquisaPlaylist = document.createElement('div')
@@ -196,6 +224,9 @@ function criarMusicasPesquisaPlaylist(musica, contador) {
                 musicasNovaPlaylist.push(formaMusicaNovaPlaylist)
                 
                 function addMusica() {
+                    let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
+                    localMusicaPlayListPesquisa.innerHTML = ''
+
                     //? Vai checar se está pronto para add a música na playlist
                     if(musicasNovaPlaylist.length > 0 && textareaNomePlaylist.value.length > 0) {
                         imgUserPagPessoal.style.background = '#0DCBA9'
@@ -210,7 +241,6 @@ function criarMusicasPesquisaPlaylist(musica, contador) {
                     document.querySelector('#headerPessalUser').style.backgroundSize = `cover`
 
                     for(let b = 0; b < musicasNovaPlaylist.length; b++) {
-                        let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
                         let musicaPostadaUser = document.createElement('div')
                         let localMusicaPostadaUser = document.createElement('div')
                         let div = document.createElement('div')

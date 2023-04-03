@@ -287,6 +287,11 @@ body nav ul li button#PlaylistBtn {
 body nav ul li button#PagPessoal {
   background-image: url(../img/icones/icon\ _user\ edit.png);
 }
+body nav ul li button#EditarPlaylistsBtn {
+  width: 34px;
+  margin-right: -10px;
+  background-image: url(../img/icones/editarPlaylist.png);
+}
 body nav ul li button#AddMusicaBtn {
   background-image: url(../img/icones/addMusic.png);
 }
@@ -913,6 +918,72 @@ body section#pagPessoalUser div.musicaPostadaUser div div.localTextoPostadoUser 
 body section#pagPessoalUser div.musicaPostadaUser img {
   width: 23px;
   height: 20px;
+}
+body section#pagEditarPlaylist {
+  width: calc(100% - 160px);
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  display: none;
+  overflow: auto;
+  z-index: 2;
+  background-color: #181818;
+  color: #fff;
+  padding: 0px 50px;
+}
+body section#pagEditarPlaylist h1 {
+  margin: 100px 0px 20px;
+}
+body section#pagEditarPlaylist article {
+  width: 100%;
+  min-height: calc(100vh + 110px);
+  padding-bottom: 100px;
+}
+body section#pagEditarPlaylist article div.musicaMaisTocada {
+  margin: 5px 10px;
+  display: inline-block;
+  background-color: #1c1c1c;
+  box-shadow: 2px 2px 5px #121111;
+}
+body section#pagEditarPlaylist article div {
+  width: 139px;
+  height: 192px;
+  overflow: hidden;
+  cursor: pointer;
+}
+body section#pagEditarPlaylist article div#localFotoAutorPesquisa {
+  background-color: #1c1c1c;
+  box-shadow: 2px 2px 5px #121111;
+}
+body section#pagEditarPlaylist article div div.localImgMaisTocada {
+  width: 118px;
+  height: 107px;
+  background-color: #fff;
+  margin: 12px auto;
+}
+body section#pagEditarPlaylist article div div.localImgMaisTocada img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body section#pagEditarPlaylist article div h3 {
+  width: 118px;
+  max-height: 32px;
+  font-size: 12px;
+  margin: 2px auto;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+body section#pagEditarPlaylist article div p {
+  width: 118px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  margin: auto;
+  color: #636363;
 }
 body section#pop-upEditarPerfil {
   width: 100%;

@@ -310,6 +310,26 @@ function abrirPlaylist(perfilDonoDaPlaylist, numPlaylist) {
                             musicaPostadaUser.appendChild(div)
                             musicaPostadaUser.appendChild(heart)
                             document.querySelector('#localMusicasUserPagPessoal').appendChild(musicaPostadaUser)
+
+                            div.addEventListener('click', () => {
+                                numSelecionado = d
+                                darPlayNaMusica(Usuarios.Musica.Playlist[numPlaylist].Musicas[d])
+                            })
+
+                            //? Vai salvar como favoritos a música
+                            heart.addEventListener('click', () => {
+                                console.log(1);
+                                favoritarMusicas(Usuarios.Musica.Playlist[numPlaylist].Musicas[d])
+                                
+                                setTimeout(() => {
+                                    if(musicaAtualFavoritada == false) {
+                                        heart.src = 'assets/img/icones/icon _heart_ (1).png'
+
+                                    } else{
+                                        heart.src = 'assets/img/icones/icon _heart_.png'
+                                    }
+                                }, 350)
+                            })
                         }
                     }
                 } catch{}
