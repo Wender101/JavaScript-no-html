@@ -277,13 +277,13 @@ function abrirPlaylist(perfilDonoDaPlaylist, numPlaylist) {
                     imgUserPagPessoal.addEventListener('click', () => {
                         if(oQueEstaPassando == 'playlist') {
                             cloneMusicasSequencia = Usuarios.Musica.Playlist[numPlaylist].Musicas
-                            numMusicaSequencia = 0
-                            darPlayNaMusica(Usuarios.Musica.Playlist[numPlaylist].Musicas[0])
+                            numMusicaSequencia = Usuarios.Musica.Playlist[numPlaylist].Musicas.length - 1
+                            darPlayNaMusica(Usuarios.Musica.Playlist[numPlaylist].Musicas[Usuarios.Musica.Playlist[numPlaylist].Musicas.length - 1])
                         }
                     })
     
                     function criarMusicasPlaylist(numPlaylist) {
-                        for(let d = 0; d < Usuarios.Musica.Playlist[numPlaylist].Musicas.length; d++) {
+                        for(let d = Usuarios.Musica.Playlist[numPlaylist].Musicas.length - 1; d >= 0; d--) {
                             let musicaPostadaUser = document.createElement('div')
                             let localMusicaPostadaUser = document.createElement('div')
                             let div = document.createElement('div')
