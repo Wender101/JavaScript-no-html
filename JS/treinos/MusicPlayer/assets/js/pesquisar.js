@@ -272,7 +272,7 @@ function pesquisar(pesquisa) {
                 pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
                 
                 let contadorMusicasAutor = 0
-                //! Vai pesquisar pelo(a) autor da música
+                //! Vai pesquisar pelo(a) user q postou a música
                 let Autor = TodasAsMusicas.Musicas[c].NomeAutor.toLocaleLowerCase()
                 Autor = Autor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
                 Autor = Autor.replace(/\s/g, '') //? Vai remover os espaços
@@ -745,7 +745,7 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
                     if(imgUserPessoalClicado == false && oQueEstaPassando == 'user pesquisado') {
                         imgUserPessoalClicado = true
 
-                        c = 0
+                        c = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1
                         passarMusicaPerfilPessoal()
                         audio.play()
 

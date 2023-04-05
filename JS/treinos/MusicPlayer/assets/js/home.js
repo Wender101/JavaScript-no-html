@@ -380,13 +380,23 @@ function atualizarTimeMusica(estado = 'play', arrayDeMusica = []) {
                 data.docs.map(function(valor) {
                     let TodasAsMusicas = valor.data()
                     
-                    if(numSelecionado < TodasAsMusicas.Musicas.length - 1) {
-                        numSelecionado = numSelecionado + 1
+                    // if(numSelecionado < TodasAsMusicas.Musicas.length - 1) {
+                    //     numSelecionado = numSelecionado + 1
+                    //     if(TodasAsMusicas.Musicas[numSelecionado]) {
+                    //         darPlayNaMusica(TodasAsMusicas.Musicas[numSelecionado])
+                    //     }
+                    // } else {
+                    //     numSelecionado = 0
+                    //     darPlayNaMusica(TodasAsMusicas.Musicas[numSelecionado])
+                    // }
+
+                    if(numSelecionado > 0) {
+                        numSelecionado = numSelecionado - 1
                         if(TodasAsMusicas.Musicas[numSelecionado]) {
                             darPlayNaMusica(TodasAsMusicas.Musicas[numSelecionado])
                         }
                     } else {
-                        numSelecionado = 0
+                        numSelecionado = TodasAsMusicas.Musicas.length - 1
                         darPlayNaMusica(TodasAsMusicas.Musicas[numSelecionado])
                     }
     
@@ -404,11 +414,19 @@ function atualizarTimeMusica(estado = 'play', arrayDeMusica = []) {
             }, 100)
             atualizarTimeMusica('zerar', cloneMusicasSequencia)
             
-            if(numMusicaSequencia < arrayDeMusica.length - 1) {
-                numMusicaSequencia += 1
+            // if(numMusicaSequencia < arrayDeMusica.length - 1) {
+            //     numMusicaSequencia += 1
+            //     darPlayNaMusica(arrayDeMusica[numMusicaSequencia])
+            // } else {
+            //     numMusicaSequencia = 0
+            //     darPlayNaMusica(arrayDeMusica[numMusicaSequencia])
+            // }
+
+            if(numMusicaSequencia > 0) {
+                numMusicaSequencia -=1
                 darPlayNaMusica(arrayDeMusica[numMusicaSequencia])
             } else {
-                numMusicaSequencia = 0
+                numMusicaSequencia = arrayDeMusica.length - 1
                 darPlayNaMusica(arrayDeMusica[numMusicaSequencia])
             }
         } else if(estado == 'loop') {
@@ -432,11 +450,19 @@ function atualizarTimeMusica(estado = 'play', arrayDeMusica = []) {
                     data.docs.map(function(valor) {
                         let TodasAsMusicas = valor.data()
                         
-                        if(numSelecionado > 0) {
-                            numSelecionado = parseInt(numSelecionado) - 1
+                        // if(numSelecionado > 0) {
+                        //     numSelecionado = parseInt(numSelecionado) - 1
+                        //     darPlayNaMusica(TodasAsMusicas.Musicas[numSelecionado])
+                        // } else {
+                        //     numSelecionado = TodasAsMusicas.Musicas.length - 1
+                        //     darPlayNaMusica(TodasAsMusicas.Musicas[numSelecionado])
+                        // }
+
+                        if(numSelecionado < TodasAsMusicas.Musicas.length - 1) {
+                            numSelecionado = parseInt(numSelecionado) + 1
                             darPlayNaMusica(TodasAsMusicas.Musicas[numSelecionado])
                         } else {
-                            numSelecionado = TodasAsMusicas.Musicas.length - 1
+                            numSelecionado = 0
                             darPlayNaMusica(TodasAsMusicas.Musicas[numSelecionado])
                         }
                     })
@@ -445,13 +471,13 @@ function atualizarTimeMusica(estado = 'play', arrayDeMusica = []) {
         } else {
             atualizarTimeMusica('zerar', cloneMusicasSequencia)
                     
-            if(numMusicaSequencia > 0 && checkBack == false) {
+            if(numMusicaSequencia < arrayDeMusica.length - 1 && checkBack == false) {
                 checkBack = true
-                numMusicaSequencia = numMusicaSequencia - 1
+                numMusicaSequencia = numMusicaSequencia + 1
                 darPlayNaMusica(arrayDeMusica[numMusicaSequencia])
             } else if(checkBack == false){
                 checkBack = true
-                numMusicaSequencia = arrayDeMusica.length  - 1
+                numMusicaSequencia = 0
                 darPlayNaMusica(arrayDeMusica[numMusicaSequencia])
             }
 
