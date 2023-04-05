@@ -17,12 +17,19 @@ document.addEventListener('click', (e) => {
 //! Vai abrir a pág sobre a música que esta tocando no momento
 let menuTocandoMusica = document.querySelector('#menuTocandoMusica')
 
+let menuTocandoMusicaAberto = false
 menuTocandoMusica.addEventListener('click', (e) => {
     let idE = e.target.id
     let tamanhoTela = document.defaultView.window.visualViewport.width
     
-    if(tamanhoTela <= 723 && idE == 'parteCentralConfigMusica') {
+    if(tamanhoTela <= 723 && idE == 'parteCentralConfigMusica' && menuTocandoMusicaAberto == false) {
+        menuTocandoMusicaAberto = true
         document.querySelector('#pagSobreMusicaTocando').style.display = 'flex'
+
+    } else if(tamanhoTela <= 723 && idE == 'parteCentralConfigMusica' && menuTocandoMusicaAberto == true) {
+        menuTocandoMusicaAberto = false
+        document.querySelector('#pagSobreMusicaTocando').style.display = 'none'
+
     } else if(tamanhoTela > 723 && idE == 'parteCentralConfigMusica') {
         document.querySelector('#pagSobreMusicaTocando').style.display = 'none'
     }
