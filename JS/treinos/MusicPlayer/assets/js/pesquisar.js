@@ -658,7 +658,6 @@ function pesquisar(pesquisa) {
 
 //? Vai ir para a pág pessoal do User pesquisado
 document.querySelector('#sobreAutor').addEventListener('click', () => {
-    cloneMusicasSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas //? Vai guardar a lista de musica
     let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
     localMusicasUserPagPessoal.innerHTML = ''
 
@@ -735,6 +734,7 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
                 let TodasAsMusicas = valor.data()
                 
                 div.addEventListener('click', () => {
+                    console.log(1);
                     numMusicaSequencia = c
                     passarMusicaPerfilPessoal()
                 })
@@ -742,6 +742,7 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
                 //? Ao clicar no icone de start
                 let imgUserPagPessoal = document.querySelector('#imgUserPagPessoal')
                 imgUserPagPessoal.addEventListener('click', () => {
+                    cloneMusicasSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas //? Vai guardar a lista de musica
                     if(imgUserPessoalClicado == false && oQueEstaPassando == 'user pesquisado') {
                         imgUserPessoalClicado = true
 

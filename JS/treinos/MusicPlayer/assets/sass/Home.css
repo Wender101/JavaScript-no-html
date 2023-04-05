@@ -607,6 +607,7 @@ body section#pagPesquisa article#autorPesquisa div#sobreAutor h1 {
   font-size: 30px;
   padding: 0px;
   font-family: "Carter One", cursive;
+  color: #35ffdb;
 }
 body section#pagPesquisa article#autorPesquisa div#sobreAutor div#localFotoAutorPesquisa {
   width: 130px;
@@ -800,7 +801,7 @@ body section#pagPessoalUser article div#headerPessalUser div img#imgPerfilUserPa
 }
 body section#pagPessoalUser article div#headerPessalUser div h1 {
   font-size: 66px;
-  color: #0DCBA9;
+  color: #35ffdb;
   font-family: "Carter One", cursive;
 }
 body section#pagPessoalUser article div#headerPessalUser div textarea {
