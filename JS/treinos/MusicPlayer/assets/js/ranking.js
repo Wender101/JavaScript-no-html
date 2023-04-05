@@ -44,7 +44,7 @@ function checarRanking() {
                         tudoPronto.push(true)
     
                     } else if(Usuarios.Musica.MusicasPostadas.length == segundoLugar) {
-                        document.querySelector('#nomePrimeiroLugar').innerText = Usuarios.infUser.Nome
+                        document.querySelector('#nomeSegundoLugar').innerText = Usuarios.infUser.Nome
                         document.querySelector('#segundoLugar').src = Usuarios.infUser.FotoPerfil
                         tudoPronto.push(true)
     
