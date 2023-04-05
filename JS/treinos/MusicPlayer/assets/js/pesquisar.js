@@ -676,7 +676,7 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
     oQueEstaPassando = 'user pesquisado'
 
     try {
-        document.querySelector('#headerPessalUser').style.backgroundImage = `url(${clonePerfilUserPesquisado.infUser.ImgParedePerfil})`
+        document.querySelector('#headerPessalUser').style.backgroundImage = `url("${clonePerfilUserPesquisado.infUser.ImgParedePerfil}")`
     } catch{}
 
 
