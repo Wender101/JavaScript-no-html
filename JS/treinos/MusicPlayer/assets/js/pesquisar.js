@@ -746,8 +746,8 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
                         imgUserPessoalClicado = true
 
                         c = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1
-                        passarMusicaPerfilPessoal()
                         audio.play()
+                        passarMusicaPerfilPessoal()
 
                         setTimeout(() => {
                             imgUserPessoalClicado = false

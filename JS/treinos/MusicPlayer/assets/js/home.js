@@ -821,12 +821,13 @@ document.querySelector('#EditarPlaylistsBtn').addEventListener('click', () => {
                     
                     musicaMaisTocada.addEventListener('click', () => {
                         numPlaylistEditada = a
-                        document.querySelector('#nomeDaPlaylist').value = Usuarios.Musica.Playlist[a].NomePlaylist
                         let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
                         localImgMaisTocada.innerHTML = ''
                         numMusicasSelecionadas = []
                         musicasNovaPlaylist = []
                         functionPlaylist()
+                        document.getElementsByClassName('btnEdit')[0].style.display = 'none'
+                        document.querySelector('#nomeDaPlaylist').value = Usuarios.Musica.Playlist[a].NomePlaylist
                        
                         for(let b = 0; b < Usuarios.Musica.Playlist[a].Musicas.length; b++) {
 
