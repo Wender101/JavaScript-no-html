@@ -278,6 +278,9 @@ body nav ul {
 body nav ul li button#HomeBtn {
   background-image: url(../img/icones/home.png);
 }
+body nav ul li button#RankingBtn {
+  background-image: url(../img/icones/icon\ _crown_.png);
+}
 body nav ul li button#BibliotecaBtn {
   background-image: url(../img/icones/icon\ _heart\ add_.png);
 }
@@ -985,6 +988,75 @@ body section#pagEditarPlaylist article div p {
   font-size: 12px;
   margin: auto;
   color: #636363;
+}
+body section#pagRanking {
+  width: calc(100% - 160px);
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  display: none;
+  overflow: auto;
+  z-index: 2;
+  background-color: #181818;
+  color: #fff;
+  padding: 0px 50px;
+}
+body section#pagRanking h1 {
+  margin: 100px 0px 20px;
+}
+body section#pagRanking article {
+  width: 100%;
+  min-height: calc(100vh + 110px);
+  padding-bottom: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body section#pagRanking article h1#h1PagRanking {
+  position: absolute;
+  top: 0px;
+  font-size: 40px;
+  font-family: "Rubik", sans-serif;
+}
+body section#pagRanking article div {
+  width: 100%;
+  max-width: 559px;
+}
+body section#pagRanking article div div#perfilRanking {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+  margin-bottom: -70px;
+}
+body section#pagRanking article div div#perfilRanking div {
+  display: flex;
+  flex-direction: column;
+  max-width: 150px;
+}
+body section#pagRanking article div div#perfilRanking div img {
+  width: 100%;
+  max-width: 130px;
+  height: 100%;
+  max-height: 130px;
+  border-radius: 50%;
+}
+body section#pagRanking article div div#perfilRanking div strong#nomeSegundoLugar, body section#pagRanking article div div#perfilRanking div strong#nomeTerceiroLugar {
+  margin-top: 100px;
+  font-family: "Carter One", cursive;
+  text-align: center;
+}
+body section#pagRanking article div div#perfilRanking div h1#nomePrimeiroLugar {
+  margin: 0px;
+  font-family: "Carter One", cursive;
+  text-align: center;
+}
+body section#pagRanking article div div#perfilRanking div img#primeiroLugar {
+  max-width: 150px;
+  max-height: 150px;
+}
+body section#pagRanking article div img {
+  width: 100%;
 }
 body section#pop-upEditarPerfil {
   width: 100%;

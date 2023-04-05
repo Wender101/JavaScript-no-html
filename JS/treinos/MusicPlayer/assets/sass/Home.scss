@@ -58,6 +58,10 @@ body {
                     background-image: url(../img/icones/home.png);
                 }
 
+                button#RankingBtn {
+                    background-image: url(../img/icones/icon\ _crown_.png);
+                }
+
                 button#BibliotecaBtn {
                     background-image: url(../img/icones/icon\ _heart\ add_.png);
                 }
@@ -883,6 +887,88 @@ body {
                     font-size: 12px;
                     margin: auto;
                     color: #636363;
+                }
+            }
+        }
+    }
+
+    section#pagRanking {
+        width: calc(100% - 160px);
+        height: 100vh;
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        display: none;
+        overflow: auto;
+        z-index: 2;
+        background-color: $cor3;
+        color: $white;
+        padding: 0px 50px;
+
+        h1 {
+            margin: 100px 0px 20px;
+        }
+
+        article {
+            width: 100%;
+            min-height: calc(100vh + 110px);
+            padding-bottom: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            h1#h1PagRanking {
+                position: absolute;
+                top: 0px;
+                font-size: 40px;
+                font-family: $fonte-Rubik;
+            }
+
+
+            div {
+                width: 100%;
+                max-width: 559px;
+
+                div#perfilRanking {
+                    display: flex;
+                    width: 100%;
+                    justify-content: space-around;
+                    margin-bottom: -70px;
+
+                    div {
+                        display: flex;
+                        flex-direction: column;
+                        max-width: 150px;
+
+                        img {
+                            width: 100%;
+                            max-width: 130px;
+                            height: 100%;
+                            max-height: 130px;
+                            border-radius: 50%;
+                        }
+    
+                        strong#nomeSegundoLugar, strong#nomeTerceiroLugar {
+                            margin-top: 100px;
+                            font-family: $fonte-Carter;
+                            text-align: center;
+                        }
+
+                        h1#nomePrimeiroLugar {
+                            margin: 0px;
+                            font-family: $fonte-Carter;
+                            text-align: center;
+                        }
+                        
+                        img#primeiroLugar {
+                            max-width: 150px;
+                            max-height: 150px;
+                        }
+                    }
+                }
+
+                img {
+                    width: 100%;
                 }
             }
         }
