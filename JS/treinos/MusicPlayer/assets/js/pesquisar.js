@@ -507,7 +507,7 @@ function pesquisar(pesquisa) {
                 Tipo = Tipo.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
                 Tipo = Tipo.replace(/\s/g, '') //? Vai remover os espaços
 
-                if(Tipo.includes(pesquisa)) {
+                if(Tipo.includes(pesquisa) || pesquisa.includes(Tipo)) {
                      //? Vai salvar a pesquisa
                     if(pesquisaSalvaGenero == false && ultimasPesquisasDoUser.Generos.length < 8) {
                         pesquisaSalvaGenero = true

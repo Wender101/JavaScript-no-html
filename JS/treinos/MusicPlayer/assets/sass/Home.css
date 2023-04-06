@@ -1035,9 +1035,9 @@ body section#pagRanking article div div#perfilRanking div {
   max-width: 150px;
 }
 body section#pagRanking article div div#perfilRanking div img {
-  width: 100%;
+  width: 100vw;
   max-width: 130px;
-  height: 100%;
+  height: 100vw;
   max-height: 130px;
   border-radius: 50%;
 }

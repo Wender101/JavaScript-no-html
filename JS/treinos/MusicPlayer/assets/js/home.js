@@ -496,7 +496,6 @@ setInterval(() => {
 
 //? Vai dar play na música
 let checarRepetidas = false
-let pausadoMusica = false
 function darPlayNaMusica(lista) {
     estadoMusica = 'play'
 
@@ -556,6 +555,7 @@ function darPlayNaMusica(lista) {
         //! -------------------------------
 
         //! Pausar musica
+        let pausadoMusica = false
         playBtn.addEventListener('click', () => {
             if(pausadoMusica == false) {
                 pausadoMusica = true

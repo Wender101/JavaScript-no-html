@@ -241,7 +241,6 @@ function ultimasPesquisas() {
                                     
                                     //? Vai tocar a música selecionada
                                     musicaMaisTocada.addEventListener('click', () => {
-                                        cloneMusicasSequencia = Usuarios.Musica.Playlist[c2].Musicas
                                         abrirPlaylist(valor.id, c2)
                                     })
                                 }
