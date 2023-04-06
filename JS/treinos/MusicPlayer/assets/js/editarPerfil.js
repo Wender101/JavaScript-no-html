@@ -9,6 +9,9 @@ btnEditarPerfil.addEventListener('click', () => {
                 let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
                 localMusicasUserPagPessoal.innerHTML = ''
 
+                //? Vai clonar as músicas postadas pelo user para poder eclui-las se necessário
+                let cloneMsucasDoUser = Usuarios.Musica
+
                 document.getElementsByClassName('btnEdit')[0].style.display = 'flex'
                 document.querySelector('body').style.overflow = 'hidden'
                 document.querySelector('#pagPessoalUser').style.display = 'block'
@@ -50,7 +53,7 @@ btnEditarPerfil.addEventListener('click', () => {
             
                 document.querySelector('#nomeUserPagPessoal').innerText = Usuarios.infUser.Nome
 
-                for(let d = 0; d < Usuarios.Musica.MusicasPostadas.length; d++) {
+                for(let d = Usuarios.Musica.MusicasPostadas.length -1; d >= 0 ; d--) {
                     let musicaPostadaUser = document.createElement('div')
                     let localMusicaPostadaUser = document.createElement('div')
                     let div = document.createElement('div')
@@ -64,12 +67,12 @@ btnEditarPerfil.addEventListener('click', () => {
                     musicaPostadaUser.className = 'musicaPostadaUser'
                     localMusicaPostadaUser.className = 'localMusicaPostadaUser'
                     localTextoPostadoUser.className = 'localTextoPostadoUser'
-                    edit.className = 'btnEdit2'
+                    edit.className = 'btnExcluirMusica'
             
                     img.src = Usuarios.Musica.MusicasPostadas[d].LinkImgiMusica
                     h3.innerText = Usuarios.Musica.MusicasPostadas[d].NomeMusica
                     p.innerText = Usuarios.Musica.MusicasPostadas[d].NomeAutor
-                    imgEdit.src = 'assets/img/icones/icon _edit.png'
+                    imgEdit.src = 'http://127.0.0.1:5500/assets/img/icones/X2.png'
             
                     localMusicaPostadaUser.appendChild(img)
                     localTextoPostadoUser.appendChild(h3)
@@ -80,6 +83,89 @@ btnEditarPerfil.addEventListener('click', () => {
                     edit.appendChild(imgEdit)
                     musicaPostadaUser.appendChild(edit)
                     document.querySelector('#localMusicasUserPagPessoal').appendChild(musicaPostadaUser)
+
+                    //! funções de click
+                    
+                    //? Vai ecluir a música
+                    edit.addEventListener('click', () => {
+                        if(confirm('Tem certeza que quer excluir a música?')) {
+
+                            //? Vai pegar o nome da pasta
+                            async function getFileNameFromUrl(fileUrl) {
+                                // Extrai o caminho do arquivo do URL
+                                const filePath = decodeURIComponent(fileUrl.replace(`https://${storage.name}.storage.googleapis.com/`, ''));
+                                
+                                // Obtém o nome do arquivo a partir do caminho do arquivo
+                                const fileName = filePath.split('/').pop();
+                                
+                                return fileName;
+                            }
+
+                            let nomeDaPasta
+                            const fileUrl = Usuarios.Musica.MusicasPostadas[d].LinkAudio
+                            const fileName =  getFileNameFromUrl(fileUrl).then((name) => {
+                                let pronto = false
+
+                                for(let c = 0; c < name.length; c++) {
+                                    if(pronto == false) {
+                                        let novoNome = name.substring(c, 0)
+                                        let pontoFinal = novoNome.slice(-1)
+                                        
+                                        if(pontoFinal == '?') {
+                                            pronto = true
+                                            nomeDaPasta = name.substring(c -1, 0)
+
+                                            //? Vai excluir do storage
+                                            console.log(nomeDaPasta);
+                                            storage.ref().child(nomeDaPasta).delete().then(() => {
+
+                                                //? Vai excluir do perfil pessoal do user
+                                                cloneMsucasDoUser.MusicasPostadas.splice(d, 1)
+                                                db.collection('Usuarios').doc(valor.id).update({Musica: cloneMsucasDoUser})
+
+                                                //? Vai excluir das playlist
+                                                db.collection('Usuarios').onSnapshot((data) => {
+                                                    data.docs.map(function(valor) {
+                                                        let Usuarios = valor.data()
+
+                                                        for(let c = 0; c < Usuarios.Musica.Playlist.length; c++) {
+                                                            if(Usuarios.Musica.Playlist[c].LinkImgiMusica == Usuarios.Musica.MusicasPostadas[d].LinkImgiMusica && Usuarios.Musica.Playlist[c].LinkAudio == Usuarios.Musica.MusicasPostadas[d].LinkAudio && email == Usuarios.Musica.Playlist[c].EmailUser) {
+                                                                let clonePlaylists = Usuarios.Musica
+                                                                clonePlaylists.Playlist.splice(c, 1)
+
+                                                                db.collection('Usuarios').doc(valor.id).update({Musica: clonePlaylists})
+                                                            }
+                                                        }
+                                                    })
+                                                })
+
+                                                //? Vai excluir da parte todas as músicas
+                                                let excluidoDeTodasAsMusicas = false
+                                                db.collection('TodasAsMusicas').onSnapshot((data) => {
+                                                    data.docs.map(function(valor) {
+                                                        let TodasAsMusicas = valor.data()
+
+                                                        if(excluidoDeTodasAsMusicas == false) {
+                                                            excluidoDeTodasAsMusicas = true
+
+                                                            let cloneTodasAsMusicas = TodasAsMusicas.Musicas
+
+                                                            for(let c = 0; c < TodasAsMusicas.Musicas.length; c++) {
+                                                                if(TodasAsMusicas.Musicas[c].LinkImgiMusica == Usuarios.Musica.MusicasPostadas[d].LinkImgiMusica && TodasAsMusicas.Musicas[c].LinkAudio == Usuarios.Musica.MusicasPostadas[d].LinkAudio && email == TodasAsMusicas.Musicas[c].EmailUser) {
+                                                                    cloneTodasAsMusicas.splice(c, 1)
+                                                                    db.collection('Usuarios').doc(valor.id).update({Musicas: cloneTodasAsMusicas})
+                                                                }
+                                                            }
+                                                        }
+                                                    })
+                                                })
+                                            })
+                                        }
+                                    }
+                                }
+                            })
+                        }
+                    })
                 }
             }
         })

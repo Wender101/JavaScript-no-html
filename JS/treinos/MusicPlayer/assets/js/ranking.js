@@ -32,6 +32,10 @@ function checarRanking() {
 
         console.log(quantidadeMusicasPostadas);
         let tudoPronto = []
+
+        let primeiroLugarPronto = false
+        let segundoLugarPronto = false
+        let terceiroLugarPronto = false
         
         //? Vai procurar os users com essa pontuação
         db.collection('Usuarios').onSnapshot((data) => {
@@ -39,20 +43,23 @@ function checarRanking() {
                 let Usuarios = valor.data()
 
                 if(tudoPronto.length < 3) {
-                    if(Usuarios.Musica.MusicasPostadas.length == primeiroLugar) {
+                    if(Usuarios.Musica.MusicasPostadas.length == primeiroLugar && primeiroLugarPronto == false) {
                         document.querySelector('#nomePrimeiroLugar').innerText = Usuarios.infUser.Nome
                         document.querySelector('#primeiroLugar').src = Usuarios.infUser.FotoPerfil
                         tudoPronto.push(true)
+                        primeiroLugarPronto = true
     
-                    } else if(Usuarios.Musica.MusicasPostadas.length == segundoLugar) {
+                    } else if(Usuarios.Musica.MusicasPostadas.length == segundoLugar && segundoLugarPronto == false) {
                         document.querySelector('#nomeSegundoLugar').innerText = Usuarios.infUser.Nome
                         document.querySelector('#segundoLugar').src = Usuarios.infUser.FotoPerfil
                         tudoPronto.push(true)
+                        segundoLugarPronto = true
     
-                    } else if(Usuarios.Musica.MusicasPostadas.length == terceiroLugar) {
+                    } else if(Usuarios.Musica.MusicasPostadas.length == terceiroLugar && terceiroLugarPronto == false) {
                         document.querySelector('#nomeTerceiroLugar').innerText = Usuarios.infUser.Nome
                         document.querySelector('#terceiroLugar').src = Usuarios.infUser.FotoPerfil
                         tudoPronto.push(true)
+                        terceiroLugarPronto = true
                     }
                 } else {
                     setTimeout(() => {

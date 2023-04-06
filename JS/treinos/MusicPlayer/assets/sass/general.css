@@ -203,10 +203,10 @@ audio {
   height: 28px;
 }
 
-.btnEdit2 {
+.btnExcluirMusica {
   width: 14px;
   height: 14px;
-  background-color: #0DCBA9;
+  background-color: #1c1c1c;
   border: none;
   padding: 16px;
   border-radius: 10px;
@@ -216,10 +216,10 @@ audio {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4666666667);
   cursor: pointer;
 }
-.btnEdit2:hover {
+.btnExcluirMusica:hover {
   scale: 1.1;
 }
-.btnEdit2 img {
+.btnExcluirMusica img {
   width: 10px;
   height: 10px;
   -o-object-fit: cover;
