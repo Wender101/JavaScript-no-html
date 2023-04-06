@@ -41,6 +41,8 @@ let ultimasPesquisasDoUser = {
     Playlists: []
 }
 
+localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser)) //! Vai apagar o storage dos user.
+
 if(localStorage.getItem('ultimasPesquisasDoUser') != undefined && localStorage.getItem('ultimasPesquisasDoUser') != null) {
     ultimasPesquisasDoUser = JSON.parse(localStorage.getItem('ultimasPesquisasDoUser'))
     ultimasPesquisas()
