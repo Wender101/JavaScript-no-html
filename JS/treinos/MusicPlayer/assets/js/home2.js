@@ -89,7 +89,7 @@ function ultimasPesquisas() {
         
                                 let musicaMaisTocada = document.createElement('div')
                                 let localImgMaisTocada = document.createElement('div')
-                                let img = document.createElement('img')
+                                //let img = document.createElement('img')
                                 let nomeMusicaMaisTocada = document.createElement('h3')
                                 let nomeAutorMaisTocada = document.createElement('p')
                     
@@ -98,11 +98,12 @@ function ultimasPesquisas() {
                                 nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
                                 nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
                     
-                                img.src = TodasAsMusicas.Musicas[c2].LinkImgiMusica
+                                localImgMaisTocada.innerHTML = `<img src="${TodasAsMusicas.Musicas[c2].LinkImgiMusica}" onerror = "this.onerror=null; this.src='assets/img/fotos/listSong.jpeg'">`
+                                //img.src = TodasAsMusicas.Musicas[c2].LinkImgiMusica
                                 nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[c2].NomeMusica
                                 nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[c2].NomeAutor
                     
-                                localImgMaisTocada.appendChild(img)
+                                //localImgMaisTocada.appendChild(img)
                                 musicaMaisTocada.appendChild(localImgMaisTocada)
                                 musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
                                 musicaMaisTocada.appendChild(nomeAutorMaisTocada)
@@ -150,7 +151,7 @@ function ultimasPesquisas() {
             
                                     let musicaMaisTocada = document.createElement('div')
                                     let localImgMaisTocada = document.createElement('div')
-                                    let img = document.createElement('img')
+                                    //let img = document.createElement('img')
                                     let nomeMusicaMaisTocada = document.createElement('h3')
                                     let nomeAutorMaisTocada = document.createElement('p')
                         
@@ -159,11 +160,12 @@ function ultimasPesquisas() {
                                     nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
                                     nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
                         
-                                    img.src = TodasAsMusicas.Musicas[c2].LinkImgiMusica
+                                    localImgMaisTocada.innerHTML = `<img src="${TodasAsMusicas.Musicas[c2].LinkImgiMusica}" onerror = "this.onerror=null; this.src='assets/img/fotos/listSong.jpeg'">`
+                                    //img.src = TodasAsMusicas.Musicas[c2].LinkImgiMusica
                                     nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[c2].NomeMusica
                                     nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[c2].NomeAutor
                         
-                                    localImgMaisTocada.appendChild(img)
+                                    //localImgMaisTocada.appendChild(img)
                                     musicaMaisTocada.appendChild(localImgMaisTocada)
                                     musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
                                     musicaMaisTocada.appendChild(nomeAutorMaisTocada)
@@ -218,7 +220,7 @@ function ultimasPesquisas() {
     
                                     let musicaMaisTocada = document.createElement('div')
                                     let localImgMaisTocada = document.createElement('div')
-                                    let img = document.createElement('img')
+                                    //let img = document.createElement('img')
                                     let nomeMusicaMaisTocada = document.createElement('h3')
                                     let nomeAutorMaisTocada = document.createElement('p')
                         
@@ -227,11 +229,12 @@ function ultimasPesquisas() {
                                     nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
                                     nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
                         
-                                    img.src = Usuarios.Musica.Playlist[c2].Musicas[0].LinkImgiMusica
+                                    localImgMaisTocada.innerHTML = `<img src="${Usuarios.Musica.Playlist[c2].Musicas[0].LinkImgiMusica}" onerror = "this.onerror=null; this.src='assets/img/fotos/listSong.jpeg'">`
+                                    //img.src = Usuarios.Musica.Playlist[c2].Musicas[0].LinkImgiMusica
                                     nomeMusicaMaisTocada.innerText = Usuarios.Musica.Playlist[c2].NomePlaylist
                                     nomeAutorMaisTocada.innerText = Usuarios.infUser.Nome
                         
-                                    localImgMaisTocada.appendChild(img)
+                                    //localImgMaisTocada.appendChild(img)
                                     musicaMaisTocada.appendChild(localImgMaisTocada)
                                     musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
                                     musicaMaisTocada.appendChild(nomeAutorMaisTocada)
@@ -295,7 +298,7 @@ function abrirPlaylist(perfilDonoDaPlaylist, numPlaylist) {
                             let musicaPostadaUser = document.createElement('div')
                             let localMusicaPostadaUser = document.createElement('div')
                             let div = document.createElement('div')
-                            let img = document.createElement('img')
+                            //let img = document.createElement('img')
                             let localTextoPostadoUser = document.createElement('div')
                             let h3 = document.createElement('h3')
                             let p = document.createElement('p')
@@ -305,12 +308,13 @@ function abrirPlaylist(perfilDonoDaPlaylist, numPlaylist) {
                             localMusicaPostadaUser.className = 'localMusicaPostadaUser'
                             localTextoPostadoUser.className = 'localTextoPostadoUser'
                     
-                            img.src = Usuarios.Musica.Playlist[numPlaylist].Musicas[d].LinkImgiMusica
+                            localMusicaPostadaUser.innerHTML = `<img src="${Usuarios.Musica.Playlist[numPlaylist].Musicas[d].LinkImgiMusica}" onerror = "this.onerror=null; this.src='assets/img/fotos/listSong.jpeg'">`
+                            //img.src = Usuarios.Musica.Playlist[numPlaylist].Musicas[d].LinkImgiMusica
                             h3.innerText = Usuarios.Musica.Playlist[numPlaylist].Musicas[d].NomeMusica
                             p.innerText = Usuarios.Musica.Playlist[numPlaylist].Musicas[d].NomeAutor
                             heart.src = 'assets/img/icones/icon _heart_ (1).png'
                     
-                            localMusicaPostadaUser.appendChild(img)
+                            //localMusicaPostadaUser.appendChild(img)
                             localTextoPostadoUser.appendChild(h3)
                             localTextoPostadoUser.appendChild(p)
                             div.appendChild(localMusicaPostadaUser)

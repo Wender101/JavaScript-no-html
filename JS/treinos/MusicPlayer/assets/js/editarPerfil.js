@@ -117,7 +117,7 @@ btnEditarPerfil.addEventListener('click', () => {
 
                                             //? Vai excluir do storage
                                             console.log(nomeDaPasta);
-                                            storage.ref().child(nomeDaPasta).delete().then(() => {
+                                            storage.ref().child(nomeDaPasta).child().delete().then(() => {
 
                                                 //? Vai excluir do perfil pessoal do user
                                                 cloneMsucasDoUser.MusicasPostadas.splice(d, 1)

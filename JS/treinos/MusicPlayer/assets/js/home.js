@@ -270,7 +270,7 @@ function CriarMusicasNaTela() {
 
                     let musicaMaisTocada = document.createElement('div')
                     let localImgMaisTocada = document.createElement('div')
-                    let img = document.createElement('img')
+                    //let img = document.createElement('img')
                     let nomeMusicaMaisTocada = document.createElement('h3')
                     let nomeAutorMaisTocada = document.createElement('p')
 
@@ -279,11 +279,12 @@ function CriarMusicasNaTela() {
                     nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
                     nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
 
-                    img.src = TodasAsMusicas.Musicas[numMusicaAleatoria].LinkImgiMusica
+                    localImgMaisTocada.innerHTML = `<img src="${TodasAsMusicas.Musicas[numMusicaAleatoria].LinkImgiMusica}" onerror = "this.onerror=null; this.src='assets/img/fotos/listSong.jpeg'">`
+                    //img.src = TodasAsMusicas.Musicas[numMusicaAleatoria].LinkImgiMusica
                     nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[numMusicaAleatoria].NomeMusica
                     nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[numMusicaAleatoria].NomeAutor
 
-                    localImgMaisTocada.appendChild(img)
+                    //localImgMaisTocada.appendChild(img)
                     musicaMaisTocada.appendChild(localImgMaisTocada)
                     musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
                     musicaMaisTocada.appendChild(nomeAutorMaisTocada)
@@ -300,6 +301,33 @@ function CriarMusicasNaTela() {
                         cloneMusicasSequencia = []
                         darPlayNaMusica(TodasAsMusicas.Musicas[numMusicaAleatoria])
                     })
+
+                    //? Vai checar se o limite do firebase storage foi atingido
+                    setTimeout(() => {
+                        let eUmAdm = false
+                        db.collection('Admins').onSnapshot((data) => {
+                            data.docs.map(function(valor) {
+                                let Admins = valor.data()
+
+                                for(let c = 0; c < Admins.Adms.length; c++) {
+                                    if(email == Admins.Adms[c]) {
+                                        eUmAdm = true
+                                        document.querySelector('#carregando').style.display = 'none'
+                                    }
+    
+                                    setTimeout(() => {
+                                        if(eUmAdm == false) {
+                                            if(document.getElementsByClassName('localImgMaisTocada')[0].querySelector('img').src == 'http://127.0.0.1:5500/assets/img/fotos/listSong.jpeg' || document.getElementsByClassName('localImgMaisTocada')[0].querySelector('img').src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/fotos/listSong.jpeg') {
+                                                document.querySelector('#pagLimiteExedido').style.display = 'flex'
+                                                document.querySelector('body').style.overflow = 'hidden'
+                                            } else {
+                                            }
+                                        }
+                                    }, 100)
+                                }
+                            })
+                        })
+                    }, 200)
                 } sortearMusica()
             }
         })

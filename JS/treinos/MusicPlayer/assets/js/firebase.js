@@ -14,6 +14,20 @@ const auth = firebase.auth()
 const provider = new firebase.auth.GoogleAuthProvider()
 const db = firebase.firestore()
 const storage = firebase.storage()
+//const analytics = firebase.getAnalytics()
+
+// storage.ref().child('X2Download.app - Wiz Khalifa - See You Again ft. Charlie Puth [Official Video] Furious 7 Soundtrack (128 kbps)').child('X2Download.app - Wiz Khalifa - See You Again ft. Charlie Puth [Official Video] Furious 7 Soundtrack (128 kbps)').getMetadata().then(function(metadata) {
+//     console.log(1);
+//     var storageUsed = metadata.size; // Armazenamento total utilizado em bytes
+//     var storageLimit = metadata.bucket; // Limite total de armazenamento em bytes
+//     var storageRemaining = storageLimit - storageUsed; // Quantidade de armazenamento disponível em bytes
+//     var dailyLimit = metadata.metageneration; // Limite diário de armazenamento em bytes
+//     var storageUsedToday = metadata.updated; // Armazenamento utilizado hoje em bytes
+
+//     if (storageUsedToday + storageUsed >= dailyLimit) {
+//         alert("Você atingiu o limite diário de armazenamento do Firebase Storage.");
+//     }
+// });
 
 let logado = false
 function login() {
@@ -33,7 +47,7 @@ auth.onAuthStateChanged((val) => {
             email = val.email
     
             try {
-                document.querySelector('#carregando').style.display = 'none'
+                //document.querySelector('#carregando').style.display = 'none'
             } catch{}
     
             if(logado == true) {
