@@ -116,7 +116,11 @@ function pesquisar(pesquisa) {
                     pesquisaSalvaMusica = true
                     let jaTemEssaPesquisa = false
                     for(let c = 0; c < ultimasPesquisasDoUser.Musicas.length; c++) {
-                        if(ultimasPesquisasDoUser.Musicas[c] == pesquisa) {
+                        MusicasUltimasPesquisas = ultimasPesquisasDoUser.Musicas[c].toLocaleLowerCase()
+                        MusicasUltimasPesquisas = MusicasUltimasPesquisas.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                        MusicasUltimasPesquisas = MusicasUltimasPesquisas.replace(/\s/g, '') //? Vai remover os espaços
+
+                        if(MusicasUltimasPesquisas.includes(pesquisa) || pesquisa.includes(MusicasUltimasPesquisas)) {
                             jaTemEssaPesquisa = true
                         }
                     }
@@ -135,7 +139,11 @@ function pesquisar(pesquisa) {
                     pesquisaSalvaMusica = true
                     let jaTemEssaPesquisa = false
                     for(let c = 0; c < ultimasPesquisasDoUser.Musicas.length; c++) {
-                        if(ultimasPesquisasDoUser.Musicas[c] == pesquisa) {
+                        MusicasUltimasPesquisas = ultimasPesquisasDoUser.Musicas[c].toLocaleLowerCase()
+                        MusicasUltimasPesquisas = MusicasUltimasPesquisas.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                        MusicasUltimasPesquisas = MusicasUltimasPesquisas.replace(/\s/g, '') //? Vai remover os espaços
+
+                        if(MusicasUltimasPesquisas.includes(pesquisa) || pesquisa.includes(MusicasUltimasPesquisas)) {
                             jaTemEssaPesquisa = true
                         }
                     }
@@ -513,7 +521,11 @@ function pesquisar(pesquisa) {
                         pesquisaSalvaGenero = true
                         let jaTemEssaPesquisa = false
                         for(let c = 0; c < ultimasPesquisasDoUser.Generos.length; c++) {
-                            if(ultimasPesquisasDoUser.Generos[c] == pesquisa) {
+                            GenerosUltimasPesquisasDoUser = ultimasPesquisasDoUser.Generos[c].toLocaleLowerCase()
+                            GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                            GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
+
+                            if(GenerosUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(GenerosUltimasPesquisasDoUser)) {
                                 jaTemEssaPesquisa = true
                             }
                         }
@@ -533,7 +545,11 @@ function pesquisar(pesquisa) {
                         pesquisaSalvaGenero = true
                         let jaTemEssaPesquisa = false
                         for(let c = 0; c < ultimasPesquisasDoUser.Generos.length; c++) {
-                            if(ultimasPesquisasDoUser.Generos[c] == pesquisa) {
+                            GenerosUltimasPesquisasDoUser = ultimasPesquisasDoUser.Generos[c].toLocaleLowerCase()
+                            GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                            GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
+
+                            if(GenerosUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(GenerosUltimasPesquisasDoUser)) {
                                 jaTemEssaPesquisa = true
                             }
                         }
@@ -603,50 +619,58 @@ function pesquisar(pesquisa) {
                                 //! Vai salvar a playlist pesquisada
                                 if(NomePlaylist.includes(pesquisa)) {
                                     //? Vai salvar a pesquisa
-                                   if(pesquisaSalvaPlaylist == false && ultimasPesquisasDoUser.Playlists.length < 8) {
+                                    if(pesquisaSalvaPlaylist == false && ultimasPesquisasDoUser.Playlists.length < 8) {
                                     pesquisaSalvaPlaylist = true
-                                       let jaTemEssaPesquisa = false
-                                       for(let c = 0; c < ultimasPesquisasDoUser.Playlists.length; c++) {
-                                           if(ultimasPesquisasDoUser.Playlists[c] == pesquisa) {
-                                               jaTemEssaPesquisa = true
-                                           }
-                                       }
-               
-                                       setTimeout(() => {
-                                           if(jaTemEssaPesquisa == false) {
-                                               jaTemEssaPesquisa = true
-                                               pesquisaSalvaPlaylist = true
-                                               ultimasPesquisasDoUser.Playlists.push(pesquisa)
-                                               localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
-                                           }
-                                       }, 100)
-               
-                                       //? Caso a parte Talvez você curta esteja cheia, ele vai remover a primera pesquisa
-                                   } else if(pesquisaSalvaPlaylist == false && ultimasPesquisasDoUser.Playlists.length >= 8) {
-                                       ultimasPesquisasDoUser.Playlists.splice(0, 1)
-                                       pesquisaSalvaPlaylist = true
-                                       let jaTemEssaPesquisa = false
-                                       for(let c = 0; c < ultimasPesquisasDoUser.Playlists.length; c++) {
-                                           if(ultimasPesquisasDoUser.Playlists[c] == pesquisa) {
-                                               jaTemEssaPesquisa = true
-                                           }
-                                       }
-               
-                                       setTimeout(() => {
-                                           if(jaTemEssaPesquisa == false) {
-                                               jaTemEssaPesquisa = true
-                                               pesquisaSalva = true
-                                               ultimasPesquisasDoUser.Playlists.push(pesquisa)
-                                               localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
-                                           }
-                                       }, 100)
-                                   }
-               
-                                   localArmazenar(document.querySelector('#TipoPesquisa'), c)
-               
-                                   document.querySelector('#TipoPesquisa').style.display = 'block'
-                                   document.querySelector('#h1Tipo').style.display = 'block'
-                               }
+                                        let jaTemEssaPesquisa = false
+                                        for(let c = 0; c < ultimasPesquisasDoUser.Playlists.length; c++) {
+                                            NomePlaylistUltimasPesquisasDoUser = ultimasPesquisasDoUser.Playlists[c].toLocaleLowerCase()
+                                            NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                                            NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
+
+                                            if(NomePlaylistUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(NomePlaylistUltimasPesquisasDoUser)) {
+                                                jaTemEssaPesquisa = true
+                                            }
+                                        }
+                
+                                        setTimeout(() => {
+                                            if(jaTemEssaPesquisa == false) {
+                                                jaTemEssaPesquisa = true
+                                                pesquisaSalvaPlaylist = true
+                                                ultimasPesquisasDoUser.Playlists.push(pesquisa)
+                                                localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                                            }
+                                        }, 100)
+                
+                                        //? Caso a parte Talvez você curta esteja cheia, ele vai remover a primera pesquisa
+                                    } else if(pesquisaSalvaPlaylist == false && ultimasPesquisasDoUser.Playlists.length >= 8) {
+                                        ultimasPesquisasDoUser.Playlists.splice(0, 1)
+                                        pesquisaSalvaPlaylist = true
+                                        let jaTemEssaPesquisa = false
+                                        for(let c = 0; c < ultimasPesquisasDoUser.Playlists.length; c++) {
+                                            NomePlaylistUltimasPesquisasDoUser = ultimasPesquisasDoUser.Playlists[c].toLocaleLowerCase()
+                                            NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                                            NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
+
+                                            if(NomePlaylistUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(NomePlaylistUltimasPesquisasDoUser)) {
+                                                jaTemEssaPesquisa = true
+                                            }
+                                        }
+                
+                                        setTimeout(() => {
+                                            if(jaTemEssaPesquisa == false) {
+                                                jaTemEssaPesquisa = true
+                                                pesquisaSalva = true
+                                                ultimasPesquisasDoUser.Playlists.push(pesquisa)
+                                                localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                                            }
+                                        }, 100)
+                                    }
+                
+                                    localArmazenar(document.querySelector('#TipoPesquisa'), c)
+                
+                                    document.querySelector('#TipoPesquisa').style.display = 'block'
+                                    document.querySelector('#h1Tipo').style.display = 'block'
+                                }
                             }
                         }
                     } catch{}
@@ -734,7 +758,6 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
                 let TodasAsMusicas = valor.data()
                 
                 div.addEventListener('click', () => {
-                    console.log(1);
                     numMusicaSequencia = c
                     passarMusicaPerfilPessoal()
                 })
