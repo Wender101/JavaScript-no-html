@@ -1040,6 +1040,8 @@ body section#pagRanking article div div#perfilRanking div img {
   height: 100vw;
   max-height: 130px;
   border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 body section#pagRanking article div div#perfilRanking div strong#nomeSegundoLugar, body section#pagRanking article div div#perfilRanking div strong#nomeTerceiroLugar {
   margin-top: 100px;
