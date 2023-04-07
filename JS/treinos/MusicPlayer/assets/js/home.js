@@ -321,6 +321,7 @@ function CriarMusicasNaTela() {
                                                 document.querySelector('#pagLimiteExedido').style.display = 'flex'
                                                 document.querySelector('body').style.overflow = 'hidden'
                                             } else {
+                                                document.querySelector('#carregando').style.display = 'none'
                                             }
                                         }
                                     }, 100)
