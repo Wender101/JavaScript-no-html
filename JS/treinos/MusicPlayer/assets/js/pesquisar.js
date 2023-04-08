@@ -753,43 +753,31 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
         musicaPostadaUser.appendChild(heart)
         localMusicasUserPagPessoal.appendChild(musicaPostadaUser)
 
-        db.collection('TodasAsMusicas').onSnapshot((data) => {
-            data.docs.map(function(valor) {
-                let TodasAsMusicas = valor.data()
-                
-                div.addEventListener('click', () => {
-                    numMusicaSequencia = c
-                    passarMusicaPerfilPessoal()
-                })
+        //! Funções de click
 
-                //? Ao clicar no icone de start
-                let imgUserPagPessoal = document.querySelector('#imgUserPagPessoal')
-                imgUserPagPessoal.addEventListener('click', () => {
-                    cloneMusicasSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas //? Vai guardar a lista de musica
-                    if(imgUserPessoalClicado == false && oQueEstaPassando == 'user pesquisado') {
-                        imgUserPessoalClicado = true
+        //? Vai checar se a música já foi adicionada aos favoritos
+        cehcarFavoritos(clonePerfilUserPesquisado.Musica.MusicasPostadas[c], heart)
 
-                        c = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1
-                        audio.play()
-                        passarMusicaPerfilPessoal()
+        //? Vai salvar como favoritos a música
+        heart.addEventListener('click', () => {
+            favoritarMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[c])
 
-                        setTimeout(() => {
-                            imgUserPessoalClicado = false
-                        }, 100)
-                    }
-                })
+            setTimeout(() => {
+                cehcarFavoritos(clonePerfilUserPesquisado.Musica.MusicasPostadas[c], heart)
+            }, 200)
+        })
 
-                function passarMusicaPerfilPessoal() {
-                    for(let b = 0; b < TodasAsMusicas.Musicas.length; b++) {
-                        if(clonePerfilUserPesquisado.Musica.MusicasPostadas[c].NomeMusica == TodasAsMusicas.Musicas[b].NomeMusica && clonePerfilUserPesquisado.Musica.MusicasPostadas[c].NomeAutor == TodasAsMusicas.Musicas[b].NomeAutor && clonePerfilUserPesquisado.Musica.MusicasPostadas[c].EmailUser == TodasAsMusicas.Musicas[b].EmailUser && clonePerfilUserPesquisado.Musica.MusicasPostadas[c].LinkImgiMusica == TodasAsMusicas.Musicas[b].LinkImgiMusica && clonePerfilUserPesquisado.Musica.MusicasPostadas[c].LinkAudio == TodasAsMusicas.Musicas[b].LinkAudio) {
-                            numMusicaSequencia = c
-                            numSelecionado = b
-                            darPlayNaMusica(cloneMusicasSequencia[c])
-                        }
-                    }
-                }
-            })
 
+        imgUserPagPessoal.addEventListener('click', () => {
+            cloneMusicasSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas
+            numMusicaSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1
+            darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1])
+        })
+
+        div.addEventListener('click', () => {
+            cloneMusicasSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas
+            numMusicaSequencia = c
+            darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[c])
         })
     }
 })

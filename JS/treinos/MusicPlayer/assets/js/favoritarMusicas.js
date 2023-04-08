@@ -46,10 +46,10 @@ function cehcarFavoritos(musicaChecar, heart) {
             if(Usuarios.infUser.Email == email) {
 
                 for(let c = 0; c < Usuarios.Musica.MusicasCurtidas.length; c++) {
-                    if(Usuarios.Musica.MusicasCurtidas[c].LinkImgiMusica == musicaFavoritada.LinkImgiMusica && Usuarios.Musica.MusicasCurtidas[c].LinkAudio == musicaFavoritada.LinkAudio && Usuarios.Musica.MusicasCurtidas[c].EmailUser == musicaFavoritada.EmailUser && Usuarios.Musica.MusicasCurtidas[c].Nome == musicaFavoritada.Nome && feito == false) {
+                    if(Usuarios.Musica.MusicasCurtidas[c].LinkImgiMusica == musicaChecar.LinkImgiMusica && Usuarios.Musica.MusicasCurtidas[c].LinkAudio == musicaChecar.LinkAudio && Usuarios.Musica.MusicasCurtidas[c].EmailUser == musicaChecar.EmailUser && Usuarios.Musica.MusicasCurtidas[c].Nome == musicaChecar.Nome && feito == false) {
                         feito = true
                         jaTemEssaMusicaNosFavoritos = true
-                        heart.src = ''
+                        heart.src = 'assets/img/icones/icon _heart_.png'
                     }
                 }
 
@@ -57,6 +57,7 @@ function cehcarFavoritos(musicaChecar, heart) {
                     if(jaTemEssaMusicaNosFavoritos == false) {
                         jaTemEssaMusicaNosFavoritos = true
                         feito = true
+                        heart.src = 'assets/img/icones/icon _heart_ (1).png'
                     }
                 }, 500)
             }

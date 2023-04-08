@@ -70,6 +70,7 @@ function construirNaTelaAsMusicas() {
                         pagFavoritas.appendChild(musicaFavorias)
 
                         //! Funções de click
+
                         div.addEventListener('click', () => {
                             //hearAdd.src = 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png'
                             darPlayNaMusica(Usuarios.Musica.MusicasCurtidas[c])
