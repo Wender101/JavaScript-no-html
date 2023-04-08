@@ -1,0 +1,389 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+* {
+  margin: 0px;
+  padding: 0px;
+  list-style: none;
+  text-decoration: none;
+}
+
+.concordoInputFalse {
+  animation: 1500ms checkboxFalse infinite;
+}
+
+@keyframes checkboxFalseSpan {
+  0% {
+    color: #636363;
+  }
+  25% {
+    color: red;
+  }
+  50% {
+    color: #636363;
+  }
+  75% {
+    color: red;
+  }
+  100% {
+    color: #636363;
+  }
+}
+div#localPesquisaSong, div#localPesquisaSong2 {
+  position: absolute;
+  z-index: 2;
+}
+
+input:focus {
+  box-shadow: 0;
+  outline: 0;
+}
+
+div.localInputPesquisa {
+  max-width: 900px;
+  max-width: 900px;
+  width: 90%;
+  margin: 15px auto;
+  position: relative;
+  z-index: 2;
+  left: 50%;
+  top: 15px;
+  transform: translate(-50%);
+}
+div.localInputPesquisa input {
+  max-width: 900px;
+  width: calc(100% - 72px);
+  border: none;
+  padding: 11px 23px;
+  background-color: rgba(75, 75, 75, 0.4705882353);
+  display: block;
+  border-radius: 24px;
+  padding-left: 50px;
+  color: #fff;
+}
+div.localInputPesquisa img {
+  position: absolute;
+  top: 6.5px;
+  left: 10px;
+}
+
+/* ini: Preloader */
+#carregando2 {
+  width: 100%;
+  height: 100px;
+  bottom: 0px;
+  top: auto;
+  left: 0px;
+}
+
+.carregando, .carregando1 {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  display: none;
+  justify-content: center;
+  background-color: #272727;
+  align-items: center;
+  z-index: 10;
+}
+
+#carregando {
+  display: flex;
+}
+
+section.carregando > article {
+  width: 80%;
+  color: #fff;
+}
+
+.preloader .inner {
+  position: absolute;
+  top: 50%; /* centralizar a parte interna do preload (onde fica a animação)*/
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.bolas > div {
+  display: inline-block;
+  background-color: #fff;
+  box-shadow: 2px 2px 3px #181818;
+  width: 25px;
+  height: 25px;
+  border-radius: 100%;
+  margin: 3px;
+  animation-fill-mode: both;
+  animation-name: animarBola;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.bolas > div:nth-child(1) {
+  animation-duration: 0.75s;
+  animation-delay: 0;
+}
+
+.bolas > div:nth-child(2) {
+  animation-duration: 0.75s;
+  animation-delay: 0.12s;
+}
+
+.bolas > div:nth-child(3) {
+  animation-duration: 0.75s;
+  animation-delay: 0.24s;
+}
+
+@keyframes animarBola {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  16% {
+    transform: scale(0.1);
+    opacity: 0.7;
+  }
+  33% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+/* end: Preloader */
+audio {
+  display: none;
+}
+
+.paginas {
+  background-color: rgb(24, 24, 24);
+}
+
+.navVisible {
+  width: 36px;
+  height: 100vh;
+  background-color: #272727;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 15px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  margin-left: 0px;
+}
+.navVisible button#config {
+  display: none;
+}
+.navVisible ul {
+  display: flex;
+}
+
+.btnEdit {
+  width: 28px;
+  height: 28px;
+  background-color: #0DCBA9;
+  border: none;
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4666666667);
+  cursor: pointer;
+}
+.btnEdit:hover {
+  scale: 1.1;
+}
+.btnEdit img {
+  width: 28px;
+  height: 28px;
+}
+
+.btnExcluirMusica {
+  width: 14px;
+  height: 14px;
+  background-color: #1c1c1c;
+  border: none;
+  padding: 16px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4666666667);
+  cursor: pointer;
+}
+.btnExcluirMusica:hover {
+  scale: 1.1;
+}
+.btnExcluirMusica img {
+  width: 10px;
+  height: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+}
+body section {
+  width: 50vw;
+  height: 100vh;
+}
+body section#parte1img {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: url(../img/fotos/Rectangle.png);
+  background-size: contain;
+}
+body section#parte1img img {
+  width: 100%;
+}
+body section#parte2Chave {
+  font-family: "Poppins", sans-serif;
+  color: #fff;
+  background-color: #181818;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+body section#parte2Chave img {
+  max-width: 368px;
+  width: 90%;
+  display: block;
+  margin: auto;
+}
+body section#parte2Chave div {
+  width: 80%;
+  max-width: 440px;
+  margin: auto;
+}
+body section#parte2Chave div input[type=text] {
+  width: 90%;
+  border: none;
+  padding: 10px 23px;
+  background-color: rgba(75, 75, 75, 0.4705882353);
+  margin: 14px 0px 25px;
+}
+body section#parte2Chave div input[type=text]:focus {
+  box-shadow: 0;
+  outline: 0;
+}
+body section#parte2Chave div div {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 12px;
+  align-items: end;
+  margin: 0px;
+}
+@keyframes checkboxFalse {
+  0% {
+    border: 1px solid #636363;
+  }
+  25% {
+    border: 1px solid red;
+  }
+  50% {
+    border: 1px solid #636363;
+  }
+  75% {
+    border: 1px solid red;
+  }
+  100% {
+    border: 1px solid #636363;
+  }
+}
+body section#parte2Chave div div input[type=checkbox] {
+  all: unset;
+  width: 25px;
+  height: 25px;
+  margin-top: 20px;
+  border: 1px solid #636363;
+}
+body section#parte2Chave div div input[type=checkbox]:checked {
+  background-color: #0DCBA9;
+  border: 1px solid #0DCBA9;
+}
+body section#parte2Chave div div input[type=checkbox].concordoInputFalse {
+  animation: 1500ms checkboxFalse infinite;
+}
+@keyframes checkboxFalseSpan {
+  0% {
+    color: #636363;
+  }
+  25% {
+    color: red;
+  }
+  50% {
+    color: #636363;
+  }
+  75% {
+    color: red;
+  }
+  100% {
+    color: #636363;
+  }
+}
+body section#parte2Chave div div span {
+  color: #636363;
+}
+body section#parte2Chave div div .concordoSpanFalse {
+  animation: 1500ms checkboxFalseSpan infinite;
+}
+body section#parte2Chave div p {
+  font-size: 14px;
+}
+body section#parte2Chave div button {
+  font-family: "Carter One", cursive;
+  border-radius: 30px;
+  padding: 10px 70px;
+  border: none;
+  background-color: #0DCBA9;
+  display: block;
+  margin: 56px auto;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+body section#parte2Chave div button:hover {
+  background-color: aqua;
+}
+
+@media screen and (max-width: 700px) {
+  body {
+    justify-content: center;
+    align-items: center;
+  }
+  body section#parte1img {
+    width: 100vw;
+    min-height: 100vh;
+    position: fixed;
+    top: 0px;
+  }
+  body section#parte1img img {
+    display: none;
+  }
+  body section#parte2Chave {
+    width: 100%;
+    max-width: 350px;
+    max-height: 600px;
+  }
+  body section#parte2Chave div p {
+    font-size: 12px;
+  }
+  body section#parte2Chave div span {
+    font-size: 13px;
+  }
+  body section#parte2Chave div button {
+    font-size: 13px;
+  }
+}/*# sourceMappingURL=acessoAntecipado.css.map */
