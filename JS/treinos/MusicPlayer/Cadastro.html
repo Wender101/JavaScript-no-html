@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="assets/img/icones/logo.png" type="image/x-icon">
+    <title>Crie sua conta | treeFy</title>
+    
+    <!--? Style -->
+    <link rel="stylesheet" href="assets/sass/general.css">
+    <link rel="stylesheet" href="assets/sass/acessoAntecipado.css">
+</head>
+<body>
+    <section id="parte1img">
+        <div>
+            <img src="assets/img/fotos/ouvindoMusica2.png">
+        </div>
+    </section>
+
+    <section id="parte2Chave">
+        <img src="assets/img/icones/logoCompleta.png" alt="Logo treeFy">
+
+        <div>
+            <p>Como podemos te chamar</p>
+            <input type="text" required placeholder="Nome" id="inputNome">
+            <p>O treeFy ainda encontra-se em desenvolvimento e com isso pode haver alguns bugs ou instabilidade. Caso queira prosseguir faça cadastro com sua conta google.</p>
+
+            <button>Login | Cadastrar</button>
+        </div>
+    </section>
+
+    <!--! Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/8.2.10/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.2.7/firebase-storage.js"></script>
+    <script src="assets/js/firebase.js"></script>
+
+    <!--! Script -->
+    <script src="assets/js/cadastrar.js"></script>
+</body>
+</html>
