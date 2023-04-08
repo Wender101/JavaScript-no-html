@@ -528,6 +528,9 @@ let checarRepetidas = false
 function darPlayNaMusica(lista) {
     estadoMusica = 'play'
 
+    //? Vai checar se a música já foi adicionada aos favoritos
+    cehcarFavoritos(lista, document.querySelector('#hearAdd'))
+
     tempoSegundosPassou = 0 //? Vai contar os segundos que a música esta passando
     tempoSeconds = 0
     tempoMin = 0
@@ -631,47 +634,22 @@ function darPlayNaMusica(lista) {
         })
 
         //? ------------------------------------------------------
+
+        //? Vai salvar como favoritos a música
+        document.querySelector('#hearAdd').addEventListener('click', () => {
+            favoritarMusica(lista)
+
+            setTimeout(() => {
+                cehcarFavoritos(lista, document.querySelector('#hearAdd'))
+            }, 200)
+        })
+
         db.collection('TodasAsMusicas').onSnapshot((data) => {
             data.docs.map(function(valor) {
                 let TodasAsMusicas = valor.data()
 
                 //! Vai criar uma lista das músicas escutadas
                 let listaCheckRecentes = listaMusicasRecentes //? Vai checar se há recentes repetidos
-
-                let jaTemEssaMusica = false
-                let addMusicaEmRecentes = false
-                
-                //? Vai checar se a música que está tocando já foi adicionada as músicas curtidas
-                db.collection('Usuarios').onSnapshot((data) => {
-                    data.docs.map(function(valor) {
-                        let Usuarios = valor.data()
-
-                        
-                        if(Usuarios.infUser.Email == email) {
-                            idLocalUser = valor.id
-                            MusicasFavoritasLista = Usuarios.Musica
-                            let musicasFavoritas = Usuarios.Musica
-                            let musicaEstaEmFavoritos = false
-
-                            document.querySelector('#carregando2').style.display = 'none'
-
-                            try {
-                                for(let contadorFavoritas = 0; contadorFavoritas < Usuarios.Musica.MusicasCurtidas.length; contadorFavoritas++) {
-                                    if(musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeMusica == lista.NomeMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeAutor == lista.NomeAutor && musicasFavoritas.MusicasCurtidas[contadorFavoritas].EmailUser == lista.EmailUser && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkImgiMusica == lista.LinkImgiMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkAudio == lista.LinkAudio) {
-                                        musicaEstaEmFavoritos = true
-                                        hearAdd.src = 'assets/img/icones/icon _heart_.png'
-                                    }
-                                    
-                                    setTimeout(() => {
-                                        if(musicaEstaEmFavoritos == false) {
-                                            hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'
-                                        }
-                                    }, 200)
-                                }
-                            } catch{}
-                        }
-                    })
-                })
                 
                 if(listaMusicasRecentes.length <= 0) {
                     let formaLista =  {
@@ -751,66 +729,6 @@ function fecharAbas() {
     ultimasPesquisas()
 }
 
-
-//! Vai salvar a música nos favoritos
-
-// let hearAdd = document.querySelector('#hearAdd')
-// let feitoAddFavoritos = false
-// hearAdd.addEventListener('click', () => {
-//     if(feitoAddFavoritos == false) {
-//         let feito = false
-//         feitoAddFavoritos = true
-//         db.collection('TodasAsMusicas').onSnapshot((data) => {
-//             data.docs.map(function(valor) {
-//                 let TodasAsMusicas = valor.data()
-    
-//                 if(feito == false) {
-//                     feito = true
-//                     let feito2 = false
-//                     if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_%20(1).png' && feito2 == false || hearAdd.src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_%20(1).png' && feito2 == false) {
-//                         favoritarMusica(TodasAsMusicas.Musicas[numSelecionado].NomeMusica, TodasAsMusicas.Musicas[numSelecionado].NomeAutor, TodasAsMusicas.Musicas[numSelecionado].Tipo, TodasAsMusicas.Musicas[numSelecionado].LinkAudio, TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica, TodasAsMusicas.Musicas[numSelecionado].EmailUser, TodasAsMusicas.Musicas[numSelecionado].EstadoMusica, 'Adicionar')
-//                         feito2 = true
-//                         hearAdd.src = 'assets/img/icones/icon _heart_.png'
-    
-//                     } else if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png' && feito2 == false && hearAdd.src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_.png' && feito2 == false) {
-//                         favoritarMusica(TodasAsMusicas.Musicas[numSelecionado].NomeMusica, TodasAsMusicas.Musicas[numSelecionado].NomeAutor, TodasAsMusicas.Musicas[numSelecionado].Tipo, TodasAsMusicas.Musicas[numSelecionado].LinkAudio, TodasAsMusicas.Musicas[numSelecionado].LinkImgiMusica, TodasAsMusicas.Musicas[numSelecionado].EmailUser, TodasAsMusicas.Musicas[numSelecionado].EstadoMusica, 'Remover')
-//                         feito2 = true
-//                         hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'
-//                     }
-//                 }
-//             })
-//         })
-//     }
-
-//     setTimeout(() => {
-//         feitoAddFavoritos = false
-//     }, 300)
-// })
-
-// function favoritarMusica(NomeMusica, NomeAutor, Tipo, LinkAudio, LinkImgiMusica, EmailUser, EstadoMusica, oQfazerComAmusica) {
-//     if(oQfazerComAmusica == 'Adicionar') {
-//         let formaFavoritos =  {
-//             NomeMusica,
-//             NomeAutor,
-//             Tipo,
-//             LinkAudio,
-//             LinkImgiMusica,
-//             EmailUser,
-//             EstadoMusica,
-//         }
-
-//         MusicasFavoritasLista.MusicasCurtidas.push(formaFavoritos)
-//         db.collection('Usuarios').doc(idLocalUser).update({Musica: MusicasFavoritasLista})
-
-//     } else {
-//         for(let contador = 0; contador < MusicasFavoritasLista.MusicasCurtidas.length; contador++) {
-//             if(MusicasFavoritasLista.MusicasCurtidas[contador].NomeMusica == NomeMusica && MusicasFavoritasLista.MusicasCurtidas[contador].NomeAutor == NomeAutor && MusicasFavoritasLista.MusicasCurtidas[contador].EmailUser == EmailUser && MusicasFavoritasLista.MusicasCurtidas[contador].LinkImgiMusica == LinkImgiMusica && MusicasFavoritasLista.MusicasCurtidas[contador].LinkAudio == LinkAudio) {
-//                 MusicasFavoritasLista.MusicasCurtidas.splice(contador, 1)
-//                 db.collection('Usuarios').doc(idLocalUser).update({Musica: MusicasFavoritasLista})
-//             }
-//         }
-//     }
-// }
 
 //? Vai abrir a página de editar as playlists
 let numMusicasSelecionadas =  []

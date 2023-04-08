@@ -191,38 +191,7 @@ function pesquisar(pesquisa) {
 
                     let jaTemEssaMusica = false
                     let addMusicaEmRecentes = false
-                    
-                    //? Vai checar se a música que está tocando já foi adicionada as músicas curtidas
-                    db.collection('Usuarios').onSnapshot((data) => {
-                        data.docs.map(function(valor) {
-                            let Usuarios = valor.data()
 
-                            
-                            if(Usuarios.infUser.Email == email) {
-                                idLocalUser = valor.id
-                                MusicasFavoritasLista = Usuarios.Musica
-                                let musicasFavoritas = Usuarios.Musica
-                                let musicaEstaEmFavoritos = false
-
-                                document.querySelector('#carregando2').style.display = 'none'
-
-                                try {
-                                    for(let contadorFavoritas = 0; contadorFavoritas < Usuarios.Musica.MusicasCurtidas.length; contadorFavoritas++) {
-                                        if(musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeMusica == TodasAsMusicas.Musicas[c].NomeMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeAutor == TodasAsMusicas.Musicas[c].NomeAutor && musicasFavoritas.MusicasCurtidas[contadorFavoritas].EmailUser == TodasAsMusicas.Musicas[c].EmailUser && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkImgiMusica == TodasAsMusicas.Musicas[c].LinkImgiMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkAudio == TodasAsMusicas.Musicas[c].LinkAudio) {
-                                            musicaEstaEmFavoritos = true
-                                            hearAdd.src = 'assets/img/icones/icon _heart_.png'
-                                        }
-                                        
-                                        setTimeout(() => {
-                                            if(musicaEstaEmFavoritos == false) {
-                                                hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'
-                                            }
-                                        }, 200)
-                                    }
-                                } catch{}
-                            }
-                        })
-                    })
                     if(listaMusicasRecentes.length <= 0) {
                         let formaLista =  {
                             NomeMusica: TodasAsMusicas.Musicas[contador].NomeMusica,
@@ -367,37 +336,6 @@ function pesquisar(pesquisa) {
                                             let jaTemEssaMusica = false
                                             let addMusicaEmRecentes = false
                                             
-                                            //? Vai checar se a música que está tocando já foi adicionada as músicas curtidas
-                                            db.collection('Usuarios').onSnapshot((data) => {
-                                                data.docs.map(function(valor) {
-                                                    let Usuarios = valor.data()
-    
-                                                    
-                                                    if(Usuarios.infUser.Email == email) {
-                                                        idLocalUser = valor.id
-                                                        MusicasFavoritasLista = Usuarios.Musica
-                                                        let musicasFavoritas = Usuarios.Musica
-                                                        let musicaEstaEmFavoritos = false
-    
-                                                        document.querySelector('#carregando2').style.display = 'none'
-    
-                                                        try {
-                                                            for(let contadorFavoritas = 0; contadorFavoritas < Usuarios.Musica.MusicasCurtidas.length; contadorFavoritas++) {
-                                                                if(musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeMusica == TodasAsMusicas.Musicas[c].NomeMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].NomeAutor == TodasAsMusicas.Musicas[c].NomeAutor && musicasFavoritas.MusicasCurtidas[contadorFavoritas].EmailUser == TodasAsMusicas.Musicas[c].EmailUser && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkImgiMusica == TodasAsMusicas.Musicas[c].LinkImgiMusica && musicasFavoritas.MusicasCurtidas[contadorFavoritas].LinkAudio == TodasAsMusicas.Musicas[c].LinkAudio) {
-                                                                    musicaEstaEmFavoritos = true
-                                                                    hearAdd.src = 'assets/img/icones/icon _heart_.png'
-                                                                }
-                                                                
-                                                                setTimeout(() => {
-                                                                    if(musicaEstaEmFavoritos == false) {
-                                                                        hearAdd.src = 'assets/img/icones/icon _heart_ (1).png'
-                                                                    }
-                                                                }, 200)
-                                                            }
-                                                        } catch{}
-                                                    }
-                                                })
-                                            })
                                             if(listaMusicasRecentes.length <= 0) {
                                                 let formaLista =  {
                                                     NomeMusica: Usuarios.Musica.MusicasPostadas[c2].NomeMusica,
