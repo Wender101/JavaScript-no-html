@@ -1,41 +1,79 @@
-function favoritarMusicas(musicaSelecionada) {
-    let jaTemEsssaMusicaSalvoComoFavorita = false
+function favoritarMusica(musicaFavoritada) {
+    let jaTemEssaMusicaNosFavoritos = false
+    let feito = false
 
-
-    //? Vai checar se está música já foi adicionada anteriormente como favorita
     db.collection('Usuarios').onSnapshot((data) => {
         data.docs.map(function(valor) {
             let Usuarios = valor.data()
 
             if(Usuarios.infUser.Email == email) {
-                console.log(34);
 
-                if(Usuarios.Musica.MusicasCurtidas.length > 0) {
-                    for(let c = 0; c < Usuarios.Musica.MusicasCurtidas.length; c++) {
-    
-                        //? Vai cehcar se a música já foi adicionada anteriormente
-                        if(musicaSelecionada.Email == email && musicaSelecionada.LinkAudio == Usuarios.Musica.MusicasCurtidas[c].LinkAudio && musicaSelecionada.LinkImgiMusica == Usuarios.Musica.MusicasCurtidas[c].LinkImgiMusica && musicaSelecionada.NomeMusica == Usuarios.Musica.MusicasCurtidas[c].NomeMusica) {
-                            jaTemEsssaMusicaSalvoComoFavorita = true
-                            musicaAtualFavoritada = false
-                            document.querySelector('#hearAdd').src = 'assets/img/icones/icon _heart_ (1).png'
-                        }
-    
-                        setTimeout(() => {
-                            if(jaTemEsssaMusicaSalvoComoFavorita == false) {
-                                musicaAtualFavoritada = true
-                                document.querySelector('#hearAdd').src = 'assets/img/icones/icon _heart_.png'
-                            }
-                        }, 300)
-                    }
+                for(let c = 0; c < Usuarios.Musica.MusicasCurtidas.length; c++) {
+                    if(Usuarios.Musica.MusicasCurtidas[c].LinkImgiMusica == musicaFavoritada.LinkImgiMusica && Usuarios.Musica.MusicasCurtidas[c].LinkAudio == musicaFavoritada.LinkAudio && Usuarios.Musica.MusicasCurtidas[c].EmailUser == musicaFavoritada.EmailUser && Usuarios.Musica.MusicasCurtidas[c].Nome == musicaFavoritada.Nome && feito == false) {
+                        feito = true
+                        jaTemEssaMusicaNosFavoritos = true
 
-                } else {
-                    if(jaTemEsssaMusicaSalvoComoFavorita == false) {
-                        musicaAtualFavoritada = true
-                        document.querySelector('#hearAdd').src = 'assets/img/icones/icon _heart_.png'
+                        let musica = Usuarios.Musica
+                        musica.MusicasCurtidas.splice(c, 1)
+
+                        db.collection('Usuarios').doc(valor.id).update({Musica: musica})
                     }
                 }
 
+                setTimeout(() => {
+                    if(jaTemEssaMusicaNosFavoritos == false) {
+                        jaTemEssaMusicaNosFavoritos = true
+                        feito = true
+                        let musica = Usuarios.Musica
+                        musica.MusicasCurtidas.push(musicaFavoritada)
+
+                        db.collection('Usuarios').doc(valor.id).update({Musica: musica})
+                    }
+                }, 500)
             }
         })
     })
 }
+
+function cehcarFavoritos(musicaChecar, heart) {
+    let feito = false
+    let jaTemEssaMusicaNosFavoritos = false
+
+    db.collection('Usuarios').onSnapshot((data) => {
+        data.docs.map(function(valor) {
+            let Usuarios = valor.data()
+
+            if(Usuarios.infUser.Email == email) {
+
+                for(let c = 0; c < Usuarios.Musica.MusicasCurtidas.length; c++) {
+                    if(Usuarios.Musica.MusicasCurtidas[c].LinkImgiMusica == musicaFavoritada.LinkImgiMusica && Usuarios.Musica.MusicasCurtidas[c].LinkAudio == musicaFavoritada.LinkAudio && Usuarios.Musica.MusicasCurtidas[c].EmailUser == musicaFavoritada.EmailUser && Usuarios.Musica.MusicasCurtidas[c].Nome == musicaFavoritada.Nome && feito == false) {
+                        feito = true
+                        jaTemEssaMusicaNosFavoritos = true
+                        heart.src = ''
+                    }
+                }
+
+                setTimeout(() => {
+                    if(jaTemEssaMusicaNosFavoritos == false) {
+                        jaTemEssaMusicaNosFavoritos = true
+                        feito = true
+                    }
+                }, 500)
+            }
+        })
+    })
+}
+
+// var p1 = new Promise(function(resolve, reject) {
+//     setTimeout(() => {
+//         resolve("Success!");
+//     }, 5000)
+//     // or
+//     // reject ("Error!");
+//   });
+  
+//   p1.then(function(value) {
+//     console.log(value); // Success!
+//   }, function(reason) {
+//     console.log(reason); // Error!
+//   });

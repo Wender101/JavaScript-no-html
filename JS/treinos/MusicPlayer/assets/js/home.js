@@ -302,7 +302,7 @@ function CriarMusicasNaTela() {
                         darPlayNaMusica(TodasAsMusicas.Musicas[numMusicaAleatoria])
                     })
 
-                    //? Vai checar se o limite do firebase storage foi atingido
+                    //! Vai checar se o limite do firebase storage foi atingido
                     setTimeout(() => {
                         let eUmAdm = false
                         db.collection('Admins').onSnapshot((data) => {
@@ -723,6 +723,12 @@ function darPlayNaMusica(lista) {
                     }
                 }
             })
+        })
+
+        //! Vai add a música aos favoritdos
+        let hearAdd = document.querySelector('#hearAdd')
+        hearAdd.addEventListener('click', () => {
+            favoritarMusica(lista)
         })
     })
 }

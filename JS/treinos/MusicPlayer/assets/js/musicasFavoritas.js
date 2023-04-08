@@ -26,7 +26,6 @@ function construirNaTelaAsMusicas() {
             let Usuarios = valor.data()
             
             if(favoritasCarregadas == true) {
-                pagFavoritas.innerHTML = ''
                 favoritasCarregadas = false
             }
 
@@ -35,11 +34,13 @@ function construirNaTelaAsMusicas() {
                 }, 300)
 
             if(Usuarios.infUser.Email == email) {
+                pagFavoritas.innerHTML = ''
                 idLocalUser = valor.id
                 MusicasFavoritasLista = Usuarios.Musica
 
                 if(Usuarios.Musica.MusicasCurtidas.length > 0) {
-                    for(let c = 0; c < Usuarios.Musica.MusicasCurtidas.length; c++) {
+                    let feito = false
+                    for(let c = Usuarios.Musica.MusicasCurtidas.length - 1; c >= 0; c--) {
 
                         let musicaFavorias = document.createElement('div')
                         let div = document.createElement('div')
@@ -70,39 +71,41 @@ function construirNaTelaAsMusicas() {
 
                         //! Funções de click
                         div.addEventListener('click', () => {
-                            hearAdd.src = 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png'
+                            //hearAdd.src = 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png'
                             darPlayNaMusica(Usuarios.Musica.MusicasCurtidas[c])
                         })
 
                         let feitoAddFavoritos = false
-                            heart.addEventListener('click', () => {
+                        heart.addEventListener('click', () => {
+                            favoritarMusica(Usuarios.Musica.MusicasCurtidas[c])
+                        })
 
-                                if(feitoAddFavoritos == false) {
-                                    let feito = false
-                                    feitoAddFavoritos = true
-                                    db.collection('TodasAsMusicas').onSnapshot((data) => {
-                                        data.docs.map(function(valor) {
-                                            let TodasAsMusicas = valor.data()
-                                
-                                            if(feito == false) {
-                                                feito = true
-                                                favoritarMusica(Usuarios.Musica.MusicasCurtidas[c].NomeMusica, Usuarios.Musica.MusicasCurtidas[c].NomeAutor, Usuarios.Musica.MusicasCurtidas[c].Tipo, Usuarios.Musica.MusicasCurtidas[c].LinkAudio, Usuarios.Musica.MusicasCurtidas[c].LinkImgiMusica, Usuarios.Musica.MusicasCurtidas[c].EmailUser, Usuarios.Musica.MusicasCurtidas[c].EstadoMusica, 'Remover')
-
-                                                if(hearAdd.src == 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_.png') {
-                                                    hearAdd.src = 'http://127.0.0.1:5500/assets/img/icones/icon%20_heart_ (1).png'
-
-                                                } else if(hearAdd.src == 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_.png') {
-                                                    hearAdd.src = 'https://wender101.github.io/JavaScript-no-html/JS/treinos/MusicPlayer/assets/img/icones/icon%20_heart_%20(1).png'
-                                                }
-                                            }
-                                        })
-                                    })
-                                }
+                        div.addEventListener('click', () => {
+                            if(feito == false) {
+                                feito = true
+                                cloneMusicasSequencia = Usuarios.Musica.MusicasCurtidas
+                                numMusicaSequencia = Usuarios.Musica.MusicasCurtidas.length - 1
+                                darPlayNaMusica(Usuarios.Musica.MusicasCurtidas[c])
 
                                 setTimeout(() => {
-                                    feitoAddFavoritos = false
-                                }, 300)
-                            })
+                                    feito = false
+                                }, 200)
+                            }
+                        })
+
+                        //! Vai tocar as músicas da pág curtidas
+                        document.querySelector('#iconePlayFavoritas').addEventListener('click', () => {
+                            if(feito == false) {
+                                feito = true
+                                cloneMusicasSequencia = Usuarios.Musica.MusicasCurtidas
+                                numMusicaSequencia = Usuarios.Musica.MusicasCurtidas.length - 1
+                                darPlayNaMusica(Usuarios.Musica.MusicasCurtidas[c])
+
+                                setTimeout(() => {
+                                    feito = false
+                                }, 200)
+                            }
+                        })
                     }
                 }
             }
