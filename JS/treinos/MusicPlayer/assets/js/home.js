@@ -545,9 +545,15 @@ function darPlayNaMusica(lista) {
         artist: lista.NomeAutor,
         album: '...',
         artwork: [
-            { src: lista.LinkImgiMusica, sizes: '300x300', type: 'image/png'}
+            { 
+                src: lista.LinkImgiMusica, 
+                sizes: '300x300', 
+                type: 'image/png', 
+                purpose: 'cover', 
+                style: 'object-fit: cover'
+            }
         ]
-    });
+    })
 
     navigator.mediaSession.setActionHandler('nexttrack', function() {
         atualizarTimeMusica('next', cloneMusicasSequencia)
