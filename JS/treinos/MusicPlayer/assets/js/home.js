@@ -517,9 +517,25 @@ function atualizarTimeMusica(estado = 'play', arrayDeMusica = []) {
     }
 }
 
+//! Vai passar a música ou voltar, apertando os btns do fone de ouvido
+navigator.mediaSession.setActionHandler('nexttrack', function() {
+    estadoMusica = 'next'
+})
+
+navigator.mediaSession.setActionHandler('previoustrack', function() {
+    estadoMusica = 'back'
+})
+
 //! Ficar marcando o time de segundo em segundo
 let estadoMusica = 'zerar'
 setInterval(() => {
+    let audio = document.querySelector('#audioMusica')
+    //? Vai identificar se o audio está tocando, ou foi pausado
+    if (audio.paused) {
+        estadoMusica = 'pause'
+    } else {
+        estadoMusica = 'play'
+    }
     atualizarTimeMusica(estadoMusica, cloneMusicasSequencia)
 }, 1000)
 
