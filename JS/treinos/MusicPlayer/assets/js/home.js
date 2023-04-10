@@ -517,20 +517,6 @@ function atualizarTimeMusica(estado = 'play', arrayDeMusica = []) {
     }
 }
 
-//! Vai passar a música ou voltar usando os btns do teclado
-if ('mediaSession' in navigator) {
-    navigator.mediaSession.metadata = new MediaMetadata({
-    })
-
-    navigator.mediaSession.setActionHandler('nexttrack', function() {
-        atualizarTimeMusica('next', cloneMusicasSequencia)
-    })
-
-    navigator.mediaSession.setActionHandler('previoustrack', function() {
-        atualizarTimeMusica('back', cloneMusicasSequencia)
-    })
-}
-
 //! Ficar marcando o time de segundo em segundo
 let estadoMusica = 'zerar'
 setInterval(() => {
@@ -610,6 +596,26 @@ function darPlayNaMusica(lista) {
         })
 
         //! -------------------------------
+
+        //! Vai passar a música ou voltar usando os btns do teclado
+        if ('mediaSession' in navigator) {
+            navigator.mediaSession.metadata = new MediaMetadata({
+                title: lista.NomeMusica,
+                artist: lista.NomeAutor,
+                album: '...',
+                artwork: [
+                { src: lista.LinkImgiMusica, sizes: '300x300', type: 'image/png' }
+                ]
+            });
+
+            navigator.mediaSession.setActionHandler('nexttrack', function() {
+                atualizarTimeMusica('next', cloneMusicasSequencia)
+            })
+
+            navigator.mediaSession.setActionHandler('previoustrack', function() {
+                atualizarTimeMusica('back', cloneMusicasSequencia)
+            })
+        }
 
         //! Pausar musica
         let pausadoMusica = false
