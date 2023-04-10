@@ -517,14 +517,19 @@ function atualizarTimeMusica(estado = 'play', arrayDeMusica = []) {
     }
 }
 
-//! Vai passar a música ou voltar, apertando os btns do fone de ouvido
-navigator.mediaSession.setActionHandler('nexttrack', function() {
-    estadoMusica = 'next'
-})
+//! Vai passar a música ou voltar usando os btns do teclado
+if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+    })
 
-navigator.mediaSession.setActionHandler('previoustrack', function() {
-    estadoMusica = 'back'
-})
+    navigator.mediaSession.setActionHandler('nexttrack', function() {
+        atualizarTimeMusica('next', cloneMusicasSequencia)
+    })
+
+    navigator.mediaSession.setActionHandler('previoustrack', function() {
+        atualizarTimeMusica('back', cloneMusicasSequencia)
+    })
+}
 
 //! Ficar marcando o time de segundo em segundo
 let estadoMusica = 'zerar'
