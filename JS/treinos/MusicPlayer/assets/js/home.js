@@ -529,12 +529,16 @@ navigator.mediaSession.setActionHandler('previoustrack', function() {
 //! Ficar marcando o time de segundo em segundo
 let estadoMusica = 'zerar'
 setInterval(() => {
+    let playBtn = document.getElementById('play')
     let audio = document.querySelector('#audioMusica')
+
     //? Vai identificar se o audio está tocando, ou foi pausado
     if (audio.paused) {
         estadoMusica = 'pause'
+        playBtn.style.backgroundImage = 'url(assets/img/icones/play.png)'
     } else {
         estadoMusica = 'play'
+        playBtn.style.backgroundImage = 'url(assets/img/icones/pause.png)'
     }
     atualizarTimeMusica(estadoMusica, cloneMusicasSequencia)
 }, 1000)
