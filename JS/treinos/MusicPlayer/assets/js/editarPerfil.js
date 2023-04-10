@@ -72,7 +72,7 @@ btnEditarPerfil.addEventListener('click', () => {
                     img.src = Usuarios.Musica.MusicasPostadas[d].LinkImgiMusica
                     h3.innerText = Usuarios.Musica.MusicasPostadas[d].NomeMusica
                     p.innerText = Usuarios.Musica.MusicasPostadas[d].NomeAutor
-                    imgEdit.src = 'http://127.0.0.1:5500/assets/img/icones/X2.png'
+                    imgEdit.src = 'assets/img/icones/X2.png'
             
                     localMusicaPostadaUser.appendChild(img)
                     localTextoPostadoUser.appendChild(h3)

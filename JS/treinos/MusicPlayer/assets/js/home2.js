@@ -33,6 +33,30 @@ menuTocandoMusica.addEventListener('click', (e) => {
     } else if(tamanhoTela > 723 && idE == 'parteCentralConfigMusica') {
         document.querySelector('#pagSobreMusicaTocando').style.display = 'none'
     }
+
+    let heart = document.querySelector('#heartCellPhone')
+
+    let feito = false
+    db.collection('TodasAsMusicas').onSnapshot((data) => {
+        data.docs.map(function(valor) {
+            let TodasAsMusicas = valor.data()
+
+            if(feito == false) {
+                feito = true
+                cehcarFavoritos(TodasAsMusicas.Musicas[numSelecionado], heart)
+
+                //? Vai salvar como favoritos a música
+                heart.addEventListener('click', () => {
+                    favoritarMusica(TodasAsMusicas.Musicas[numSelecionado])
+
+                    setTimeout(() => {
+                        cehcarFavoritos(TodasAsMusicas.Musicas[numSelecionado], heart)
+                    }, 200)
+                })
+            }
+
+        })
+    })
 })
 
 let ultimasPesquisasDoUser = {

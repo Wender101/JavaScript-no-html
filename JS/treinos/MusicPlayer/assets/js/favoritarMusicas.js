@@ -29,7 +29,7 @@ function favoritarMusica(musicaFavoritada) {
 
                         db.collection('Usuarios').doc(valor.id).update({Musica: musica})
                     }
-                }, 500)
+                }, 200)
             }
         })
     })
@@ -50,7 +50,6 @@ function cehcarFavoritos(musicaChecar, heart) {
                         feito = true
                         jaTemEssaMusicaNosFavoritos = true
                         heart.src = 'assets/img/icones/icon _heart_.png'
-                        console.log('Tem a música');
                     }
                 }
 
@@ -59,9 +58,8 @@ function cehcarFavoritos(musicaChecar, heart) {
                         jaTemEssaMusicaNosFavoritos = true
                         feito = true
                         heart.src = 'assets/img/icones/icon _heart_ (1).png'
-                        console.log('N tem a música');
                     }
-                }, 500)
+                }, 200)
             }
         })
     })

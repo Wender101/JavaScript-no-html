@@ -105,6 +105,8 @@ function construirNaTelaAsMusicas() {
                                 setTimeout(() => {
                                     feito = false
                                 }, 200)
+
+                                document.querySelector('#hearAdd').src = 'assets/img/icones/icon _heart_.png'
                             }
                         })
                     }

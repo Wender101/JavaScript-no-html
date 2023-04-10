@@ -624,7 +624,7 @@ function darPlayNaMusica(lista) {
             if(emLoop == false) {
                 estadoMusica = 'loop'
                 emLoop = true
-                loopbtn.style.backgroundImage = "url('assets/img/icones/icon\ _repeat_ (2).png')"
+                loopbtn.style.backgroundImage = "url('assets/img/icones/icon _repeat_(2).png')"
 
             } else {
                 estadoMusica = 'play'

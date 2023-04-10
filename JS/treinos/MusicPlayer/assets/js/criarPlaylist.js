@@ -29,6 +29,7 @@ function functionPlaylist() {
         document.querySelector('#headerPessalUser').style.backgroundSize = 'contain'
         document.querySelector('#headerPessalUser').style.backgroundRepeat = 'repeat'
         document.querySelector('#localMusicasUserPagPessoal').innerHTML = ''
+        document.getElementsByClassName('btnEdit')[0].style.display = 'none'
         textareaNomePlaylist.value = ''
         imgUserPagPessoal.src = 'assets/img/icones/plus2.png'
         imgUserPagPessoal.style.background = '#636363'
