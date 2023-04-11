@@ -589,7 +589,9 @@ function darPlayNaMusica(lista) {
     document.querySelector('#autorMusicaPagSobreMusica').innerText = lista.NomeAutor
 
     document.querySelector('#menuTocandoMusica').style.bottom = '0px'
-    document.querySelector('nav').style.height = 'calc(100vh - 100px)'
+    setTimeout(() => {
+        document.querySelector('nav').style.height = 'calc(100vh - 100px)'
+    }, 200)
 
     audio.src = lista.LinkAudio
 

@@ -238,6 +238,7 @@ body {
 body nav {
   width: 58px;
   height: 100vh;
+  transition: 200ms height linear;
   background-color: #1c1c1c;
   box-shadow: 2px 2px 5px #121111;
   display: flex;

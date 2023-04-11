@@ -12,6 +12,7 @@ body {
     nav {
         width: 58px;
         height: 100vh;
+        transition: 200ms height linear;
         //background-color: $cor5;
         background-color: $cor8;
         box-shadow: 2px 2px 5px $sombra2;
