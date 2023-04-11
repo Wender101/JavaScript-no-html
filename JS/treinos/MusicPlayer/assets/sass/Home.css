@@ -179,6 +179,27 @@ audio {
   display: flex;
 }
 
+.navVisibleCell {
+  width: 36px;
+  height: calc(100vh - 100px);
+  background-color: #272727;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 15px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  margin-left: 0px;
+}
+.navVisibleCell button#config {
+  display: none;
+}
+.navVisibleCell ul {
+  display: flex;
+}
+
 .btnEdit {
   width: 28px;
   height: 28px;
@@ -240,7 +261,6 @@ body nav {
   height: 100vh;
   transition: 200ms height linear;
   background-color: #1c1c1c;
-  box-shadow: 2px 2px 5px #121111;
   display: flex;
   align-items: center;
   flex-direction: column;

@@ -369,6 +369,9 @@ audio {
   body section#pagPesquisa article#autorPesquisa div#loaclMusicasDoAutorPesquisa img {
     width: 20px !important;
   }
+  body section#pagFavoritas article div#headerFavoritas {
+    padding: 70px 35px 67px 35px;
+  }
   body section#pagFavoritas article div#headerFavoritas img {
     width: 25vw;
     height: 25vw;
