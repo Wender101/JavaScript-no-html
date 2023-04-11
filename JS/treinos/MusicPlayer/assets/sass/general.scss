@@ -214,6 +214,29 @@ audio {
     }
 }
 
+.navVisibleCell {
+    width: 36px;
+    height: calc(100vh - 100px);
+    background-color: $cor5;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 15px;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 3;
+    margin-left: 0px;
+
+    button#config {
+        display: none;
+    }
+
+    ul {
+        display: flex;
+    }
+}
+
 .btnEdit {
     width: 28px;
     height: 28px;

@@ -3,7 +3,12 @@ let nav = document.querySelector('nav')
 
 //! Vai abrir e fechar o menu para o cell
 configBtn.addEventListener('click', () => {
-    nav.className = 'navVisible'
+    if(document.defaultView.window.visualViewport.width < 723 && document.querySelector('#menuTocandoMusica').style.bottom == '0px') {
+        nav.className = 'navVisibleCell'
+
+    } else {
+        nav.className = 'navVisible'
+    }
 })
 
 document.addEventListener('click', (e) => {
