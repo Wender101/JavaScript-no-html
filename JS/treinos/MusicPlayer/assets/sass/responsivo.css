@@ -524,6 +524,7 @@ audio {
   }
   body section#pagAddMusicas article {
     width: 90%;
+    min-height: calc(100vh + 200px);
     margin: auto;
   }
   body section#pagAddMusicas article div div#localBtnsAddMusica {
