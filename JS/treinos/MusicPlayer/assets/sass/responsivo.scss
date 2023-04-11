@@ -433,6 +433,10 @@
                     min-height: calc(100vh + 200px);
                     margin: auto;
 
+                    h1 {
+                        font-size: 20px;
+                    }
+
                     div {
                         div#localBtnsAddMusica {
                             flex-direction: column;

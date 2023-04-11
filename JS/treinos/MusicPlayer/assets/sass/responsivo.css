@@ -527,6 +527,9 @@ audio {
     min-height: calc(100vh + 200px);
     margin: auto;
   }
+  body section#pagAddMusicas article h1 {
+    font-size: 20px;
+  }
   body section#pagAddMusicas article div div#localBtnsAddMusica {
     flex-direction: column;
   }
