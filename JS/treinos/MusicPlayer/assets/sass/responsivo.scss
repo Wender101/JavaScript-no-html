@@ -290,6 +290,31 @@
                 }
             }
         }
+
+        section#pagRanking {
+            padding: 0px;
+
+            article {
+                width: 90%;
+                margin: auto;
+
+                div {
+                    div#perfilRanking {
+                        margin-bottom: 100px;
+
+                        div {
+                            max-width: 100px;
+                            max-height: 100px;
+
+                            img {
+                                width: 100%;
+                                height: 100%;
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }
 
     .btnEdit {
