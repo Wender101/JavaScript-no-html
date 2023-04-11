@@ -424,7 +424,25 @@
                 max-width: 289px !important;
                 margin: auto !important;
             }
+
+            &#pagAddMusicas {
+                article {
+                    width: 90%;
+                    margin: auto;
+
+                    div {
+                        div#localBtnsAddMusica {
+                            flex-direction: column;
+    
+                            label {
+                                margin: 10px 0px 10px;
+                            }
+                        }
+                    }
+                }
+            }
         }
+
     }
 }
 

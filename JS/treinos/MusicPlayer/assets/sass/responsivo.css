@@ -179,6 +179,27 @@ audio {
   display: flex;
 }
 
+.navVisibleCell {
+  width: 36px;
+  height: calc(100vh - 100px);
+  background-color: #272727;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 15px;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 3;
+  margin-left: 0px;
+}
+.navVisibleCell button#config {
+  display: none;
+}
+.navVisibleCell ul {
+  display: flex;
+}
+
 .btnEdit {
   width: 28px;
   height: 28px;
@@ -497,6 +518,16 @@ audio {
   body section .artigoCentral {
     max-width: 289px !important;
     margin: auto !important;
+  }
+  body section#pagAddMusicas article {
+    width: 90%;
+    margin: auto;
+  }
+  body section#pagAddMusicas article div div#localBtnsAddMusica {
+    flex-direction: column;
+  }
+  body section#pagAddMusicas article div div#localBtnsAddMusica label {
+    margin: 10px 0px 10px;
   }
 }
 @media screen and (max-width: 489px) {
