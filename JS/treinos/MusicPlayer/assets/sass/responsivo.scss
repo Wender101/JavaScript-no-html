@@ -208,6 +208,21 @@
                 }
             }
         }
+
+        section#pagFavoritas {
+            article {
+                div#headerFavoritas {
+                    img {
+                        width: 25vw;
+                        height: 25vw;
+                    }
+
+                    h1 {
+                        font-size: 10vw !important;
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -342,6 +357,16 @@
     
                     h3 {
                         white-space: nowrap !important;
+                    }
+                }
+            }
+        }
+
+        section#pagFavoritas {
+            article {
+                div#headerFavoritas {
+                    img {
+                        border-radius: 20px;
                     }
                 }
             }
