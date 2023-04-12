@@ -1,5 +1,4 @@
 function favoritarMusica(musicaFavoritada) {
-    let jaTemEssaMusicaNosFavoritos = false
     let feito = false
 
     db.collection('Usuarios').onSnapshot((data) => {
@@ -23,7 +22,8 @@ function favoritarMusica(musicaFavoritada) {
                                     reject('Não tem a música')
                                 }
                             }
-                        } else {
+                        } else if(Usuarios.Musica.MusicasCurtidas.length == 0 && feito == false) {
+                            feito = true
                             reject('Não tem a música')
                         }
                     })
@@ -41,7 +41,7 @@ function favoritarMusica(musicaFavoritada) {
                     let musica = Usuarios.Musica
                     musica.MusicasCurtidas.push(musicaFavoritada)
                     db.collection('Usuarios').doc(valor.id).update({Musica: musica})
-                })                
+                })             
             }
         })
     })

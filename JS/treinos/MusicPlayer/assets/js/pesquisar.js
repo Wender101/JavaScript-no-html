@@ -256,6 +256,7 @@ function pesquisar(pesquisa) {
 
                 if(feitoPesquisarUser == false) {
                     feitoPesquisarUser = true
+                    let userEncontrado = false
                     db.collection('Usuarios').onSnapshot((data) => {
                         data.docs.map(function(valor) {
                             let Usuarios = valor.data()
@@ -264,7 +265,8 @@ function pesquisar(pesquisa) {
                             nomeAutor = nomeAutor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
                             nomeAutor = nomeAutor.replace(/\s/g, '') //? Vai remover os espaços
             
-                            if(nomeAutor.includes(pesquisa)) {
+                            if(nomeAutor.includes(pesquisa) && userEncontrado == false) {
+                                userEncontrado = true
                                 for(let c2 = Usuarios.Musica.MusicasPostadas.length - 1; c2 >= 0; c2--) {
                                     if(contadorMusicasAutor < 4) {
                                         contadorMusicasAutor++
@@ -453,7 +455,7 @@ function pesquisar(pesquisa) {
                 Tipo = Tipo.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
                 Tipo = Tipo.replace(/\s/g, '') //? Vai remover os espaços
 
-                if(Tipo.includes(pesquisa) || pesquisa.includes(Tipo)) {
+                if(Tipo.includes(pesquisa) /*|| pesquisa.includes(Tipo)*/) {
                      //? Vai salvar a pesquisa
                     if(pesquisaSalvaGenero == false && ultimasPesquisasDoUser.Generos.length < 8) {
                         pesquisaSalvaGenero = true
