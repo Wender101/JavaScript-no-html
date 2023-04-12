@@ -35,12 +35,16 @@ function favoritarMusica(musicaFavoritada) {
                     let musica = Usuarios.Musica
                     musica.MusicasCurtidas.splice(resolve, 1)
                     db.collection('Usuarios').doc(valor.id).update({Musica: musica})
+                    cehcarFavoritos(musicaFavoritada, document.querySelector('#hearAdd'))
+                    cehcarFavoritos(musicaFavoritada, document.querySelector('#heartCellPhone'))
 
                 }).catch((reject) => {
                     feito2 = true
                     let musica = Usuarios.Musica
                     musica.MusicasCurtidas.push(musicaFavoritada)
                     db.collection('Usuarios').doc(valor.id).update({Musica: musica})
+                    cehcarFavoritos(musicaFavoritada, document.querySelector('#hearAdd'))
+                    cehcarFavoritos(musicaFavoritada, document.querySelector('#heartCellPhone'))
                 })             
             }
         })
