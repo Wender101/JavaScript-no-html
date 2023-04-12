@@ -775,6 +775,7 @@ let numMusicasSelecionadas =  []
 let numPlaylistEditada
 let estadoPlaylist = 'criando'
 document.querySelector('#EditarPlaylistsBtn').addEventListener('click', () => {
+    fecharAbas()
     estadoPlaylist = 'editando'
     document.querySelector('body').style.overflow = 'hidden'
     document.querySelector('#pagEditarPlaylist').querySelector('article').innerHTML = ''

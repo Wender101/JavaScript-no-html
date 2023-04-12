@@ -1,6 +1,7 @@
 let btnEditarPerfil = document.querySelector('#PagPessoal')
 
 btnEditarPerfil.addEventListener('click', () => {
+    fecharAbas()
     let aberto = false
     db.collection('Usuarios').onSnapshot((data) => {
     data.docs.map(function(valor) {
