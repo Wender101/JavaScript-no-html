@@ -12,14 +12,16 @@ BibliotecaBtn.addEventListener('click', () => {
             pagFavoritas.style.display = 'none'
             document.querySelector('body').style.overflow = 'auto'
         }
+
+        construirNaTelaAsMusicas(true)
     }
 })
 
 let favoritasCarregadas = false
-function construirNaTelaAsMusicas() {
+function construirNaTelaAsMusicas(podeAtualizar = false) {
     let pagFavoritas = document.querySelector('#pagFavoritas').querySelector('article').querySelector('#localMusicasFavoritas')
     pagFavoritas.innerHTML = ''
-    
+    let poderAtualizarMesmo = podeAtualizar
     
     db.collection('Usuarios').onSnapshot((data) => {
         data.docs.map(function(valor) {
@@ -33,7 +35,8 @@ function construirNaTelaAsMusicas() {
                     favoritasCarregadas = true
                 }, 300)
 
-            if(Usuarios.infUser.Email == email) {
+            if(Usuarios.infUser.Email == email && poderAtualizarMesmo == true) {
+                poderAtualizarMesmo = false
                 pagFavoritas.innerHTML = ''
                 idLocalUser = valor.id
                 MusicasFavoritasLista = Usuarios.Musica
@@ -114,4 +117,4 @@ function construirNaTelaAsMusicas() {
             }
         })
     })
-} construirNaTelaAsMusicas()
+}

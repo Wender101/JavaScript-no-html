@@ -288,11 +288,13 @@ function ultimasPesquisas() {
 }
 
 function abrirPlaylist(perfilDonoDaPlaylist, numPlaylist) {
+    let aberto = false
     db.collection('Usuarios').onSnapshot((data) => {
         data.docs.map(function(valor) {
             let Usuarios = valor.data()
 
-            if(valor.id == perfilDonoDaPlaylist) {
+            if(valor.id == perfilDonoDaPlaylist && aberto == false) {
+                aberto = true
                 try {
                     document.getElementsByClassName('btnEdit')[0].style.display = 'none'
                     document.querySelector('body').style.overflow = 'hidden'

@@ -1,11 +1,13 @@
 let btnEditarPerfil = document.querySelector('#PagPessoal')
 
 btnEditarPerfil.addEventListener('click', () => {
+    let aberto = false
     db.collection('Usuarios').onSnapshot((data) => {
     data.docs.map(function(valor) {
         let Usuarios = valor.data()
 
-            if(Usuarios.infUser.Email == email) {
+            if(Usuarios.infUser.Email == email && aberto == false) {
+                aberto = true
                 let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
                 localMusicasUserPagPessoal.innerHTML = ''
 

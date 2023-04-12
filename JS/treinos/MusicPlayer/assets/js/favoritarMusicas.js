@@ -37,6 +37,9 @@ function favoritarMusica(musicaFavoritada) {
                     db.collection('Usuarios').doc(valor.id).update({Musica: musica})
                     cehcarFavoritos(musicaFavoritada, document.querySelector('#hearAdd'))
                     cehcarFavoritos(musicaFavoritada, document.querySelector('#heartCellPhone'))
+                    if(document.querySelector('#pagFavoritas').style.display == 'block') {
+                        construirNaTelaAsMusicas(true)
+                    }
 
                 }).catch((reject) => {
                     feito2 = true
@@ -45,6 +48,9 @@ function favoritarMusica(musicaFavoritada) {
                     db.collection('Usuarios').doc(valor.id).update({Musica: musica})
                     cehcarFavoritos(musicaFavoritada, document.querySelector('#hearAdd'))
                     cehcarFavoritos(musicaFavoritada, document.querySelector('#heartCellPhone'))
+                    if(document.querySelector('#pagFavoritas').style.display == 'block') {
+                        construirNaTelaAsMusicas(true)
+                    }
                 })             
             }
         })
