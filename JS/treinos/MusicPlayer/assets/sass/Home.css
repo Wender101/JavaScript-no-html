@@ -308,6 +308,9 @@ body nav ul li button#BibliotecaBtn {
 body nav ul li button#PlaylistBtn {
   background-image: url(../img/icones/playlist.png);
 }
+body nav ul li button#FriendsBtn {
+  background-image: url(../img/icones/friends.png);
+}
 body nav ul li button#PagPessoal {
   background-image: url(../img/icones/icon\ _user\ edit.png);
 }
@@ -1210,6 +1213,282 @@ body section#pagLimiteExedido {
 body section#pagLimiteExedido h1 {
   font-family: "Carter One", cursive;
   font-size: 40px;
+}
+body div#sombraAboutMusicaUser {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.4666666667);
+  left: 0px;
+  z-index: 2;
+  display: none;
+}
+body div#abaFriends {
+  width: 280px;
+  height: 100vh;
+  background-color: #272727;
+  position: fixed;
+  top: 0px;
+  transition: 500ms right ease-in-out;
+  right: -100vw;
+  z-index: 2;
+}
+body div#abaFriends ul {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 0px;
+  gap: 30px;
+}
+body div#abaFriends ul li {
+  width: 90%;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  gap: 15px;
+  cursor: pointer;
+  position: relative;
+}
+body div#abaFriends ul li img {
+  width: 65px;
+  height: 65px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+body div#abaFriends ul li .bollOnline {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #0DCBA9;
+  position: absolute;
+  bottom: 10px;
+  left: 55px;
+}
+body div#abaFriends ul li div {
+  width: calc(100% - 65px);
+}
+body div#abaFriends ul li div strong {
+  display: block;
+  font-family: "Carter One", cursive;
+  width: 90%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 500;
+}
+body div#abaFriends ul li div p {
+  width: 90%;
+  color: rgba(255, 255, 255, 0.4941176471);
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 500;
+  gap: 5px;
+}
+body div#abaFriends ul li div p span {
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #0DCBA9;
+}
+body div#abaFriends div#aboutMusicaUser {
+  width: 100%;
+  height: 140px;
+  position: absolute;
+  left: -300px;
+  top: 100px;
+  background-color: #272727;
+  display: none;
+}
+body div#abaFriends div#aboutMusicaUser div#perfilMusica {
+  width: 100%;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 20px 0px;
+  position: relative;
+  color: #fff;
+  background-color: #272727;
+}
+body div#abaFriends div#aboutMusicaUser div#perfilMusica img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+body div#abaFriends div#aboutMusicaUser div#perfilMusica div#bollOnline2 {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #0DCBA9;
+  position: absolute;
+  bottom: 65px;
+  right: 85px;
+}
+body div#abaFriends div#aboutMusicaUser div#perfilMusica strong {
+  display: block;
+  font-family: "Carter One", cursive;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-weight: 500;
+  margin-top: 10px;
+}
+body div#abaFriends div#aboutMusicaUser div#aboutSongFriend {
+  width: 100%;
+  background-color: #1f1e1e;
+  height: 100%;
+  display: flex;
+  color: #fff;
+  gap: 10px;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+}
+body div#abaFriends div#aboutMusicaUser div#aboutSongFriend div {
+  display: flex;
+  align-items: end;
+  gap: 20px;
+}
+body div#abaFriends div#aboutMusicaUser div#aboutSongFriend div img {
+  width: 80px;
+  height: 80px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body div#abaFriends div#aboutMusicaUser div#aboutSongFriend div div {
+  display: block;
+}
+body div#abaFriends div#aboutMusicaUser div#aboutSongFriend div div strong {
+  width: 160px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 12px;
+  font-weight: 500;
+  display: block;
+}
+body div#abaFriends div#aboutMusicaUser div#aboutSongFriend div div p {
+  width: 100px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 13px;
+  color: #636363;
+  display: block;
+}
+body div#abaFriends div#localAddAmigo {
+  width: 100%;
+  display: flex;
+  position: absolute;
+  bottom: 20px;
+  justify-content: space-around;
+}
+body div#abaFriends div#localAddAmigo input {
+  background-color: transparent;
+  border: none;
+  padding: 11px 23px;
+  background-color: rgba(75, 75, 75, 0.4705882353);
+  display: block;
+  border-radius: 0px;
+  padding-left: 20px;
+  color: #fff;
+}
+body div#abaFriends div#localAddAmigo input:focus {
+  box-shadow: 0;
+  outline: 0;
+}
+body div#abaFriends div#localAddAmigo button {
+  width: 40px;
+  height: 40px;
+  color: #fff;
+  background-color: rgba(75, 75, 75, 0.4705882353);
+  border: none;
+  cursor: pointer;
+}
+body div#pedidosPendentes {
+  width: 90%;
+  max-width: 300px;
+  height: auto;
+  position: fixed;
+  bottom: 20px;
+  z-index: 2;
+  transition: 500ms right ease-in-out;
+  right: -100vw;
+  background-color: #272727;
+  box-shadow: 2px 2px 10px black;
+  color: #636363;
+  padding: 10px 20px;
+}
+body div#pedidosPendentes p {
+  margin: 15px 0px 0px;
+  font-size: 14px;
+  text-align: center;
+}
+body div#pedidosPendentes div#perfilPedido {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  gap: 20px;
+}
+body div#pedidosPendentes div#perfilPedido img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body div#pedidosPendentes div#btnsPedido {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px 0px 10px;
+}
+body div#pedidosPendentes div#btnsPedido button {
+  border: none;
+  background-color: #636363;
+  color: #fff;
+  padding: 2px 15px;
+  display: block;
+  font-size: 16px;
+  font-family: "Carter One", cursive;
+  cursor: pointer;
+}
+body div#pedidosPendentes div#btnsPedido button#aceitarPedido:hover {
+  background-color: #0DCBA9;
+}
+body div#pedidosPendentes div#btnsPedido button#recusarPedido:hover {
+  background-color: red;
+}
+body div#pedidosPendentes button.btnsPedido {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-image: url("../img/icones/_arrow left 1_.png");
+  position: absolute;
+  top: 50%;
+  cursor: pointer;
+  display: none;
+}
+body div#pedidosPendentes button.btnsPedido#nextPedido {
+  transform: rotate(180deg);
+  right: 20px;
+}
+body div#pedidosPendentes button.btnsPedido#backPedido {
+  left: 20px;
+}
+body div#pedidosPendentes button.btnsPedido:hover {
+  transition: 200ms scale linear;
+  scale: 1.15;
 }
 body section#menuTocandoMusica {
   width: calc(100% - 32px);

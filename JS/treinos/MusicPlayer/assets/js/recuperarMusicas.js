@@ -6,7 +6,7 @@
 //         let TodasAsMusicas = valor.data() 
 
 //         for(let c = 0; c < TodasAsMusicas.Musicas.length; c++) {
-//             if(TodasAsMusicas.Musicas[c].EmailUser == 'danielentoni75@gmail.com') {
+//             if(TodasAsMusicas.Musicas[c].EmailUser == 'wendermarquesmarques@gmail.com') {
 //                 cloneMusicasPostadas.push(TodasAsMusicas.Musicas[c])
 //             }
 //         }
@@ -20,11 +20,11 @@
 //                     data.docs.map(function(val) {
 //                         let user = val.data()
 
-//                         if(user.infUser.Email == 'danielentoni75@gmail.com') {
+//                         if(user.infUser.Email == 'wendermarquesmarques@gmail.com') {
 //                             let forma = {
 //                                 MusicasCurtidas: [],
 //                                 MusicasPostadas: cloneMusicasPostadas,
-//                                 Playlist: user.Musica.Playlist
+//                                 Playlist: []
 //                             }
 //                             db.collection('Usuarios').doc(val.id).update({Musica: forma})
 //                         }

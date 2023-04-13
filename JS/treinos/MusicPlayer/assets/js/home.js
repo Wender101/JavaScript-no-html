@@ -1,3 +1,9 @@
+try {
+    let volume = localStorage.getItem('Volume', inputVolume.value)
+    document.querySelector('#audioMusica').volume = volume / 100
+    document.querySelector('#inputVolume').value = volume
+} catch{}
+
 let inputNomeDaMusica = document.querySelector('#inputNomeDaMusica')
 let inputAutorDaMusica = document.querySelector('#inputAutorDaMusica')
 let inputTipoDaMusica = document.querySelector('#inputTipoDaMusica')
@@ -536,6 +542,7 @@ setInterval(() => {
 
 //? Vai dar play na música
 let checarRepetidas = false
+let atualizadoMusicaOuvindoAgr = false
 function darPlayNaMusica(lista) {
     estadoMusica = 'play'
 
@@ -562,6 +569,75 @@ function darPlayNaMusica(lista) {
     navigator.mediaSession.setActionHandler('previoustrack', function() {
         atualizarTimeMusica('back', cloneMusicasSequencia)
     })
+
+    //? Vai atualizar no banco de dados qual música o user está ouvindo
+    if(atualizadoMusicaOuvindoAgr == false) {
+        atualizadoMusicaOuvindoAgr = true
+        let feito = false
+
+        setTimeout(() => {
+            atualizadoMusicaOuvindoAgr = false    
+        }, 500)
+
+        db.collection('Usuarios').onSnapshot((data) => {
+            data.docs.map(function(valor) {
+                let Usuarios = valor.data()
+
+                if(Usuarios.infUser.Email == email && feito == false) {
+                    feito = true
+                    if(Usuarios.infUser.userEstaOuvindo != null && Usuarios.infUser.userEstaOuvindo != undefined) {
+                        let cloneInfUSer = Usuarios.infUser
+                        cloneInfUSer.userEstaOuvindo = {
+                            LinkAudio: lista.LinkAudio,
+                            LinkImgiMusica: lista.LinkImgiMusica,
+                            NomeAutor: lista.NomeAutor,
+                            NomeMusica: lista.NomeMusica,
+                        }
+                        
+                        db.collection('Usuarios').doc(valor.id).update({infUser: cloneInfUSer})
+
+                    } else {
+                        let FotoPerfil = ''
+                        let ImgParedePerfil = ''
+                        let Online = 0
+                        let userEstaOuvindo = {}
+
+                        if(Usuarios.infUser.FotoPerfil != undefined && Usuarios.infUser.FotoPerfil != null) {
+                            FotoPerfil = Usuarios.infUser.FotoPerfil
+                        }
+
+                        if(Usuarios.infUser.ImgParedePerfil != undefined && Usuarios.infUser.ImgParedePerfil != null) {
+                            ImgParedePerfil = Usuarios.infUser.ImgParedePerfil
+                        }
+
+                        if(Usuarios.infUser.Online != undefined && Usuarios.infUser.Online != null) {
+                            Online = Usuarios.infUser.Online
+                        }
+
+                        if(Usuarios.infUser.userEstaOuvindo != undefined && Usuarios.infUser.userEstaOuvindo != null) {
+                            userEstaOuvindo = lista
+                        }
+
+                        let cloneInfUSer = {
+                            Amigos: {
+                                Pendentes: [],
+                                ListaAmigos: []
+                            },
+
+                            Email: Usuarios.infUser.Email,
+                            Nome: Usuarios.infUser.Nome,
+                            FotoPerfil,
+                            ImgParedePerfil,
+                            Online,
+                            userEstaOuvindo,
+                        }
+                        
+                        db.collection('Usuarios').doc(valor.id).update({infUser: cloneInfUSer})
+                    }
+                }
+            })
+        })
+    }
 
     //? Vai checar se a música já foi adicionada aos favoritos
     cehcarFavoritos(lista, document.querySelector('#hearAdd'))
@@ -622,6 +698,7 @@ function darPlayNaMusica(lista) {
 
         inputVolume.addEventListener('input', () => {
             audio.volume = inputVolume.value / 100
+            localStorage.setItem('Volume', inputVolume.value)
         })
 
         //! -------------------------------

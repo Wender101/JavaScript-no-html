@@ -70,6 +70,10 @@ body {
                 button#PlaylistBtn {
                     background-image: url(../img/icones/playlist.png);
                 }
+
+                button#FriendsBtn {
+                    background-image: url(../img/icones/friends.png);
+                }
                 
                 button#PagPessoal {
                     background-image: url(../img/icones/icon\ _user\ edit.png);
@@ -1123,6 +1127,321 @@ body {
         h1 {
             font-family: $fonte-Carter;
             font-size: 40px;
+        }
+    }
+
+    //! friends
+    div#sombraAboutMusicaUser {
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0px;
+        background-color: $sombra;
+        left: 0px;
+        z-index: 2;
+        display: none;
+    }
+
+    //? Aba friends
+    div#abaFriends {
+        width: 280px;
+        height: 100vh;
+        background-color: $cor5;
+        position: fixed;
+        top: 0px;
+        transition: 500ms right ease-in-out;
+        right: -100vw;
+        z-index: 2;
+
+        ul {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 20px 0px;
+            gap: 30px;
+
+            li {
+                width: 90%;
+                margin: auto;
+                display: flex;
+                align-items: center;
+                color: $white;
+                gap: 15px;
+                cursor: pointer;
+                position: relative;
+
+                img {
+                    width: 65px;
+                    height: 65px;
+                    object-fit: cover;
+                    border-radius: 50%;
+                }
+
+                .bollOnline {
+                    width: 10px;
+                    height: 10px;
+                    border-radius: 50%;
+                    background-color: $cor1;
+                    position: absolute;
+                    bottom: 10px;
+                    left: 55px;
+                }
+
+                div {
+                    width: calc(100% - 65px);
+
+                    strong {
+                        display: block;
+                        font-family: $fonte-Carter;
+                        width: 90%;
+                        white-space: nowrap;
+                        text-overflow: ellipsis;
+                        overflow: hidden;
+                        font-weight: 500;
+                    }
+    
+                    p {
+                        width: 90%;
+                        color: #ffffff7e;
+                        display: flex;
+                        align-items: center;
+                        font-size: 12px;
+                        font-weight: 500;
+                        gap: 5px;
+                        
+                        span {
+                            display: block;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            color: $cor1;
+                        }
+                    }
+                }
+            }
+        }
+
+        //? Aba sobre a música do amiguinho
+        div#aboutMusicaUser {
+            width: 100%;
+            height: 140px;
+            position: absolute;
+            left: -300px;
+            top: 100px;
+            background-color: $cor5;
+            display: none;
+
+            div#perfilMusica {
+                width: 100%;
+                height: 130px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-direction: column;
+                padding: 20px 0px;
+                position: relative;
+                color: $white;
+                background-color: $cor5;
+
+                img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                }
+
+                div#bollOnline2 {
+                    width: 20px;
+                    height: 20px;
+                    border-radius: 50%;
+                    background-color: $cor1;
+                    position: absolute;
+                    bottom: 65px;
+                    right: 85px;
+                }
+
+                strong {
+                    display: block;
+                    font-family: "Carter One", cursive;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                    overflow: hidden;
+                    font-weight: 500;
+                    margin-top: 10px;
+                }
+            }
+
+            div#aboutSongFriend {
+                width: 100%;
+                background-color: #1f1e1e;
+                height: 100%;
+                display: flex;
+                color: $white;
+                gap: 10px;
+                align-items: center;
+                justify-content: space-around;
+                cursor: pointer;
+
+                div {
+                    display: flex;
+                    align-items: end;
+                    gap: 20px;
+
+                    img {
+                        width: 80px;
+                        height: 80px;
+                        object-fit: cover;
+                    }
+    
+                    div {
+                        display: block;
+
+                        strong {
+                            width: 160px;
+                            //white-space: nowrap;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            font-size: 12px;
+                            font-weight: 500;
+                            display: block;
+                        }
+    
+                        p {
+                            width: 100px;
+                            white-space: nowrap;
+                            text-overflow: ellipsis;
+                            overflow: hidden;
+                            font-size: 13px;
+                            color: #636363;
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
+
+        div#localAddAmigo {
+            width: 100%;
+            display: flex;
+            position: absolute;
+            bottom: 20px;
+            justify-content: space-around;
+
+            input {
+                background-color: transparent;
+                border: none;
+                padding: 11px 23px;
+                background-color: $cor4;
+                display: block;
+                border-radius: 0px;
+                padding-left: 20px;
+                color: $white;
+
+                &:focus {
+                    box-shadow: 0;
+                    outline: 0;
+                }
+            }
+
+            button {
+                width: 40px;
+                height: 40px;
+                color: $white;
+                background-color: $cor4;
+                border: none;
+                cursor: pointer;
+            }
+        }
+    }
+
+    //? Pedidos Pendentes
+    div#pedidosPendentes {
+        width: 90%;
+        max-width: 300px;
+        height: auto;
+        position: fixed;
+        bottom: 20px;
+        z-index: 2;
+        transition: 500ms right ease-in-out;
+        right: -100vw;
+        background-color: $cor5;
+        box-shadow: 2px 2px 10px black;
+        color: $cor2;
+        padding: 10px 20px;
+
+        p {
+            margin: 15px 0px 0px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        div#perfilPedido {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: $white;
+            gap: 20px;
+
+            img {
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+                object-fit: cover;
+            }
+        }
+
+        div#btnsPedido {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0px 10px;
+
+            button {
+                border: none;
+                background-color: #636363;
+                color: #fff;
+                padding: 2px 15px;
+                display: block;
+                font-size: 16px;
+                font-family: "Carter One", cursive;
+                cursor: pointer;
+
+                &#aceitarPedido:hover {
+                    background-color: $cor1;
+                }
+
+                &#recusarPedido:hover {
+                    background-color: red;
+                }
+            }
+        }
+
+        button.btnsPedido {
+            width: 20px;
+            height: 20px;
+            background-color: transparent;
+            border: none;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-image: url('../img/icones/_arrow\ left\ 1_.png');
+            position: absolute;
+            top: 50%;
+            cursor: pointer;
+            display: none;
+
+            &#nextPedido {
+                transform: rotate(180deg);
+                right: 20px;
+            }
+
+            &#backPedido {
+                left: 20px;
+            }
+
+            &:hover {
+                transition: 200ms scale linear;
+                scale: 1.15;
+            }
         }
     }
 

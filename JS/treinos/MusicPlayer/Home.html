@@ -21,6 +21,7 @@
             <li><button id="RankingBtn"></button></li>
             <li><button id="BibliotecaBtn"></button></li>
             <li><button id="PlaylistBtn"></button></li>
+            <li><button id="FriendsBtn"></button></li>
             <li><button id="PagPessoal"></button></li>
             <li><button id="EditarPlaylistsBtn"></button></li>
             <li><button id="AddMusicaBtn"></button></li>
@@ -316,6 +317,56 @@
         </article>
     </section>
 
+    <!--! icone de amigos -->
+    <div id="sombraAboutMusicaUser"></div>
+    <div id="abaFriends">
+        <ul>
+        </ul>
+
+        <div id="aboutMusicaUser">
+            <div id="perfilMusica">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH53p5bzOZLRX2t3Bgtmcp4LGwE22y_iMKsg&usqp=CAU" alt="">
+                <div id="bollOnline2"></div>
+                <strong>Wender💰💳💎</strong>
+            </div>
+
+            <div id="aboutSongFriend">
+                <div>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/treefy-3e5ae.appspot.com/o/Stand%20By%20Me%20-%20Ben%20E.%20King%20(Lyrics)(Boyce%20Avenue%20acoustic%20cover)%20on%20Spotify%20%26%20Apple%20(128%20kbps).mp3%2Fimages%20(3).jpeg?alt=media&token=621b716e-b992-47e0-bb9a-e738881aa6a3" alt="">
+
+                <div>
+                    <strong>Stand By Me</strong>
+                    <p>Ben E. King (Boyce Avenue acoustic cover)</p>
+                </div>
+                </div>
+            </div>
+        </div>
+
+        <!--? Add amigo -->
+        <div id="localAddAmigo">
+            <input type="email" placeholder="Adicionar pelo email" id="emailNewFriend">
+            <button id="addFriend">+</button>
+        </div>
+    </div>
+
+    <!--? vai mostrar os pedidos pendentes -->
+    <div id="pedidosPendentes">
+        <div id="perfilPedido">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSH53p5bzOZLRX2t3Bgtmcp4LGwE22y_iMKsg&usqp=CAU" alt="">
+            <strong>Wender💰💳💎</strong>
+        </div>
+        <p>Quer ser seu amigo</p>
+
+        <div id="btnsPedido">
+            <button id="aceitarPedido">Aceitar</button>
+            <button id="recusarPedido">Recusar</button>
+        </div>
+
+        <button id="nextPedido" class="btnsPedido"></button>
+        <button id="backPedido" class="btnsPedido"></button>
+    </div>
+
+
      <!--! Animação de carregamento -->
      <section id="carregando" class="carregando">
         <article>
@@ -400,6 +451,7 @@
     <script src="assets/js/editarPerfil.js"></script>
     <script src="assets/js/favoritarMusicas.js"></script>
     <script src="assets/js/ranking.js"></script>
+    <script src="assets/js/adicionarAmigo.js"></script>
     <!-- <script src="assets/js/recuperarMusicas.js"></script> -->
 </body>
 </html>
