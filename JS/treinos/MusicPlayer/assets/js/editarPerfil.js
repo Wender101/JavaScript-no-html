@@ -209,7 +209,7 @@ function editarPerfil() {
                     
                     //? Vai colocar as infos nos inputs
                     nomeUserEditarPerfil.value = Usuarios.infUser.Nome
-                    nomeUserEditarPerfil.value = Usuarios.infUser.Desc
+                    descUserEditarPerfil.value = Usuarios.infUser.Desc
                     LinkImgFundoEditarPerfil.value = Usuarios.infUser.ImgParedePerfil
                     imgPerfilUserEditar.value = Usuarios.infUser.FotoPerfil
 
