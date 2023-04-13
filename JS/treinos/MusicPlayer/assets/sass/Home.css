@@ -826,6 +826,9 @@ body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser img
   border-radius: 50%;
   padding: 20px;
 }
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser div {
+  max-width: 400px;
+}
 body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser div h1 {
   font-size: 66px;
   color: #35ffdb;
@@ -833,7 +836,12 @@ body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser div
 }
 body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser div p {
   max-width: 400px;
+  height: 80px;
   color: #fff;
+  word-wrap: break-word;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 13px;
 }
 body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser textarea {
   width: 100%;
