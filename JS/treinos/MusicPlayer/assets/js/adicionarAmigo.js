@@ -296,33 +296,43 @@ function amigos() {
     
 
                                         //? Vai checar se o user está on, ausente ou off
-                                        fetch("http://worldtimeapi.org/api/ip").then(response => response.json()).then(data => {
-                                            var hora_servidor = new Date(data.datetime)
-                                            var horas = hora_servidor.getHours()
-                                            var minutos = hora_servidor.getMinutes()
-                                            var ano = hora_servidor.getFullYear()
-                                            var mes = hora_servidor.getMonth()
-                                            var dia = hora_servidor.getDate()
+                                        let estadoAmigo = 'off'
+                                        try {
+                                            fetch("http://worldtimeapi.org/api/ip").then(response => response.json()).then(data => {
+                                                var hora_servidor = new Date(data.datetime)
+                                                var horas = hora_servidor.getHours()
+                                                var minutos = hora_servidor.getMinutes()
+                                                var ano = hora_servidor.getFullYear()
+                                                var mes = hora_servidor.getMonth()
+                                                var dia = hora_servidor.getDate()
+                                            
                                         
-                                    
-                                            let Data = `${mes}${dia}${ano}`
-                                            let Horas = `${horas}${minutos}`
-                                            let resData = parseInt(Data) - Usuarios2.infUser.Online.Data
-                                            let resHoras = parseInt(Horas) - Usuarios2.infUser.Online.Horas
-                                            if(resData == 0 && resHoras <= 5) {
-                                                bollOnline.style.background = '#0DCBA9'
-                                                document.querySelector('#bollOnline2').style.background = '#0DCBA9'
-                                                p.innerHTML = `Ouvindo: <span>${Usuarios2.infUser.userEstaOuvindo.NomeMusica}</span>`
+                                                let Data = `${mes}${dia}${ano}`
+                                                let Horas = `${horas}${minutos}`
+                                                let resData = parseInt(Data) - Usuarios2.infUser.Online.Data
+                                                let resHoras = parseInt(Horas) - Usuarios2.infUser.Online.Horas
+                                                if(resData == 0 && resHoras <= 5) {
+                                                    bollOnline.style.background = '#0DCBA9'
+                                                    document.querySelector('#bollOnline2').style.background = '#0DCBA9'
+                                                    p.innerHTML = `Ouvindo: <span>${Usuarios2.infUser.userEstaOuvindo.NomeMusica}</span>`
+                                                    estadoAmigo = 'on'
 
-                                            } else if(resData == 0 && resHoras > 5 && resHoras <= 8) {
-                                                bollOnline.style.background = 'orange'
-                                                document.querySelector('#bollOnline2').style.background = 'orange'
-                                            } else {
-                                                bollOnline.style.background = 'red'
-                                                document.querySelector('#bollOnline2').style.background = 'red'
-                                            }
+                                                } else if(resData == 0 && resHoras > 5 && resHoras <= 8) {
+                                                    bollOnline.style.background = 'orange'
+                                                    document.querySelector('#bollOnline2').style.background = 'orange'
+                                                    p.innerHTML = `<span style="color: orange;">Ausente...</span>`
+                                                    estadoAmigo = 'ausente'
 
-                                        }).catch(error => console.error(error))
+                                                } else {
+                                                    bollOnline.style.background = 'red'
+                                                    document.querySelector('#bollOnline2').style.background = 'red'
+                                                    p.innerHTML = `<span style="color: red;">Offline...</span>`
+                                                    estadoAmigo = 'off'
+                                                }
+
+                                            }).catch(error => console.error(error))
+
+                                        } catch{}
                                         li.innerHTML = `<img src="${Usuarios2.infUser.FotoPerfil}" onerror = "this.onerror=null; this.src='assets/img/icones/icon _profile_.png'; this.style='object-fit: contain'">`
                                         //li.style.backgroundImage=`url("${Usuarios2.infUser.ImgParedePerfil}")`
                                         strong.innerText = Usuarios2.infUser.Nome
@@ -350,12 +360,16 @@ function amigos() {
                                             } catch{}
 
                                             document.querySelector('#aboutSongFriend').querySelector('div').querySelector('img').src = Usuarios2.infUser.userEstaOuvindo.LinkImgiMusica
-                                            document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('strong').innerText = Usuarios2.infUser.userEstaOuvindo.NomeMusica
-                                            document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('p').innerText = Usuarios2.infUser.userEstaOuvindo.NomeAutor
-
-                                            document.querySelector('#aboutSongFriend').querySelector('div').addEventListener('click', () => {
-                                                darPlayNaMusica(Usuarios2.infUser.userEstaOuvindo)
-                                            })
+                                            if(estadoAmigo != 'off') {
+                                                document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('strong').innerText = Usuarios2.infUser.userEstaOuvindo.NomeMusica
+                                                document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('p').innerText = Usuarios2.infUser.userEstaOuvindo.NomeAutor
+    
+                                                document.querySelector('#aboutSongFriend').querySelector('div').addEventListener('click', () => {
+                                                    darPlayNaMusica(Usuarios2.infUser.userEstaOuvindo)
+                                                })
+                                            } else {
+                                                document.querySelector('#aboutSongFriend').style.display = 'none'
+                                            }
                                         })
 
                                         // li.addEventListener('mouseleave', () => {
