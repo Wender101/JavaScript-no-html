@@ -298,7 +298,7 @@ function amigos() {
                                         //? Vai checar se o user está on, ausente ou off
                                         let estadoAmigo = 'off'
                                         try {
-                                            fetch("http://worldtimeapi.org/api/ip").then(response => response.json()).then(data => {
+                                            fetch("https://worldtimeapi.org/api/ip").then(response => response.json()).then(data => {
                                                 var hora_servidor = new Date(data.datetime)
                                                 var horas = hora_servidor.getHours()
                                                 var minutos = hora_servidor.getMinutes()
