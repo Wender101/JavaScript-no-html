@@ -255,6 +255,7 @@ function amigos() {
                                         bollOnline.className = 'bollOnline'
     
                                         li.innerHTML = `<img src="${Usuarios2.infUser.FotoPerfil}" onerror = "this.onerror=null; this.src='assets/img/icones/icon _profile_.png'; this.style='object-fit: contain'">`
+                                        //li.style.backgroundImage=`url("${Usuarios2.infUser.ImgParedePerfil}")`
                                         strong.innerText = Usuarios2.infUser.Nome
                                         p.innerHTML = `Ouvindo: <span>${Usuarios2.infUser.userEstaOuvindo.NomeMusica}</span>`
     
@@ -275,6 +276,10 @@ function amigos() {
                                             }
 
                                             document.querySelector('#perfilMusica').querySelector('strong').innerText = Usuarios2.infUser.Nome
+
+                                            try {
+                                                document.querySelector('#perfilMusica').style.backgroundImage=`url("${Usuarios2.infUser.ImgParedePerfil}")`
+                                            } catch{}
 
                                             document.querySelector('#aboutSongFriend').querySelector('div').querySelector('img').src = Usuarios2.infUser.userEstaOuvindo.LinkImgiMusica
                                             document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('strong').innerText = Usuarios2.infUser.userEstaOuvindo.NomeMusica

@@ -1157,18 +1157,18 @@ body {
             width: 100%;
             display: flex;
             flex-direction: column;
-            padding: 20px 0px;
             gap: 30px;
 
             li {
-                width: 90%;
-                margin: auto;
+                width: 100%;
+                padding: 10px;
                 display: flex;
                 align-items: center;
                 color: $white;
                 gap: 15px;
                 cursor: pointer;
                 position: relative;
+                background-size: cover;
 
                 img {
                     width: 65px;
@@ -1230,7 +1230,7 @@ body {
             top: 100px;
             background-color: $cor5;
             display: none;
-
+            
             div#perfilMusica {
                 width: 100%;
                 height: 130px;
@@ -1242,6 +1242,8 @@ body {
                 position: relative;
                 color: $white;
                 background-color: $cor5;
+                background-size: cover;
+                background-repeat: no-repeat;
 
                 img {
                     width: 100px;
