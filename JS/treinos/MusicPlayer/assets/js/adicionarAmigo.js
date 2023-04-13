@@ -188,10 +188,50 @@ function checarPedidosDeAmizade() {
                                                     //amigos()
     
                                                     //? Vai add o user no perfil pessoal no novo amigo
-                                                    let clonePerfilDoNovoAmigo = Usuarios2.infUser
-                                                    clonePerfilDoNovoAmigo.Amigos.ListaAmigos.push(email)
-                                                    db.collection('Usuarios').doc(valor2.id).update({infUser: clonePerfilDoNovoAmigo})
-                                                    document.querySelector('#pedidosPendentes').style.right = '-100vw'
+                                                    if(Usuarios2.infUser.Amigos == undefined || Usuarios2.infUser.Amigos == null) {
+                                                        let FotoPerfil = ''
+                                                        let ImgParedePerfil = ''
+                                                        let Online = 0
+                                                        let userEstaOuvindo = {}
+
+                                                        if(Usuarios.infUser.FotoPerfil != undefined && Usuarios.infUser.FotoPerfil != null) {
+                                                            FotoPerfil = Usuarios.infUser.FotoPerfil
+                                                        }
+
+                                                        if(Usuarios.infUser.ImgParedePerfil != undefined && Usuarios.infUser.ImgParedePerfil != null) {
+                                                            ImgParedePerfil = Usuarios.infUser.ImgParedePerfil
+                                                        }
+
+                                                        if(Usuarios.infUser.Online != undefined && Usuarios.infUser.Online != null) {
+                                                            Online = Usuarios.infUser.Online
+                                                        }
+
+                                                        if(Usuarios.infUser.userEstaOuvindo != undefined && Usuarios.infUser.userEstaOuvindo != null) {
+                                                            userEstaOuvindo = Usuarios.infUser.userEstaOuvindo
+                                                        }
+                                                        
+                                                        let clonePerfilDoNovoAmigo = {
+                                                            Amigos: {
+                                                                Pendentes: [],
+                                                                ListaAmigos: []
+                                                            },
+                                                            Email: Usuarios.infUser.Email,
+                                                            Nome: Usuarios.infUser.Nome,
+                                                            FotoPerfil,
+                                                            ImgParedePerfil,
+                                                            Online,
+                                                            userEstaOuvindo
+                                                        }
+                                                        clonePerfilDoNovoAmigo.Amigos.ListaAmigos.push(email)
+                                                        db.collection('Usuarios').doc(valor2.id).update({infUser: clonePerfilDoNovoAmigo})
+                                                        document.querySelector('#pedidosPendentes').style.right = '-100vw'
+
+                                                    } else {
+                                                        let clonePerfilDoNovoAmigo = Usuarios2.infUser
+                                                        clonePerfilDoNovoAmigo.Amigos.ListaAmigos.push(email)
+                                                        db.collection('Usuarios').doc(valor2.id).update({infUser: clonePerfilDoNovoAmigo})
+                                                        document.querySelector('#pedidosPendentes').style.right = '-100vw'
+                                                    }
                                                 })
     
                                                 resolve()
