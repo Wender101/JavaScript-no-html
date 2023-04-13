@@ -223,9 +223,12 @@
             <div id="headerPessalUser">
                 <button onclick="editarPerfil()" class="btnEdit"><img src="assets/img/icones/icon _edit.png"></button>
 
-               <div>
+               <div id="infosPerfilUser">
                 <img src="assets/img/icones/icon _profile_.png" id="imgPerfilUserPagPessoal">
-                <h1 id="nomeUserPagPessoal">Nome User</h1>
+                <div>
+                    <h1 id="nomeUserPagPessoal">Nome User</h1>
+                    <p id="descPerfilPagPessoal">...</p>
+                </div>
                 <textarea name="" id="nomeDaPlaylist" cols="16" rows="1" placeholder="Nova Playlist" maxlength="14" class="animationTextAreaVazio"></textarea>
                </div>
                 <img src="assets/img/icones/play.png" id="imgUserPagPessoal">
@@ -289,7 +292,9 @@
             <button id="xEditarPerfil" onclick="fecharEditarPerfil()"></button>
 
             <p>Nome:</p>
-            <input type="text" placeholder="Nome de usuario" id="nomeUserEditarPerfil" oninput="checarAtualizarPerfil()">
+            <input type="text" placeholder="Nome de usuario" id="nomeUserEditarPerfil" oninput="checarAtualizarPerfil()" maxlength="10">
+            <p>Descrição:</p>
+            <input type="text" placeholder="Descrição do perfil" id="descUserEditarPerfil" oninput="checarAtualizarPerfil()" maxlength="200">
             <p>Link da img de fundo:</p>
             <input type="text" placeholder="https://img.jpg" id="LinkImgFundoEditarPerfil" oninput="checarAtualizarPerfil()">
             <p>Link img do perfil</p>

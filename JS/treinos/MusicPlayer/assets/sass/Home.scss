@@ -653,15 +653,16 @@ body {
                     bottom: -50px;
                 }
 
-                div {
-                    max-width: 531px;
+                div#infosPerfilUser {
+                    max-width: 661px;
                     width: auto;
-                    height: auto;
+                    height: 300px;
                     display: flex;
-                    flex-direction: column;
+                    //flex-direction: column;
                     align-items: center;
                     justify-content: center;
                     position: absolute;
+                    gap: 20px;
 
 
                     img#imgPerfilUserPagPessoal {
@@ -676,10 +677,18 @@ body {
                         //background-color: transparent;
                     }
     
-                    h1 {
-                        font-size: 66px;
-                        color: $cor0;
-                        font-family: $fonte-Carter;
+                    div {
+
+                        h1 {
+                            font-size: 66px;
+                            color: $cor0;
+                            font-family: $fonte-Carter;
+                        }
+
+                        p {
+                            max-width: 400px;
+                            color: $white;
+                        }
                     }
 
                     textarea {

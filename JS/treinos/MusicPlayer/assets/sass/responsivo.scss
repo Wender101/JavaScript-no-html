@@ -283,6 +283,7 @@
         section#pagPessoalUser {
             article {
                 div#headerPessalUser {
+                    height: 400px;
                     justify-content: center;
 
                     div {
@@ -298,6 +299,12 @@
 
                         img {
                             position: static !important;
+                        }
+
+                        div {
+                            p {
+                                text-align: center;
+                            }
                         }
                     }
 

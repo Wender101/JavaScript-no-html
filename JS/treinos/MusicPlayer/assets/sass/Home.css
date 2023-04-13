@@ -805,17 +805,17 @@ body section#pagPessoalUser article div#headerPessalUser img#imgUserPagPessoal {
   position: absolute;
   bottom: -50px;
 }
-body section#pagPessoalUser article div#headerPessalUser div {
-  max-width: 531px;
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser {
+  max-width: 661px;
   width: auto;
-  height: auto;
+  height: 300px;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   position: absolute;
+  gap: 20px;
 }
-body section#pagPessoalUser article div#headerPessalUser div img#imgPerfilUserPagPessoal {
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser img#imgPerfilUserPagPessoal {
   width: 100px;
   height: 100px;
   -o-object-fit: contain;
@@ -826,12 +826,16 @@ body section#pagPessoalUser article div#headerPessalUser div img#imgPerfilUserPa
   border-radius: 50%;
   padding: 20px;
 }
-body section#pagPessoalUser article div#headerPessalUser div h1 {
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser div h1 {
   font-size: 66px;
   color: #35ffdb;
   font-family: "Carter One", cursive;
 }
-body section#pagPessoalUser article div#headerPessalUser div textarea {
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser div p {
+  max-width: 400px;
+  color: #fff;
+}
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser textarea {
   width: 100%;
   resize: none;
   background-color: transparent;
@@ -841,15 +845,15 @@ body section#pagPessoalUser article div#headerPessalUser div textarea {
   color: #0DCBA9;
   font-family: "Carter One", cursive;
 }
-body section#pagPessoalUser article div#headerPessalUser div textarea::-moz-placeholder {
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser textarea::-moz-placeholder {
   color: #0DCBA9;
   font-weight: 900;
 }
-body section#pagPessoalUser article div#headerPessalUser div textarea::placeholder {
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser textarea::placeholder {
   color: #0DCBA9;
   font-weight: 900;
 }
-body section#pagPessoalUser article div#headerPessalUser div textarea:focus {
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser textarea:focus {
   box-shadow: 0;
   outline: 0;
 }

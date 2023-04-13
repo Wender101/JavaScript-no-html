@@ -40,10 +40,10 @@ btnEditarPerfil.addEventListener('click', () => {
                         imgPerfilUserPagPessoal.style.display = 'block'
                         imgPerfilUserPagPessoal.src = Usuarios.infUser.FotoPerfil
                         imgPerfilUserPagPessoal.style.padding = '0px'
-                        imgPerfilUserPagPessoal.style.width = '140px'
-                        imgPerfilUserPagPessoal.style.height = '140px'
+                        imgPerfilUserPagPessoal.style.width = '180px'
+                        imgPerfilUserPagPessoal.style.height = '160px'
                         imgPerfilUserPagPessoal.style.objectFit = 'cover'
-            
+                        document.querySelector('#infosPerfilUser').style.background = 'transparent'
             
                     } else {
                         imgPerfilUserPagPessoal.src = 'assets/img/icones/icon _profile_.png'
@@ -177,11 +177,13 @@ btnEditarPerfil.addEventListener('click', () => {
 
 //? Editar perfil
 let nomeUserEditarPerfil = document.querySelector('#nomeUserEditarPerfil')
+let descUserEditarPerfil = document.querySelector('#descUserEditarPerfil')
 let LinkImgFundoEditarPerfil = document.querySelector('#LinkImgFundoEditarPerfil')
 let imgPerfilUserEditar = document.querySelector('#imgPerfilUserEditar')
 let btnAtualizarPerfil = document.querySelector('#btnAtualizarPerfil')
 
 let valorNomeUserEditarPerfil
+let valorDescUserEditarPerfil
 let valorLinkImgFundoEditarPerfil
 let valorImgPerfilUserEditar
 
@@ -204,12 +206,15 @@ function editarPerfil() {
                     setTimeout(() => {
                         podeSalvarAtualizacao = true
                     }, 100)
+                    
                     //? Vai colocar as infos nos inputs
                     nomeUserEditarPerfil.value = Usuarios.infUser.Nome
+                    nomeUserEditarPerfil.value = Usuarios.infUser.Desc
                     LinkImgFundoEditarPerfil.value = Usuarios.infUser.ImgParedePerfil
                     imgPerfilUserEditar.value = Usuarios.infUser.FotoPerfil
 
                     valorNomeUserEditarPerfil = Usuarios.infUser.Nome
+                    valorDescUserEditarPerfil = Usuarios.infUser.Desc
                     valorLinkImgFundoEditarPerfil = Usuarios.infUser.ImgParedePerfil
                     valorImgPerfilUserEditar = Usuarios.infUser.FotoPerfil
                 }
@@ -223,12 +228,13 @@ function editarPerfil() {
 function checarAtualizarPerfil(atualizarPerfil = false) {
 
     //? vai checar se vc alterou alguma coisa nos inputs de editar perfil
-    if(nomeUserEditarPerfil.value.length > 0  && LinkImgFundoEditarPerfil.value.length > 0 && imgPerfilUserEditar.value.length > 0 && nomeUserEditarPerfil.value != valorNomeUserEditarPerfil || nomeUserEditarPerfil.value.length > 0  && LinkImgFundoEditarPerfil.value.length > 0 && imgPerfilUserEditar.value.length > 0 && imgPerfilUserEditar.value != valorImgPerfilUserEditar || nomeUserEditarPerfil.value.length > 0  && LinkImgFundoEditarPerfil.value.length > 0 && imgPerfilUserEditar.value.length > 0 && LinkImgFundoEditarPerfil.value != valorLinkImgFundoEditarPerfil) {
+    if(nomeUserEditarPerfil.value.length > 0 && descUserEditarPerfil.value.length > 0  && LinkImgFundoEditarPerfil.value.length > 0 && imgPerfilUserEditar.value.length > 0 && nomeUserEditarPerfil.value != valorNomeUserEditarPerfil || nomeUserEditarPerfil.value.length > 0  && LinkImgFundoEditarPerfil.value.length > 0 && imgPerfilUserEditar.value.length > 0 && imgPerfilUserEditar.value != valorImgPerfilUserEditar || nomeUserEditarPerfil.value.length > 0 && descUserEditarPerfil.value.length > 0  && LinkImgFundoEditarPerfil.value.length > 0 && imgPerfilUserEditar.value.length > 0 && LinkImgFundoEditarPerfil.value != valorLinkImgFundoEditarPerfil || nomeUserEditarPerfil.value.length > 0 && descUserEditarPerfil.value != valorDescUserEditarPerfil  && LinkImgFundoEditarPerfil.value.length > 0 && imgPerfilUserEditar.value.length > 0) {
 
         btnAtualizarPerfil.style.background = '#0DCBA9'
 
         if(atualizarPerfil == true) {
             cloneProprioPerfil.Nome = nomeUserEditarPerfil.value
+            cloneProprioPerfil.Desc = descUserEditarPerfil.value
             cloneProprioPerfil.ImgParedePerfil = LinkImgFundoEditarPerfil.value
             cloneProprioPerfil.FotoPerfil = imgPerfilUserEditar.value
 

@@ -425,6 +425,7 @@ audio {
     margin: auto;
   }
   body section#pagPessoalUser article div#headerPessalUser {
+    height: 400px;
     justify-content: center;
   }
   body section#pagPessoalUser article div#headerPessalUser div {
@@ -440,6 +441,9 @@ audio {
   }
   body section#pagPessoalUser article div#headerPessalUser div img {
     position: static !important;
+  }
+  body section#pagPessoalUser article div#headerPessalUser div div p {
+    text-align: center;
   }
   body section#pagPessoalUser article div#headerPessalUser img {
     left: 23px;

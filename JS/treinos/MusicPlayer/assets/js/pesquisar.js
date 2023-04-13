@@ -300,10 +300,10 @@ function pesquisar(pesquisa) {
                                             if(clonePerfilUserPesquisado.infUser.FotoPerfil != undefined) {
                                                 imgPerfilUserPagPessoal.src = clonePerfilUserPesquisado.infUser.FotoPerfil
                                                 imgPerfilUserPagPessoal.style.padding = '0px'
-                                                imgPerfilUserPagPessoal.style.width = '140px'
-                                                imgPerfilUserPagPessoal.style.height = '140px'
+                                                imgPerfilUserPagPessoal.style.width = '180px'
+                                                imgPerfilUserPagPessoal.style.height = '180px'
                                                 imgPerfilUserPagPessoal.style.objectFit = 'cover'
-                                    
+                                                document.querySelector('#infosPerfilUser').style.background = 'transparent'
                                     
                                             } else {
                                                 imgPerfilUserPagPessoal.src = 'assets/img/icones/icon _profile_.png'
@@ -648,10 +648,10 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
         if(clonePerfilUserPesquisado.infUser.FotoPerfil != undefined) {
             imgPerfilUserPagPessoal.src = clonePerfilUserPesquisado.infUser.FotoPerfil
             imgPerfilUserPagPessoal.style.padding = '0px'
-            imgPerfilUserPagPessoal.style.width = '140px'
-            imgPerfilUserPagPessoal.style.height = '140px'
+            imgPerfilUserPagPessoal.style.width = '180px'
+            imgPerfilUserPagPessoal.style.height = '180px'
             imgPerfilUserPagPessoal.style.objectFit = 'cover'
-
+            document.querySelector('#infosPerfilUser').style.background = 'transparent'
 
         } else {
             imgPerfilUserPagPessoal.src = 'assets/img/icones/icon _profile_.png'
@@ -663,6 +663,7 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
     } catch{}
 
     document.querySelector('#nomeUserPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Nome
+    document.querySelector('#descPerfilPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Desc
 
     for(let c = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1; c >= 0; c--) {
 
