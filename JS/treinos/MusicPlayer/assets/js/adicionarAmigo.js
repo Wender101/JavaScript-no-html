@@ -2,6 +2,12 @@ let FriendsBtn = document.querySelector('#FriendsBtn')
 FriendsBtn.addEventListener('click', () => {
     document.querySelector('#abaFriends').style.right = '0px'
     document.querySelector('#sombraAboutMusicaUser').style.display = 'block'
+
+    if(document.querySelector('#menuTocandoMusica').style.bottom == '0px') {
+        document.querySelector('#abaFriends').style.height = 'calc(100vh - 100px)'
+    } else {
+        document.querySelector('#abaFriends').style.height = '100vh'
+    }
 })
 
 document.querySelector('#sombraAboutMusicaUser').addEventListener('click', () => {
