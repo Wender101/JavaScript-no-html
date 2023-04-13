@@ -853,6 +853,7 @@ let numPlaylistEditada
 let estadoPlaylist = 'criando'
 document.querySelector('#EditarPlaylistsBtn').addEventListener('click', () => {
     fecharAbas()
+    let feito = false
     estadoPlaylist = 'editando'
     document.querySelector('body').style.overflow = 'hidden'
     document.querySelector('#pagEditarPlaylist').querySelector('article').innerHTML = ''
@@ -861,7 +862,8 @@ document.querySelector('#EditarPlaylistsBtn').addEventListener('click', () => {
         data.docs.map(function(valor) {
             let Usuarios = valor.data()
             
-            if(Usuarios.infUser.Email == email) {
+            if(Usuarios.infUser.Email == email && feito == false) {
+                feito = true
                 document.querySelector('#pagEditarPlaylist').style.display = 'block'
 
                 for(let a = 0; a < Usuarios.Musica.Playlist.length; a++) {
