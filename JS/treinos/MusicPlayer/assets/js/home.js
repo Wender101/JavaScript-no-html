@@ -543,6 +543,7 @@ setInterval(() => {
 //? Vai dar play na música
 let checarRepetidas = false
 let atualizadoMusicaOuvindoAgr = false
+let hrAtualizada = false
 function darPlayNaMusica(lista) {
     estadoMusica = 'play'
 
@@ -569,6 +570,52 @@ function darPlayNaMusica(lista) {
     navigator.mediaSession.setActionHandler('previoustrack', function() {
         atualizarTimeMusica('back', cloneMusicasSequencia)
     })
+
+    //! Vai pegar o hr do servidor
+    fetch("http://worldtimeapi.org/api/ip").then(response => response.json()).then(data => {
+        var hora_servidor = new Date(data.datetime)
+        var horas = hora_servidor.getHours()
+        var minutos = hora_servidor.getMinutes()
+        var ano = hora_servidor.getFullYear()
+        var mes = hora_servidor.getMonth()
+        var dia = hora_servidor.getDate()
+        
+        if(hrAtualizada == false) {
+            hrAtualizada = true
+            let feito = false
+
+            setTimeout(() => {
+                hrAtualizada = false
+            }, 500)
+
+            db.collection('Usuarios').onSnapshot((data) => {
+                data.docs.map(function(valor) {
+                    let Usuarios = valor.data()
+    
+                    if(Usuarios.infUser.Email == email && feito == false) {
+                        feito = true
+                        
+                        let infUser = Usuarios.infUser
+                        infUser.Online = {
+                            Horas:`${horas}${minutos}`,
+                            Data: `${mes}${dia}${ano}`,
+                        }
+                        db.collection('Usuarios').doc(valor.id).update({infUser: infUser})
+                    }
+                })
+            })
+        }
+    }).catch(error => console.error(error))
+
+    //? Vai pegar o hr do servidor
+    // fetch("http://worldtimeapi.org/api/ip").then(response => response.json()).then(data => {
+    //     console.log(1);
+    //     var hora_servidor = new Date(data.datetime);
+    //     var horas = hora_servidor.getHours();
+    //     var minutos = hora_servidor.getMinutes();
+    //     console.log("Hora do servidor: " + horas + ":" + minutos);
+    // })
+    // .catch(error => console.error(error));
 
     //? Vai atualizar no banco de dados qual música o user está ouvindo
     if(atualizadoMusicaOuvindoAgr == false) {
