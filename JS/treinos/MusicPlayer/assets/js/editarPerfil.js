@@ -55,7 +55,11 @@ btnEditarPerfil.addEventListener('click', () => {
                 } catch{}
             
                 document.querySelector('#nomeUserPagPessoal').innerText = Usuarios.infUser.Nome
-                document.querySelector('#descPerfilPagPessoal').innerText = Usuarios.infUser.Desc
+                if(Usuarios.infUser.Desc != undefined) {
+                    document.querySelector('#descPerfilPagPessoal').innerText = Usuarios.infUser.Desc
+                } else {
+                    document.querySelector('#descPerfilPagPessoal').innerText = '...'
+                }
 
 
                 for(let d = Usuarios.Musica.MusicasPostadas.length -1; d >= 0 ; d--) {

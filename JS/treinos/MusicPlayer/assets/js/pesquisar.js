@@ -663,7 +663,11 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
     } catch{}
 
     document.querySelector('#nomeUserPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Nome
-    document.querySelector('#descPerfilPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Desc
+    if(clonePerfilUserPesquisado.infUser.Desc != undefined) {
+        document.querySelector('#descPerfilPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Desc
+    } else {
+        document.querySelector('#descPerfilPagPessoal').innerText = '...'
+    }
 
     for(let c = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1; c >= 0; c--) {
 
