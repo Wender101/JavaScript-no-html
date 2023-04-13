@@ -194,20 +194,20 @@ function checarPedidosDeAmizade() {
                                                         let Online = 0
                                                         let userEstaOuvindo = {}
 
-                                                        if(Usuarios.infUser.FotoPerfil != undefined && Usuarios.infUser.FotoPerfil != null) {
-                                                            FotoPerfil = Usuarios.infUser.FotoPerfil
+                                                        if(Usuarios2.infUser.FotoPerfil != undefined && Usuarios2.infUser.FotoPerfil != null) {
+                                                            FotoPerfil = Usuarios2.infUser.FotoPerfil
                                                         }
 
-                                                        if(Usuarios.infUser.ImgParedePerfil != undefined && Usuarios.infUser.ImgParedePerfil != null) {
-                                                            ImgParedePerfil = Usuarios.infUser.ImgParedePerfil
+                                                        if(Usuarios2.infUser.ImgParedePerfil != undefined && Usuarios2.infUser.ImgParedePerfil != null) {
+                                                            ImgParedePerfil = Usuarios2.infUser.ImgParedePerfil
                                                         }
 
-                                                        if(Usuarios.infUser.Online != undefined && Usuarios.infUser.Online != null) {
-                                                            Online = Usuarios.infUser.Online
+                                                        if(Usuarios2.infUser.Online != undefined && Usuarios2.infUser.Online != null) {
+                                                            Online = Usuarios2.infUser.Online
                                                         }
 
-                                                        if(Usuarios.infUser.userEstaOuvindo != undefined && Usuarios.infUser.userEstaOuvindo != null) {
-                                                            userEstaOuvindo = Usuarios.infUser.userEstaOuvindo
+                                                        if(Usuarios2.infUser.userEstaOuvindo != undefined && Usuarios2.infUser.userEstaOuvindo != null) {
+                                                            userEstaOuvindo = Usuarios2.infUser.userEstaOuvindo
                                                         }
                                                         
                                                         let clonePerfilDoNovoAmigo = {
@@ -215,8 +215,8 @@ function checarPedidosDeAmizade() {
                                                                 Pendentes: [],
                                                                 ListaAmigos: []
                                                             },
-                                                            Email: Usuarios.infUser.Email,
-                                                            Nome: Usuarios.infUser.Nome,
+                                                            Email: Usuarios2.infUser.Email,
+                                                            Nome: Usuarios2.infUser.Nome,
                                                             FotoPerfil,
                                                             ImgParedePerfil,
                                                             Online,
