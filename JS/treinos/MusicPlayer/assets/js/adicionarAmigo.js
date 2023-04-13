@@ -273,6 +273,10 @@ function amigos() {
                                             document.querySelector('#aboutSongFriend').querySelector('div').querySelector('img').src = Usuarios2.infUser.userEstaOuvindo.LinkImgiMusica
                                             document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('strong').innerText = Usuarios2.infUser.userEstaOuvindo.NomeMusica
                                             document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('p').innerText = Usuarios2.infUser.userEstaOuvindo.NomeAutor
+
+                                            document.querySelector('#aboutSongFriend').querySelector('div').addEventListener('click', () => {
+                                                darPlayNaMusica(Usuarios2.infUser.userEstaOuvindo)
+                                            })
                                         })
 
                                         // li.addEventListener('mouseleave', () => {
