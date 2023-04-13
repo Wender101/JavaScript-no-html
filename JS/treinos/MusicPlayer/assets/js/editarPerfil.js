@@ -55,6 +55,8 @@ btnEditarPerfil.addEventListener('click', () => {
                 } catch{}
             
                 document.querySelector('#nomeUserPagPessoal').innerText = Usuarios.infUser.Nome
+                document.querySelector('#descPerfilPagPessoal').innerText = Usuarios.infUser.Desc
+
 
                 for(let d = Usuarios.Musica.MusicasPostadas.length -1; d >= 0 ; d--) {
                     let musicaPostadaUser = document.createElement('div')
@@ -243,6 +245,7 @@ function checarAtualizarPerfil(atualizarPerfil = false) {
                 document.querySelector('#headerPessalUser').style.backgroundImage = `url(${LinkImgFundoEditarPerfil.value})`
                 document.querySelector('#imgPerfilUserPagPessoal').src = imgPerfilUserEditar.value
                 document.querySelector('#nomeUserPagPessoal').innerText = nomeUserEditarPerfil.value
+                document.querySelector('#descPerfilPagPessoal').innerText = descUserEditarPerfil.value
 
                 db.collection('Usuarios').doc(idProprioPerfil).update({infUser: cloneProprioPerfil})
 
