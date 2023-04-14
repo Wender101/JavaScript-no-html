@@ -572,7 +572,7 @@ function darPlayNaMusica(lista) {
     })
 
     //! Vai pegar o hr do servidor
-    fetch("http://worldtimeapi.org/api/ip").then(response => response.json()).then(data => {
+    fetch("https://worldtimeapi.org/api/ip").then(response => response.json()).then(data => {
         var hora_servidor = new Date(data.datetime)
         var horas = hora_servidor.getHours()
         var minutos = hora_servidor.getMinutes()
