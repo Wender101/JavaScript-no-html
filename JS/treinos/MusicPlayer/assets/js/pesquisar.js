@@ -323,20 +323,21 @@ function pesquisar(pesquisa) {
                                             //!-
                                             musicaAutor.addEventListener('click', () => {
                                                 darPlayNaMusica(Usuarios.Musica.MusicasPostadas[c2])
+                                                numSelecionado = c2
                                                 let musicaEncontrda = false
         
-                                                db.collection('TodasAsMusicas').onSnapshot((data) => {
-                                                    data.docs.map(function(valor) {
-                                                        let TodasAsMusicas = valor.data()
+                                                // db.collection('TodasAsMusicas').onSnapshot((data) => {
+                                                //     data.docs.map(function(valor) {
+                                                //         let TodasAsMusicas = valor.data()
         
-                                                        for(let c3 = 0; c3 < TodasAsMusicas.Musicas.length; c3++) {
-                                                            if(TodasAsMusicas.Musicas[c3].Email == Usuarios.Musica.MusicasPostadas[c2].Email && TodasAsMusicas.Musicas[c3].LinkImgiMusica == Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica && TodasAsMusicas.Musicas[c3].LinkAudio == Usuarios.Musica.MusicasPostadas[c2].LinkAudio && TodasAsMusicas.Musicas[c3].NomeMusica == Usuarios.Musica.MusicasPostadas[c2].NomeMusica && musicaEncontrda == false) {
-                                                                musicaEncontrda = true
-                                                                numSelecionado = c3
-                                                            }
-                                                        }
-                                                    })
-                                                })
+                                                //         for(let c3 = 0; c3 < TodasAsMusicas.Musicas.length; c3++) {
+                                                //             if(TodasAsMusicas.Musicas[c3].Email == Usuarios.Musica.MusicasPostadas[c2].Email && TodasAsMusicas.Musicas[c3].LinkImgiMusica == Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica && TodasAsMusicas.Musicas[c3].LinkAudio == Usuarios.Musica.MusicasPostadas[c2].LinkAudio && TodasAsMusicas.Musicas[c3].NomeMusica == Usuarios.Musica.MusicasPostadas[c2].NomeMusica && musicaEncontrda == false) {
+                                                //                 musicaEncontrda = true
+                                                //                 numSelecionado = c3
+                                                //             }
+                                                //         }
+                                                //     })
+                                                // })
         
                                                 //! Vai criar uma lista das músicas escutadas
                                                 let listaCheckRecentes = listaMusicasRecentes //? Vai checar se há recentes repetidos
@@ -644,6 +645,9 @@ document.querySelector('#sobreAutor').addEventListener('click', () => {
     document.querySelector('#addPlaylist').style.display = 'none'
     document.querySelector('#headerPessalUser').querySelector('div').querySelector('img').style.display = 'block'
     document.querySelector('#headerPessalUser').querySelector('div').querySelector('h1').style.display = 'block'
+    document.querySelector('#infosPerfilUser').querySelector('div').style.maxWidth = '661px'
+    document.querySelector('#descPerfilPagPessoal').style.display = 'block'
+    document.querySelector('#infosPerfilUser').style.height = '300px'
     document.querySelector('#headerPessalUser').querySelector('div').querySelector('textarea').style.display = 'none'
     document.querySelector('#headerPessalUser').style.backgroundSize = 'cover'
     document.querySelector('#headerPessalUser').style.backgroundRepeat = 'no-repeat'

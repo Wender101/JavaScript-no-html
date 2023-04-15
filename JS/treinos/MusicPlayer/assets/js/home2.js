@@ -308,6 +308,9 @@ function abrirPlaylist(perfilDonoDaPlaylist, numPlaylist) {
                     document.querySelector('#headerPessalUser').style.backgroundImage = `url("${Usuarios.Musica.Playlist[numPlaylist].Musicas[0].LinkImgiMusica}")`
                     document.querySelector('#headerPessalUser').style.backgroundSize = 'cover'
                     document.querySelector('#headerPessalUser').style.backgroundRepeat = 'no-repeat'
+                    document.querySelector('#infosPerfilUser').querySelector('div').style.maxWidth = '500px'
+                    document.querySelector('#descPerfilPagPessoal').style.display = 'none'
+                    document.querySelector('#infosPerfilUser').style.height = '260px'
                     imgUserPagPessoal.src = 'assets/img/icones/play.png'
                     imgUserPagPessoal.style.background = '#0DCBA9'
     
