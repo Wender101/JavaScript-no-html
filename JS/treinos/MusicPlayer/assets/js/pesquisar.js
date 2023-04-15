@@ -99,6 +99,7 @@ inputPesquisa2.addEventListener('keydown', (e) => {
 
 let clonePerfilUserPesquisado //! Vai guardar as infos do user pesquisado
 function pesquisar(pesquisa) {
+    let musicaJaFoiPesquisado = false
     let contadorResutado = 0
     let userPesquisado = false
     let pesquisaSalvaMusica = false
@@ -110,512 +111,525 @@ function pesquisar(pesquisa) {
         data.docs.map(function(valor) {
             let TodasAsMusicas = valor.data()
 
-            function localArmazenar(local, contador) {
-                //? Vai salvar a pesquisa
-                if(pesquisaSalvaMusica == false && ultimasPesquisasDoUser.Musicas.length < 8) {
-                    pesquisaSalvaMusica = true
-                    let jaTemEssaPesquisa = false
-                    for(let c = 0; c < ultimasPesquisasDoUser.Musicas.length; c++) {
-                        MusicasUltimasPesquisas = ultimasPesquisasDoUser.Musicas[c].toLocaleLowerCase()
-                        MusicasUltimasPesquisas = MusicasUltimasPesquisas.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                        MusicasUltimasPesquisas = MusicasUltimasPesquisas.replace(/\s/g, '') //? Vai remover os espaços
+            if(musicaJaFoiPesquisado == false) {
+                setTimeout(() => {
+                    musicaJaFoiPesquisado = true
+                }, 1000)
 
-                        if(MusicasUltimasPesquisas.includes(pesquisa) || pesquisa.includes(MusicasUltimasPesquisas)) {
-                            jaTemEssaPesquisa = true
-                        }
-                    }
-
-                    setTimeout(() => {
-                        if(jaTemEssaPesquisa == false) {
-                            jaTemEssaPesquisa = true
-                            ultimasPesquisasDoUser.Musicas.push(pesquisa)
-                            localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
-                        }
-                    }, 100)
-
-                    //? Caso a parte Recomendadas esteja cheia, ele vai remover a primera pesquisa
-                } else if(pesquisaSalvaMusica == false && ultimasPesquisasDoUser.Musicas.length >= 8) {
-                    ultimasPesquisasDoUser.Musicas.splice(0, 1)
-                    pesquisaSalvaMusica = true
-                    let jaTemEssaPesquisa = false
-                    for(let c = 0; c < ultimasPesquisasDoUser.Musicas.length; c++) {
-                        MusicasUltimasPesquisas = ultimasPesquisasDoUser.Musicas[c].toLocaleLowerCase()
-                        MusicasUltimasPesquisas = MusicasUltimasPesquisas.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                        MusicasUltimasPesquisas = MusicasUltimasPesquisas.replace(/\s/g, '') //? Vai remover os espaços
-
-                        if(MusicasUltimasPesquisas.includes(pesquisa) || pesquisa.includes(MusicasUltimasPesquisas)) {
-                            jaTemEssaPesquisa = true
-                        }
-                    }
-
-                    setTimeout(() => {
-                        if(jaTemEssaPesquisa == false) {
-                            jaTemEssaPesquisa = true
-                            ultimasPesquisasDoUser.Musicas.push(pesquisa)
-                            localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
-                        }
-                    }, 100)
-                }
-
-
-                userPesquisado = true
-                document.querySelector('#nehumResultado').style.display = 'none'
-                let musicaMaisTocada = document.createElement('div')
-                let localImgMaisTocada = document.createElement('div')
-                let img = document.createElement('img')
-                let nomeMusicaMaisTocada = document.createElement('h3')
-                let nomeAutorMaisTocada = document.createElement('p')
-
-                musicaMaisTocada.className = 'musicaMaisTocada'
-                localImgMaisTocada.className = 'localImgMaisTocada'
-                nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
-                nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
-
-                img.src = TodasAsMusicas.Musicas[contador].LinkImgiMusica
-                nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[contador].NomeMusica
-                nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[contador].NomeAutor
-
-                localImgMaisTocada.appendChild(img)
-                musicaMaisTocada.appendChild(localImgMaisTocada)
-                musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
-                musicaMaisTocada.appendChild(nomeAutorMaisTocada)
-
-                local.appendChild(musicaMaisTocada)
-
-                //? Funções de click
-                musicaMaisTocada.addEventListener('click', () => {
-                    numSelecionado = contador
-
-                    //! Vai criar uma lista das músicas escutadas
-                    let listaCheckRecentes = listaMusicasRecentes //? Vai checar se há recentes repetidos
-
-                    let jaTemEssaMusica = false
-                    let addMusicaEmRecentes = false
-
-                    if(listaMusicasRecentes.length <= 0) {
-                        let formaLista =  {
-                            NomeMusica: TodasAsMusicas.Musicas[contador].NomeMusica,
-                            NomeAutor: TodasAsMusicas.Musicas[contador].NomeAutor,
-                            Tipo: TodasAsMusicas.Musicas[contador].Tipo,
-                            LinkAudio: TodasAsMusicas.Musicas[contador].LinkAudio,
-                            LinkImgiMusica: TodasAsMusicas.Musicas[contador].LinkImgiMusica,
-                            EmailUser: TodasAsMusicas.Musicas[contador].EmailUser,
-                            EstadoMusica: TodasAsMusicas.Musicas[contador].EstadoMusica,
-                        }
+                function localArmazenar(local, contador) {
+                    //? Vai salvar a pesquisa
+                    if(pesquisaSalvaMusica == false && ultimasPesquisasDoUser.Musicas.length < 8) {
+                        pesquisaSalvaMusica = true
+                        let jaTemEssaPesquisa = false
+                        for(let c = 0; c < ultimasPesquisasDoUser.Musicas.length; c++) {
+                            MusicasUltimasPesquisas = ultimasPesquisasDoUser.Musicas[c].toLocaleLowerCase()
+                            MusicasUltimasPesquisas = MusicasUltimasPesquisas.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                            MusicasUltimasPesquisas = MusicasUltimasPesquisas.replace(/\s/g, '') //? Vai remover os espaços
     
-                        listaMusicasRecentes.push(formaLista)
-                        criarRecentes(listaMusicasRecentes)
-    
-                    } else if(listaMusicasRecentes.length > 0) {
-                        for(let b = 0; b < listaMusicasRecentes.length; b++) {
-                            if(listaMusicasRecentes.length == 9) {
-                                listaMusicasRecentes.splice(0, 1)
+                            if(MusicasUltimasPesquisas.includes(pesquisa) || pesquisa.includes(MusicasUltimasPesquisas)) {
+                                jaTemEssaPesquisa = true
                             }
+                        }
     
-                            if(listaCheckRecentes[b].LinkImgiMusica == TodasAsMusicas.Musicas[contador].LinkImgiMusica && TodasAsMusicas.Musicas[contador].NomeMusica) {
-                                jaTemEssaMusica = true
+                        setTimeout(() => {
+                            if(jaTemEssaPesquisa == false) {
+                                jaTemEssaPesquisa = true
+                                ultimasPesquisasDoUser.Musicas.push(pesquisa)
+                                localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                            }
+                        }, 100)
+    
+                        //? Caso a parte Recomendadas esteja cheia, ele vai remover a primera pesquisa
+                    } else if(pesquisaSalvaMusica == false && ultimasPesquisasDoUser.Musicas.length >= 8) {
+                        ultimasPesquisasDoUser.Musicas.splice(0, 1)
+                        pesquisaSalvaMusica = true
+                        let jaTemEssaPesquisa = false
+                        for(let c = 0; c < ultimasPesquisasDoUser.Musicas.length; c++) {
+                            MusicasUltimasPesquisas = ultimasPesquisasDoUser.Musicas[c].toLocaleLowerCase()
+                            MusicasUltimasPesquisas = MusicasUltimasPesquisas.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                            MusicasUltimasPesquisas = MusicasUltimasPesquisas.replace(/\s/g, '') //? Vai remover os espaços
+    
+                            if(MusicasUltimasPesquisas.includes(pesquisa) || pesquisa.includes(MusicasUltimasPesquisas)) {
+                                jaTemEssaPesquisa = true
+                            }
+                        }
+    
+                        setTimeout(() => {
+                            if(jaTemEssaPesquisa == false) {
+                                jaTemEssaPesquisa = true
+                                ultimasPesquisasDoUser.Musicas.push(pesquisa)
+                                localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                            }
+                        }, 100)
+                    }
+    
+    
+                    userPesquisado = true
+                    document.querySelector('#nehumResultado').style.display = 'none'
+                    let musicaMaisTocada = document.createElement('div')
+                    let localImgMaisTocada = document.createElement('div')
+                    let img = document.createElement('img')
+                    let nomeMusicaMaisTocada = document.createElement('h3')
+                    let nomeAutorMaisTocada = document.createElement('p')
+    
+                    musicaMaisTocada.className = 'musicaMaisTocada'
+                    localImgMaisTocada.className = 'localImgMaisTocada'
+                    nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
+                    nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
+    
+                    img.src = TodasAsMusicas.Musicas[contador].LinkImgiMusica
+                    nomeMusicaMaisTocada.innerText = TodasAsMusicas.Musicas[contador].NomeMusica
+                    nomeAutorMaisTocada.innerText = TodasAsMusicas.Musicas[contador].NomeAutor
+    
+                    localImgMaisTocada.appendChild(img)
+                    musicaMaisTocada.appendChild(localImgMaisTocada)
+                    musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
+                    musicaMaisTocada.appendChild(nomeAutorMaisTocada)
+    
+                    local.appendChild(musicaMaisTocada)
+    
+                    //? Funções de click
+                    musicaMaisTocada.addEventListener('click', () => {
+                        numSelecionado = contador
+    
+                        //! Vai criar uma lista das músicas escutadas
+                        let listaCheckRecentes = listaMusicasRecentes //? Vai checar se há recentes repetidos
+    
+                        let jaTemEssaMusica = false
+                        let addMusicaEmRecentes = false
+    
+                        if(listaMusicasRecentes.length <= 0) {
+                            let formaLista =  {
+                                NomeMusica: TodasAsMusicas.Musicas[contador].NomeMusica,
+                                NomeAutor: TodasAsMusicas.Musicas[contador].NomeAutor,
+                                Tipo: TodasAsMusicas.Musicas[contador].Tipo,
+                                LinkAudio: TodasAsMusicas.Musicas[contador].LinkAudio,
+                                LinkImgiMusica: TodasAsMusicas.Musicas[contador].LinkImgiMusica,
+                                EmailUser: TodasAsMusicas.Musicas[contador].EmailUser,
+                                EstadoMusica: TodasAsMusicas.Musicas[contador].EstadoMusica,
+                            }
+        
+                            listaMusicasRecentes.push(formaLista)
+                            criarRecentes(listaMusicasRecentes)
+        
+                        } else if(listaMusicasRecentes.length > 0) {
+                            for(let b = 0; b < listaMusicasRecentes.length; b++) {
+                                if(listaMusicasRecentes.length == 9) {
+                                    listaMusicasRecentes.splice(0, 1)
+                                }
+        
+                                if(listaCheckRecentes[b].LinkImgiMusica == TodasAsMusicas.Musicas[contador].LinkImgiMusica && TodasAsMusicas.Musicas[contador].NomeMusica) {
+                                    jaTemEssaMusica = true
+                                }
+        
+                                setTimeout(() => {
+                                    if(jaTemEssaMusica == false) {
+                                        let formaLista =  {
+                                            NomeMusica: TodasAsMusicas.Musicas[contador].NomeMusica,
+                                            NomeAutor: TodasAsMusicas.Musicas[contador].NomeAutor,
+                                            Tipo: TodasAsMusicas.Musicas[contador].Tipo,
+                                            LinkAudio: TodasAsMusicas.Musicas[contador].LinkAudio,
+                                            LinkImgiMusica: TodasAsMusicas.Musicas[contador].LinkImgiMusica,
+                                            EmailUser: TodasAsMusicas.Musicas[contador].EmailUser,
+                                            EstadoMusica: TodasAsMusicas.Musicas[contador].EstadoMusica,
+                                        }
+                    
+                                        if(addMusicaEmRecentes == false) {
+                                            addMusicaEmRecentes = true
+                                            listaMusicasRecentes.push(formaLista)
+                                            criarRecentes(listaMusicasRecentes)
+                                        }
+                                    }
+                                }, 100)
+                            }
+                        }
+    
+                        darPlayNaMusica(TodasAsMusicas.Musicas[contador])
+                    })
+                } //! Fim da function ----------------------
+    
+                let feitoPesquisarUser = false
+                for(let c = 0; c < TodasAsMusicas.Musicas.length; c++) {
+                    pesquisa = pesquisa.toLocaleLowerCase()
+                    pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
+                    
+                    let contadorMusicasAutor = 0
+                    //! Vai pesquisar pelo(a) user q postou a música
+                    let Autor = TodasAsMusicas.Musicas[c].NomeAutor.toLocaleLowerCase()
+                    Autor = Autor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    Autor = Autor.replace(/\s/g, '') //? Vai remover os espaços
+    
+                    if(feitoPesquisarUser == false) {
+                        feitoPesquisarUser = true
+                        let userEncontrado = false
+                        db.collection('Usuarios').onSnapshot((data) => {
+                            data.docs.map(function(valor) {
+                                let Usuarios = valor.data()
+        
+                                let nomeAutor = Usuarios.infUser.Nome.toLocaleLowerCase()
+                                nomeAutor = nomeAutor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                                nomeAutor = nomeAutor.replace(/\s/g, '') //? Vai remover os espaços
+                
+                                if(nomeAutor.includes(pesquisa) && userEncontrado == false) {
+                                    userEncontrado = true
+                                    for(let c2 = Usuarios.Musica.MusicasPostadas.length - 1; c2 >= 0; c2--) {
+                                        if(contadorMusicasAutor < 4) {
+                                            contadorMusicasAutor++
+                                            document.querySelector('#nehumResultado').style.display = 'none'
+                                            document.querySelector('#pagPesquisa').style.display = 'block'
+                                            document.querySelector('#h1AutorPesquisa').style.display = 'block'
+                                            document.querySelector('#autorPesquisa').style.display = 'flex'
+                                            document.querySelector(`#musicaAutor${contadorMusicasAutor}`).style.display = 'flex'
+                                            
+                                            let musicaAutor = document.querySelector(`#musicaAutor${contadorMusicasAutor}`)
+                                            let img = document.querySelector(`#imgMusicaAutor${contadorMusicasAutor}`)
+                                            let h3 = document.querySelector(`#localTextoAutor${contadorMusicasAutor}`).querySelector('h3')
+                                            let p = document.querySelector(`#localTextoAutor${contadorMusicasAutor}`).querySelector('p')
+        
+                                            img.src = Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica
+                                            h3.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeMusica
+                                            p.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeAutor
+        
+                                            document.querySelector('#nomeAutorPesquisa').innerText = Usuarios.infUser.Nome
+                                            document.querySelector('#nomeAutorPesquisa').style.display = 'block'
+        
+                                            clonePerfilUserPesquisado = Usuarios
+    
+                                            try {
+                                                document.querySelector('#sobreAutor').style.backgroundImage = `url(${clonePerfilUserPesquisado.infUser.ImgParedePerfil})`
+                                            } catch{}
+                                        
+                                        
+                                            let imgPerfilUserPagPessoal = document.querySelector('#fotoAutorPesquisa')
+                                            try {
+                                                if(clonePerfilUserPesquisado.infUser.FotoPerfil != undefined) {
+                                                    imgPerfilUserPagPessoal.src = clonePerfilUserPesquisado.infUser.FotoPerfil
+                                                    imgPerfilUserPagPessoal.style.padding = '0px'
+                                                    imgPerfilUserPagPessoal.style.width = '180px'
+                                                    imgPerfilUserPagPessoal.style.height = '180px'
+                                                    imgPerfilUserPagPessoal.style.objectFit = 'cover'
+                                                    document.querySelector('#infosPerfilUser').style.background = 'transparent'
+                                        
+                                                } else {
+                                                    imgPerfilUserPagPessoal.src = 'assets/img/icones/icon _profile_.png'
+                                                    imgPerfilUserPagPessoal.style.padding = '20px'
+                                                    imgPerfilUserPagPessoal.style.width = '100px'
+                                                    imgPerfilUserPagPessoal.style.height = '100px'
+                                                    imgPerfilUserPagPessoal.style.objectFit = 'contain'
+                                                }
+                                            } catch{}
+        
+                                            //!-
+                                            musicaAutor.addEventListener('click', () => {
+                                                darPlayNaMusica(Usuarios.Musica.MusicasPostadas[c2])
+                                                let musicaEncontrda = false
+        
+                                                db.collection('TodasAsMusicas').onSnapshot((data) => {
+                                                    data.docs.map(function(valor) {
+                                                        let TodasAsMusicas = valor.data()
+        
+                                                        for(let c3 = 0; c3 < TodasAsMusicas.Musicas.length; c3++) {
+                                                            if(TodasAsMusicas.Musicas[c3].Email == Usuarios.Musica.MusicasPostadas[c2].Email && TodasAsMusicas.Musicas[c3].LinkImgiMusica == Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica && TodasAsMusicas.Musicas[c3].LinkAudio == Usuarios.Musica.MusicasPostadas[c2].LinkAudio && TodasAsMusicas.Musicas[c3].NomeMusica == Usuarios.Musica.MusicasPostadas[c2].NomeMusica && musicaEncontrda == false) {
+                                                                musicaEncontrda = true
+                                                                numSelecionado = c3
+                                                            }
+                                                        }
+                                                    })
+                                                })
+        
+                                                //! Vai criar uma lista das músicas escutadas
+                                                let listaCheckRecentes = listaMusicasRecentes //? Vai checar se há recentes repetidos
+        
+                                                let jaTemEssaMusica = false
+                                                let addMusicaEmRecentes = false
+                                                
+                                                if(listaMusicasRecentes.length <= 0) {
+                                                    let formaLista =  {
+                                                        NomeMusica: Usuarios.Musica.MusicasPostadas[c2].NomeMusica,
+                                                        NomeAutor: Usuarios.Musica.MusicasPostadas[c2].NomeAutor,
+                                                        Tipo: Usuarios.Musica.MusicasPostadas[c2].Tipo,
+                                                        LinkAudio: Usuarios.Musica.MusicasPostadas[c2].LinkAudio,
+                                                        LinkImgiMusica: Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica,
+                                                        EmailUser: Usuarios.Musica.MusicasPostadas[c2].EmailUser,
+                                                        EstadoMusica: Usuarios.Musica.MusicasPostadas[c2].EstadoMusica,
+                                                    }
+                                
+                                                    listaMusicasRecentes.push(formaLista)
+                                                    criarRecentes(listaMusicasRecentes)
+                                
+                                                } else if(listaMusicasRecentes.length > 0) {
+                                                    for(let b = 0; b < listaMusicasRecentes.length; b++) {
+                                                        if(listaMusicasRecentes.length == 9) {
+                                                            listaMusicasRecentes.splice(0, 1)
+                                                        }
+                                
+                                                        if(listaCheckRecentes[b].LinkImgiMusica == Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica && Usuarios.Musica.MusicasPostadas[c2].NomeMusica) {
+                                                            jaTemEssaMusica = true
+                                                        }
+                                
+                                                        setTimeout(() => {
+                                                            if(jaTemEssaMusica == false) {
+                                                                let formaLista =  {
+                                                                    NomeMusica: Usuarios.Musica.MusicasPostadas[c2].NomeMusica,
+                                                                    NomeAutor: Usuarios.Musica.MusicasPostadas[c2].NomeAutor,
+                                                                    Tipo: Usuarios.Musica.MusicasPostadas[c2].Tipo,
+                                                                    LinkAudio: Usuarios.Musica.MusicasPostadas[c2].LinkAudio,
+                                                                    LinkImgiMusica: Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica,
+                                                                    EmailUser: Usuarios.Musica.MusicasPostadas[c2].EmailUser,
+                                                                    EstadoMusica: Usuarios.Musica.MusicasPostadas[c2].EstadoMusica,
+                                                                }
+                                            
+                                                                if(addMusicaEmRecentes == false) {
+                                                                    addMusicaEmRecentes = true
+                                                                    listaMusicasRecentes.push(formaLista)
+                                                                    criarRecentes(listaMusicasRecentes)
+                                                                }
+                                                            }
+                                                        }, 100)
+                                                    }
+                                                }
+                                            })
+                                        }
+        
+                                        //! -------------------------------- Vai mostrar as músicas postadas pelo user pesquisado
+                                        if(userPesquisado == false && contadorMusicaMaxPerfil < 8) {
+                                            contadorMusicaMaxPerfil++
+                                            let musicaMaisTocada = document.createElement('div')
+                                            let localImgMaisTocada = document.createElement('div')
+                                            let img = document.createElement('img')
+                                            let nomeMusicaMaisTocada = document.createElement('h3')
+                                            let nomeAutorMaisTocada = document.createElement('p')
+        
+                                            musicaMaisTocada.className = 'musicaMaisTocada'
+                                            localImgMaisTocada.className = 'localImgMaisTocada'
+                                            nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
+                                            nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
+        
+                                            img.src = Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica
+                                            nomeMusicaMaisTocada.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeMusica
+                                            nomeAutorMaisTocada.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeAutor
+        
+                                            localImgMaisTocada.appendChild(img)
+                                            musicaMaisTocada.appendChild(localImgMaisTocada)
+                                            musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
+                                            musicaMaisTocada.appendChild(nomeAutorMaisTocada)
+        
+                                            document.querySelector('#noneDoUserQuePostouPesquisa').innerText = Usuarios.infUser.Nome
+                                            document.querySelector('#h1NomeQmPostouPesquisa').style.display = 'block'
+                                            document.querySelector('#musicasPostadasPeloUserPesquisado').style.display = 'block'
+                                            document.querySelector('#musicasPostadasPeloUserPesquisado').appendChild(musicaMaisTocada)
+        
+                                            //? Funções de click
+                                            musicaMaisTocada.addEventListener('click', () => {
+                                                darPlayNaMusica(Usuarios.Musica.MusicasPostadas[c2])
+                                            })
+                                        }
+                                    }
+                                }
+                            })
+                        })
+                    }
+    
+    
+                    //! - Vai pesquisar pelo nome da música e nome do autor
+                    let NomeMusica = TodasAsMusicas.Musicas[c].NomeMusica.toLocaleLowerCase()
+                    NomeMusica = NomeMusica.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    NomeMusica = NomeMusica.replace(/\s/g, '') //? Vai remover os espaços
+    
+                    let nomeDoAutor = TodasAsMusicas.Musicas[c].NomeAutor.toLocaleLowerCase()
+                    nomeDoAutor = nomeDoAutor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    nomeDoAutor = nomeDoAutor.replace(/\s/g, '') //? Vai remover os espaços
+    
+                    if(NomeMusica.includes(pesquisa) && contadorResutado < 10 || nomeDoAutor.includes(pesquisa) && contadorResutado < 10) {
+                        contadorResutado++
+                        localArmazenar(document.querySelector('#localMlhResutado'), c)
+    
+                        document.querySelector('#localMlhResutado').style.display = 'block'
+                        document.querySelector('#h1MelhorResutado').style.display = 'block'
+    
+                    } else if(NomeMusica.includes(pesquisa) && contadorResutado >= 10 || nomeDoAutor.includes(pesquisa) && contadorResutado >= 10) {
+                        contadorResutado++
+                        localArmazenar(document.querySelector('#relacionadas'), c)
+    
+                        document.querySelector('#relacionadas').style.display = 'block'
+                        document.querySelector('#h1Relacionadas').style.display = 'block'
+                    }
+    
+                    //! - Vai pesquisar pelo gênero da música
+                    let Tipo = TodasAsMusicas.Musicas[c].Tipo.toLocaleLowerCase()
+                    Tipo = Tipo.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    Tipo = Tipo.replace(/\s/g, '') //? Vai remover os espaços
+    
+                    if(Tipo.includes(pesquisa) /*|| pesquisa.includes(Tipo)*/) {
+                         //? Vai salvar a pesquisa
+                        if(pesquisaSalvaGenero == false && ultimasPesquisasDoUser.Generos.length < 8) {
+                            pesquisaSalvaGenero = true
+                            let jaTemEssaPesquisa = false
+                            for(let c = 0; c < ultimasPesquisasDoUser.Generos.length; c++) {
+                                GenerosUltimasPesquisasDoUser = ultimasPesquisasDoUser.Generos[c].toLocaleLowerCase()
+                                GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                                GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
+    
+                                if(GenerosUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(GenerosUltimasPesquisasDoUser)) {
+                                    jaTemEssaPesquisa = true
+                                }
                             }
     
                             setTimeout(() => {
-                                if(jaTemEssaMusica == false) {
-                                    let formaLista =  {
-                                        NomeMusica: TodasAsMusicas.Musicas[contador].NomeMusica,
-                                        NomeAutor: TodasAsMusicas.Musicas[contador].NomeAutor,
-                                        Tipo: TodasAsMusicas.Musicas[contador].Tipo,
-                                        LinkAudio: TodasAsMusicas.Musicas[contador].LinkAudio,
-                                        LinkImgiMusica: TodasAsMusicas.Musicas[contador].LinkImgiMusica,
-                                        EmailUser: TodasAsMusicas.Musicas[contador].EmailUser,
-                                        EstadoMusica: TodasAsMusicas.Musicas[contador].EstadoMusica,
-                                    }
-                
-                                    if(addMusicaEmRecentes == false) {
-                                        addMusicaEmRecentes = true
-                                        listaMusicasRecentes.push(formaLista)
-                                        criarRecentes(listaMusicasRecentes)
-                                    }
+                                if(jaTemEssaPesquisa == false) {
+                                    jaTemEssaPesquisa = true
+                                    pesquisaSalvaGenero = true
+                                    ultimasPesquisasDoUser.Generos.push(pesquisa)
+                                    localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                                }
+                            }, 100)
+    
+                            //? Caso a parte Talvez você curta esteja cheia, ele vai remover a primera pesquisa
+                        } else if(pesquisaSalvaGenero == false && ultimasPesquisasDoUser.Generos.length >= 8) {
+                            ultimasPesquisasDoUser.Generos.splice(0, 1)
+                            pesquisaSalvaGenero = true
+                            let jaTemEssaPesquisa = false
+                            for(let c = 0; c < ultimasPesquisasDoUser.Generos.length; c++) {
+                                GenerosUltimasPesquisasDoUser = ultimasPesquisasDoUser.Generos[c].toLocaleLowerCase()
+                                GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                                GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
+    
+                                if(GenerosUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(GenerosUltimasPesquisasDoUser)) {
+                                    jaTemEssaPesquisa = true
+                                }
+                            }
+    
+                            setTimeout(() => {
+                                if(jaTemEssaPesquisa == false) {
+                                    jaTemEssaPesquisa = true
+                                    pesquisaSalvaGenero = true
+                                    ultimasPesquisasDoUser.Generos.push(pesquisa)
+                                    localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
                                 }
                             }, 100)
                         }
+    
+                        localArmazenar(document.querySelector('#TipoPesquisa'), c)
+    
+                        document.querySelector('#TipoPesquisa').style.display = 'block'
+                        document.querySelector('#h1Tipo').style.display = 'block'
                     }
-
-                    darPlayNaMusica(TodasAsMusicas.Musicas[contador])
-                })
-            } //! Fim da function ----------------------
-
-            let feitoPesquisarUser = false
-            for(let c = 0; c < TodasAsMusicas.Musicas.length; c++) {
-                pesquisa = pesquisa.toLocaleLowerCase()
-                pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
-                
-                let contadorMusicasAutor = 0
-                //! Vai pesquisar pelo(a) user q postou a música
-                let Autor = TodasAsMusicas.Musicas[c].NomeAutor.toLocaleLowerCase()
-                Autor = Autor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                Autor = Autor.replace(/\s/g, '') //? Vai remover os espaços
-
-                if(feitoPesquisarUser == false) {
-                    feitoPesquisarUser = true
-                    let userEncontrado = false
-                    db.collection('Usuarios').onSnapshot((data) => {
-                        data.docs.map(function(valor) {
-                            let Usuarios = valor.data()
+                }
     
-                            let nomeAutor = Usuarios.infUser.Nome.toLocaleLowerCase()
-                            nomeAutor = nomeAutor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                            nomeAutor = nomeAutor.replace(/\s/g, '') //? Vai remover os espaços
+                //! Vai pesquisar por playlists
+                let playlistJaFoiPesquisada = false
+                db.collection('Usuarios').onSnapshot((data) => {
+                    data.docs.map(function(valor) {
+                        let Usuarios = valor.data()
+    
+                        try {
+                            if(playlistJaFoiPesquisada == false) {
+                                setTimeout(() => {
+                                    playlistJaFoiPesquisada = true
+                                }, 1000)
+
+                                for(let a = 0; a < Usuarios.Musica.Playlist.length; a++) {
+                                    pesquisa = pesquisa.toLocaleLowerCase()
+                                    pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                                    pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
             
-                            if(nomeAutor.includes(pesquisa) && userEncontrado == false) {
-                                userEncontrado = true
-                                for(let c2 = Usuarios.Musica.MusicasPostadas.length - 1; c2 >= 0; c2--) {
-                                    if(contadorMusicasAutor < 4) {
-                                        contadorMusicasAutor++
+                                    NomePlaylist = Usuarios.Musica.Playlist[a].NomePlaylist.toLocaleLowerCase()
+                                    NomePlaylist = NomePlaylist.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                                    NomePlaylist = NomePlaylist.replace(/\s/g, '') //? Vai remover os espaços
+            
+                                    if(NomePlaylist.includes(pesquisa) || pesquisa.includes(NomePlaylist)) {
                                         document.querySelector('#nehumResultado').style.display = 'none'
-                                        document.querySelector('#pagPesquisa').style.display = 'block'
-                                        document.querySelector('#h1AutorPesquisa').style.display = 'block'
-                                        document.querySelector('#autorPesquisa').style.display = 'flex'
-                                        document.querySelector(`#musicaAutor${contadorMusicasAutor}`).style.display = 'flex'
-                                        
-                                        let musicaAutor = document.querySelector(`#musicaAutor${contadorMusicasAutor}`)
-                                        let img = document.querySelector(`#imgMusicaAutor${contadorMusicasAutor}`)
-                                        let h3 = document.querySelector(`#localTextoAutor${contadorMusicasAutor}`).querySelector('h3')
-                                        let p = document.querySelector(`#localTextoAutor${contadorMusicasAutor}`).querySelector('p')
-    
-                                        img.src = Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica
-                                        h3.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeMusica
-                                        p.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeAutor
-    
-                                        document.querySelector('#nomeAutorPesquisa').innerText = Usuarios.infUser.Nome
-                                        document.querySelector('#nomeAutorPesquisa').style.display = 'block'
-    
-                                        clonePerfilUserPesquisado = Usuarios
-
-                                        try {
-                                            document.querySelector('#sobreAutor').style.backgroundImage = `url(${clonePerfilUserPesquisado.infUser.ImgParedePerfil})`
-                                        } catch{}
-                                    
-                                    
-                                        let imgPerfilUserPagPessoal = document.querySelector('#fotoAutorPesquisa')
-                                        try {
-                                            if(clonePerfilUserPesquisado.infUser.FotoPerfil != undefined) {
-                                                imgPerfilUserPagPessoal.src = clonePerfilUserPesquisado.infUser.FotoPerfil
-                                                imgPerfilUserPagPessoal.style.padding = '0px'
-                                                imgPerfilUserPagPessoal.style.width = '180px'
-                                                imgPerfilUserPagPessoal.style.height = '180px'
-                                                imgPerfilUserPagPessoal.style.objectFit = 'cover'
-                                                document.querySelector('#infosPerfilUser').style.background = 'transparent'
-                                    
-                                            } else {
-                                                imgPerfilUserPagPessoal.src = 'assets/img/icones/icon _profile_.png'
-                                                imgPerfilUserPagPessoal.style.padding = '20px'
-                                                imgPerfilUserPagPessoal.style.width = '100px'
-                                                imgPerfilUserPagPessoal.style.height = '100px'
-                                                imgPerfilUserPagPessoal.style.objectFit = 'contain'
-                                            }
-                                        } catch{}
-    
-                                        //!-
-                                        musicaAutor.addEventListener('click', () => {
-                                            darPlayNaMusica(Usuarios.Musica.MusicasPostadas[c2])
-                                            let musicaEncontrda = false
-    
-                                            db.collection('TodasAsMusicas').onSnapshot((data) => {
-                                                data.docs.map(function(valor) {
-                                                    let TodasAsMusicas = valor.data()
-    
-                                                    for(let c3 = 0; c3 < TodasAsMusicas.Musicas.length; c3++) {
-                                                        if(TodasAsMusicas.Musicas[c3].Email == Usuarios.Musica.MusicasPostadas[c2].Email && TodasAsMusicas.Musicas[c3].LinkImgiMusica == Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica && TodasAsMusicas.Musicas[c3].LinkAudio == Usuarios.Musica.MusicasPostadas[c2].LinkAudio && TodasAsMusicas.Musicas[c3].NomeMusica == Usuarios.Musica.MusicasPostadas[c2].NomeMusica && musicaEncontrda == false) {
-                                                            musicaEncontrda = true
-                                                            numSelecionado = c3
-                                                        }
-                                                    }
-                                                })
-                                            })
-    
-                                            //! Vai criar uma lista das músicas escutadas
-                                            let listaCheckRecentes = listaMusicasRecentes //? Vai checar se há recentes repetidos
-    
-                                            let jaTemEssaMusica = false
-                                            let addMusicaEmRecentes = false
-                                            
-                                            if(listaMusicasRecentes.length <= 0) {
-                                                let formaLista =  {
-                                                    NomeMusica: Usuarios.Musica.MusicasPostadas[c2].NomeMusica,
-                                                    NomeAutor: Usuarios.Musica.MusicasPostadas[c2].NomeAutor,
-                                                    Tipo: Usuarios.Musica.MusicasPostadas[c2].Tipo,
-                                                    LinkAudio: Usuarios.Musica.MusicasPostadas[c2].LinkAudio,
-                                                    LinkImgiMusica: Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica,
-                                                    EmailUser: Usuarios.Musica.MusicasPostadas[c2].EmailUser,
-                                                    EstadoMusica: Usuarios.Musica.MusicasPostadas[c2].EstadoMusica,
-                                                }
-                            
-                                                listaMusicasRecentes.push(formaLista)
-                                                criarRecentes(listaMusicasRecentes)
-                            
-                                            } else if(listaMusicasRecentes.length > 0) {
-                                                for(let b = 0; b < listaMusicasRecentes.length; b++) {
-                                                    if(listaMusicasRecentes.length == 9) {
-                                                        listaMusicasRecentes.splice(0, 1)
-                                                    }
-                            
-                                                    if(listaCheckRecentes[b].LinkImgiMusica == Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica && Usuarios.Musica.MusicasPostadas[c2].NomeMusica) {
-                                                        jaTemEssaMusica = true
-                                                    }
-                            
-                                                    setTimeout(() => {
-                                                        if(jaTemEssaMusica == false) {
-                                                            let formaLista =  {
-                                                                NomeMusica: Usuarios.Musica.MusicasPostadas[c2].NomeMusica,
-                                                                NomeAutor: Usuarios.Musica.MusicasPostadas[c2].NomeAutor,
-                                                                Tipo: Usuarios.Musica.MusicasPostadas[c2].Tipo,
-                                                                LinkAudio: Usuarios.Musica.MusicasPostadas[c2].LinkAudio,
-                                                                LinkImgiMusica: Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica,
-                                                                EmailUser: Usuarios.Musica.MusicasPostadas[c2].EmailUser,
-                                                                EstadoMusica: Usuarios.Musica.MusicasPostadas[c2].EstadoMusica,
-                                                            }
-                                        
-                                                            if(addMusicaEmRecentes == false) {
-                                                                addMusicaEmRecentes = true
-                                                                listaMusicasRecentes.push(formaLista)
-                                                                criarRecentes(listaMusicasRecentes)
-                                                            }
-                                                        }
-                                                    }, 100)
-                                                }
-                                            }
-                                        })
-                                    }
-    
-                                    //! -------------------------------- Vai mostrar as músicas postadas pelo user pesquisado
-                                    if(userPesquisado == false && contadorMusicaMaxPerfil < 8) {
-                                        contadorMusicaMaxPerfil++
+                                        document.querySelector('#h1Playlists').style.display = 'block'
+                                        document.querySelector('#localPlaylistsPesquisa').style.display = 'block'
                                         let musicaMaisTocada = document.createElement('div')
                                         let localImgMaisTocada = document.createElement('div')
                                         let img = document.createElement('img')
                                         let nomeMusicaMaisTocada = document.createElement('h3')
                                         let nomeAutorMaisTocada = document.createElement('p')
-    
+            
                                         musicaMaisTocada.className = 'musicaMaisTocada'
                                         localImgMaisTocada.className = 'localImgMaisTocada'
                                         nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
                                         nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
-    
-                                        img.src = Usuarios.Musica.MusicasPostadas[c2].LinkImgiMusica
-                                        nomeMusicaMaisTocada.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeMusica
-                                        nomeAutorMaisTocada.innerText = Usuarios.Musica.MusicasPostadas[c2].NomeAutor
-    
+            
+                                        img.src = Usuarios.Musica.Playlist[a].Musicas[0].LinkImgiMusica
+                                        nomeMusicaMaisTocada.innerText = Usuarios.Musica.Playlist[a].NomePlaylist
+                                        nomeAutorMaisTocada.innerText = Usuarios.infUser.Nome
+            
                                         localImgMaisTocada.appendChild(img)
                                         musicaMaisTocada.appendChild(localImgMaisTocada)
                                         musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
                                         musicaMaisTocada.appendChild(nomeAutorMaisTocada)
-    
-                                        document.querySelector('#noneDoUserQuePostouPesquisa').innerText = Usuarios.infUser.Nome
-                                        document.querySelector('#h1NomeQmPostouPesquisa').style.display = 'block'
-                                        document.querySelector('#musicasPostadasPeloUserPesquisado').style.display = 'block'
-                                        document.querySelector('#musicasPostadasPeloUserPesquisado').appendChild(musicaMaisTocada)
-    
-                                        //? Funções de click
+            
+                                        document.querySelector('#localPlaylistsPesquisa').appendChild(musicaMaisTocada)
+        
                                         musicaMaisTocada.addEventListener('click', () => {
-                                            darPlayNaMusica(Usuarios.Musica.MusicasPostadas[c2])
+                                            abrirPlaylist(valor.id, a)
                                         })
-                                    }
-                                }
-                            }
-                        })
-                    })
-                }
-
-
-                //! - Vai pesquisar pelo nome da música e nome do autor
-                let NomeMusica = TodasAsMusicas.Musicas[c].NomeMusica.toLocaleLowerCase()
-                NomeMusica = NomeMusica.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                NomeMusica = NomeMusica.replace(/\s/g, '') //? Vai remover os espaços
-
-                let nomeDoAutor = TodasAsMusicas.Musicas[c].NomeAutor.toLocaleLowerCase()
-                nomeDoAutor = nomeDoAutor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                nomeDoAutor = nomeDoAutor.replace(/\s/g, '') //? Vai remover os espaços
-
-                if(NomeMusica.includes(pesquisa) && contadorResutado < 10 || nomeDoAutor.includes(pesquisa) && contadorResutado < 10) {
-                    contadorResutado++
-                    localArmazenar(document.querySelector('#localMlhResutado'), c)
-
-                    document.querySelector('#localMlhResutado').style.display = 'block'
-                    document.querySelector('#h1MelhorResutado').style.display = 'block'
-
-                } else if(NomeMusica.includes(pesquisa) && contadorResutado >= 10 || nomeDoAutor.includes(pesquisa) && contadorResutado >= 10) {
-                    contadorResutado++
-                    localArmazenar(document.querySelector('#relacionadas'), c)
-
-                    document.querySelector('#relacionadas').style.display = 'block'
-                    document.querySelector('#h1Relacionadas').style.display = 'block'
-                }
-
-                //! - Vai pesquisar pelo gênero da música
-                let Tipo = TodasAsMusicas.Musicas[c].Tipo.toLocaleLowerCase()
-                Tipo = Tipo.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                Tipo = Tipo.replace(/\s/g, '') //? Vai remover os espaços
-
-                if(Tipo.includes(pesquisa) /*|| pesquisa.includes(Tipo)*/) {
-                     //? Vai salvar a pesquisa
-                    if(pesquisaSalvaGenero == false && ultimasPesquisasDoUser.Generos.length < 8) {
-                        pesquisaSalvaGenero = true
-                        let jaTemEssaPesquisa = false
-                        for(let c = 0; c < ultimasPesquisasDoUser.Generos.length; c++) {
-                            GenerosUltimasPesquisasDoUser = ultimasPesquisasDoUser.Generos[c].toLocaleLowerCase()
-                            GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                            GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
-
-                            if(GenerosUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(GenerosUltimasPesquisasDoUser)) {
-                                jaTemEssaPesquisa = true
-                            }
-                        }
-
-                        setTimeout(() => {
-                            if(jaTemEssaPesquisa == false) {
-                                jaTemEssaPesquisa = true
-                                pesquisaSalvaGenero = true
-                                ultimasPesquisasDoUser.Generos.push(pesquisa)
-                                localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
-                            }
-                        }, 100)
-
-                        //? Caso a parte Talvez você curta esteja cheia, ele vai remover a primera pesquisa
-                    } else if(pesquisaSalvaGenero == false && ultimasPesquisasDoUser.Generos.length >= 8) {
-                        ultimasPesquisasDoUser.Generos.splice(0, 1)
-                        pesquisaSalvaGenero = true
-                        let jaTemEssaPesquisa = false
-                        for(let c = 0; c < ultimasPesquisasDoUser.Generos.length; c++) {
-                            GenerosUltimasPesquisasDoUser = ultimasPesquisasDoUser.Generos[c].toLocaleLowerCase()
-                            GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                            GenerosUltimasPesquisasDoUser = GenerosUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
-
-                            if(GenerosUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(GenerosUltimasPesquisasDoUser)) {
-                                jaTemEssaPesquisa = true
-                            }
-                        }
-
-                        setTimeout(() => {
-                            if(jaTemEssaPesquisa == false) {
-                                jaTemEssaPesquisa = true
-                                pesquisaSalvaGenero = true
-                                ultimasPesquisasDoUser.Generos.push(pesquisa)
-                                localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
-                            }
-                        }, 100)
-                    }
-
-                    localArmazenar(document.querySelector('#TipoPesquisa'), c)
-
-                    document.querySelector('#TipoPesquisa').style.display = 'block'
-                    document.querySelector('#h1Tipo').style.display = 'block'
-                }
-            }
-
-            //! Vai pesquisar por playlists
-            db.collection('Usuarios').onSnapshot((data) => {
-                data.docs.map(function(valor) {
-                    let Usuarios = valor.data()
-
-                    try {
-                        for(let a = 0; a < Usuarios.Musica.Playlist.length; a++) {
-                            pesquisa = pesquisa.toLocaleLowerCase()
-                            pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                            pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
-    
-                            NomePlaylist = Usuarios.Musica.Playlist[a].NomePlaylist.toLocaleLowerCase()
-                            NomePlaylist = NomePlaylist.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                            NomePlaylist = NomePlaylist.replace(/\s/g, '') //? Vai remover os espaços
-    
-                            if(NomePlaylist.includes(pesquisa) || pesquisa.includes(NomePlaylist)) {
-                                document.querySelector('#nehumResultado').style.display = 'none'
-                                document.querySelector('#h1Playlists').style.display = 'block'
-                                document.querySelector('#localPlaylistsPesquisa').style.display = 'block'
-                                let musicaMaisTocada = document.createElement('div')
-                                let localImgMaisTocada = document.createElement('div')
-                                let img = document.createElement('img')
-                                let nomeMusicaMaisTocada = document.createElement('h3')
-                                let nomeAutorMaisTocada = document.createElement('p')
-    
-                                musicaMaisTocada.className = 'musicaMaisTocada'
-                                localImgMaisTocada.className = 'localImgMaisTocada'
-                                nomeMusicaMaisTocada.className = 'nomeMusicaMaisTocada'
-                                nomeAutorMaisTocada.className = 'nomeAutorMaisTocada'
-    
-                                img.src = Usuarios.Musica.Playlist[a].Musicas[0].LinkImgiMusica
-                                nomeMusicaMaisTocada.innerText = Usuarios.Musica.Playlist[a].NomePlaylist
-                                nomeAutorMaisTocada.innerText = Usuarios.infUser.Nome
-    
-                                localImgMaisTocada.appendChild(img)
-                                musicaMaisTocada.appendChild(localImgMaisTocada)
-                                musicaMaisTocada.appendChild(nomeMusicaMaisTocada)
-                                musicaMaisTocada.appendChild(nomeAutorMaisTocada)
-    
-                                document.querySelector('#localPlaylistsPesquisa').appendChild(musicaMaisTocada)
-
-                                musicaMaisTocada.addEventListener('click', () => {
-                                    abrirPlaylist(valor.id, a)
-                                })
-
-                                //! Vai salvar a playlist pesquisada
-                                if(NomePlaylist.includes(pesquisa)) {
-                                    //? Vai salvar a pesquisa
-                                    if(pesquisaSalvaPlaylist == false && ultimasPesquisasDoUser.Playlists.length < 8) {
-                                    pesquisaSalvaPlaylist = true
-                                        let jaTemEssaPesquisa = false
-                                        for(let c = 0; c < ultimasPesquisasDoUser.Playlists.length; c++) {
-                                            NomePlaylistUltimasPesquisasDoUser = ultimasPesquisasDoUser.Playlists[c].toLocaleLowerCase()
-                                            NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                                            NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
-
-                                            if(NomePlaylistUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(NomePlaylistUltimasPesquisasDoUser)) {
-                                                jaTemEssaPesquisa = true
-                                            }
-                                        }
-                
-                                        setTimeout(() => {
-                                            if(jaTemEssaPesquisa == false) {
-                                                jaTemEssaPesquisa = true
+        
+                                        //! Vai salvar a playlist pesquisada
+                                        if(NomePlaylist.includes(pesquisa) || pesquisa.includes(NomePlaylist)) {
+                                            //? Vai salvar a pesquisa
+                                            if(pesquisaSalvaPlaylist == false && ultimasPesquisasDoUser.Playlists.length < 8) {
                                                 pesquisaSalvaPlaylist = true
-                                                ultimasPesquisasDoUser.Playlists.push(pesquisa)
-                                                localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                                                let jaTemEssaPesquisa = false
+                                                for(let c = 0; c < ultimasPesquisasDoUser.Playlists.length; c++) {
+                                                    NomePlaylistUltimasPesquisasDoUser = ultimasPesquisasDoUser.Playlists[c].toLocaleLowerCase()
+                                                    NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                                                    NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
+        
+                                                    if(NomePlaylistUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(NomePlaylistUltimasPesquisasDoUser)) {
+                                                        jaTemEssaPesquisa = true
+                                                    }
+                                                }
+                        
+                                                setTimeout(() => {
+                                                    if(jaTemEssaPesquisa == false) {
+                                                        jaTemEssaPesquisa = true
+                                                        pesquisaSalvaPlaylist = true
+                                                        ultimasPesquisasDoUser.Playlists.push(pesquisa)
+                                                        localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                                                    }
+                                                }, 100)
+                        
+                                                //? Caso a parte Talvez você curta esteja cheia, ele vai remover a primera pesquisa
+                                            } else if(pesquisaSalvaPlaylist == false && ultimasPesquisasDoUser.Playlists.length >= 8) {
+                                                ultimasPesquisasDoUser.Playlists.splice(0, 1)
+                                                pesquisaSalvaPlaylist = true
+                                                let jaTemEssaPesquisa = false
+                                                for(let c = 0; c < ultimasPesquisasDoUser.Playlists.length; c++) {
+                                                    NomePlaylistUltimasPesquisasDoUser = ultimasPesquisasDoUser.Playlists[c].toLocaleLowerCase()
+                                                    NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                                                    NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
+        
+                                                    if(NomePlaylistUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(NomePlaylistUltimasPesquisasDoUser)) {
+                                                        jaTemEssaPesquisa = true
+                                                    }
+                                                }
+                        
+                                                setTimeout(() => {
+                                                    if(jaTemEssaPesquisa == false) {
+                                                        jaTemEssaPesquisa = true
+                                                        pesquisaSalva = true
+                                                        ultimasPesquisasDoUser.Playlists.push(pesquisa)
+                                                        localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
+                                                    }
+                                                }, 100)
                                             }
-                                        }, 100)
-                
-                                        //? Caso a parte Talvez você curta esteja cheia, ele vai remover a primera pesquisa
-                                    } else if(pesquisaSalvaPlaylist == false && ultimasPesquisasDoUser.Playlists.length >= 8) {
-                                        ultimasPesquisasDoUser.Playlists.splice(0, 1)
-                                        pesquisaSalvaPlaylist = true
-                                        let jaTemEssaPesquisa = false
-                                        for(let c = 0; c < ultimasPesquisasDoUser.Playlists.length; c++) {
-                                            NomePlaylistUltimasPesquisasDoUser = ultimasPesquisasDoUser.Playlists[c].toLocaleLowerCase()
-                                            NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                                            NomePlaylistUltimasPesquisasDoUser = NomePlaylistUltimasPesquisasDoUser.replace(/\s/g, '') //? Vai remover os espaços
-
-                                            if(NomePlaylistUltimasPesquisasDoUser.includes(pesquisa) || pesquisa.includes(NomePlaylistUltimasPesquisasDoUser)) {
-                                                jaTemEssaPesquisa = true
-                                            }
+                        
+                                            localArmazenar(document.querySelector('#TipoPesquisa'), a)
+                        
+                                            document.querySelector('#TipoPesquisa').style.display = 'block'
+                                            document.querySelector('#h1Tipo').style.display = 'block'
                                         }
-                
-                                        setTimeout(() => {
-                                            if(jaTemEssaPesquisa == false) {
-                                                jaTemEssaPesquisa = true
-                                                pesquisaSalva = true
-                                                ultimasPesquisasDoUser.Playlists.push(pesquisa)
-                                                localStorage.setItem('ultimasPesquisasDoUser', JSON.stringify(ultimasPesquisasDoUser))
-                                            }
-                                        }, 100)
                                     }
-                
-                                    localArmazenar(document.querySelector('#TipoPesquisa'), c)
-                
-                                    document.querySelector('#TipoPesquisa').style.display = 'block'
-                                    document.querySelector('#h1Tipo').style.display = 'block'
                                 }
                             }
-                        }
-                    } catch{}
+                        } catch{}
+                    })
                 })
-            })
+            }
         })
     })
 }

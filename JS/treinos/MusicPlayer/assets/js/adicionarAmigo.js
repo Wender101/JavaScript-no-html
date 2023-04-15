@@ -342,41 +342,51 @@ function amigos() {
                                                 li.appendChild(divNome)
                                                 localPefilAmigo.appendChild(li)
 
-                                                li.addEventListener('mouseenter', () => {
-                                                    document.querySelector('#aboutMusicaUser').style.display = 'block'
-                                                    if(li.querySelector('img').src != 'assets/img/icones/icon _profile_.png') {
-                                                        document.querySelector('#perfilMusica').querySelector('img').src = Usuarios2.infUser.FotoPerfil
-                                                        document.querySelector('#perfilMusica').querySelector('img').style.objectFit = 'cover'
-                                                    } else {
-                                                        document.querySelector('#perfilMusica').querySelector('img').src = 'assets/img/icones/icon _profile_.png'
-                                                        document.querySelector('#perfilMusica').querySelector('img').style.objectFit = 'contain'
-                                                    }
-
-                                                    document.querySelector('#perfilMusica').querySelector('strong').innerText = Usuarios2.infUser.Nome
-
-                                                    try {
-                                                        document.querySelector('#perfilMusica').style.backgroundImage=`url("${Usuarios2.infUser.ImgParedePerfil}")`
-                                                    } catch{}
-
-                                                    document.querySelector('#aboutSongFriend').querySelector('div').querySelector('img').src = Usuarios2.infUser.userEstaOuvindo.LinkImgiMusica
-                                                    if(estadoAmigo != 'off') {
-                                                        if(estadoAmigo == 'on') {
-                                                            document.querySelector('#bollOnline2').style.background = '#0DCBA9'
+                                                function segundaAba() {
+                                                    return new Promise((resolve, reject) => {
+                                                        if(li.querySelector('img').src != 'assets/img/icones/icon _profile_.png') {
+                                                            document.querySelector('#perfilMusica').querySelector('img').src = Usuarios2.infUser.FotoPerfil
+                                                            document.querySelector('#perfilMusica').querySelector('img').style.objectFit = 'cover'
                                                         } else {
-                                                            document.querySelector('#bollOnline2').style.background = 'orange'
+                                                            document.querySelector('#perfilMusica').querySelector('img').src = 'assets/img/icones/icon _profile_.png'
+                                                            document.querySelector('#perfilMusica').querySelector('img').style.objectFit = 'contain'
+                                                        }
+    
+                                                        document.querySelector('#perfilMusica').querySelector('strong').innerText = Usuarios2.infUser.Nome
+    
+                                                        try {
+                                                            document.querySelector('#perfilMusica').style.backgroundImage=`url("${Usuarios2.infUser.ImgParedePerfil}")`
+                                                        } catch{}
+    
+                                                        document.querySelector('#aboutSongFriend').querySelector('div').querySelector('img').src = Usuarios2.infUser.userEstaOuvindo.LinkImgiMusica
+                                                        if(estadoAmigo != 'off') {
+                                                            if(estadoAmigo == 'on') {
+                                                                document.querySelector('#bollOnline2').style.background = '#0DCBA9'
+                                                            } else {
+                                                                document.querySelector('#bollOnline2').style.background = 'orange'
+                                                            }
+    
+                                                            document.querySelector('#aboutSongFriend').style.display = 'flex'
+                                                            document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('strong').innerText = Usuarios2.infUser.userEstaOuvindo.NomeMusica
+                                                            document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('p').innerText = Usuarios2.infUser.userEstaOuvindo.NomeAutor
+                
+                                                            document.querySelector('#aboutSongFriend').querySelector('div').addEventListener('click', () => {
+                                                                darPlayNaMusica(Usuarios2.infUser.userEstaOuvindo)
+                                                            })
+                                                        } else {
+                                                            document.querySelector('#bollOnline2').style.background = 'red'
+                                                            document.querySelector('#aboutSongFriend').style.display = 'none'
                                                         }
 
-                                                        document.querySelector('#aboutSongFriend').style.display = 'flex'
-                                                        document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('strong').innerText = Usuarios2.infUser.userEstaOuvindo.NomeMusica
-                                                        document.querySelector('#aboutSongFriend').querySelector('div').querySelector('div').querySelector('p').innerText = Usuarios2.infUser.userEstaOuvindo.NomeAutor
-            
-                                                        document.querySelector('#aboutSongFriend').querySelector('div').addEventListener('click', () => {
-                                                            darPlayNaMusica(Usuarios2.infUser.userEstaOuvindo)
-                                                        })
-                                                    } else {
-                                                        document.querySelector('#bollOnline2').style.background = 'red'
-                                                        document.querySelector('#aboutSongFriend').style.display = 'none'
-                                                    }
+                                                        resolve()
+                                                    })
+                                                } document.querySelector('#aboutMusicaUser').style.display = 'none'
+
+                                                //! Funções de click
+                                                li.addEventListener('mouseenter', () => {
+                                                    segundaAba().then((resolve) => {
+                                                        document.querySelector('#aboutMusicaUser').style.display = 'block'
+                                                    }).catch((reject) => {})
                                                 })
 
                                             }).catch(error => console.error(error))

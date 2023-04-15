@@ -14,6 +14,7 @@ let novaPlaylist = {
 let playlistAdd = false
 
 playlistBtn.addEventListener('click', () => {
+    fecharAbas()
     functionPlaylist()
 })
 
@@ -37,46 +38,6 @@ function functionPlaylist() {
         if(playlistAdd == true) {
             document.querySelector('#addPlaylist').style.display = 'block'
         }
-
-        let addMusicaAsPlaylists = document.querySelector('#addMusicaAsPlaylists')
-        addMusicaAsPlaylists.addEventListener('input', () => {
-            document.querySelector('#localMusicaPlayListPesquisa').innerHTML = ''
-
-            if(addMusicaAsPlaylists.value.length > 0) {
-                let contadorMusicasEncontradas = 0 //? Vai datar o tanto maximo de músicas que poderão aparecer na pesquisa
-
-                db.collection('TodasAsMusicas').onSnapshot((data) => {
-                    data.docs.map(function(valor) {
-                        let TodasAsMusicas = valor.data()
-
-                        for(let c = 0; c < TodasAsMusicas.Musicas.length; c++) {
-                            pesquisa = addMusicaAsPlaylists.value.toLocaleLowerCase()
-                            pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                            pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
-
-                            let Autor = TodasAsMusicas.Musicas[c].NomeAutor.toLocaleLowerCase()
-                            Autor = Autor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                            Autor = Autor.replace(/\s/g, '') //? Vai remover os espaços
-
-                            let NomeMusica = TodasAsMusicas.Musicas[c].NomeMusica.toLocaleLowerCase()
-                            NomeMusica = NomeMusica.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                            NomeMusica = NomeMusica.replace(/\s/g, '') //? Vai remover os espaços
-
-                            let Tipo = TodasAsMusicas.Musicas[c].Tipo.toLocaleLowerCase()
-                            Tipo = Tipo.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
-                            Tipo = Tipo.replace(/\s/g, '') //? Vai remover os espaços
-
-                            if(contadorMusicasEncontradas < 5) {
-                                if(Tipo.includes(pesquisa) || NomeMusica.includes(pesquisa) || Autor.includes(pesquisa)) {
-                                    contadorMusicasEncontradas++
-                                    criarMusicasPesquisaPlaylist(TodasAsMusicas.Musicas[c], c)
-                                }
-                            }
-                        }
-                    })
-                })
-            }
-        })
 
         //? Ao escrevar ao no textarea
         textareaNomePlaylist.addEventListener('input', () => {
@@ -169,6 +130,48 @@ function functionPlaylist() {
         })
     }
 }
+
+
+//! Vai pesquisar a música que foi digitada no input de criar uma nova playlist
+let addMusicaAsPlaylists = document.querySelector('#addMusicaAsPlaylists')
+addMusicaAsPlaylists.addEventListener('input', () => {
+    document.querySelector('#localMusicaPlayListPesquisa').innerHTML = ''
+
+    if(addMusicaAsPlaylists.value.length > 0) {
+        let contadorMusicasEncontradas = 0 //? Vai datar o tanto maximo de músicas que poderão aparecer na pesquisa
+
+        db.collection('TodasAsMusicas').onSnapshot((data) => {
+            data.docs.map(function(valor) {
+                let TodasAsMusicas = valor.data()
+
+                for(let c = 0; c < TodasAsMusicas.Musicas.length; c++) {
+                    pesquisa = addMusicaAsPlaylists.value.toLocaleLowerCase()
+                    pesquisa = pesquisa.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    pesquisa = pesquisa.replace(/\s/g, '') //? Vai remover os espaços
+
+                    let Autor = TodasAsMusicas.Musicas[c].NomeAutor.toLocaleLowerCase()
+                    Autor = Autor.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    Autor = Autor.replace(/\s/g, '') //? Vai remover os espaços
+
+                    let NomeMusica = TodasAsMusicas.Musicas[c].NomeMusica.toLocaleLowerCase()
+                    NomeMusica = NomeMusica.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    NomeMusica = NomeMusica.replace(/\s/g, '') //? Vai remover os espaços
+
+                    let Tipo = TodasAsMusicas.Musicas[c].Tipo.toLocaleLowerCase()
+                    Tipo = Tipo.normalize('NFD').replace(/[\u0300-\u036f]/g, "") //? Vai remover os acentos
+                    Tipo = Tipo.replace(/\s/g, '') //? Vai remover os espaços
+
+                    if(contadorMusicasEncontradas < 5) {
+                        if(Tipo.includes(pesquisa) || NomeMusica.includes(pesquisa) || Autor.includes(pesquisa)) {
+                            contadorMusicasEncontradas++
+                            criarMusicasPesquisaPlaylist(TodasAsMusicas.Musicas[c], c)
+                        }
+                    }
+                }
+            })
+        })
+    }
+})
 
 
 function criarMusicasPesquisaPlaylist(musica, contador) {
