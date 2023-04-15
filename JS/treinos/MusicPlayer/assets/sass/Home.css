@@ -985,6 +985,25 @@ body section#pagEditarPlaylist article div.musicaMaisTocada {
   display: inline-block;
   background-color: #1c1c1c;
   box-shadow: 2px 2px 5px #121111;
+  position: relative;
+  overflow: visible;
+}
+body section#pagEditarPlaylist article div.musicaMaisTocada button.buttonDeletarPlaylist {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  background-image: url(../img/icones/icon\ _trash_.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  right: 5px;
+  bottom: 5px;
+  cursor: pointer;
+}
+body section#pagEditarPlaylist article div.musicaMaisTocada button.buttonDeletarPlaylist:hover {
+  transition: 100ms scale ease-in-out;
+  scale: 1.3;
 }
 body section#pagEditarPlaylist article div {
   width: 139px;

@@ -864,6 +864,27 @@ body {
                 display: inline-block;
                 background-color: $cor8;
                 box-shadow: 2px 2px 5px $sombra2;
+                position: relative;
+                overflow: visible;
+
+                button.buttonDeletarPlaylist {
+                    width: 20px;
+                    height: 20px;
+                    background-color: transparent;
+                    border: none;
+                    position: absolute;
+                    background-image: url(../img/icones/icon\ _trash_.png);
+                    background-size: contain;
+                    background-repeat: no-repeat;
+                    right: 5px;
+                    bottom: 5px;
+                    cursor: pointer;
+
+                    &:hover {
+                        transition: 100ms scale ease-in-out;
+                        scale: 1.3;
+                    }
+                }
             }
             
             div {
