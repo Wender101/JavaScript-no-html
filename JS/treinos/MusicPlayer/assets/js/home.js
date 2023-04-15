@@ -922,6 +922,9 @@ document.querySelector('#EditarPlaylistsBtn').addEventListener('click', () => {
                     let img = document.createElement('img')
                     let nomeMusicaMaisTocada = document.createElement('h3')
                     let nomeAutorMaisTocada = document.createElement('p')
+                    document.querySelector('#infosPerfilUser').querySelector('div').style.maxWidth = '500px'
+                    document.querySelector('#descPerfilPagPessoal').style.display = 'none'
+                    document.querySelector('#infosPerfilUser').style.height = '260px'
 
                     musicaMaisTocada.className = 'musicaMaisTocada'
                     localImgMaisTocada.className = 'localImgMaisTocada'
