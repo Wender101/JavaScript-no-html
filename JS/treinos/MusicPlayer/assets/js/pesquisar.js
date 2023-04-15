@@ -97,6 +97,10 @@ inputPesquisa2.addEventListener('keydown', (e) => {
     }
 })
 
+
+//? Vai checar se o user pesquisado tem algumas conquista ou n
+let conquisatasUserPesquisado = []
+
 let clonePerfilUserPesquisado //! Vai guardar as infos do user pesquisado
 function pesquisar(pesquisa) {
     let musicaJaFoiPesquisado = false
@@ -273,6 +277,7 @@ function pesquisar(pesquisa) {
                 
                                 if(nomeAutor.includes(pesquisa) && userEncontrado == false) {
                                     userEncontrado = true
+
                                     for(let c2 = Usuarios.Musica.MusicasPostadas.length - 1; c2 >= 0; c2--) {
                                         if(contadorMusicasAutor < 4) {
                                             contadorMusicasAutor++
@@ -324,7 +329,7 @@ function pesquisar(pesquisa) {
                                             musicaAutor.addEventListener('click', () => {
                                                 darPlayNaMusica(Usuarios.Musica.MusicasPostadas[c2])
                                                 numSelecionado = c2
-                                                let musicaEncontrda = false
+                                                //let musicaEncontrda = false
         
                                                 // db.collection('TodasAsMusicas').onSnapshot((data) => {
                                                 //     data.docs.map(function(valor) {
@@ -637,111 +642,139 @@ function pesquisar(pesquisa) {
 
 //? Vai ir para a pág pessoal do User pesquisado
 document.querySelector('#sobreAutor').addEventListener('click', () => {
-    let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
-    localMusicasUserPagPessoal.innerHTML = ''
+    conquisatasUserPesquisado = []
+    let conquistas = document.querySelector('#conquistas')
+    conquistas.innerHTML = ''
 
-    document.getElementsByClassName('btnEdit')[0].style.display = 'none'
-    document.querySelector('#pagPessoalUser').style.display = 'block'
-    document.querySelector('#addPlaylist').style.display = 'none'
-    document.querySelector('#headerPessalUser').querySelector('div').querySelector('img').style.display = 'block'
-    document.querySelector('#headerPessalUser').querySelector('div').querySelector('h1').style.display = 'block'
-    document.querySelector('#infosPerfilUser').querySelector('div').style.maxWidth = '661px'
-    document.querySelector('#descPerfilPagPessoal').style.display = 'block'
-    document.querySelector('#infosPerfilUser').style.height = '300px'
-    document.querySelector('#headerPessalUser').querySelector('div').querySelector('textarea').style.display = 'none'
-    document.querySelector('#headerPessalUser').style.backgroundSize = 'cover'
-    document.querySelector('#headerPessalUser').style.backgroundRepeat = 'no-repeat'
-    imgUserPagPessoal.src = 'assets/img/icones/play.png'
-    imgUserPagPessoal.style.background = '#0DCBA9'
+    //! Vai checar se o user esta em umas das 3 primeiras colocações
+    checarRanking(clonePerfilUserPesquisado.infUser.Nome).then((resolve) => {
+        if(conquisatasUserPesquisado[0] == 'primeiro-lugar') {
+            let img = document.createElement('img')
+            img.src = 'assets/img/icones/icon_first2.png'
+            conquistas.appendChild(img)
 
-    oQueEstaPassando = 'user pesquisado'
+        } else if(conquisatasUserPesquisado[0] == 'segundo-lugar') {
+            let img = document.createElement('img')
+            img.src = 'assets/img/icones/icon_second.png'
+            conquistas.appendChild(img)
 
-    try {
-        document.querySelector('#headerPessalUser').style.backgroundImage = `url("${clonePerfilUserPesquisado.infUser.ImgParedePerfil}")`
-    } catch{}
-
-
-    let imgPerfilUserPagPessoal = document.querySelector('#imgPerfilUserPagPessoal')
-    try {
-        if(clonePerfilUserPesquisado.infUser.FotoPerfil != undefined) {
-            imgPerfilUserPagPessoal.src = clonePerfilUserPesquisado.infUser.FotoPerfil
-            imgPerfilUserPagPessoal.style.padding = '0px'
-            imgPerfilUserPagPessoal.style.width = '180px'
-            imgPerfilUserPagPessoal.style.height = '180px'
-            imgPerfilUserPagPessoal.style.objectFit = 'cover'
-            document.querySelector('#infosPerfilUser').style.background = 'transparent'
-
-        } else {
-            imgPerfilUserPagPessoal.src = 'assets/img/icones/icon _profile_.png'
-            imgPerfilUserPagPessoal.style.padding = '20px'
-            imgPerfilUserPagPessoal.style.width = '100px'
-            imgPerfilUserPagPessoal.style.height = '100px'
-            imgPerfilUserPagPessoal.style.objectFit = 'contain'
+        } if(conquisatasUserPesquisado[0] == 'terceiro-lugar') {
+            let img = document.createElement('img')
+            img.src = 'assets/img/icones/icon_third.png'
+            conquistas.appendChild(img)
         }
-    } catch{}
 
-    document.querySelector('#nomeUserPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Nome
-    if(clonePerfilUserPesquisado.infUser.Desc != undefined) {
-        document.querySelector('#descPerfilPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Desc
-    } else {
-        document.querySelector('#descPerfilPagPessoal').innerText = '...'
-    }
+        //? Vai abrir o perfil
+        criarPerfilUser()
+    })
 
-    for(let c = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1; c >= 0; c--) {
+    function criarPerfilUser() {
+        let localMusicasUserPagPessoal = document.querySelector('#localMusicasUserPagPessoal')
+        localMusicasUserPagPessoal.innerHTML = ''
 
-        let musicaPostadaUser = document.createElement('div')
-        let localMusicaPostadaUser = document.createElement('div')
-        let div = document.createElement('div')
-        let img = document.createElement('img')
-        let localTextoPostadoUser = document.createElement('div')
-        let h3 = document.createElement('h3')
-        let p = document.createElement('p')
-        let heart = document.createElement('img')
+        document.getElementsByClassName('btnEdit')[0].style.display = 'none'
+        document.querySelector('#pagPessoalUser').style.display = 'block'
+        document.querySelector('#addPlaylist').style.display = 'none'
+        document.querySelector('#headerPessalUser').querySelector('div').querySelector('img').style.display = 'block'
+        document.querySelector('#headerPessalUser').querySelector('div').querySelector('h1').style.display = 'block'
+        document.querySelector('#infosPerfilUser').querySelector('div').style.maxWidth = '661px'
+        document.querySelector('#descPerfilPagPessoal').style.display = 'block'
+        document.querySelector('#infosPerfilUser').style.height = '300px'
+        document.querySelector('#headerPessalUser').querySelector('div').querySelector('textarea').style.display = 'none'
+        document.querySelector('#headerPessalUser').style.backgroundSize = 'cover'
+        document.querySelector('#headerPessalUser').style.backgroundRepeat = 'no-repeat'
+        imgUserPagPessoal.src = 'assets/img/icones/play.png'
+        imgUserPagPessoal.style.background = '#0DCBA9'
 
-        musicaPostadaUser.className = 'musicaPostadaUser'
-        localMusicaPostadaUser.className = 'localMusicaPostadaUser'
-        localTextoPostadoUser.className = 'localTextoPostadoUser'
+        oQueEstaPassando = 'user pesquisado'
 
-        img.src = clonePerfilUserPesquisado.Musica.MusicasPostadas[c].LinkImgiMusica
-        h3.innerText = clonePerfilUserPesquisado.Musica.MusicasPostadas[c].NomeMusica
-        p.innerText = clonePerfilUserPesquisado.Musica.MusicasPostadas[c].NomeAutor
-        heart.src = 'assets/img/icones/icon _heart_ (1).png'
-
-        localMusicaPostadaUser.appendChild(img)
-        localTextoPostadoUser.appendChild(h3)
-        localTextoPostadoUser.appendChild(p)
-        div.appendChild(localMusicaPostadaUser)
-        div.appendChild(localTextoPostadoUser)
-        musicaPostadaUser.appendChild(div)
-        musicaPostadaUser.appendChild(heart)
-        localMusicasUserPagPessoal.appendChild(musicaPostadaUser)
-
-        //! Funções de click
-
-        //? Vai checar se a música já foi adicionada aos favoritos
-        cehcarFavoritos(clonePerfilUserPesquisado.Musica.MusicasPostadas[c], heart)
-
-        //? Vai salvar como favoritos a música
-        heart.addEventListener('click', () => {
-            favoritarMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[c])
-
-            setTimeout(() => {
-                cehcarFavoritos(clonePerfilUserPesquisado.Musica.MusicasPostadas[c], heart)
-            }, 200)
-        })
+        try {
+            document.querySelector('#headerPessalUser').style.backgroundImage = `url("${clonePerfilUserPesquisado.infUser.ImgParedePerfil}")`
+        } catch{}
 
 
-        imgUserPagPessoal.addEventListener('click', () => {
-            cloneMusicasSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas
-            numMusicaSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1
-            darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1])
-        })
+        let imgPerfilUserPagPessoal = document.querySelector('#imgPerfilUserPagPessoal')
+        try {
+            if(clonePerfilUserPesquisado.infUser.FotoPerfil != undefined) {
+                imgPerfilUserPagPessoal.src = clonePerfilUserPesquisado.infUser.FotoPerfil
+                imgPerfilUserPagPessoal.style.padding = '0px'
+                imgPerfilUserPagPessoal.style.width = '180px'
+                imgPerfilUserPagPessoal.style.height = '180px'
+                imgPerfilUserPagPessoal.style.objectFit = 'cover'
+                document.querySelector('#infosPerfilUser').style.background = 'transparent'
 
-        div.addEventListener('click', () => {
-            cloneMusicasSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas
-            numMusicaSequencia = c
-            darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[c])
-        })
+            } else {
+                imgPerfilUserPagPessoal.src = 'assets/img/icones/icon _profile_.png'
+                imgPerfilUserPagPessoal.style.padding = '20px'
+                imgPerfilUserPagPessoal.style.width = '100px'
+                imgPerfilUserPagPessoal.style.height = '100px'
+                imgPerfilUserPagPessoal.style.objectFit = 'contain'
+            }
+        } catch{}
+
+        document.querySelector('#nomeUserPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Nome
+        if(clonePerfilUserPesquisado.infUser.Desc != undefined) {
+            document.querySelector('#descPerfilPagPessoal').innerText = clonePerfilUserPesquisado.infUser.Desc
+        } else {
+            document.querySelector('#descPerfilPagPessoal').innerText = '...'
+        }
+
+        for(let c = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1; c >= 0; c--) {
+
+            let musicaPostadaUser = document.createElement('div')
+            let localMusicaPostadaUser = document.createElement('div')
+            let div = document.createElement('div')
+            let img = document.createElement('img')
+            let localTextoPostadoUser = document.createElement('div')
+            let h3 = document.createElement('h3')
+            let p = document.createElement('p')
+            let heart = document.createElement('img')
+
+            musicaPostadaUser.className = 'musicaPostadaUser'
+            localMusicaPostadaUser.className = 'localMusicaPostadaUser'
+            localTextoPostadoUser.className = 'localTextoPostadoUser'
+
+            img.src = clonePerfilUserPesquisado.Musica.MusicasPostadas[c].LinkImgiMusica
+            h3.innerText = clonePerfilUserPesquisado.Musica.MusicasPostadas[c].NomeMusica
+            p.innerText = clonePerfilUserPesquisado.Musica.MusicasPostadas[c].NomeAutor
+            heart.src = 'assets/img/icones/icon _heart_ (1).png'
+
+            localMusicaPostadaUser.appendChild(img)
+            localTextoPostadoUser.appendChild(h3)
+            localTextoPostadoUser.appendChild(p)
+            div.appendChild(localMusicaPostadaUser)
+            div.appendChild(localTextoPostadoUser)
+            musicaPostadaUser.appendChild(div)
+            musicaPostadaUser.appendChild(heart)
+            localMusicasUserPagPessoal.appendChild(musicaPostadaUser)
+
+            //! Funções de click
+
+            //? Vai checar se a música já foi adicionada aos favoritos
+            cehcarFavoritos(clonePerfilUserPesquisado.Musica.MusicasPostadas[c], heart)
+
+            //? Vai salvar como favoritos a música
+            heart.addEventListener('click', () => {
+                favoritarMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[c])
+
+                setTimeout(() => {
+                    cehcarFavoritos(clonePerfilUserPesquisado.Musica.MusicasPostadas[c], heart)
+                }, 200)
+            })
+
+
+            imgUserPagPessoal.addEventListener('click', () => {
+                cloneMusicasSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas
+                numMusicaSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1
+                darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[clonePerfilUserPesquisado.Musica.MusicasPostadas.length - 1])
+            })
+
+            div.addEventListener('click', () => {
+                cloneMusicasSequencia = clonePerfilUserPesquisado.Musica.MusicasPostadas
+                numMusicaSequencia = c
+                darPlayNaMusica(clonePerfilUserPesquisado.Musica.MusicasPostadas[c])
+            })
+        }
     }
 })
 

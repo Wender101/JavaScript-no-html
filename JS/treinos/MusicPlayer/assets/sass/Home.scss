@@ -684,17 +684,35 @@ body {
                             font-size: 66px;
                             color: $cor0;
                             font-family: $fonte-Carter;
+                            margin-left: -12px;
                         }
 
                         p {
                             max-width: 400px;
-                            height: 80px;
+                            height: auto;
                             color: $white;
                             word-wrap: break-word;
                             //white-space: pre;
                             text-overflow: ellipsis;
                             overflow: hidden;
                             font-size: 13px;
+                            margin-top: -10px;
+                        }
+
+                        div#conquistas {
+                            display: flex;
+                            align-items: center;
+                            margin-top: 10px;
+                            gap: 5px;
+
+                            img {
+                                width: 25px;
+                                height: 25px;
+                                object-fit: contain;
+                                border-radius: 50%;
+                                background-color: $cor5;
+                                padding: 5px;
+                            }
                         }
                     }
 

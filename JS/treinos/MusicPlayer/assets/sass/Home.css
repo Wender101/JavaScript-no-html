@@ -833,15 +833,32 @@ body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser div
   font-size: 66px;
   color: #35ffdb;
   font-family: "Carter One", cursive;
+  margin-left: -12px;
 }
 body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser div p {
   max-width: 400px;
-  height: 80px;
+  height: auto;
   color: #fff;
   word-wrap: break-word;
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 13px;
+  margin-top: -10px;
+}
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser div div#conquistas {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  gap: 5px;
+}
+body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser div div#conquistas img {
+  width: 25px;
+  height: 25px;
+  -o-object-fit: contain;
+     object-fit: contain;
+  border-radius: 50%;
+  background-color: #272727;
+  padding: 5px;
 }
 body section#pagPessoalUser article div#headerPessalUser div#infosPerfilUser textarea {
   width: 100%;

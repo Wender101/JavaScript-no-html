@@ -2,15 +2,15 @@ let RankingBtn = document.querySelector('#RankingBtn')
 RankingBtn.addEventListener('click', () => {
     document.querySelector('body').style.overflow = 'hidden'
     document.querySelector('#pagRanking').style.display = 'flex'
+    document.querySelector('#carregando').style.display = 'flex'
 
     checarRanking().then((resolve) => {
         document.querySelector('#carregando').style.display = 'none'
     })
 })
 
-function checarRanking() {
-    return new Promise((resolve, reject) => {
-        document.querySelector('#carregando').style.display = 'flex'
+function checarRanking(userPesquisado) {
+    return new Promise((resolve) => {
         let quantidadeMusicasPostadas = []
 
         db.collection('Usuarios').onSnapshot((data) => {
@@ -51,18 +51,30 @@ function checarRanking() {
                             document.querySelector('#primeiroLugar').src = Usuarios.infUser.FotoPerfil
                             tudoPronto.push(true)
                             primeiroLugarPronto = true
-        
+
+                            if(Usuarios.infUser.Nome.includes(userPesquisado) || userPesquisado.includes(Usuarios.infUser.Nome)) {
+                                conquisatasUserPesquisado.push('primeiro-lugar')
+                            }
+
                         } else if(Usuarios.Musica.MusicasPostadas.length == segundoLugar && segundoLugarPronto == false) {
                             document.querySelector('#nomeSegundoLugar').innerText = Usuarios.infUser.Nome
                             document.querySelector('#segundoLugar').src = Usuarios.infUser.FotoPerfil
                             tudoPronto.push(true)
                             segundoLugarPronto = true
+
+                            if(Usuarios.infUser.Nome.includes(userPesquisado) || userPesquisado.includes(Usuarios.infUser.Nome)) {
+                                conquisatasUserPesquisado.push('segundo-lugar')
+                            }
         
                         } else if(Usuarios.Musica.MusicasPostadas.length == terceiroLugar && terceiroLugarPronto == false) {
                             document.querySelector('#nomeTerceiroLugar').innerText = Usuarios.infUser.Nome
                             document.querySelector('#terceiroLugar').src = Usuarios.infUser.FotoPerfil
                             tudoPronto.push(true)
                             terceiroLugarPronto = true
+
+                            if(Usuarios.infUser.Nome.includes(userPesquisado) || userPesquisado.includes(Usuarios.infUser.Nome)) {
+                                conquisatasUserPesquisado.push('terceiro-lugar')
+                            }
                         }
                     } else {
                         setTimeout(() => {
