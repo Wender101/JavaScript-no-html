@@ -60,19 +60,23 @@ function favoritarMusica(musicaFavoritada) {
 function cehcarFavoritos(musicaChecar, heart) {
     let feito = false
     let jaTemEssaMusicaNosFavoritos = false
+    let checado = false
 
     db.collection('Usuarios').onSnapshot((data) => {
         data.docs.map(function(valor) {
             let Usuarios = valor.data()
 
-            if(Usuarios.infUser.Email == email) {
+            if(Usuarios.infUser.Email == email && checado == false) {
+                checado = true
 
                 for(let c = 0; c < Usuarios.Musica.MusicasCurtidas.length; c++) {
-                    if(Usuarios.Musica.MusicasCurtidas[c].LinkImgiMusica == musicaChecar.LinkImgiMusica && Usuarios.Musica.MusicasCurtidas[c].LinkAudio == musicaChecar.LinkAudio && Usuarios.Musica.MusicasCurtidas[c].EmailUser == musicaChecar.EmailUser && Usuarios.Musica.MusicasCurtidas[c].NomeMusica == musicaChecar.NomeMusica && feito == false) {
-                        feito = true
-                        jaTemEssaMusicaNosFavoritos = true
-                        heart.src = 'assets/img/icones/icon _heart_.png'
-                    }
+                    try {
+                        if(Usuarios.Musica.MusicasCurtidas[c].LinkImgiMusica == musicaChecar.LinkImgiMusica && Usuarios.Musica.MusicasCurtidas[c].LinkAudio == musicaChecar.LinkAudio && Usuarios.Musica.MusicasCurtidas[c].EmailUser == musicaChecar.EmailUser && Usuarios.Musica.MusicasCurtidas[c].NomeMusica == musicaChecar.NomeMusica && feito == false) {
+                            feito = true
+                            jaTemEssaMusicaNosFavoritos = true
+                            heart.src = 'assets/img/icones/icon _heart_.png'
+                        }
+                    } catch{}
                 }
 
                 function checarMusica() {
