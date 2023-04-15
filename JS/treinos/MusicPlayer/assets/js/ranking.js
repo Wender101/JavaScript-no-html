@@ -33,7 +33,7 @@ function checarRanking(userPesquisado) {
             let segundoLugar = quantidadeMusicasPostadas[quantidadeMusicasPostadas.length - 2]
             let terceiroLugar = quantidadeMusicasPostadas[quantidadeMusicasPostadas.length - 3]
 
-            console.log(quantidadeMusicasPostadas);
+            //console.log(quantidadeMusicasPostadas);
             let tudoPronto = []
 
             let primeiroLugarPronto = false
