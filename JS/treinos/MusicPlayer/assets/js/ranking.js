@@ -52,9 +52,12 @@ function checarRanking(userPesquisado) {
                             tudoPronto.push(true)
                             primeiroLugarPronto = true
 
-                            if(Usuarios.infUser.Nome.includes(userPesquisado) || userPesquisado.includes(Usuarios.infUser.Nome)) {
-                                conquisatasUserPesquisado.push('primeiro-lugar')
-                            }
+                            try {
+                                if(Usuarios.infUser.Nome.includes(userPesquisado) || userPesquisado.includes(Usuarios.infUser.Nome)) {
+                                    conquisatasUserPesquisado.push('primeiro-lugar')
+                                }
+                            } catch{}
+
 
                         } else if(Usuarios.Musica.MusicasPostadas.length == segundoLugar && segundoLugarPronto == false) {
                             document.querySelector('#nomeSegundoLugar').innerText = Usuarios.infUser.Nome
@@ -62,9 +65,12 @@ function checarRanking(userPesquisado) {
                             tudoPronto.push(true)
                             segundoLugarPronto = true
 
-                            if(Usuarios.infUser.Nome.includes(userPesquisado) || userPesquisado.includes(Usuarios.infUser.Nome)) {
-                                conquisatasUserPesquisado.push('segundo-lugar')
-                            }
+                            try {
+                                if(Usuarios.infUser.Nome.includes(userPesquisado) || userPesquisado.includes(Usuarios.infUser.Nome)) {
+                                    conquisatasUserPesquisado.push('segundo-lugar')
+                                }
+                            } catch{}
+
         
                         } else if(Usuarios.Musica.MusicasPostadas.length == terceiroLugar && terceiroLugarPronto == false) {
                             document.querySelector('#nomeTerceiroLugar').innerText = Usuarios.infUser.Nome
@@ -72,9 +78,12 @@ function checarRanking(userPesquisado) {
                             tudoPronto.push(true)
                             terceiroLugarPronto = true
 
-                            if(Usuarios.infUser.Nome.includes(userPesquisado) || userPesquisado.includes(Usuarios.infUser.Nome)) {
-                                conquisatasUserPesquisado.push('terceiro-lugar')
-                            }
+                            try {
+                                if(Usuarios.infUser.Nome.includes(userPesquisado) || userPesquisado.includes(Usuarios.infUser.Nome)) {
+                                    conquisatasUserPesquisado.push('terceiro-lugar')
+                                }
+                            } catch{}
+
                         }
                     } else {
                         setTimeout(() => {
