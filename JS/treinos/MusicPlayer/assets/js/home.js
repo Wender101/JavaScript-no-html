@@ -913,7 +913,7 @@ document.querySelector('#EditarPlaylistsBtn').addEventListener('click', () => {
                 feito = true
                 document.querySelector('#pagEditarPlaylist').style.display = 'block'
 
-                for(let a = 0; a < Usuarios.Musica.Playlist.length; a++) {
+                for(let a = Usuarios.Musica.Playlist.length - 1; a >= 0 ; a--) {
                     document.querySelector('#nehumResultado').style.display = 'none'
                     document.querySelector('#h1Playlists').style.display = 'block'
                     document.querySelector('#localPlaylistsPesquisa').style.display = 'block'
@@ -989,7 +989,7 @@ document.querySelector('#EditarPlaylistsBtn').addEventListener('click', () => {
                             document.getElementsByClassName('btnEdit')[0].style.display = 'none'
                             document.querySelector('#nomeDaPlaylist').value = Usuarios.Musica.Playlist[a].NomePlaylist
                         
-                            for(let b = 0; b < Usuarios.Musica.Playlist[a].Musicas.length; b++) {
+                            for(let b = Usuarios.Musica.Playlist[a].Musicas.length - 1; b >= 0; b--) {
 
                                 db.collection('TodasAsMusicas').onSnapshot((data) => {
                                     data.docs.map(function(valor) {
@@ -1038,7 +1038,7 @@ document.querySelector('#EditarPlaylistsBtn').addEventListener('click', () => {
                                                                 }
                                                                 
                                                                 localMusicasUserPagPessoal.innerHTML = ''
-                                                                document.querySelector('#headerPessalUser').style.backgroundImage = `url("${musicasNovaPlaylist[0].LinkImgiMusica}")`
+                                                                document.querySelector('#headerPessalUser').style.backgroundImage = `url("${musicasNovaPlaylist[musicasNovaPlaylist.length - 1].LinkImgiMusica}")`
                                                                 document.querySelector('#headerPessalUser').style.backgroundSize = `cover`
 
                                                                 for(let b = 0; b < musicasNovaPlaylist.length; b++) {

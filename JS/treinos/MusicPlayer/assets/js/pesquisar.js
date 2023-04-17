@@ -329,6 +329,8 @@ function pesquisar(pesquisa) {
                                             musicaAutor.addEventListener('click', () => {
                                                 darPlayNaMusica(Usuarios.Musica.MusicasPostadas[c2])
                                                 numSelecionado = c2
+                                                numMusicaSequencia = c2
+                                                cloneMusicasSequencia = Usuarios.Musica.MusicasPostadas
                                                 //let musicaEncontrda = false
         
                                                 // db.collection('TodasAsMusicas').onSnapshot((data) => {
@@ -429,6 +431,8 @@ function pesquisar(pesquisa) {
                                             //? Funções de click
                                             musicaMaisTocada.addEventListener('click', () => {
                                                 darPlayNaMusica(Usuarios.Musica.MusicasPostadas[c2])
+                                                numMusicaSequencia = c2
+                                                cloneMusicasSequencia = Usuarios.Musica.MusicasPostadas
                                             })
                                         }
                                     }
