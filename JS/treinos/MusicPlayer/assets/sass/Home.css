@@ -224,7 +224,7 @@ audio {
   height: 28px;
 }
 
-.btnExcluirMusica {
+.editBtn {
   width: 14px;
   height: 14px;
   background-color: #1c1c1c;
@@ -237,10 +237,10 @@ audio {
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.4666666667);
   cursor: pointer;
 }
-.btnExcluirMusica:hover {
+.editBtn:hover {
   scale: 1.1;
 }
-.btnExcluirMusica img {
+.editBtn img {
   width: 10px;
   height: 10px;
   -o-object-fit: cover;
@@ -948,6 +948,9 @@ body section#pagPessoalUser div.musicaPostadaUser div {
   display: flex;
   align-items: center;
 }
+body section#pagPessoalUser div.musicaPostadaUser div.btnsEditar {
+  gap: 10px;
+}
 body section#pagPessoalUser div.musicaPostadaUser div div.localMusicaPostadaUser {
   width: 64px;
   height: 64px;
@@ -1131,6 +1134,92 @@ body section#pagRanking article div div#perfilRanking div img#primeiroLugar {
 }
 body section#pagRanking article div img {
   width: 100%;
+}
+body section#pagCriarLetra {
+  width: calc(100% - 160px);
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  display: none;
+  overflow: auto;
+  z-index: 2;
+  background-color: #181818;
+  color: #fff;
+  padding: 0px 50px;
+  overflow: hidden;
+}
+body section#pagCriarLetra h1 {
+  text-align: center;
+  color: #35ffdb;
+  margin-top: 20px;
+}
+body section#pagCriarLetra article {
+  overflow: hidden;
+}
+body section#pagCriarLetra article#configTimeLetra {
+  padding-bottom: 100px;
+  color: #636363;
+}
+body section#pagCriarLetra article textarea {
+  max-width: 100%;
+  min-width: 100%;
+  max-height: calc(100vh - 140px);
+  min-height: calc(100vh - 140px);
+  background-color: transparent;
+  border: none;
+  padding: 20px;
+  margin: 40px 0px 0px -20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 15px;
+}
+body section#pagCriarLetra article textarea:focus {
+  box-shadow: 0;
+  outline: 0;
+}
+body section#pagCriarLetra article button {
+  border: none;
+  background-color: #0DCBA9;
+  color: #fff;
+  margin: 36px auto;
+  padding: 12px 55px;
+  display: block;
+  font-size: 16px;
+  font-family: "Carter One", cursive;
+  cursor: pointer;
+  position: fixed;
+  bottom: 0px;
+  right: 30px;
+}
+body section#pagCriarLetra article button#nextLetras {
+  display: none;
+}
+body section#pagCriarLetra article div {
+  width: auto;
+  margin-left: calc(50% - 90px);
+  transform: translate(-50%);
+  display: none;
+  gap: 10px;
+  position: fixed;
+  bottom: 0px;
+}
+body section#pagCriarLetra article div button {
+  width: 170px;
+  right: auto;
+  display: block;
+  position: relative;
+}
+body section#pagCriarLetra article div button#enviarLetra {
+  display: none;
+}
+body section#pagCriarLetra article pre {
+  font-family: "Poppins", sans-serif;
+  font-size: 20px;
+}
+body section#pagCriarLetra article pre .letraFocus {
+  color: white;
+  font-size: 22px;
+  font-weight: 900;
 }
 body section#pop-upEditarPerfil {
   width: 100%;

@@ -792,6 +792,7 @@ body {
                                     font-size: 12px;
                                     color: rgba(255, 255, 255, 0.4705882353);
                                 }
+
                             }
                         }
 
@@ -818,6 +819,10 @@ body {
             div {
                 display: flex;
                 align-items: center;
+
+                &.btnsEditar {
+                    gap: 10px;
+                }
 
                 div.localMusicaPostadaUser {
                     width: 64px;
@@ -1030,6 +1035,106 @@ body {
 
                 img {
                     width: 100%;
+                }
+            }
+        }
+    }
+
+    section#pagCriarLetra {
+        width: calc(100% - 160px);
+        height: 100vh;
+        position: fixed;
+        top: 0px;
+        right: 0px;
+        display: none;
+        overflow: auto;
+        z-index: 2;
+        background-color: $cor3;
+        color: $white;
+        padding: 0px 50px;
+        overflow: hidden;
+
+        h1 {
+            text-align: center;
+            color: $cor0;
+            margin-top: 20px;
+        }
+
+        article {
+            overflow: hidden;
+
+            &#configTimeLetra {
+                padding-bottom: 100px;
+                color: $cor2;
+            }
+
+            textarea {
+                max-width: 100%;
+                min-width: 100%;
+                max-height: calc(100vh - 140px);
+                min-height: calc(100vh - 140px);
+                background-color: transparent;
+                border: none;
+                padding: 20px;
+                margin: 40px 0px 0px -20px;
+                font-family: $fonte-Poppins;
+                font-size: 15px;
+
+                &:focus {
+                    box-shadow: 0;
+                    outline: 0;
+                }
+            }
+
+            button {
+                border: none;
+                background-color: $cor1;
+                color: #fff;
+                margin: 36px auto;
+                padding: 12px 55px;
+                display: block;
+                font-size: 16px;
+                font-family: "Carter One", cursive;
+                cursor: pointer;
+                position: fixed;
+                bottom: 0px;
+                right: 30px;
+
+                &#nextLetras {
+                    display: none;
+                }
+            }
+
+            div {
+                width: auto;
+                margin-left: calc(50% - 90px);
+                transform: translate(-50%);
+                display: none;
+                gap: 10px;
+                position: fixed;
+                bottom: 0px;
+
+                button {
+                    width: 170px;
+                    right: auto;
+                    display: block;
+                    position: relative;
+
+                    &#enviarLetra {
+                        display: none;
+                    }
+                }
+            }
+
+            pre {
+                //text-align: center;
+                font-family: $fonte-Poppins;
+                font-size: 20px;
+
+                .letraFocus {
+                    color: white;
+                    font-size: 22px;
+                    font-weight: 900;
                 }
             }
         }
