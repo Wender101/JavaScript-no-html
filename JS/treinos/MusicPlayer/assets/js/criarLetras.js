@@ -159,14 +159,14 @@ enviarLetra.addEventListener('click', () => {
                             audio.pause()
                             estadoMusica = 'pause'
                             playBtn.style.backgroundImage = 'url(assets/img/icones/play.png)'
-                            setTimeout(() => {
-                                arrayTime = []
-                                document.querySelector('#pagCriarLetra').style.display = 'none'
-                            }, 3000)
                             marcarLetra.innerText = 'Começar'
                             secMarcar = 0
                             contador = 0
                             newLine(-1)
+                            setTimeout(() => {
+                                arrayTime = []
+                                fecharAbas()
+                            }, 3000)
                         }
                     }
                 }
@@ -182,7 +182,6 @@ btnLetras.addEventListener('click', () => {
         document.querySelector('#pagLetraDaMusica').style.display = 'none'
         document.querySelector('body').style.overflow = 'auto'
     } else {
-        fecharAbas()
         document.querySelector('#pagLetraDaMusica').style.display = 'block'
         document.querySelector('body').style.overflow = 'hidden'
     }

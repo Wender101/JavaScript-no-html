@@ -1340,7 +1340,7 @@ body section#pagLetraDaMusica {
   right: 0px;
   display: none;
   overflow: hidden;
-  z-index: 2;
+  z-index: 3;
   background-color: #121212;
 }
 body section#pagLetraDaMusica article {
