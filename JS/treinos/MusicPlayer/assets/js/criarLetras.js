@@ -76,6 +76,8 @@ function verLetra() {
         document.querySelector('nav').style.height = '100vh'
     }, 200)
     
+    let secondsTocar = 0
+    let contadorLetra = 0
     newLine(contador)
     setInterval(() => {
         if(contador < arrayTime.length) {
