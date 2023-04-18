@@ -548,7 +548,7 @@ setInterval(() => {
         if(contadorLinhasLetra < musicaLetraTocandoAgr.LetraMusica.Time.length && estadoMusica != 'pause' && letraEncontrada == true) {
             segundosLinhaLetra++
             
-            if(segundosLinhaLetra >= musicaLetraTocandoAgr.LetraMusica.Time[contadorLinhasLetra] + 1) {
+            if(segundosLinhaLetra >= musicaLetraTocandoAgr.LetraMusica.Time[contadorLinhasLetra]) {
                 newLineContador(contadorLinhasLetra)
                 contadorLinhasLetra++
             }
