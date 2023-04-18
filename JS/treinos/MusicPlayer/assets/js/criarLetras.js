@@ -81,7 +81,7 @@ function verLetra() {
     setInterval(() => {
         if(contador < arrayTime.length) {
             console.log(secondsTocar, arrayTime[contador])
-            if(secondsTocar + 1 == arrayTime[contador]) {
+            if(secondsTocar + 1 >= arrayTime[contador]) {
                 newLine(contador)
                 contador++
             }

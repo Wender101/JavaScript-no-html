@@ -621,7 +621,7 @@ function darPlayNaMusica(lista) {
             if(contadorLinhasLetra < lista.LetraMusica.Time.length && estadoMusica != 'pause' && letraEncontrada == true) {
                 segundosLinhaLetra++
 
-                if(segundosLinhaLetra == lista.LetraMusica.Time[contadorLinhasLetra]) {
+                if(segundosLinhaLetra >= lista.LetraMusica.Time[contadorLinhasLetra]) {
                     newLine(contadorLinhasLetra)
                     contadorLinhasLetra++
                 }
