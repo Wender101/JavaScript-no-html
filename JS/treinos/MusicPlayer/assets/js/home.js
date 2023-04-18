@@ -524,7 +524,11 @@ function atualizarTimeMusica(estado = 'play', arrayDeMusica = []) {
 }
 
 //! Ficar marcando o time de segundo em segundo
+let segundosLinhaLetra = 0
+let contadorLinhasLetra = 0
+let musicaLetraTocandoAgr
 let estadoMusica = 'zerar'
+let letraEncontrada = false
 setInterval(() => {
     let playBtn = document.getElementById('play')
     let audio = document.querySelector('#audioMusica')
@@ -538,7 +542,29 @@ setInterval(() => {
         playBtn.style.backgroundImage = 'url(assets/img/icones/pause.png)'
     }
     atualizarTimeMusica(estadoMusica, cloneMusicasSequencia)
+
+    //? Vai controlar a letra
+    try {
+        if(contadorLinhasLetra < musicaLetraTocandoAgr.LetraMusica.Time.length && estadoMusica != 'pause' && letraEncontrada == true) {
+            segundosLinhaLetra++
+            
+            if(segundosLinhaLetra >= musicaLetraTocandoAgr.LetraMusica.Time[contadorLinhasLetra] + 1) {
+                newLineContador(contadorLinhasLetra)
+                contadorLinhasLetra++
+            }
+        }
+    } catch{}
 }, 1000)
+
+function newLineContador(num) {
+    let meuTexto = document.getElementById("letraDaMusicaTocandoAgr")
+    if(meuTexto.innerText != 'Não aprendi a cantar essa ainda...') {
+        let linhas = meuTexto.innerText.split("\n") // divide o texto em linhas
+        let linhaSelecionada = linhas[num] // seleciona a quinta linha (índice 4)
+        linhas[num] = "<span class='letraFocus'>" + linhaSelecionada + "</span>" // envolve a quinta linha em um span com cor vermelha
+        meuTexto.innerHTML = linhas.join("\n") // junta as linhas novamente em um único texto com quebras de linha
+    }
+}
 
 //? Vai dar play na música
 let checarRepetidas = false
@@ -546,6 +572,11 @@ let atualizadoMusicaOuvindoAgr = false
 let hrAtualizada = false
 function darPlayNaMusica(lista) {
     estadoMusica = 'play'
+    musicaLetraTocandoAgr = lista
+    contadorLinhasLetra = 0
+    segundosLinhaLetra = 0
+    letraEncontrada = false
+    newLineContador(-1)
 
     //! Vai passar a música ou voltar usando os btns do teclado
     navigator.mediaSession.metadata = new MediaMetadata({
@@ -609,40 +640,19 @@ function darPlayNaMusica(lista) {
 
     //! Vai mostrar a letra da música
     let letraDaMusicaTocandoAgr = document.querySelector('#letraDaMusicaTocandoAgr')
-    let contadorLinhasLetra = 0
-    let segundosLinhaLetra = 0
-    let letraEncontrada = false
+    // let contadorLinhasLetra = 0
+    // let segundosLinhaLetra = 0
+    // let letraEncontrada = false
     if(lista.LetraMusica != undefined) {
         letraDaMusicaTocandoAgr.innerHTML = lista.LetraMusica.Letra
         letraEncontrada = true
         
-        setInterval(() => {
-            
-            if(contadorLinhasLetra < lista.LetraMusica.Time.length && estadoMusica != 'pause' && letraEncontrada == true) {
-                segundosLinhaLetra++
-
-                if(segundosLinhaLetra >= lista.LetraMusica.Time[contadorLinhasLetra]) {
-                    newLine(contadorLinhasLetra)
-                    contadorLinhasLetra++
-                }
-            }
-        }, 1000)
     } else {
         letraDaMusicaTocandoAgr.innerHTML = 'Não aprendi a cantar essa ainda...'
         contadorLinhasLetra = 0
         segundosLinhaLetra = 0
         letraEncontrada = false
-        newLine(-1)
-    }
-
-    function newLine(num) {
-        let meuTexto = document.getElementById("letraDaMusicaTocandoAgr")
-        if(meuTexto.innerText != 'Não aprendi a cantar essa ainda...') {
-            let linhas = meuTexto.innerText.split("\n") // divide o texto em linhas
-            let linhaSelecionada = linhas[num] // seleciona a quinta linha (índice 4)
-            linhas[num] = "<span class='letraFocus'>" + linhaSelecionada + "</span>" // envolve a quinta linha em um span com cor vermelha
-            meuTexto.innerHTML = linhas.join("\n") // junta as linhas novamente em um único texto com quebras de linha
-        }
+        newLineContador(-1)
     }
 
     //? Vai pegar o hr do servidor

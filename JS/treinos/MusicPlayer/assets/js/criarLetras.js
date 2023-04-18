@@ -75,8 +75,7 @@ function verLetra() {
         document.querySelector('#menuTocandoMusica').style.bottom = '-100vh'
         document.querySelector('nav').style.height = '100vh'
     }, 200)
-    let secondsTocar = 0
-    let contador = 0
+    
     newLine(contador)
     setInterval(() => {
         if(contador < arrayTime.length) {
