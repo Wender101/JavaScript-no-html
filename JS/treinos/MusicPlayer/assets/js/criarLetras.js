@@ -80,7 +80,6 @@ function verLetra() {
     newLine(contador)
     setInterval(() => {
         if(contador < arrayTime.length) {
-            console.log(secondsTocar, arrayTime[contador])
             if(secondsTocar + 1 >= arrayTime[contador]) {
                 newLine(contador)
                 contador++
@@ -112,7 +111,6 @@ zerarMarcacao.addEventListener('click', () => {
 enviarLetra.addEventListener('click', () => {
     let feito = false
     if(marcarLetra.innerText == 'Ver') {
-        console.log(musicaSelecionadaLetra);
 
         db.collection('Usuarios').onSnapshot((data) => {
             data.docs.map(function(valor) {
