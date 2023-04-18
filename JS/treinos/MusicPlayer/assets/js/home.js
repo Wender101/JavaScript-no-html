@@ -607,6 +607,44 @@ function darPlayNaMusica(lista) {
         }
     }).catch(error => console.error(error))
 
+    //! Vai mostrar a letra da música
+    let letraDaMusicaTocandoAgr = document.querySelector('#letraDaMusicaTocandoAgr')
+    let contadorLinhasLetra = 0
+    let segundosLinhaLetra = 0
+    let letraEncontrada = false
+    if(lista.LetraMusica != undefined) {
+        letraDaMusicaTocandoAgr.innerHTML = lista.LetraMusica.Letra
+        letraEncontrada = true
+        
+        setInterval(() => {
+            
+            if(contadorLinhasLetra < lista.LetraMusica.Time.length && estadoMusica != 'pause' && letraEncontrada == true) {
+                segundosLinhaLetra++
+
+                if(segundosLinhaLetra == lista.LetraMusica.Time[contadorLinhasLetra]) {
+                    newLine(contadorLinhasLetra)
+                    contadorLinhasLetra++
+                }
+            }
+        }, 1000)
+    } else {
+        letraDaMusicaTocandoAgr.innerHTML = 'Não aprendi a cantar essa ainda...'
+        contadorLinhasLetra = 0
+        segundosLinhaLetra = 0
+        letraEncontrada = false
+        newLine(-1)
+    }
+
+    function newLine(num) {
+        let meuTexto = document.getElementById("letraDaMusicaTocandoAgr")
+        if(meuTexto.innerText != 'Não aprendi a cantar essa ainda...') {
+            let linhas = meuTexto.innerText.split("\n") // divide o texto em linhas
+            let linhaSelecionada = linhas[num] // seleciona a quinta linha (índice 4)
+            linhas[num] = "<span class='letraFocus'>" + linhaSelecionada + "</span>" // envolve a quinta linha em um span com cor vermelha
+            meuTexto.innerHTML = linhas.join("\n") // junta as linhas novamente em um único texto com quebras de linha
+        }
+    }
+
     //? Vai pegar o hr do servidor
     // fetch("http://worldtimeapi.org/api/ip").then(response => response.json()).then(data => {
     //     console.log(1);

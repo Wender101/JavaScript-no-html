@@ -59,7 +59,7 @@ marcarLetra.addEventListener('click', () => {
 function newLine(num) {
     let meuTexto = document.getElementById("perLetra")
     let linhas = meuTexto.innerText.split("\n") // divide o texto em linhas
-    let linhaSelecionada = linhas[num]; // seleciona a quinta linha (índice 4)
+    let linhaSelecionada = linhas[num] // seleciona a quinta linha (índice 4)
     linhas[num] = "<span class='letraFocus'>" + linhaSelecionada + "</span>" // envolve a quinta linha em um span com cor vermelha
     meuTexto.innerHTML = linhas.join("\n") // junta as linhas novamente em um único texto com quebras de linha
 
@@ -175,5 +175,18 @@ enviarLetra.addEventListener('click', () => {
                 }
             })
         })
+    }
+})
+
+//! Vai abrir a letra da música
+let btnLetras = document.querySelector('#btnLetras')
+btnLetras.addEventListener('click', () => {
+    if(document.querySelector('#pagLetraDaMusica').style.display == 'block') {
+        document.querySelector('#pagLetraDaMusica').style.display = 'none'
+        document.querySelector('body').style.overflow = 'auto'
+    } else {
+        fecharAbas()
+        document.querySelector('#pagLetraDaMusica').style.display = 'block'
+        document.querySelector('body').style.overflow = 'hidden'
     }
 })
