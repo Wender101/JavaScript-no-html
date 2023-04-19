@@ -70,7 +70,6 @@ function novaPrevicaoDoTemp(latidute = undefined, longitude = undefined) {
         
                 
                 try {
-                    console.log(corpo)
         
                     
                     let temperaturaAtual = corpo.main.temp
@@ -85,7 +84,6 @@ function novaPrevicaoDoTemp(latidute = undefined, longitude = undefined) {
                     db.collection('local').onSnapshot((data) => {
                         data.docs.map(function(val) {
                             let local = val.data()
-
                             let localAtual = {
                                latidute,
                                longitude
@@ -117,6 +115,6 @@ if(navigator.geolocation) {
     navigator.geolocation.getCurrentPosition( function(position){
         novaPrevicaoDoTemp(position.coords.latitude, position.coords.longitude)
 
-        console.log('lat: ' + position.coords.latitude, 'log: ' + position.coords.longitude);
+        console.log('lat: ' + position.coords.latitude, 'log: ' + position.coords.longitude)
     })
 }
