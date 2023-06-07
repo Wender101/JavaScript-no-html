@@ -22,7 +22,7 @@ addFriendBtn.addEventListener('click', () => {
     //? Vai add o novo amigo
     let inputEmailNewFriend = document.querySelector('#emailNewFriend')
     if(inputEmailNewFriend.value.length > 0) {
-        checarSePedidoJaFoiEnviado(inputEmailNewFriend.value).then((resolve) => {
+        checarSePedidoJaFoiEnviado(inputEmailNewFriend.value).upda((resolve) => {
             addNewFriend(inputEmailNewFriend.value).then((resolve) => {
                 setTimeout(() => {
                     alert(resolve)

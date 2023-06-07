@@ -1,3 +1,15 @@
+// rules_version = '2';
+// service firebase.storage {
+//   match /b/{bucket}/o {
+//     match /{allPaths=**} {
+//       allow read, write: if true;
+//     }
+//   }
+// }
+//! -------------
+//? -------------
+//* -------------
+
 var firebaseConfig = {
     apiKey: "AIzaSyAf64jnLWXDgb8HziVAbqDyHS5xMuupgo4",
     authDomain: "treefy-3e5ae.firebaseapp.com",

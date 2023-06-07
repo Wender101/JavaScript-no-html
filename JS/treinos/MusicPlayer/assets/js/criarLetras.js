@@ -48,8 +48,8 @@ marcarLetra.addEventListener('click', () => {
     } else if(marcarLetra.innerText == 'Marcar') {
         newLine(contador)
         arrayTime.push(secMarcar)
-
         contador++
+
     } else if(marcarLetra.innerText == 'Ver') {
         verLetra()
         enviarLetra.style.display = 'block'
@@ -63,7 +63,7 @@ function newLine(num) {
     linhas[num] = "<span class='letraFocus'>" + linhaSelecionada + "</span>" // envolve a quinta linha em um span com cor vermelha
     meuTexto.innerHTML = linhas.join("\n") // junta as linhas novamente em um único texto com quebras de linha
 
-    if(arrayTime.length + 1 >= linhas.length) {
+    if(arrayTime.length >= linhas.length) {
         marcarLetra.innerText = 'Ver'
         enviarLetra.style.display = 'block'
     }
@@ -78,12 +78,12 @@ function verLetra() {
     
     let secondsTocar = 0
     let contadorLetra = 0
-    newLine(contador)
+    newLine(-1)
     setInterval(() => {
-        if(contador < arrayTime.length) {
-            if(secondsTocar + 1 >= arrayTime[contador]) {
-                newLine(contador)
-                contador++
+        if(contadorLetra < arrayTime.length) {
+            if(secondsTocar + 1 >= arrayTime[contadorLetra]) {
+                newLine(contadorLetra)
+                contadorLetra++
             }
             secondsTocar++
         } else {
@@ -104,6 +104,7 @@ zerarMarcacao.addEventListener('click', () => {
     playBtn.style.backgroundImage = 'url(assets/img/icones/play.png)'
     arrayTime = []
     marcarLetra.innerText = 'Começar'
+    document.querySelector('#enviarLetra').style.display = 'none'
     secMarcar = 0
     contador = 0
     newLine(-1)

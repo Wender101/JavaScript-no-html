@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exemplo de Pegar Cor Principal de Imagem</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    #image-container {
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    #image-container::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      opacity: 0.7;
+      z-index: -1;
+    }
+  </style>
+</head>
+<body>
+  <div id="image-container">
+    <img id="main-image" src="assets/img/fotos/1082081621605417.jpg" alt="Imagem" width="500px" />
+  </div>
+
+  <script>
+var img = new Image();
+img.src = "https://firebasestorage.googleapis.com/v0/b/treefy-3e5ae.appspot.com/o/X2Download.app%20-%20BTS%20-%20Permission%20to%20Dance%C2%A0(Official%20Audio)%20(320%20kbps).mp3%2F1082081621605417.webp?alt=media&token=61f6190d-6f54-4afe-b27a-a5ba4e3803d1";
+
+img.addEventListener('load', function() {
+  var canvas = document.createElement('canvas');
+  var context = canvas.getContext('2d');
+
+  canvas.width = img.width;
+  canvas.height = img.height;
+
+  context.drawImage(img, 0, 0);
+
+  var imageData = context.getImageData(0, 0, canvas.width, canvas.height).data;
+
+  var colorCounts = {};
+  var maxCount = 0;
+  var dominantColor;
+
+  for (var i = 0; i < imageData.length; i += 4) {
+    var r = imageData[i];
+    var g = imageData[i + 1];
+    var b = imageData[i + 2];
+
+    var color = r + ',' + g + ',' + b;
+    if (colorCounts[color]) {
+      colorCounts[color]++;
+    } else {
+      colorCounts[color] = 1;
+    }
+
+    if (colorCounts[color] > maxCount) {
+      maxCount = colorCounts[color];
+      dominantColor = color;
+    }
+  }
+
+  console.log(dominantColor);
+  document.querySelector('body').style.background = `rgb(${dominantColor})`
+});
+
+  </script>
+</body>
+</html>

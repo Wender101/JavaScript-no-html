@@ -528,6 +528,8 @@ let segundosLinhaLetra = 0
 let contadorLinhasLetra = 0
 let musicaLetraTocandoAgr
 let estadoMusica = 'zerar'
+let arroz = 'É bom'
+
 let letraEncontrada = false
 setInterval(() => {
     let playBtn = document.getElementById('play')
@@ -751,6 +753,11 @@ function darPlayNaMusica(lista) {
 
     //? Vai colocar as informações na tela
     document.querySelector('#imgMusicaTocandoAgora').src = lista.LinkImgiMusica
+
+    try {
+    getAverageRGB(lista.LinkImgiMusica)
+    } catch(error){console.warn(error);}
+
     document.querySelector('#nomeMusicaTocandoAgora').innerText = lista.NomeMusica
     document.querySelector('#autorMusicaTocandoAgora').innerText = lista.NomeAutor
 

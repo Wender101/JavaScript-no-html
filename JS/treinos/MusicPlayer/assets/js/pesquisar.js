@@ -37,6 +37,7 @@ inputPesquisa.addEventListener('keydown', (e) => {
 
         if(inputPesquisa.value.length > 0) {
             document.querySelector('#pagPesquisa').style.display = 'block'
+            document.querySelector('#pagPesquisa').style.zIndex = '5'
             document.querySelector('body').style.overflow = 'hidden'
 
             inputPesquisa2.value = inputPesquisa.value
