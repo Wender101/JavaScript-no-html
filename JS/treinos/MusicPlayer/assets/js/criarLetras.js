@@ -63,7 +63,7 @@ function newLine(num) {
     linhas[num] = "<span class='letraFocus'>" + linhaSelecionada + "</span>" // envolve a quinta linha em um span com cor vermelha
     meuTexto.innerHTML = linhas.join("\n") // junta as linhas novamente em um único texto com quebras de linha
 
-    if(arrayTime.length >= linhas.length) {
+    if(arrayTime.length + 1 >= linhas.length) {
         marcarLetra.innerText = 'Ver'
         enviarLetra.style.display = 'block'
     }
