@@ -1,0 +1,395 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100;200;300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap");
+gif lofi animado * {
+  margin: 0px;
+  padding: 0px;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+article#carregamento {
+  width: 100%;
+  height: 100vh;
+  position: fixed;
+  top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  color: #000;
+}
+article#carregamento p {
+  width: 200px;
+  overflow: hidden;
+  font-size: 30px;
+  white-space: nowrap;
+}
+
+.carregandoFechado {
+  animation-name: fadeOut;
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+body {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Roboto", sans-serif;
+  overflow: hidden;
+}
+body img.backgroundsPage {
+  width: 100%;
+  min-height: calc(100vh + 30px);
+  position: fixed;
+  z-index: -1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
+  transition: 1s opacity ease-in-out;
+  margin-top: -30px;
+}
+body img.backgroundsPage#hide {
+  opacity: 0;
+}
+body article#localPerfilUsers {
+  width: auto;
+  height: auto;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+body article#localPerfilUsers img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+body nav {
+  width: 100px;
+  height: 100vh;
+  position: fixed;
+  right: 0px;
+  top: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+body nav ul {
+  width: auto;
+  height: auto;
+  padding: 14px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 30px;
+  background-color: rgba(50, 50, 50, 0.6);
+  border-radius: 33px;
+  position: absolute;
+  transition: 300ms right ease-in-out;
+}
+body nav ul li {
+  width: 30px;
+  height: 30px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  list-style-type: none;
+}
+body nav ul li.buttonsNav:hover {
+  transition: scale 200ms ease-in-out;
+  scale: 1.2;
+  cursor: pointer;
+}
+body nav ul li.buttonsNav:active {
+  transition: scale 200ms ease-in-out;
+  scale: 1;
+}
+body nav ul li img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+body nav article#pagOpcoes {
+  width: 300px;
+  height: 700px;
+  background-color: rgba(50, 50, 50, 0.6);
+  position: absolute;
+  right: 100px;
+  border-radius: 25px;
+  display: none;
+  overflow-x: hidden;
+  overflow: hidden;
+}
+body nav article#pagOpcoes div#loading-icon {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  position: absolute;
+  z-index: 1;
+  display: none;
+}
+body nav article#pagOpcoes section {
+  height: 100%;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow-x: auto;
+}
+body nav article#pagOpcoes section.abaNav {
+  display: none;
+}
+body nav article#pagOpcoes section#backgoundsNav::-webkit-scrollbar {
+  width: 1px;
+}
+body nav article#pagOpcoes section#backgoundsNav img {
+  width: 100%;
+  height: 135px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 20px;
+  cursor: pointer;
+}
+body nav article#pagOpcoes section#salaNav div {
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
+}
+body nav article#pagOpcoes section#salaNav div span {
+  width: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 5px;
+}
+body nav article#pagOpcoes section#salaNav div span img {
+  width: 20px;
+}
+body nav article#pagOpcoes section#salaNav div.btnSala {
+  display: block;
+  text-align: center;
+}
+body nav article#pagOpcoes section#salaNav div.btnSala p {
+  font-size: 20px;
+  font-family: "Josefin Sans", sans-serif;
+}
+body nav article#pagOpcoes section#salaNav div.btnSala div {
+  margin-top: 15px;
+}
+body nav article#pagOpcoes section#salaNav div.btnSala div button {
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  background-color: #393737;
+  border: none;
+  cursor: pointer;
+}
+body nav article#pagOpcoes section#salaNav div.btnSala div button.dentroDaSala {
+  display: none;
+}
+body main {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  flex-direction: column;
+}
+body main article {
+  width: 90%;
+  max-width: 700px;
+  height: auto;
+}
+body main article h1#relogio {
+  font-size: 12.5em;
+  text-align: center;
+  margin: 0px;
+}
+body main article input {
+  width: 100%;
+  margin: 14px 0px 46px;
+  background-color: rgba(50, 50, 50, 0.6);
+  border: none;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.4117647059);
+}
+body main article input:focus {
+  outline: none;
+}
+body main article input::-moz-placeholder {
+  color: rgba(255, 255, 255, 0.4117647059);
+}
+body main article input::placeholder {
+  color: rgba(255, 255, 255, 0.4117647059);
+}
+body main article section#localMsgChat {
+  width: 100%;
+  height: 300px;
+  background-color: rgba(0, 0, 0, 0.397);
+  border-radius: 19px;
+  overflow-x: hidden;
+}
+body main article section#localMsgChat::-webkit-scrollbar {
+  width: 1px;
+}
+body main article section#localMsgChat::-webkit-scrollbar-track {
+  background: transparent;
+}
+body main article section#localMsgChat::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+body main article section#localMsgChat div {
+  width: 90%;
+  gap: 12px;
+  color: #fff;
+  font-size: 0.8em;
+  background-color: rgba(104, 102, 102, 0.397);
+  padding: 16px;
+  border-radius: 19px;
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  margin-bottom: 10px;
+}
+body main article section#localMsgChat div.msgsfriend {
+  float: left;
+  clear: both;
+  background-color: rgba(104, 102, 102, 0.397);
+}
+body main article section#localMsgChat div.msgsYour {
+  float: right;
+  clear: both;
+  background-color: rgba(184, 183, 183, 0.534);
+}
+body main article section#localMsgChat div.msgsYour img {
+  display: none;
+}
+body main article section#localMsgChat div img {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+}
+body main article .sound-wave {
+  width: 87px;
+  height: 50px;
+  position: relative;
+  background-color: transparent;
+  overflow: hidden;
+  margin: 30px auto;
+  display: none;
+}
+body main article .sound-wave span {
+  display: inline-block;
+  width: 5px;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0.8;
+  animation: soundWave 0.7s linear infinite;
+  border-radius: 10px;
+}
+body main article .sound-wave span:nth-child(2) {
+  animation-delay: -1.2s;
+}
+body main article .sound-wave span:nth-child(3) {
+  animation-delay: -0.9s;
+}
+body main article .sound-wave span:nth-child(4) {
+  animation-delay: -0.6s;
+}
+body main article .sound-wave span:nth-child(5) {
+  animation-delay: -0.3s;
+}
+body main article .sound-wave span:nth-child(6) {
+  animation-delay: -0.9s;
+}
+body main article .sound-wave span:nth-child(7) {
+  animation-delay: -1.3s;
+}
+body main article .sound-wave span:nth-child(8) {
+  animation-delay: -7s;
+}
+body main article .sound-wave span:nth-child(9) {
+  animation-delay: -6s;
+}
+body main article .sound-wave span:nth-child(10) {
+  animation-delay: -0.3s;
+}
+body main article .sound-wave span:nth-child(11) {
+  animation-delay: -0.9s;
+}
+@keyframes soundWave {
+  0% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.4);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+body div#localCodigoSala {
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  display: none;
+}
+body div#localCodigoSala p {
+  color: #00D1D3;
+}
+body div#localCodigoSala p span {
+  color: #fff;
+}
+body div#musicaTocandoAgr {
+  display: none;
+  align-items: end;
+  justify-content: end;
+  position: fixed;
+  bottom: 10px;
+  left: 20px;
+  color: #fff;
+  gap: 19px;
+}
+body div#musicaTocandoAgr img {
+  width: 65px;
+  height: 65px;
+  background-color: #fff;
+  -o-object-fit: cover;
+  object-fit: cover;
+}
+body div#musicaTocandoAgr div p {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 16px;
+  font-weight: 500;
+}
+body div#musicaTocandoAgr div span {
+  width: 100%;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.4666666667);
+}/*# sourceMappingURL=Home.css.map */

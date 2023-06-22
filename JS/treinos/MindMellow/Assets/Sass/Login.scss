@@ -1,0 +1,85 @@
+@import 'Geral.scss';
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url('../img/backgrounds/2.png');
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $fonte-Roboto;
+
+    main {
+        width: 95%;
+        max-width: 550px;
+        height: auto;
+        margin: auto;
+        padding: 83px 18px;
+        background-color: $cor1;
+        box-shadow: -3px 3px 10px rgba(0, 0, 0, 0.644);
+        
+        div#logo {
+            width: 70%;
+            height: 70px;
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-image: url('../img/icons/Logo.png');
+            margin: 0px auto 72px;
+        }
+
+        article {
+            color: $white;
+
+            input {
+                width: 100%;
+                margin: 14px 0px 8px;
+                background-color: $cor2;
+                border: none;
+                padding: 9px 14px;
+                border-radius: 10px;
+                color: $white;
+
+                &:focus {
+                    outline: none;
+                }
+
+                &::placeholder {
+                    color: $white;
+                }
+            }
+
+            button {
+                width: 100%;
+                margin: 0px 0px 10px;
+                border: none;
+                background-color: $cor5;
+                border-radius: 10px;
+                color: $white;
+                padding: 10px 0px;
+                cursor: pointer;
+
+                &:hover {
+                    transition: scale 200ms ease-in-out;
+                    scale: 1.02;
+                }
+
+                &:active {
+                    transition: scale 200ms ease-in-out;
+                    scale: 1;
+                }
+            }
+
+            span {
+                display: block;
+                text-align: center;
+                margin-top: 50px;
+                color: $cor4;
+                font-size: 14px;
+            }
+        }
+    }
+}
